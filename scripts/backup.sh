@@ -1,11 +1,17 @@
 #!/bin/bash
-cp ~/.bashrc .
-cp ~/.config/i3/config .
-cp -r ~/.vim/autoload . 
-cp -r ~/.vim/colors .  
-cp -r ~/.vim/swapfiles .
 
-git add -a
-git commit -m "update"
+# bashrc
+cp ~/.bashrc ./bashrc/bashrc
+
+# i3
+cp ~/.config/i3/config ./i3/config
+
+# vim
+cp -r ~/.vim/autoload ./vim/
+cp -r ~/.vim/colors ./vim/  
+cp -r ~/.vim/swapfiles ./vim/
+cp ~/.vimrc ./vim/vimrc
+
+git add *
 
 

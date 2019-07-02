@@ -4,6 +4,9 @@
 set foldmethod=indent
 set nofoldenable
 
+set hlsearch
+set incsearch
+
 " enable line numbers
 let NERDTreeShowLineNumbers=1
 " make sure relative line numbers are used
@@ -13,7 +16,7 @@ autocmd FileType nerdtree setlocal relativenumber
 :nnoremap ;; $a;<Esc>
 :nnoremap d; $a<BS><Esc>
 " auto opens nerdtree
-map <C-n> :NERDTreeToggle<CR>`
+map <C-n> :NERDTreeToggle<CR>
 
 " Recommended settings for vimwiki
 set nocompatible
@@ -22,7 +25,7 @@ syntax on
 
 " Recommended settings for papercolor-theme
 set t_Co=256   " This is may or may not needed.
-set background=light
+set background=dark
 colorscheme PaperColor
 set laststatus=2
 
@@ -75,5 +78,3 @@ call plug#begin()
     Plug 'vimwiki/vimwiki'
     Plug 'itchyny/lightline.vim'
 call plug#end()
-
-
