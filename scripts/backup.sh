@@ -1,13 +1,11 @@
 #!/bin/bash
-echo Working directory = $(pwd)
-
 cp ~/.bashrc .
 cp ~/.config/i3/config .
-cp -r ~/.vim .  
+cp -r ~/.vim/autoload . 
+cp -r ~/.vim/colors .  
+cp -r ~/.vim/swapfiles .
 
-git add *
+git add -a
 git commit -m "update"
-git push
-echo Done
 
 
