@@ -60,6 +60,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -115,27 +116,48 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# virtual env var
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/home/keith/.local/bin/virtualenv
-source /home/keith/.local/bin/virtualenvwrapper.sh 
+# swap esc with capslock
+setxkbmap -option caps:swapescape
 
 # make vim the default editor
 export EDITOR=vim
 
-# swap esc with caplock
-setxkbmap -option caps:swapescape
+# virtual env var
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
+source $HOME/.local/bin/virtualenvwrapper.sh
 
-alias python='python3'
-alias pip='pip3'
-alias python2='python2'
-alias pip2='pip2'
-alias pgadmin='python3 /home/keith/.local/lib/python3.6/site-packages/pgadmin4/pgAdmin4.py'
+# node version manager 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 alias copy='xclip -sel clipboard'
-alias pycharm='/snap/pycharm-professional/116/bin/pycharm.sh'
-alias webstorm='/usr/share/WebStorm-182.4323.44/bin/webstorm.sh'
+alias pycharm='~/Installed/pycharm-2019.1.2/bin/pycharm.sh & disown $!'
+alias pycharmf='~/Installed/pycharm-2019.1.2/bin/pycharm.sh . & disown $!'
+alias dockersrm='docker rm -f $(docker ps -aq)'
+alias gs='git status -sb'
+alias gitll='git log --graph --pretty=format:'"'"'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %Creset'"'"'% --abbrev-commit --date=relative'
+alias lock='i3lock -c 000000'
+alias pytest='clear && pytest'
+alias startdb='docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 55432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres'
 
-# temporary alias
-alias gfl='git flow'
+alias bashrc='vim ~/.bashrc'
+alias i3rc='vim ~/.config/i3/config'
+alias vimrc='vim ~/.vimrc'
 
+# colorize docker logs.
+# input: container name
+function cdocker() {
+    if [ "$1" = "logs" ]; then
+        docker logs "$2" 2>&1 | ccze -m ansi  
+    fi
+}
+
+# pyenv path
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
