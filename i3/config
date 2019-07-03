@@ -172,8 +172,25 @@ bar {
 # Alt-tab like behaviour for workspace
 bindsym $mod+Tab workspace back_and_forth
 
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # Start google chrome on startup
 exec --no-startup-id i3-msg 'exec workspace $ws2; exec google-chrome --password-store=gnome'
 
+########## Pinning an application to a workspace
+# run xprop on terminal to get class of an application
+assign [class="Postman"] $ws4
+##########
+
+bindsym $mod+q exec i3lock

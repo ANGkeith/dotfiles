@@ -143,9 +143,9 @@ alias lock='i3lock -c 000000'
 alias pytest='clear && pytest'
 alias startdb='docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 55432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres'
 
-alias bashrc='vim ~/.bashrc'
-alias i3rc='vim ~/.config/i3/config'
-alias vimrc='vim ~/.vimrc'
+alias bashconf='vim ~/.bashrc'
+alias i3conf='vim ~/.config/i3/config'
+alias vimconf='vim ~/.vimrc'
 
 # colorize docker logs.
 # input: container name
