@@ -1,0 +1,39 @@
+#!/bin/bash
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
+
+sudo apt install -y vim i3 kdiff3 xclip git gitk wget curl make build-essential \
+libssl-dev
+
+sudo apt install -y python3-pip
+
+pip3 install --user pipenv
+pip3 install virtualenv
+pip3 install virtualenvwrapper
+
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+#dependencies for postman
+sudo apt install -y libgconf2-4
+wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+sudo tar -xzf postman.tar.gz -C /opt
+rm postman.tar.gz
+sudo ln -s /opt/Postman/Postman /usr/bin/postman
+
+# volume manager
+sudo apt install -y pavucontrol
+
+# Packages for i3
+
+# Replace for dmenu
+sudo apt install -y rofi
+
+
+
+# install font
+wget -P ~/.fonts/ https://github.com/supermarin/YosemiteSanFranciscoFont/raw/master/System%20San%20Francisco%20Display%20Regular.ttf -O "System San Francisco Display Regular.ttf"
+wget -P ~/.fonts/ https://github.com/supermarin/YosemiteSanFranciscoFont/raw/master/System%20San%20Francisco%20Display%20Thin.ttf -O "System San Francisco Display Thin.ttf"
+wget -P ~/.fonts/ https://github.com/supermarin/YosemiteSanFranciscoFont/raw/master/System%20San%20Francisco%20Display%20Ultralight.ttf -O "System San Francisco Display Ultralight.ttf"
+
+apt install -y feh

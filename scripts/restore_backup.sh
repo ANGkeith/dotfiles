@@ -4,9 +4,10 @@ git pull
 cp ./bashrc/bashrc ~/.bashrc
 
 # i3
-cp ./i3/config ~/.config/i3/config
+cp -r ./i3/ ~/.config/
+cp -r ./rofi ~/.config/
 
 # vim
-cp -r ./vim/ ~/.vim
+cp -r ./vim/* ~/.vim
 cp ./vim/vimrc ~/.vimrc
 

@@ -1,11 +1,11 @@
 help:
-	@echo "    push"
+	@echo "    backup"
 	@echo "        Upload current configuration files to remote server";
-	@echo "    pull"
+	@echo "    restore_backup"
 	@echo "        Override current configuration files with the remote server's version"
 
-push:
-	@./scripts/push.sh
+backup:
+	@./scripts/backup.sh
 
-pull:
-	@./scripts/pull.sh
+restore_backup:
+	@./scripts/restore_backup.sh

@@ -23,17 +23,9 @@ set nocompatible
 filetype plugin on
 syntax on
 
-" Recommended settings for papercolor-theme
-set t_Co=256   " This is may or may not needed.
-set background=dark
-colorscheme PaperColor
-set laststatus=2
-
 " Recommended settings for lightline
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ }
+set laststatus=2
 
 " Recommended settings for syntastic
 set statusline+=%#warningmsg#
@@ -64,7 +56,7 @@ set expandtab
 " use system clipboard for copy and paste
 set clipboard=unnamedplus
 
-set directory=~/.vim/swapfiles//
+set directory=~/.vim/swapfiles/
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
