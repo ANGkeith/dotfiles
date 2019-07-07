@@ -11,3 +11,5 @@ cp -r ./rofi ~/.config/
 cp -r ./vim/* ~/.vim
 cp ./vim/vimrc ~/.vimrc
 
+cp -r ./keith_envs ~/.config/
+

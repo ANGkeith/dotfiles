@@ -13,5 +13,7 @@ cp -r ~/.vim/autoload ./vim/
 cp -r ~/.vim/swapfiles ./vim/
 cp ~/.vimrc ./vim/vimrc
 
+cp -r ~/.config/keith_envs ./
+
 git add *
 

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export TEXT_COLOR="#cecece"
+export ACTIVE_BORDER_COLOR="#cecece"
+export ACTIVE_BG="#9575cd"
+export NO_COLOR="argb:00000000"
+
+export NOTIF_BG_COLOR="argb:ee212121"
+
+home=$(echo ~)
+
+envsubst < "$home/.config/rofi/.config.template" > "$home/.config/rofi/config"
+

@@ -1,3 +1,5 @@
+# EDITS SHOULD BE DONE IN THE .config.template file
+
 rofi.color-enabled: true
 rofi.modi:                           ssh,drun,run
 rofi.sidebar-mode:                   true
@@ -9,10 +11,10 @@ rofi.lines:                          8
 rofi.columns:                        1
 rofi.font:                           System San Francisco Display 13
 ! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: argb:00000000,  #cecece,  argb:00000000,  #9575cd,  #cecece
+rofi.color-normal: $NO_COLOR,  $TEXT_COLOR,  $NO_COLOR,  $ACTIVE_BG,  $TEXT_COLOR
 
 !                  'background', 'border'
-rofi.color-window: argb:ee212121,    #cecece
+rofi.color-window: $NOTIF_BG_COLOR,    $ACTIVE_BORDER_COLOR
 rofi.bw:                             1
 rofi.location:                       0
 rofi.padding:                        20
