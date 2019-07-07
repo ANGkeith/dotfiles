@@ -125,8 +125,6 @@ bindsym $mod+q exec --no-startup-id i3lock -c 000000
 bindsym $mod+Tab workspace back_and_forth
 workspace_auto_back_and_forth yes
 
-
-
 ########## Autostart services
 # This is needed for google-chrome
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
@@ -136,6 +134,10 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 exec_always --no-startup-id setxkbmap -option caps:swapescape
 exec_always --no-startup-id compton
 
+# turn off display after 60s
+exec xset dpms 0 0 60
+# auto lock in 1 minute
+exec xautolock -time 1 -locker "i3lock -c ffffff"
 ########## Assigning an application to a workspace
 # run xprop on terminal to get class of an application
 assign [class="Postman"] $ws4
