@@ -44,16 +44,16 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+f fullscreen toggle
 
 # split in horizontal orientation
-bindsym $mod+Shift+v split h
+bindsym $mod+Shift+v split v
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split h
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
+bindsym $mod+a focus parent
 ######### key bindings
 
 # switch to workspace
@@ -117,12 +117,13 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
-bindsym Print exec --no-startup-id gnome-screenshot -ac
-bindsym $mod+d exec --no-startup-id rofi -show drun 
+bindsym --release Print exec gnome-screenshot -ac
+bindsym $mod+d exec --no-startup-id rofi -show run 
 bindsym $mod+q exec --no-startup-id i3lock -c 000000
 
 # Alt-tab like behaviour for workspace
 bindsym $mod+Tab workspace back_and_forth
+workspace_auto_back_and_forth yes
 
 
 
@@ -143,20 +144,40 @@ assign [class="Postman"] $ws4
 font pango:System San Francisco Display 14
 
 
+set $TEXT_COLOR "#cecece"
+set $ACTIVE_BORDER_COLOR "#cecece"
+set $ACTIVE_BG "#9575cd"
+set $NO_COLOR "argb:00000000"
+set $INACTIVE_BG_COLOR "#212121"
+set $NO_COLOR "argb:00000000"
+
+set $FOCUS_BG_COLOR "#cecece"
+
+set $ERR_COLOR "#00ff00"
+set $NOTIF_BG_COLOR="argb:ee212121"
+set $BORDER_COLOR "#0d1010"
+
 #                       border  bg      text    indicator
-client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 
-client.unfocused        #0d1010 #212121 #d9d9d9 #ff0000
-client.focused          #d9d9d9 #cecece #000000 #d9d9d9
+client.focused_inactive $BORDER_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR $NO_COLOR
+client.unfocused        $BORDER_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR $NO_COLOR
+client.focused          $BORDER_COLOR $FOCUS_BG_COLOR $INACTIVE_BG_COLOR $NO_COLOR
 client.urgent           #ff0000 #ff0000 #d9d9d9 #00ff00
 
+client.placeholder $ERR_COLOR $ERR_COLOR $ERR_COLOR $ERR_COLOR
+
 bar {
+    bindsym --release button3 exec --no-startup-id gnome-screenshot -ac
     status_command i3status
 	colors {
 		background #212121
 	    separator #757575
 		#                  border  bg      text
-		focused_workspace  #212121 #212121 #d9d9d9
-		inactive_workspace #212121 #212121 #676e7d
-		urgent_workspace   #FF0000 #FF0000 #d9d9d9
+		focused_workspace  $INACTIVE_BG_COLOR $FOCUS_BG_COLOR $INACTIVE_BG_COLOR
+		inactive_workspace $INACTIVE_BG_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR
+		urgent_workspace   #FF0000 #FF0000 $TEXT_COLOR
 	}
+    position bottom
+    workspace_buttons yes
 }
+
+

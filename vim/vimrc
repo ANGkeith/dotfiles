@@ -26,6 +26,7 @@ syntax on
 " Recommended settings for lightline
 set noshowmode
 set laststatus=2
+let g:lightline = { 'colorscheme': 'seoul256', }
 
 " Recommended settings for syntastic
 set statusline+=%#warningmsg#
