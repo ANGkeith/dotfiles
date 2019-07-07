@@ -132,6 +132,7 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id i3-msg 'exec workspace $ws2; exec google-chrome --password-store=gnome'
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 exec_always --no-startup-id setxkbmap -option caps:swapescape
+exec_always --no-startup-id compton
 
 ########## Assigning an application to a workspace
 # run xprop on terminal to get class of an application
