@@ -31,9 +31,16 @@ sudo apt install -y rofi
 
 
 
-# install font
-wget -P ~/.fonts/ https://github.com/supermarin/YosemiteSanFranciscoFont/raw/master/System%20San%20Francisco%20Display%20Regular.ttf -O "System San Francisco Display Regular.ttf"
-wget -P ~/.fonts/ https://github.com/supermarin/YosemiteSanFranciscoFont/raw/master/System%20San%20Francisco%20Display%20Thin.ttf -O "System San Francisco Display Thin.ttf"
-wget -P ~/.fonts/ https://github.com/supermarin/YosemiteSanFranciscoFont/raw/master/System%20San%20Francisco%20Display%20Ultralight.ttf -O "System San Francisco Display Ultralight.ttf"
-
 apt install -y feh xautolock
+# install font
+apd install fonts-font-awesome libdbus-1-dev fonts powerline
+
+git clone https://github.com/greshake/i3status-rust
+cd i3status-rust && cargo build --release
+
+mkdir $HOME/bin
+cp target/release/i3status-rs ~/bin/i3status-rs
+
+# clean up
+rm -r i3status-rust
+

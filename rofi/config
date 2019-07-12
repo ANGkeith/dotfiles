@@ -1,7 +1,7 @@
 # EDITS SHOULD BE DONE IN THE .config.template file
 
 rofi.color-enabled: true
-rofi.modi:                           ssh,run
+rofi.modi:                           window,ssh,run
 rofi.sidebar-mode:                   true
 rofi.terminal:                       gnome-terminal
 rofi.ssh-client:                     ssh

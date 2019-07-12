@@ -1,5 +1,5 @@
-set $mod Mod4
-
+set $mod Mod4 
+focus_follows_mouse no
 ################# Set Variable
 set $ws1 "1| Internet"
 set $ws2 "2| Terminal"
@@ -143,7 +143,7 @@ exec xautolock -time 1 -locker "i3lock -c ffffff"
 assign [class="Postman"] $ws4
 
 
-font pango:System San Francisco Display 14
+font pango:Misc Termsyn 14
 
 
 set $TEXT_COLOR "#cecece"
@@ -169,17 +169,24 @@ client.placeholder $ERR_COLOR $ERR_COLOR $ERR_COLOR $ERR_COLOR
 
 bar {
     bindsym --release button3 exec --no-startup-id gnome-screenshot -ac
-    status_command i3status
-	colors {
-		background #212121
-	    separator #757575
-		#                  border  bg      text
-		focused_workspace  $INACTIVE_BG_COLOR $FOCUS_BG_COLOR $INACTIVE_BG_COLOR
-		inactive_workspace $INACTIVE_BG_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR
-		urgent_workspace   #FF0000 #FF0000 $TEXT_COLOR
-	}
-    position bottom
-    workspace_buttons yes
+    font pango:DejaVu Sans Mono, FontAwesome 12
+    status_command i3status-rs ~/.config/i3/statusbar.toml
+    position top
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
 
+# hide window title bar
+for_window [class=".*"] border pixel 1}
+
+
+gaps inner 2
+gaps outer 2
 
