@@ -18,3 +18,24 @@ cd build
 ../configure --prefix=/usr --sysconfdir=/etc
 make
 sudo make install
+
+# Replacement for dmenu
+sudo apt install -y rofi
+
+# Used for auto locking terminal
+apt install -y feh xautolock
+
+# install font
+apd install fonts-font-awesome libdbus-1-dev fonts powerline
+
+# status bar 
+git clone https://github.com/greshake/i3status-rust
+cd i3status-rust && cargo build --release
+mkdir $HOME/bin
+cp target/release/i3status-rs ~/bin/i3status-rs
+
+# volume manager
+sudo apt install -y pavucontrol
+
+# show cpu temperatures
+sudo apt install -y lm-sensors
