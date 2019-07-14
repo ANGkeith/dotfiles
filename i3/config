@@ -12,6 +12,10 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# swap workspace
+# bindsym $mod+Tab exec ~/.config/i3/scripts/swap_ws
+bindsym $mod+Tab workspace back_and_forth
+
 # resize window with mouse
 floating_modifier $mod
 
@@ -83,31 +87,35 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+r exec bash ~/.config/keith_envs/colors && i3-msg restart
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/exit_menu
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym $mod+h resize shrink width 10 px or 10 ppt
-        bindsym $mod+j resize grow height 10 px or 10 ppt
-        bindsym $mod+k resize shrink height 10 px or 10 ppt
-        bindsym $mod+l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-bindsym $mod+r mode "resize"
+bindsym $mod+u resize shrink width 10 px or 10 ppt
+bindsym $mod+i resize grow height 10 px or 10 ppt
+bindsym $mod+o resize shrink height 10 px or 10 ppt
+bindsym $mod+p resize grow width 10 px or 10 ppt
+## resize window (you can also use the mouse for that)
+# mode "resize" {
+#         # These bindings trigger as soon as you enter the resize mode
+# 
+#         # Pressing left will shrink the window’s width.
+#         # Pressing right will grow the window’s width.
+#         # Pressing up will shrink the window’s height.
+#         # Pressing down will grow the window’s height.
+#         bindsym $mod+h resize shrink width 10 px or 10 ppt
+#         bindsym $mod+j resize grow height 10 px or 10 ppt
+#         bindsym $mod+k resize shrink height 10 px or 10 ppt
+#         bindsym $mod+l resize grow width 10 px or 10 ppt
+# 
+#         # same bindings, but for the arrow keys
+#         bindsym Left resize shrink width 10 px or 10 ppt
+#         bindsym Down resize grow height 10 px or 10 ppt
+#         bindsym Up resize shrink height 10 px or 10 ppt
+#         bindsym Right resize grow width 10 px or 10 ppt
+# 
+#         # back to normal: Enter or Escape or $mod+r
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+#         bindsym $mod+r mode "default"
+# }
+# bindsym $mod+r mode "resize"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -122,7 +130,6 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+q exec --no-startup-id i3lock -c 000000
 
 # Alt-tab like behaviour for workspace
-bindsym $mod+Tab workspace back_and_forth
 workspace_auto_back_and_forth yes
 
 ########## Autostart services
@@ -137,7 +144,7 @@ exec_always --no-startup-id compton
 # turn off display after 60s
 exec xset dpms 0 0 60
 # auto lock in 1 minute
-exec xautolock -time 1 -locker "i3lock -c ffffff"
+exec xautolock -time 5 -locker "i3lock -c 000000"
 ########## Assigning an application to a workspace
 # run xprop on terminal to get class of an application
 assign [class="Postman"] $ws4
@@ -184,9 +191,9 @@ bar {
 }
 
 # hide window title bar
-for_window [class=".*"] border pixel 1}
+for_window [class=".*"] border pixel 1
 
 
-gaps inner 2
-gaps outer 2
+workspace $ws2 gaps inner 3
+workspace $ws2 gaps outer 3
 
