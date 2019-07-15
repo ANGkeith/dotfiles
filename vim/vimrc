@@ -59,6 +59,12 @@ set clipboard=unnamedplus
 
 set directory=~/.vim/swapfiles/
 
+" Easier splilt navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-surround'
@@ -67,7 +73,6 @@ call plug#begin()
     Plug 'ervandew/supertab'
     Plug 'kien/ctrlp.vim'
     Plug 'pangloss/vim-javascript'
-    Plug 'NLKNguyen/papercolor-theme'
     Plug 'vimwiki/vimwiki'
     Plug 'itchyny/lightline.vim'
 call plug#end()
