@@ -7,6 +7,7 @@ mkdir -p ~/.config/i3
 # i3
 cp -r ~/.config/i3 ./
 cp -r ~/.config/rofi ./
+cp ~/.fehbg ./.fehbg
 
 # vim
 cp -r ~/.vim/autoload ./vim/

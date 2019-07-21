@@ -6,6 +6,7 @@ cp ./bashrc/bashrc ~/.bashrc
 # i3
 cp -r ./i3/ ~/.config/
 cp -r ./rofi ~/.config/
+cp ./.fehbg ~/.fehbg
 
 # vim
 cp -r ./vim/* ~/.vim
