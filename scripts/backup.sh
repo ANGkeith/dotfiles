@@ -7,8 +7,10 @@ mkdir -p ~/.config/i3
 # i3
 cp -r ~/.config/i3 ./
 cp -r ~/.config/rofi ./
+
 cp ~/.fehbg ./.fehbg
 cp ~/Pictures/wallpaper.jpg ./
+cp ~/.compton.conf ./
 
 # termite
 cp -r ~/.config/termite ./
@@ -20,5 +22,6 @@ cp ~/.vimrc ./vim/vimrc
 
 cp -r ~/.config/keith_envs ./
 
-git add *
+
+
 

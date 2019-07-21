@@ -1,5 +1,5 @@
 #!/bin/bash
-git pull
+
 # bashrc
 cp ./bashrc/bashrc ~/.bashrc
 
@@ -7,6 +7,11 @@ cp ./bashrc/bashrc ~/.bashrc
 cp -r ./i3/ ~/.config/
 cp -r ./rofi ~/.config/
 cp ./.fehbg ~/.fehbg
+cp wallpaper.jpg ~/Pictures/wallpaper.jpg
+cp .compton.conf ~/
+
+# termite
+cp -r ./termite ~/.config/
 
 # vim
 cp -r ./vim/* ~/.vim
