@@ -193,14 +193,12 @@ bar {
 # hide window title bar
 for_window [class=".*"] border pixel 1
 
-
-
 bindsym $mod+Shift+plus gaps inner current plus 1
 bindsym $mod+minus gaps inner current minus 1
 bindsym $mod+plus gaps inner current set 3; gaps outer current set 3
 
-workspace $ws2 gaps inner 3
-workspace $ws2 gaps outer 3
+workspace $ws2 gaps inner 6
+workspace $ws2 gaps outer 6
 
 # Create dropdown terminal
 exec --no-startup-id i3-sensible-terminal --name termite

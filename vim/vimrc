@@ -24,10 +24,11 @@ set nocompatible
 filetype plugin on
 syntax on
 
-" Recommended settings for lightline
-set noshowmode
+" Use powerline-status
+set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
 set laststatus=2
-let g:lightline = { 'colorscheme': 'seoul256', }
+set noshowmode
+
 
 " Recommended settings for syntastic
 set statusline+=%#warningmsg#
@@ -83,5 +84,4 @@ call plug#begin()
     Plug 'kien/ctrlp.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'vimwiki/vimwiki'
-    Plug 'itchyny/lightline.vim'
 call plug#end()
