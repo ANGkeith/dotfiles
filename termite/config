@@ -4,7 +4,7 @@ font = Monospace 11
 [colors]
 foreground          = #eff0eb
 foreground_bold     = #f1f1f0
-cursor              = #f1f1f0
+cursor              = #fd6800
 cursor_foreground   = #1e1f29
 background          = rgba(34, 34, 34, 0.95)
 
@@ -26,7 +26,7 @@ color10 = #5af78e
 
 # Yellow
 color3  = #f3f99d
-color11 = #f3f99d
+color11 = #f1d12b
 
 # Blue
 color4  = #57c7ff

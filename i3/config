@@ -54,8 +54,8 @@ bindsym $mod+Shift+v split v
 bindsym $mod+v split h
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+Shift+t layout stacking
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+a focus parent
 ######### key bindings
@@ -127,7 +127,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase s
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
 bindsym --release Print exec gnome-screenshot -ac
 bindsym $mod+d exec --no-startup-id rofi -show run 
-bindsym $mod+q exec --no-startup-id i3lock -c 000000
+bindsym $mod+backslash exec --no-startup-id i3lock -c 000000
 
 # Alt-tab like behaviour for workspace
 workspace_auto_back_and_forth yes
@@ -202,6 +202,6 @@ workspace $ws2 gaps outer 6
 
 # Create dropdown terminal
 exec --no-startup-id i3-sensible-terminal --name termite
-for_window [instance="termite"] floating enable, move scratchpad, scratchpad show;
-for_window [instance="termite"] resize grow left 300, resize grow right 300, resize grow down 200, resize grow up 200, move scratchpad;
-bindsym $mod+t  [instance="termite"] scratchpad show
+for_window [instance="termite"] floating enable, move scratchpad, scratchpad show \
+resize set height 600, resize set width 1000, move scratchpad;
+bindsym $mod+q  [instance="termite"] scratchpad show
