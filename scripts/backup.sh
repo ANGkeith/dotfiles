@@ -8,6 +8,10 @@ mkdir -p ~/.config/i3
 cp -r ~/.config/i3 ./
 cp -r ~/.config/rofi ./
 cp ~/.fehbg ./.fehbg
+cp ~/Pictures/wallpaper.jpg ./
+
+# termite
+cp -r ~/.config/termite ./
 
 # vim
 cp -r ~/.vim/autoload ./vim/
