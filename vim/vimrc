@@ -1,22 +1,23 @@
 " ============================================================= custom settings
 
-" folding settings
+" Display all matching files when we tab complete
+set path+=**
+set wildmenu
+
+" Folding settings
 set foldmethod=indent
 set nofoldenable
 
+" Search settings
 set hlsearch
 set incsearch
 
-" enable line numbers
-let NERDTreeShowLineNumbers=1
-" make sure relative line numbers are used
-autocmd FileType nerdtree setlocal relativenumber
+" Show line numbers in NERDTree
+" let NERDTreeShowLineNumbers=1
 
-"add / remove ; to end of line
-:nnoremap ;; $a;<Esc>
-:nnoremap d; $a<BS><Esc>
-" auto opens nerdtree
-map <C-n> :NERDTreeToggle<CR>
+" Show line number
+set relativenumber
+set number
 
 " Recommended settings for vimwiki
 set nocompatible
@@ -37,16 +38,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Show line number
-set relativenumber
-
-set tabstop=4
-
 " 80 columns limit
-"highlight OverLength ctermbg=Blue ctermfg=white guibg=#592929
-"match OverLength /\%80v.\+/
+highlight OverLength ctermbg=Blue ctermfg=white guibg=#592929
+match OverLength /\%80v.\+/
 
-filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4
 " when indenting with '>', use 4 spaces width
@@ -54,10 +49,13 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
-" use system clipboard for copy and paste
-set clipboard=unnamedplus
-
 set directory=~/.vim/swapfiles/
+
+"""""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
+
+" Read up https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 " Easier splilt navigations
 nnoremap <C-J> <C-W><C-J>
@@ -65,6 +63,17 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+map <C-n> :NERDTreeToggle<CR>
+
+" map Ctrl-C to copy 
+vnoremap <C-C>c "+y
+vnoremap <C-C>v "*y
+
+" map Ctrl-V to copy 
+inoremap <C-V>c <ESC>"+p
+inoremap <C-V>v <ESC>"*p
+
+"""""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-surround'

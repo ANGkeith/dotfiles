@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install -y vim i3 kdiff3 xclip git gitk wget curl make build-essential \
+sudo apt install -y vim vim-gnome i3 kdiff3 xclip git gitk wget curl make build-essential \
 libssl-dev
 
 sudo apt install -y python3-pip
