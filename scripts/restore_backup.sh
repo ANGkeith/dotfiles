@@ -13,6 +13,10 @@ cp .compton.conf ~/
 # termite
 cp -r ./termite ~/.config/
 
+# powerline config
+cp -r ./powerline ~/.config
+
+
 # vim
 cp -r ./vim/* ~/.vim
 cp ./vim/vimrc ~/.vimrc
