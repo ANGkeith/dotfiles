@@ -1,49 +1,48 @@
 [options]
 font = Monospace 11
 
+# [colors]
+# foreground          = #eff0eb
+# foreground_bold     = #f1f1f0
+
 [colors]
-foreground          = #eff0eb
-foreground_bold     = #f1f1f0
+# special
+foreground      = #e5e5e5
+foreground_bold = #e5e5e5
 cursor              = #fd6800
 cursor_foreground   = #1e1f29
-background          = rgba(34, 34, 34, 0.95)
+background      = rgba(34, 34, 34, 0.93)
 
-# 16 color space
+# black
+color0  = #212121
+color8  = #858585
 
-# Black, Gray, Silver, White
-color0  = #222222
-color8  = #78787e
-color7  = #eff0eb
-color15 = #f1f1f0
+# red
+color1  = #DC3A45
+color9  = #e83b3f
 
-# Red
-color1  = #ff5c57
-color9  = #ff5c57
+# green
+#color2  = #457b24
+color2  = #6CB338
+color10 = #7aba3a
 
-# Green
-color2  = #5af78e
-color10 = #5af78e
+# yellow
+color3  = #f6981e
+color11 = #ffea2e
 
-# Yellow
-color3  = #f3f99d
-color11 = #f1d12b
+# blue
+color4  = #134eb2
+color12 = #54a4f3
 
-# Blue
-color4  = #57c7ff
-color12 = #57c7ff
+# magenta
+color5  = #560088
+color13 = #aa4dbc
 
-# Purple
-color5  = #ff6ac1
-color13 = #ff6ac1
+# cyan
+#color6  = #0e717c
+color6  = #00A0B2
+color14 = #26bbd1
 
-# Teal
-color6  = #9aedfe
-color14 = #9aedfe
-
-# Extra colors
-color16 = #ff9f43
-color17 = #b2643c
-color18 = #34353e
-color19 = #4a4b53
-color20 = #a5a5a9
-color21 = #f1f1f0
+# white
+color7  = #efefef
+color15 = #d9d9d9
