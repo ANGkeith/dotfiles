@@ -20,4 +20,4 @@ sudo ln -s /usr/local/share/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termi
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/termite 60
 cd ..
 sudo rm -r termite
-pip install git+git://github.com/Lokaltog/powerline
+pip install powerline-status
