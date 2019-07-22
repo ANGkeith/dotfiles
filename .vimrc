@@ -1,6 +1,7 @@
 " ===================================================================== custom settings
-
 " Display all matching files when we tab complete
+set t_Co=256
+
 set path+=**
 set wildmenu
 
@@ -13,7 +14,7 @@ set hlsearch
 set incsearch
 
 " Show line numbers in NERDTree
-" let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=1
 
 " Show line number
 set relativenumber
@@ -25,11 +26,10 @@ filetype plugin on
 syntax on
 
 " Use powerline-status
+" pip show powerline-status
 set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
 set laststatus=2
 set noshowmode
-set t_Co=256
-set background=dark
 
 
 " Recommended settings for syntastic
@@ -86,3 +86,17 @@ call plug#begin()
     Plug 'vimwiki/vimwiki'
     Plug 'mhinz/vim-signify'
 call plug#end()
+
+set background=dark
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'transparent_background': 1,
+  \       'allow_bold': 1,
+  \       'allow_italic': 1
+  \     }
+  \   }
+  \ }
+
+colorscheme PaperColor
+
