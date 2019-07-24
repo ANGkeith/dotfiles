@@ -144,8 +144,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias copy='xclip -sel clipboard'
-alias pycharm='~/Installed/pycharm-2019.1.2/bin/pycharm.sh & disown $!'
-alias pycharmf='~/Installed/pycharm-2019.1.2/bin/pycharm.sh . & disown $!'
+alias pycharm='/opt/pycharm-2019.1.3/bin/pycharm.sh & disown $!'
+alias pycharmf='/opt/pycharm-2019.1.3/bin/pycharm.sh . & disown $!'
 alias dockersrm='docker rm -f $(docker ps -aq)'
 alias gs='git status -sb'
 alias gitll='git log --graph --pretty=format:'"'"'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %Creset'"'"'% --abbrev-commit --date=relative'
@@ -157,6 +157,10 @@ alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
 alias bashrc='vim ~/.bashrc'
 alias i3rc='vim ~/.config/i3/config'
 alias vimrc='vim ~/.vimrc'
+alias untar='tar -zxvf'
+alias gc='git commit -m'
+alias gca='git commit --amend'
+alias ga='git add'
 
 # colorize docker logs.
 # input: container name
@@ -180,4 +184,4 @@ fi
 set -o vi
 
 # Run ls when i hit enter on an empty line
-PROMPT_COMMAND='h=$(fc -l -1); h=${h%% *}; (( h != oh )) || ({ ls --color; }); oh=$h'
+#PROMPT_COMMAND='h=$(fc -l -1); h=${h%% *}; (( h != oh )) || ({ ls --color; }); oh=$h'
