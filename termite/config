@@ -11,10 +11,10 @@ foreground      = #e5e5e5
 foreground_bold = #e5e5e5
 cursor              = #fd6800
 cursor_foreground   = #1e1f29
-background      = rgba(34, 34, 34, 0.93)
+#background      = rgba(34, 34, 34, 0.93)
 
 # black
-color0  = #212121
+color0  = #1c1c1c
 color8  = #858585
 
 # red

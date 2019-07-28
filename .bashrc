@@ -158,9 +158,11 @@ alias bashrc='vim ~/.bashrc'
 alias i3rc='vim ~/.config/i3/config'
 alias vimrc='vim ~/.vimrc'
 alias untar='tar -zxvf'
+
 alias gc='git commit -m'
 alias gca='git commit --amend'
 alias ga='git add'
+alias gitclean='git clean -df'
 
 # colorize docker logs.
 # input: container name

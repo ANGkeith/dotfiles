@@ -1,4 +1,4 @@
-help:
+helasdasp:
 	@echo "    backup"
 	@echo "        Upload current configuration files to remote server";
 	@echo "    restore_backup"

@@ -20,3 +20,20 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 sudo apt install docker-compose
+
+
+
+
+# $ sudo mkdir /etc/systemd/system/docker.service.d/ 
+
+# Create file `/etc/systemd/system/docker.service.d/startup_options.conf`
+# > # /etc/systemd/system/docker.service.d/override.conf
+# > [Service]
+# > ExecStart=
+# > ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
+
+# $ sudo systemctl daemon-reload
+# $ sudo systemctl restart docker.service
+
+
+

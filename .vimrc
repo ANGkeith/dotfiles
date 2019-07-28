@@ -9,7 +9,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-
+" "autosave"
+noremap <Leader>s :update<CR> 
 " map Ctrl-C to copy 
 vnoremap <C-C>c "+y
 vnoremap <C-C>v "*y
@@ -34,11 +35,16 @@ endif
 " bind \ (backward slash) to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
-" bind \ to search with Ag
-nnoremap \ :Ag<SPACE>
+" bind CtrlF to search with Ag
+nnoremap <C-f> :Ag<SPACE>
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Enable folding with the spacebar
+ nnoremap <space> za
+
+
 " ===================================================================== custom settings
 
 " Theme Settings
@@ -62,7 +68,7 @@ set wildmenu
 
 " Folding settings
 set foldmethod=indent
-set nofoldenable
+set foldlevel=99
 
 " Search settings
 set hlsearch
@@ -104,6 +110,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint', 'flake8']
 
 " == NERDTREE
 map <C-n> :NERDTreeToggle<CR>
@@ -116,19 +123,23 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " == QUICK PREVIEW
 let g:quickr_preview_exit_on_enter = 1
 let g:quickr_preview_on_cursor = 1
+let g:quickr_preview_position = 'below'
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
+    Plug 'kien/ctrlp.vim'
     Plug 'tpope/vim-surround'
-    Plug 'scrooloose/syntastic'
     Plug 'kana/vim-repeat'
     Plug 'ervandew/supertab'
-    Plug 'kien/ctrlp.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'vimwiki/vimwiki'
-    Plug 'mhinz/vim-signify'
+    Plug 'scrooloose/syntastic'
+    Plug 'tpope/vim-fugitive'
     Plug 'yggdroot/indentline'
+    Plug 'mhinz/vim-signify'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'junegunn/gv.vim'
     Plug 'ronakg/quickr-preview.vim'
+    Plug 'dahu/diffo'
 call plug#end()
-
 
