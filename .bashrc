@@ -118,7 +118,7 @@ if ! shopt -oq posix; then
 fi
 
 # swap esc with capslock
-setxkbmap -option caps:swapescape
+# setxkbmap -option caps:swapescape
 
 # make vim the default editor
 export EDITOR=vim

@@ -3,6 +3,19 @@
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+" F1 to toggle relative number
+function! g:ToggleNuMode()
+  if &nu == 1 && &rnu == 1
+     set nornu nonu
+  else
+     set nu rnu
+  endif
+endfunction
+map <F1> :call g:ToggleNuMode()<cr>
+
+" Easier buffer navigations
+nnoremap gb :ls<CR>:b<Space>
+
 " Easier splilt navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -106,11 +119,11 @@ set noshowmode
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pylint', 'flake8']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_python_checkers = ['pylint', 'flake8']
 
 " == NERDTREE
 map <C-n> :NERDTreeToggle<CR>
@@ -140,6 +153,5 @@ call plug#begin()
     Plug 'tpope/vim-unimpaired'
     Plug 'junegunn/gv.vim'
     Plug 'ronakg/quickr-preview.vim'
-    Plug 'dahu/diffo'
 call plug#end()
 
