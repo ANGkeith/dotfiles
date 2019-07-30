@@ -149,8 +149,6 @@ alias pycharmf='/opt/pycharm-2019.1.3/bin/pycharm.sh . & disown $!'
 alias dockersrm='docker rm -f $(docker ps -aq)'
 alias gs='git status -sb'
 alias gitll='git log --graph --pretty=format:'"'"'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %Creset'"'"'% --abbrev-commit --date=relative'
-alias lock='i3lock -c 000000'
-alias pytest='clear && pytest'
 alias startdb='docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 55432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres'
 
 alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
