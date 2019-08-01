@@ -15,7 +15,7 @@ set $ws10 "10"
 
 # swap workspace
 # bindsym $mod+Tab exec ~/.config/i3/scripts/swap_ws
-bindsym $mod+Tab workspace back_and_forth
+bindsym Mod1+Tab workspace back_and_forth
 
 # resize window with mouse
 floating_modifier $mod
@@ -207,11 +207,11 @@ workspace $ws2 gaps outer 6
 # Create dropdown terminal
 exec i3-sensible-terminal --name mytermite
 for_window [instance="mytermite"] floating enable, move scratchpad, scratchpad show \
-resize set height 600, resize set width 1000, exec "i3-persist lock"
-bindsym $mod+q  [instance="mytermite"] scratchpad show
+resize set height 1000, resize set width 1900, exec "i3-persist lock"
+bindsym $mod+Tab  [instance="mytermite"] scratchpad show
 
 # Create dropdown browser
 for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "i3-persist lock" \
-resize set height 1000, resize set width 1500
+resize set height 1000, resize set width 1900
 bindsym $mod+w  [instance="qutebrowser"] scratchpad show
 
