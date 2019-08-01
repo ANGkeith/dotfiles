@@ -23,3 +23,6 @@ cp -r ~/.vim/swapfiles ./vim/
 cp -r ~/.vim/colors ./vim/
 cp ~/.vimrc ./.vimrc
 
+# tmux
+cp ~/.tmux.conf ./.tmux.conf
+

@@ -21,3 +21,6 @@ cp -r ./powerline ~/.config
 # vim
 cp -r ./vim ~/.vim
 cp ./.vimrc ~/.vimrc
+
+# tmux
+cp ./.tmux.conf ~/.tmux.conf

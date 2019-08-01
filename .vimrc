@@ -107,12 +107,6 @@ set shiftwidth=4
 set expandtab
 set directory=~/.vim/swapfiles/
 
-" Use powerline-status
-" pip show powerline-status
-set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
-set laststatus=2
-set noshowmode
-
 " ==================================================================== Plugins Settings
 
 " === SYNTASTIC

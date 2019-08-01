@@ -10,8 +10,6 @@ pip3 install --user pipenv
 pip3 install virtualenv
 pip3 install virtualenvwrapper
 
-pip3 install powerline-status
-
 # install docker
 sudo apt install -y docker.io
 sudo systemctl start docker
