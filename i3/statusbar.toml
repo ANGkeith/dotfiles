@@ -1,4 +1,4 @@
-theme = "bad-wolf"
+theme = "gruvbox-dark"
 [icons]
 name = "awesome"
 [icons.overrides]
