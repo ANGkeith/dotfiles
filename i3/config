@@ -1,9 +1,8 @@
 set $mod Mod4 
-exec qutebrowser
 focus_follows_mouse no
 ################# Set Variable
 set $ws1 "1| Internet"
-set $ws2 "2| Terminal"
+set $ws2 "2| "
 set $ws3 "3| IDE"
 set $ws4 "4| Postman"
 set $ws5 "5"
@@ -11,7 +10,8 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "Distractions"
+set $ws11 "TAB| Terminal"
 
 # swap workspace
 # bindsym $mod+Tab exec ~/.config/i3/scripts/swap_ws
@@ -71,7 +71,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+Tab workspace $ws11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -88,10 +88,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+r exec i3-msg restart
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/exit_menu
 
-bindsym $mod+Shift+u resize shrink width 10 px or 10 ppt
-bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
-bindsym $mod+Shift+o resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+p resize grow width 10 px or 10 ppt
+bindsym $mod+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Right resize grow width 10 px or 10 ppt
 ## resize window (you can also use the mouse for that)
 # mode "resize" {
 #         # These bindings trigger as soon as you enter the resize mode
@@ -153,9 +153,7 @@ exec xautolock -time 5 -locker "i3lock -c 000000"
 # run xprop on terminal to get class of an application
 assign [class="Postman"] $ws4
 
-
 font pango:Misc Termsyn 14
-
 
 set $TEXT_COLOR "#cecece"
 set $ACTIVE_BORDER_COLOR "#cecece"
@@ -205,12 +203,16 @@ workspace $ws2 gaps inner 6
 workspace $ws2 gaps outer 6
 
 # Create dropdown terminal
+# exec i3-sensible-terminal --name mytermite
+# for_window [instance="mytermite"] floating enable, move scratchpad, scratchpad show \
+# resize set height 1000, resize set width 1900, exec "i3-persist lock"
+# bindsym $mod+Tab  [instance="mytermite"] scratchpad show
 exec i3-sensible-terminal --name mytermite
-for_window [instance="mytermite"] floating enable, move scratchpad, scratchpad show \
-resize set height 1000, resize set width 1900, exec "i3-persist lock"
-bindsym $mod+Tab  [instance="mytermite"] scratchpad show
+for_window [instance="mytermite"] move workspace $ws11
+
 
 # Create dropdown browser
+exec qutebrowser
 for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "i3-persist lock" \
 resize set height 1000, resize set width 1900
 bindsym $mod+w  [instance="qutebrowser"] scratchpad show
