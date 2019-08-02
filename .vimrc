@@ -22,6 +22,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Jump by visual lines
+nnoremap j gj
+nnoremap k gk
+"
 " "autosave"
 noremap <Leader>s :update<CR> 
 " map Ctrl-C to copy 
