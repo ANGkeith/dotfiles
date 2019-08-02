@@ -117,6 +117,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# auto launch tmux
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach -t default || tmux new -s default
+fi
+
 # swap esc with capslock
 # setxkbmap -option caps:swapescape
 
@@ -146,6 +151,7 @@ alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
 alias bashrc='vim ~/.bashrc'
 alias i3rc='vim ~/.config/i3/config'
 alias vimrc='vim ~/.vimrc'
+alias tmuxrc='vim ~/.tmux.conf'
 alias untar='tar -zxvf'
 
 alias gc='git commit -m'
@@ -172,7 +178,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-set -o vi
-
 # Run ls when i hit enter on an empty line
-#PROMPT_COMMAND='h=$(fc -l -1); h=${h%% *}; (( h != oh )) || ({ ls --color; }); oh=$h'
+PROMPT_COMMAND='h=$(fc -l -1); h=${h%% *}; (( h != oh )) || ({ ls --color; }); oh=$h'
