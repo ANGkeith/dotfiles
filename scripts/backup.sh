@@ -14,9 +14,6 @@ cp ~/.compton.conf ./
 # termite
 cp -r ~/.config/termite ./
 
-# powerline config
-cp -r ~/.config/powerline ./
-
 # vim
 cp -r ~/.vim/autoload ./vim/
 cp -r ~/.vim/swapfiles ./vim/
