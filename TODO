@@ -1,13 +1,16 @@
 
 
-
+tmux -> copy from terminal with mouse
 
 ##### i3
-drop down terminal
-read about scratch pad
-bind keyboard shortcut to for accessing window
 setting a fix layout for window
 swapping workspace
+changeing i3 color from blue to orange
+
+sorting out xrandr stuff
+
+install zsh
+
 
 ##### vim
 
@@ -16,3 +19,4 @@ swapping workspace
 
 ##### qutebrowser
 vimagit
+experiment about git

@@ -178,5 +178,3 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Run ls when i hit enter on an empty line
-PROMPT_COMMAND='h=$(fc -l -1); h=${h%% *}; (( h != oh )) || ({ ls --color; }); oh=$h'

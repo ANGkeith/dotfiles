@@ -39,3 +39,4 @@ sudo apt install -y pavucontrol
 
 # show cpu temperatures
 sudo apt install -y lm-sensors
+

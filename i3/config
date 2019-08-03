@@ -71,6 +71,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 bindsym $mod+Tab workspace $ws11
 
 # move focused container to workspace
@@ -199,8 +200,8 @@ bindsym $mod+Shift+plus gaps inner current plus 1
 bindsym $mod+minus gaps inner current minus 1
 bindsym $mod+plus gaps inner current set 3; gaps outer current set 3
 
-workspace $ws2 gaps inner 6
-workspace $ws2 gaps outer 6
+inner 6
+outer 6
 
 # Create dropdown terminal
 # exec i3-sensible-terminal --name mytermite
