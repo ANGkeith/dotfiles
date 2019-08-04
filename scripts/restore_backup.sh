@@ -2,6 +2,8 @@
 
 # bashrc
 cp ./.bashrc ~/.bashrc
+cp ./.zshrc ~/.zshrc
+cp ./.p10k.zsh ~/.p10k.zsh
 
 # i3
 cp -r ./i3 ~/.config/
