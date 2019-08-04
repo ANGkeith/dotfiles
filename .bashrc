@@ -139,25 +139,29 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias copy='xclip -sel clipboard'
+# utils
 alias pycharm='/opt/pycharm-2019.1.3/bin/pycharm.sh & disown $!'
 alias pycharmf='/opt/pycharm-2019.1.3/bin/pycharm.sh . & disown $!'
-alias dockersrm='docker rm -f $(docker ps -aq)'
-alias gs='git status -sb'
+
+alias copy='xclip -sel clipboard'
+alias untar='tar -zxvf'
+alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
 alias gitll='git log --graph --pretty=format:'"'"'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %Creset'"'"'% --abbrev-commit --date=relative'
+alias dockersrm='docker rm -f $(docker ps -aq)'
 alias startdb='docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 55432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres'
 
-alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
+# config files
 alias bashrc='vim ~/.bashrc'
 alias i3rc='vim ~/.config/i3/config'
 alias vimrc='vim ~/.vimrc'
 alias tmuxrc='vim ~/.tmux.conf'
-alias untar='tar -zxvf'
 
+# git
+alias gs='git status -sb'
 alias gc='git commit -m'
 alias gca='git commit --amend'
 alias ga='git add'
-alias gitclean='git clean -df'
+alias gclean='git clean -df'
 
 # colorize docker logs.
 # input: container name

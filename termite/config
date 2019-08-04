@@ -1,5 +1,6 @@
 [options]
-font = Monospace 11
+font = Inconsolata 11
+
 
 # [colors]
 # foreground          = #eff0eb

@@ -200,8 +200,8 @@ bindsym $mod+Shift+plus gaps inner current plus 1
 bindsym $mod+minus gaps inner current minus 1
 bindsym $mod+plus gaps inner current set 3; gaps outer current set 3
 
-inner 6
-outer 6
+gaps inner 6
+gaps outer 6
 
 # Create dropdown terminal
 # exec i3-sensible-terminal --name mytermite
