@@ -1,4 +1,7 @@
 #!/bin/sh
+set -o errexit
+set -o nounset
+set -o pipefail
 # i3-persist 0 extends i3 window management with persistent containers
 VERSION=1.0.3
 FILE="`readlink -f "$0"`"

@@ -1,4 +1,8 @@
 #!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+sudo apt update
 sudo apt install -y vim vim-gnome i3 kdiff3 xclip git gitk wget curl make build-essential \
 libssl-dev tmux silversearch-ag
 
@@ -8,7 +12,7 @@ sudo apt install -y python3-pip
 
 pip3 install --user pipenv
 pip3 install virtualenv
-pip3 install virtualenvwrapper
+pip3 install --user virtualenvwrapper
 
 # install docker
 sudo apt install -y docker.io

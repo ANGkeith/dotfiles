@@ -1,4 +1,7 @@
 #!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
 
 # dependencies for postman
 sudo apt install -y libgconf2-4

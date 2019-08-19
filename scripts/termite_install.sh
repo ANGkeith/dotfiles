@@ -1,4 +1,7 @@
 #!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
 # install dependencies
 sudo apt install -y g++ libgtk-3-dev gtk-doc-tools gnutls-bin \
     valac intltool libpcre2-dev libglib3.0-cil-dev libgnutls28-dev \
