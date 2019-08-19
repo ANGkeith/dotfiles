@@ -19,6 +19,10 @@ cp ~/.compton.conf ./
 # termite
 cp -r ~/.config/termite ./
 
+# konsole
+cp ~/.config/konsolerc ./konsole
+cp -r ~/.local/share/konsole ./konsole
+
 # vim
 cp -r ~/.vim/autoload ./vim/
 cp -r ~/.vim/swapfiles ./vim/
