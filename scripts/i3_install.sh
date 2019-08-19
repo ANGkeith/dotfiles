@@ -52,6 +52,7 @@ sudo apt-get update
 sudo apt install -y i3-gaps
 
 # add i3-persist script
+sudo apt install -y jq
 sudo cp ./scripts/i3_persist.sh /usr/bin/i3-persist
 
 
