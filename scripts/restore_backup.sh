@@ -16,9 +16,6 @@ cp ./.fehbg ~/.fehbg
 cp wallpaper.jpg ~/Pictures/wallpaper.jpg
 cp .compton.conf ~/.compton.conf
 
-# termite
-cp -r ./termite ~/.config/
-
 # konsole
 cp ./konsole/konsolerc ~/.config/
 cp -r ./konsole/konsole ~/.local/share
