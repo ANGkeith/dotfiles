@@ -39,9 +39,19 @@ cd i3status-rust && cargo build --release
 sudo cp target/release/i3status-rs /usr/bin/i3status-rs
 cd ..
 rm -rf i3status-rust
+
 # volume manager
 sudo apt install -y pavucontrol
 
 # show cpu temperatures
 sudo apt install -y lm-sensors
+
+# install i3-gaps
+sudo add-apt-repository -y ppa:kgilmer/speed-ricer
+sudo apt-get update
+sudo apt install -y i3-gaps
+
+# add i3-persist script
+sudo cp ./scripts/i3_persist.sh /usr/bin/i3-persist
+
 
