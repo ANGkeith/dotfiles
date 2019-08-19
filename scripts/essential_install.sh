@@ -3,8 +3,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 sudo apt update
-sudo apt install -y vim vim-gnome i3 kdiff3 xclip git gitk wget curl make build-essential \
-libssl-dev tmux silversearch-ag
+sudo apt install -y vim vim-gnome kdiff3 xclip git gitk wget curl make build-essential \
+libssl-dev tmux silversearcher-ag konsole
 
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 

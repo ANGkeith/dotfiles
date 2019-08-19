@@ -1,7 +1,9 @@
-sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool 
+#!/bin/bash
 set -o errexit
 set -o nounset
 set -o pipefail
+
+sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool
 cd /tmp
 git clone https://github.com/Airblader/xcb-util-xrm
 cd xcb-util-xrm
@@ -26,17 +28,17 @@ sudo make install
 sudo apt install -y rofi
 
 # Used for auto locking terminal
-apt install -y feh xautolock
+sudo apt install -y feh xautolock
 
 # install font
-apd install fonts-font-awesome libdbus-1-dev fonts powerline
+sudo apt install -y fonts-font-awesome libdbus-1-dev fonts-powerline powerline
 
 # status bar 
 git clone https://github.com/greshake/i3status-rust
 cd i3status-rust && cargo build --release
-mkdir $HOME/bin
-cp target/release/i3status-rs ~/bin/i3status-rs
-
+sudo cp target/release/i3status-rs /usr/bin/i3status-rs
+cd ..
+rm -rf i3status-rust
 # volume manager
 sudo apt install -y pavucontrol
 
