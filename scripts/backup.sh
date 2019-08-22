@@ -29,3 +29,5 @@ cp ~/.vimrc ./.vimrc
 # tmux
 cp ~/.tmux.conf ./.tmux.conf
 
+# cheat
+cp ~/.cheat/* ./.cheat
