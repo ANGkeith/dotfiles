@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=MateriaManjaro
-Font=FiraCode Nerd Font,15,-1,5,50,0,0,0,0,0
+Font=FiraCode Nerd Font,13,-1,5,50,0,0,0,0,0
 
 [General]
 LocalTabTitleFormat=%d : %n

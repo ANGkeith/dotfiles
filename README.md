@@ -1,7 +1,11 @@
 comment: gc
+
+# usefull for viewing the history of a file
 git commit browser: :GV!
 titlecase : gt
 use do/dp in :Gdiff fo staging hunks
+close all other panes except the one in focus -> <C-w> o
+highlight last inserted text -> <gV>
 
 # https://dev.to/prodopsio/solving-git-merge-conflicts-with-vim-5275
 Read the article to learn how to resolve merge conflict using Gdiff

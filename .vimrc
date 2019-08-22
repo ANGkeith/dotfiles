@@ -6,6 +6,17 @@ cmap w!! w !sudo tee > /dev/null %
 " Show cursor line
 set cursorline
 
+" Natural split
+set splitbelow
+set splitright
+
+" If a line gets wrapped to two lines, j wont skip over the '2nd line'
+nnoremap j gj
+nnoremap k gk
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
 " F1 to toggle relative number
 function! g:ToggleNuMode()
   if &nu == 1 && &rnu == 1
