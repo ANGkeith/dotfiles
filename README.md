@@ -1,3 +1,14 @@
+comment: gc
+git commit browser: :GV!
+titlecase : gt
+use do/dp in :Gdiff fo staging hunks
+
+# https://dev.to/prodopsio/solving-git-merge-conflicts-with-vim-5275
+Read the article to learn how to resolve merge conflict using Gdiff
+
+
+hunk jumping: [c ]c
+
 # backupEnter copy mode: <prefix>+[
 Start copy: <Space>
 Copy text: <Enter>
@@ -9,3 +20,4 @@ https://bluejamesbond.github.io/CharacterMap/
 
 # to see the meaning of icons
 get_icon_names | grep -E '(VCS|GIT)'
+

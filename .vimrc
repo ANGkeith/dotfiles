@@ -3,6 +3,9 @@
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+" Show cursor line
+set cursorline
+
 " F1 to toggle relative number
 function! g:ToggleNuMode()
   if &nu == 1 && &rnu == 1
@@ -11,7 +14,11 @@ function! g:ToggleNuMode()
      set nu rnu
   endif
 endfunction
-map <F1> :call g:ToggleNuMode()<cr>
+
+" hide number column and column sign
+map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>
+
+noremap <Leader>gd :Gvdiff<cr>
 
 " Easier buffer navigations
 nnoremap gb :ls<CR>:b<Space>
@@ -22,12 +29,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Jump by visual lines
-nnoremap j gj
-nnoremap k gk
-"
-" "autosave"
+" map \s to save
 noremap <Leader>s :update<CR> 
+" map \q to save
+noremap <Leader>s :quit<CR>
+
 " map Ctrl-C to copy 
 vnoremap <C-C>c "+y
 vnoremap <C-C>v "*y
@@ -35,6 +41,7 @@ vnoremap <C-C>v "*y
 " map Ctrl-V to copy 
 inoremap <C-V>c <ESC>"+p
 inoremap <C-V>v <ESC>"*p
+
 
 " == The Silver Searcher
 if executable('ag')
@@ -123,7 +130,7 @@ set directory=~/.vim/swapfiles/
 " let g:syntastic_check_on_wq = 0
 " let g:syntastic_python_checkers = ['pylint', 'flake8']
 
-" == NERDTREE
+" === NERDTREE
 map <C-n> :NERDTreeToggle<CR>
 " Show line numbers in NERDTree
 let NERDTreeShowLineNumbers=1
@@ -131,10 +138,13 @@ let NERDTreeShowLineNumbers=1
 " === INDENT LINE
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-" == QUICK PREVIEW
+" === QUICK PREVIEW
 let g:quickr_preview_exit_on_enter = 1
 let g:quickr_preview_on_cursor = 1
 let g:quickr_preview_position = 'below'
+
+" === SIGNIFY
+let g:signify_vcs_list = [ 'git' ] 
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
@@ -142,14 +152,23 @@ call plug#begin()
     Plug 'tpope/vim-surround'
     Plug 'kana/vim-repeat'
     Plug 'ervandew/supertab'
-    Plug 'pangloss/vim-javascript'
     Plug 'vimwiki/vimwiki'
     Plug 'scrooloose/syntastic'
-    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-commentary'
+    " indentation line
     Plug 'yggdroot/indentline'
+
+    " Git Plugin
+    Plug 'tpope/vim-fugitive'
+    " indicate added/modified/removed lines in a file
     Plug 'mhinz/vim-signify'
+    " add some square bracket mappings
     Plug 'tpope/vim-unimpaired'
+    " git commit browser
     Plug 'junegunn/gv.vim'
+
     Plug 'ronakg/quickr-preview.vim'
+
+    Plug 'pangloss/vim-javascript'
 call plug#end()
 
