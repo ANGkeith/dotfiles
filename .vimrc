@@ -101,7 +101,7 @@ syntax on
 
 " 88 columns limit
 highlight ColorColumn ctermbg=white 
-set colorcolumn=88
+set colorcolumn=80
 
 " Replace existing tab with 4 spaces width
 set tabstop=4
