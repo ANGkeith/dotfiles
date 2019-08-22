@@ -21,3 +21,14 @@ https://bluejamesbond.github.io/CharacterMap/
 # to see the meaning of icons
 get_icon_names | grep -E '(VCS|GIT)'
 
+
+
+# Alt used for tmux
+# Ctrl used for vim
+# Window used for i3
+# hjkl -> navigate panes
+# space -> jump around panes
+# <U-D-L-R> -> resize panes
+# x -> close panes
+
+
