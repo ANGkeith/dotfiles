@@ -42,7 +42,6 @@ vnoremap <C-C>v "*y
 inoremap <C-V>c <ESC>"+p
 inoremap <C-V>v <ESC>"*p
 
-
 " == The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -60,14 +59,31 @@ endif
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 " bind CtrlF to search with Ag
-nnoremap <C-f> :Ag<SPACE>
+" nnoremap <C-f> :Ag<SPACE>
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Enable folding with the spacebar
- nnoremap <space> za
+nnoremap <Leader>space za
 
+" mapping space to toggle pane
+nnoremap <space> <C-w>w
+
+" go to insert mode <C-v> <some key> to get the literal terminal keycode
+set timeout timeoutlen=1000 ttimeoutlen=100
+set <F37>=[1;5A
+map <F37> <C-Up>
+nnoremap <C-Up> <C-W>+
+set <F36>=[1;5B
+map <F36> <C-Down>
+nnoremap <C-Down> <C-W>-
+set <F35>=[1;5C
+map <F35> <C-Right>
+nnoremap <C-Right> <C-W>>
+set <F34>=[1;5D
+map <F34> <C-Left>
+nnoremap <C-Left> <C-W><
 
 " ===================================================================== custom settings
 
