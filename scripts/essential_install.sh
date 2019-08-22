@@ -6,6 +6,8 @@ sudo apt update
 sudo apt install -y vim vim-gnome kdiff3 xclip git gitk wget curl make build-essential \
 libssl-dev tmux silversearcher-ag konsole
 
+sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
+
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
 sudo apt install -y python3-pip
