@@ -1,8 +1,8 @@
-set $mod Mod4 
+set $mod Mod4
 focus_follows_mouse no
 ################# Set Variable
 set $ws1 "1| Internet"
-set $ws2 "2| "
+set $ws2 "2| Terminal"
 set $ws3 "3| IDE"
 set $ws4 "4| Postman"
 set $ws5 "5"
@@ -11,7 +11,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "Distractions"
-set $ws11 "TAB| Terminal"
 
 # swap workspace
 # bindsym $mod+Tab exec ~/.config/i3/scripts/swap_ws
@@ -22,7 +21,7 @@ floating_modifier $mod
 
 ########## Tiling Configuration
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+x exec i3-persist kill
@@ -72,7 +71,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym $mod+Tab workspace $ws11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -204,12 +202,12 @@ gaps inner 6
 gaps outer 6
 
 # Create dropdown terminal
-# exec i3-sensible-terminal --name mytermite
-# for_window [instance="mytermite"] floating enable, move scratchpad, scratchpad show \
+# exec i3-sensible-terminal --name my_terminal
+# for_window [instance="my_terminal"] floating enable, move scratchpad, scratchpad show \
 # resize set height 1000, resize set width 1900, exec "i3-persist lock"
-# bindsym $mod+Tab  [instance="mytermite"] scratchpad show
-exec i3-sensible-terminal --name mytermite
-for_window [instance="mytermite"] move workspace $ws11
+# bindsym $mod+Return  [instance="my_terminal"] scratchpad show
+exec i3-sensible-terminal --name my_terminal
+for_window [instance="my_terminal"] move workspace $ws2, exec "i3-persist lock"
 
 
 # Create dropdown browser
@@ -217,4 +215,3 @@ exec qutebrowser
 for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "i3-persist lock" \
 resize set height 1000, resize set width 1900
 bindsym $mod+w  [instance="qutebrowser"] scratchpad show
-
