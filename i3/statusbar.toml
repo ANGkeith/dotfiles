@@ -20,7 +20,7 @@ speed_down = false
 block = "temperature"
 collapsed = false
 interval = 5
-format = "{min}° min, {max}° max, {average}° avg"
+format = "{average}°"
 chip = "*-isa-*"
 
 [[block]]
@@ -31,8 +31,7 @@ interval = 0.7
 block = "memory"
 interval = 5
 info_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{Mup}% {SUp}%"
 
 [[block]]
 block = "disk_space"
@@ -51,6 +50,11 @@ unit = "GB"
 interval = 20
 
 [[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
+
+[[block]]
 block = "custom"
 interval = 999999
 command = "echo '\uF011'"
@@ -58,3 +62,4 @@ on_click = "i3-nagbar -t warning -m 'What do you want to do?' -b 'Shutdown' 'shu
 
 [[block]]
 block = "uptime"
+
