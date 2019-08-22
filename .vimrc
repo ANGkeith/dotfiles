@@ -173,6 +173,10 @@ let g:quickr_preview_position = 'below'
 " === SIGNIFY
 let g:signify_vcs_list = [ 'git' ] 
 
+" === vim-instant-markdown
+let g:instant_markdown_autoscroll = 1
+
+
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'kien/ctrlp.vim'
@@ -182,10 +186,15 @@ call plug#begin()
     Plug 'vimwiki/vimwiki'
     Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-commentary'
+    
+    " markdown plugin
+    Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+    
     " indentation line
     Plug 'yggdroot/indentline'
 
-    " Git Plugin
+    " git Plugin
     Plug 'tpope/vim-fugitive'
     " indicate added/modified/removed lines in a file
     Plug 'mhinz/vim-signify'
