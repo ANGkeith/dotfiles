@@ -18,4 +18,4 @@ KeyBindings=default
 
 [Scrolling]
 HistoryMode=2
-ScrollBarPosition=1
+ScrollBarPosition=2
