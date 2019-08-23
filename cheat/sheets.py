@@ -4,6 +4,39 @@ import io
 import os
 
 
+def is_empty_line(line):
+    return len(line.strip()) == 0
+
+def is_definiton_line(line):
+    for c in line:
+        if c != "#" and c != " ":
+            return True
+
+def previous_line_is_empty(index, content):
+    """ check if the previous index is empty """
+    if index == 0:
+        return True
+    prev_line = content[index - 1]
+    return is_empty_line(prev_line)
+
+def next_line_is_empty(index, content):
+    """ check if the next index is empty """
+    if index == len(content) - 1:
+        return True
+    next_line = content[index + 1]
+    return is_empty_line(next_line)
+
+def get_start_index(index, content):
+    while not previous_line_is_empty(index, content):
+        index = index - 1
+    return index
+
+def get_end_index(index, content):
+    while not next_line_is_empty(index, content):
+        index = index + 1
+    return index
+
+
 class Sheets:
 
     def __init__(self, config):
@@ -72,14 +105,19 @@ class Sheets:
             #         match += '  ' + self._colorize.search(term, line)
             io_wrapper = io.open(cheatsheet[1], encoding='utf-8')
             content = io_wrapper.readlines()
+            taken_index = []
             for index, line in enumerate(content):
-                if term in line:
-                    match += '  ' + self._colorize.search(term, line)
-                    match += '  ' + self._colorize.search(term, content[index + 1])
+                if term in line and index not in taken_index:
+                    start = get_start_index(index, content)
+                    stop = get_end_index(index, content)
+                    for i in range(start, stop+1):
+                        match += '  ' + self._colorize.search(term, content[i])
+                        taken_index.append(i)
                     match += '\n'
 
             if match != '':
                 result += cheatsheet[0] + ":\n" + match + "\n"
+
 
         return result
 

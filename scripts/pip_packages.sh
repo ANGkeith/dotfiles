@@ -5,3 +5,4 @@ set -o pipefail
 set +o nounset
 
 python -m pip install grip
+python -m pip install termcolor

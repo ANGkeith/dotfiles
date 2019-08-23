@@ -45,7 +45,7 @@ class Configuration:
         self.cheat_colorscheme = self._select([
             os.environ.get('CHEAT_COLORSCHEME'),
             config.get('CHEAT_COLORSCHEME'),
-            'light',
+            'dark',
         ]).strip().lower()
 
         # self.cheat_user_dir
@@ -71,7 +71,7 @@ class Configuration:
         self.cheat_highlight = self._select([
             os.environ.get('CHEAT_HIGHLIGHT'),
             config.get('CHEAT_HIGHLIGHT'),
-            False,
+            'red',
         ])
         if isinstance(self.cheat_highlight, str):
             Utils.boolify(self.cheat_highlight)
