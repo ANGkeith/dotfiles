@@ -72,6 +72,7 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,13 +104,13 @@ source $ZSH/oh-my-zsh.sh
 #
 
 
-# ============================================================================== Custom 
+# ====================================================================== Custom 
 # auto launch tmux
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach -t default || tmux new -s default
 fi
 
-# ====================================================================== Custom Exports
+# ============================================================== Custom Exports
 # make vim the default editor
 export EDITOR=vim
 
@@ -125,7 +126,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# ====================================================================== Custom Aliases
+# ============================================================== Custom Aliases
 # utils
 alias pycharm='/opt/pycharm-2019.1.3/bin/pycharm.sh & disown $!'
 alias pycharmf='/opt/pycharm-2019.1.3/bin/pycharm.sh . & disown $!'
