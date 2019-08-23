@@ -173,8 +173,7 @@ let g:quickr_preview_position = 'below'
 " === SIGNIFY
 let g:signify_vcs_list = [ 'git' ] 
 
-" === vim-instant-markdown
-let g:instant_markdown_autoscroll = 1
+" === vim-markdown
 
 
 call plug#begin()
@@ -183,13 +182,11 @@ call plug#begin()
     Plug 'tpope/vim-surround'
     Plug 'kana/vim-repeat'
     Plug 'ervandew/supertab'
-    Plug 'vimwiki/vimwiki'
     Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-commentary'
     
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
     
     " indentation line
     Plug 'yggdroot/indentline'

@@ -149,7 +149,6 @@ function gdh() {
     git diff HEAD $1
 }
 
-
 # pyenv path
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
