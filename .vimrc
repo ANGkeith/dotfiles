@@ -40,11 +40,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" map \s to save
-noremap <Leader>s :update<CR> 
-" map \q to save
-noremap <Leader>s :quit<CR>
-
 " map Ctrl-C to copy 
 vnoremap <C-C>c "+y
 vnoremap <C-C>v "*y
@@ -52,6 +47,7 @@ vnoremap <C-C>v "*y
 " map Ctrl-V to copy 
 inoremap <C-V>c <ESC>"+p
 inoremap <C-V>v <ESC>"*p
+
 
 " == The Silver Searcher
 if executable('ag')
@@ -96,6 +92,15 @@ set <F34>=[1;5D
 map <F34> <C-Left>
 nnoremap <C-Left> <C-W><
 
+" Quickly quit editting without save
+nnoremap <Leader>q :q<CR>
+
+" Quickly source .vimrc
+nnoremap <leader>r :source $MYVIMRC<CR>
+
+" Toggle between buffer
+nnoremap <Leader><Leader> :b#<CR>
+
 " ===================================================================== custom settings
 
 " Theme Settings
@@ -134,7 +139,7 @@ filetype plugin on
 syntax on
 
 " 88 columns limit
-highlight ColorColumn ctermbg=white 
+highlight ColorColumn ctermbg=235
 set colorcolumn=80
 
 " Replace existing tab with 4 spaces width
@@ -143,6 +148,10 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+" Shifting using `>` / `<` will be rounded off. ie. when i am at 3 spaces,
+" hitting `>>` will bring to 4 spaces instead of 3+`shiftwidth` spaces
+set shiftround
+
 set directory=~/.vim/swapfiles/
 
 " ==================================================================== Plugins Settings
@@ -164,17 +173,44 @@ let NERDTreeShowLineNumbers=1
 
 " === INDENT LINE
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" By default identLine set conceal level to 2 thus and causing some concealed
+" text to be completely hidden. ie. Text surrounded by ``
+let g:indentLine_fileTypeExclude = ['json', 'md']
+let g:indentLine_setConceal = 2
+" default ''.
+" " n for Normal mode
+" " v for Visual mode
+" " i for Insert mode
+" " c for Command line editing, for 'incsearch'
+" default value is "inc"
+let g:indentLine_concealcursor = ""
+
 
 " === QUICK PREVIEW
 let g:quickr_preview_exit_on_enter = 1
 let g:quickr_preview_on_cursor = 1
 let g:quickr_preview_position = 'below'
+" disable key mappings for quick previewr
+let g:quickr_preview_keymaps = 0
 
 " === SIGNIFY
 let g:signify_vcs_list = [ 'git' ] 
 
 " === vim-markdown
+let g:vim_markdown_conceal = 0
 
+" === vim-wiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_conceallevel = 0
+
+" === vim-markdown-toc
+let g:vmt_fence_text = 'Do not edit, run `:UpdateToc` to update'
+let g:vmt_include_headings_before = 'Table Of Contens'
+let g:vmt_auto_update_on_save = 0
+
+" === vim-autosave
+let g:auto_save = 1
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
@@ -184,12 +220,15 @@ call plug#begin()
     Plug 'ervandew/supertab'
     Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-commentary'
+    Plug '907th/vim-auto-save'
     
+    Plug 'yggdroot/indentline'
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+    Plug 'vimwiki/vimwiki'
+
     
     " indentation line
-    Plug 'yggdroot/indentline'
 
     " git Plugin
     Plug 'tpope/vim-fugitive'
@@ -200,8 +239,12 @@ call plug#begin()
     " git commit browser
     Plug 'junegunn/gv.vim'
 
+    ":GenTocGFM -> generate toc with github flavoured markdown
+    Plug 'mzlogin/vim-markdown-toc'
+
     Plug 'ronakg/quickr-preview.vim'
 
     Plug 'pangloss/vim-javascript'
+
 call plug#end()
 
