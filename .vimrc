@@ -200,6 +200,7 @@ let g:signify_vcs_list = [ 'git' ]
 let g:vim_markdown_conceal = 0
 
 " === vim-wiki
+" if the path is changed, remember to update the screenshot script as well
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_conceallevel = 0
@@ -222,13 +223,12 @@ call plug#begin()
     Plug 'tpope/vim-commentary'
     Plug '907th/vim-auto-save'
     
-    Plug 'yggdroot/indentline'
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
     Plug 'vimwiki/vimwiki'
 
-    
     " indentation line
+    Plug 'yggdroot/indentline'
 
     " git Plugin
     Plug 'tpope/vim-fugitive'
