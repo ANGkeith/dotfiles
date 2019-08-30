@@ -202,7 +202,9 @@ let g:vim_markdown_conceal = 0
 " === vim-wiki
 " if the path is changed, remember to update the screenshot script as well
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown', 
+                      \ 'ext': '.md',
+                      \ 'index': 'README',}]
 let g:vimwiki_conceallevel = 0
 
 " === vim-markdown-toc

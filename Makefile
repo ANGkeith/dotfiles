@@ -5,6 +5,8 @@ help:
 	@echo "        Override current configuration files with the remote server's version"
 	@echo "    install"
 	@echo "        Use to install all applications and dependencies"
+	@echo "    commit"
+	@echo "        Auto generate commit message"
 
 backup:
 	@./scripts/backup.sh
@@ -14,3 +16,7 @@ restore_backup:
 
 install:
 	@./scripts/install.sh
+
+commit:
+	@./scripts/commit.sh
+
