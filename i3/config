@@ -42,13 +42,16 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
+
+# cycle between windows
+bindsym $mod+space exec i3-cycle-windows
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # split in horizontal orientation
-bindsym $mod+Shift+v split v
+bindsym $mod+s split v
 
 # split in vertical orientation
 bindsym $mod+v split h
