@@ -19,6 +19,23 @@ then
     echo Hey that\'s a large number.
     pwd
 fi
+if [ 0 -gt 100 ]
+then
+    :
+elif [ 0 -eq 100 ]
+then
+    :
+else
+    echo 1
+fi
+
+# To implement a while loop
+c=10
+while [[ $c -gt 0 ]]
+do
+  echo "The countdown is $c"
+  c=$((c - 1))
+done
 
 # Turn on debugging:
 set -x
@@ -32,3 +49,7 @@ echo ${PIPESTATUS[0]}  # replace 0 with N
 
 # Lock file:
 ( set -o noclobber; echo > my.lock ) || echo 'Failed to create lock file'
+
+# Quotation mark
+variable surrounded with `''` will not be expanded
+variable surrounded with `""` will be expanded
