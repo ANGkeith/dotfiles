@@ -48,6 +48,8 @@ vnoremap <C-C>v "*y
 inoremap <C-V>c <ESC>"+p
 inoremap <C-V>v <ESC>"*p
 
+" Replace bullet glyph with *
+command Replacebullet %s/•/*/g
 
 " == The Silver Searcher
 if executable('ag')
