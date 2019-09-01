@@ -44,8 +44,8 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
 
-# cycle between windows
-bindsym $mod+space exec i3-cycle-windows
+# cycle between windows (mod + <backtick>)
+bindsym $mod+grave exec i3-cycle-windows
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
