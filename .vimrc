@@ -53,12 +53,6 @@ inoremap <C-V>v <ESC>"*p
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " Defines a new command Ag to search for the provided text and open a 'quickfix' window
@@ -217,10 +211,10 @@ let g:auto_save = 1
 
 " === fzf
 set rtp+=~/.fzf
+nnoremap <C-p> :FZF<SPACE><CR>
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
-    Plug 'kien/ctrlp.vim'
     Plug 'tpope/vim-surround'
     Plug 'kana/vim-repeat'
     Plug 'ervandew/supertab'
@@ -252,7 +246,5 @@ call plug#begin()
     Plug 'ronakg/quickr-preview.vim'
 
     Plug 'pangloss/vim-javascript'
-
-
 call plug#end()
 
