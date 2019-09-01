@@ -215,6 +215,9 @@ let g:vmt_auto_update_on_save = 0
 " === vim-autosave
 let g:auto_save = 1
 
+" === fzf
+set rtp+=~/.fzf
+
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'kien/ctrlp.vim'
@@ -224,6 +227,8 @@ call plug#begin()
     Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-commentary'
     Plug '907th/vim-auto-save'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
@@ -247,6 +252,7 @@ call plug#begin()
     Plug 'ronakg/quickr-preview.vim'
 
     Plug 'pangloss/vim-javascript'
+
 
 call plug#end()
 
