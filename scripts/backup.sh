@@ -21,7 +21,7 @@ cp ~/.config/konsolerc ./konsole
 cp -r ~/.local/share/konsole ./konsole
 
 # ranger
-cp -r ~/.config/ranger ./ranger
+cp -r ~/.config/ranger ./
 
 # vim
 cp -r ~/.vim/autoload ./vim/
