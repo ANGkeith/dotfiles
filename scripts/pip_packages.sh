@@ -6,3 +6,4 @@ set +o nounset
 
 python -m pip install grip
 python -m pip install termcolor
+python -m pip install ranger-fm

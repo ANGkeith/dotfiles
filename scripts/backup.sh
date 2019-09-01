@@ -20,6 +20,9 @@ cp ~/.compton.conf ./
 cp ~/.config/konsolerc ./konsole
 cp -r ~/.local/share/konsole ./konsole
 
+# ranger
+cp -r ~/.config/ranger ./ranger
+
 # vim
 cp -r ~/.vim/autoload ./vim/
 cp -r ~/.vim/swapfiles ./vim/

@@ -19,6 +19,9 @@ cp .compton.conf ~/.compton.conf
 cp ./konsole/konsolerc ~/.config/
 cp -r ./konsole/konsole ~/.local/share
 
+# ranger
+cp -r ./ranger ~/.config/
+
 # vim
 cp -r ./vim/* ~/.vim
 cp ./.vimrc ~/.vimrc
