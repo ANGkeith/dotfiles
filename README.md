@@ -34,5 +34,6 @@ get_icon_names | grep -E '(VCS|GIT)'
 # space -> jump around panes
 # <U-D-L-R> -> resize panes
 # x -> close panes
+# K -> search word with ag
 
 
