@@ -17,6 +17,11 @@ nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]
 
+" enable true colorsupport
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 " F1 to toggle relative number
 function! g:ToggleNuMode()
   if &nu == 1 && &rnu == 1
@@ -111,7 +116,6 @@ set background=dark
 "   \     }
 "   \   }
 "   \ }
-colorscheme PaperColor
 
 " Display all matching files when we tab complete
 set path+=**
@@ -248,5 +252,8 @@ call plug#begin()
     Plug 'ronakg/quickr-preview.vim'
 
     Plug 'pangloss/vim-javascript'
+    Plug 'joshdick/onedark.vim'
+    Plug 'guns/xterm-color-table.vim'
 call plug#end()
 
+colorscheme onedark

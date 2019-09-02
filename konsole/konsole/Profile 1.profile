@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=MateriaManjaro
+ColorScheme=onedark
 Font=FiraCode Nerd Font,13,-1,5,50,0,0,0,0,0
 
 [General]

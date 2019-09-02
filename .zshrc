@@ -165,3 +165,6 @@ fi
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# enable true color
+export TERM="xterm-256color"
