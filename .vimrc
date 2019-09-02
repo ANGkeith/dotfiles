@@ -252,8 +252,17 @@ call plug#begin()
     Plug 'ronakg/quickr-preview.vim'
 
     Plug 'pangloss/vim-javascript'
+
+    " asthethics
     Plug 'joshdick/onedark.vim'
     Plug 'guns/xterm-color-table.vim'
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 
+" " onedark configuartions
+let g:onedark_terminal_italics = 1
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+set laststatus=2
 colorscheme onedark
