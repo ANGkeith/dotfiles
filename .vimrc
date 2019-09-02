@@ -209,7 +209,6 @@ let g:vimwiki_conceallevel = 0
 
 " === vim-markdown-toc
 let g:vmt_fence_text = 'Do not edit, run `:UpdateToc` to update'
-let g:vmt_include_headings_before = 'Table Of Contens'
 let g:vmt_auto_update_on_save = 0
 
 " === vim-autosave
@@ -266,3 +265,4 @@ let g:lightline = {
   \ }
 set laststatus=2
 colorscheme onedark
+
