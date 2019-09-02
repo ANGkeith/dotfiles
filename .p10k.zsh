@@ -69,7 +69,7 @@ fi
       ranger                  # ranger shell (https://github.com/ranger/ranger)
       # ram                   # free RAM
       # load                  # CPU load
-      time                    # current time
+      # time                    # current time
       # =========================[ Line #2 ]=========================
       newline
       # public_ip             # public IP address
