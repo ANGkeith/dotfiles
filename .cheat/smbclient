@@ -1,0 +1,9 @@
+# To display public shares on the server:
+smbclient -L <hostname> -U%
+
+# To connect to a share:
+smbclient //192.168.1.5/LocalDrive -U ukeithu
+
+# To get a file from a share
+smbget smb://<hostname/<share>/<file>
+
