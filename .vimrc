@@ -31,6 +31,12 @@ function! g:ToggleNuMode()
   endif
 endfunction
 
+" change working directory to current directory
+nnoremap <Leader>cd :cd %:p:h<CR>
+
+" pwd
+nnoremap <Leader>pwd :pwd<CR>
+
 " hide number column and column sign
 map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>
 
