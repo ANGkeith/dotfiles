@@ -211,6 +211,18 @@ let g:vimwiki_conceallevel = 0
 let g:vmt_fence_text = 'Do not edit, run `:UpdateToc` to update'
 let g:vmt_auto_update_on_save = 0
 
+" === vim-tagbar
+nnoremap <leader>tb :TagbarToggle<CR>
+let g:tagbar_type_vimwiki = {
+        \ 'ctagstype' : 'vimwiki',
+        \ 'kinds' : [
+                \ 'h:headings',
+        \ ],
+    \ 'sort' : 0
+\ }
+let g:tagbar_width = 30
+let g:tagbar_left = 1
+
 " === vim-autosave
 let g:auto_save = 1
 
@@ -228,6 +240,7 @@ call plug#begin()
     Plug '907th/vim-auto-save'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'majutsushi/tagbar'
     
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'

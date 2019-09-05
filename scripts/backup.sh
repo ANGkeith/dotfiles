@@ -34,3 +34,6 @@ cp ~/.tmux.conf ./.tmux.conf
 
 # cheat
 cp ~/.cheat/* ./.cheat
+
+# ctags
+cp ~/.ctags ./.ctags

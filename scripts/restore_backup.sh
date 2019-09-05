@@ -32,3 +32,6 @@ cp ./.tmux.conf ~/.tmux.conf
 # cheat
 mkdir -p ~/.cheat
 cp .cheat/* ~/.cheat
+
+# ctags
+cp .ctags ~/.ctags
