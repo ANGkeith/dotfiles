@@ -34,13 +34,6 @@ format = "{average}°"
 chip = "*-isa-*"
 
 [[block]]
-block = "nvidia_gpu"
-label = "GTX 960"
-show_memory = false
-show_clocks = true
-interval = 1
-
-[[block]]
 block = "cpu"
 interval = 0.7
 
