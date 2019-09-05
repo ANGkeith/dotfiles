@@ -206,6 +206,8 @@ let g:signify_vcs_list = [ 'git' ]
 let g:vim_markdown_conceal = 0
 
 " === vim-wiki
+" Do not use vimwiki filetype for non-vimwiki md files
+let g:vimwiki_global_ext = 0
 " if the path is changed, remember to update the screenshot script as well
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 
