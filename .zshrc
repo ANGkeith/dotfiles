@@ -110,6 +110,12 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach -t default || tmux new -s default
 fi
 
+# allow change of directory by keying in only the directory path, use `setopt
+# noautocd` and etc to reverse the changes
+setopt  autocd autopushd
+
+# set the respective extensions to open with vim
+alias -s {yml,yaml,py,md,sh,txt}=vim
 # ============================================================== Custom Exports
 # make vim the default editor
 export EDITOR=vim
