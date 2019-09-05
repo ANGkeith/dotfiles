@@ -6,6 +6,10 @@ cmap w!! w !sudo tee > /dev/null %
 " Show cursor line
 set cursorline
 
+" Map Ctrl-A -> Start of line, Ctrl-E -> End of line
+noremap <C-a> <Home>
+noremap <C-e> <End>
+
 " Natural split
 set splitbelow
 set splitright
