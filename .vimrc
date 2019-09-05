@@ -41,8 +41,13 @@ nnoremap <Leader>cd :cd %:p:h<CR>
 " pwd
 nnoremap <Leader>pwd :pwd<CR>
 
+" ####################################################### all the F<?> mappings
 " hide number column and column sign
 map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>
+
+" remove trailing spaces
+:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
 
 noremap <Leader>gd :Gvdiff<cr>
 
