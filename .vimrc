@@ -6,9 +6,10 @@ cmap w!! w !sudo tee > /dev/null %
 " Show cursor line
 set cursorline
 
-" Map Ctrl-A -> Start of line, Ctrl-E -> End of line
-noremap <C-a> <Home>
-noremap <C-e> <End>
+" Map emacs binding in insert mode
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-K> <Esc>ld$
 
 " Natural split
 set splitbelow
@@ -46,8 +47,7 @@ nnoremap <Leader>pwd :pwd<CR>
 map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>
 
 " remove trailing spaces
-:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 noremap <Leader>gd :Gvdiff<cr>
 
@@ -60,11 +60,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" map Ctrl-C to copy 
+" map Ctrl-C to copy
 vnoremap <C-C>c "+y
 vnoremap <C-C>v "*y
 
-" map Ctrl-V to copy 
+" map Ctrl-V to copy
 inoremap <C-V>c <ESC>"+p
 inoremap <C-V>v <ESC>"*p
 
@@ -154,8 +154,10 @@ filetype plugin on
 syntax on
 
 " 88 columns limit
-highlight ColorColumn ctermbg=235
 set colorcolumn=80
+
+" Highlight trailing spaces for all files to red underline (onedark theme)
+match SpellBad /\s\+$/
 
 " Replace existing tab with 4 spaces width
 set tabstop=4
@@ -209,7 +211,7 @@ let g:quickr_preview_position = 'below'
 let g:quickr_preview_keymaps = 0
 
 " === SIGNIFY
-let g:signify_vcs_list = [ 'git' ] 
+let g:signify_vcs_list = [ 'git' ]
 
 " === vim-markdown
 let g:vim_markdown_conceal = 0
@@ -219,7 +221,7 @@ let g:vim_markdown_conceal = 0
 let g:vimwiki_global_ext = 0
 " if the path is changed, remember to update the screenshot script as well
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 
+                      \ 'syntax': 'markdown',
                       \ 'ext': '.md',
                       \ 'index': 'README',}]
 let g:vimwiki_conceallevel = 0
@@ -229,6 +231,8 @@ let g:vmt_fence_text = 'Do not edit, run `:UpdateToc` to update'
 let g:vmt_auto_update_on_save = 0
 
 " === vim-tagbar
+" source code is modified to remove mapping of <Space> as it clashes with my
+" pane switching key binding
 nnoremap <leader>tb :TagbarToggle<CR>
 let g:tagbar_type_vimwiki = {
         \ 'ctagstype' : 'vimwiki',
@@ -258,7 +262,8 @@ call plug#begin()
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
-    
+    Plug 'ycm-core/YouCompleteMe'
+
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
     Plug 'vimwiki/vimwiki'
