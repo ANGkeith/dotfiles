@@ -9,7 +9,7 @@ set cursorline
 " Map emacs binding in insert mode
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
-inoremap <C-K> <Esc>ld$
+inoremap <C-K> <Esc>ld$i
 
 " Natural split
 set splitbelow
