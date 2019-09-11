@@ -17,5 +17,5 @@ pip install jupyterlab
 pip install jupyter-nbextensions-configurator
 mkdir -p $(jupyter --data-dir)/nbextensions/
 git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding
-
+deactivate
 
