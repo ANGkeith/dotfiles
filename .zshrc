@@ -115,7 +115,7 @@ fi
 setopt  autocd autopushd
 
 # set the respective extensions to open with vim
-alias -s {yml,yaml,py,md,sh,txt,vim}=vim
+alias -s {yml,yaml,py,md,txt,vim}=vim
 # ============================================================== Custom Exports
 # make vim the default editor
 export EDITOR=vim

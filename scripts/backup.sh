@@ -29,6 +29,9 @@ cp -r ~/.vim/swapfiles ./vim/
 cp -r ~/.vim/colors ./vim/
 cp ~/.vimrc ./.vimrc
 
+# python
+cp ~/.isort.cfg ./.isort.cfg
+
 # tmux
 cp ~/.tmux.conf ./.tmux.conf
 

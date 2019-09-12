@@ -173,16 +173,6 @@ set directory=~/.vim/swapfiles/
 
 " ==================================================================== Plugins Settings
 
-" === SYNTASTIC
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_python_checkers = ['pylint', 'flake8']
-
 " === NERDTREE
 map <C-n> :NERDTreeToggle<CR>
 " Show line numbers in NERDTree
@@ -201,7 +191,6 @@ let g:indentLine_setConceal = 2
 " " c for Command line editing, for 'incsearch'
 " default value is "inc"
 let g:indentLine_concealcursor = ""
-
 
 " === QUICK PREVIEW
 let g:quickr_preview_exit_on_enter = 1
@@ -251,12 +240,17 @@ let g:auto_save = 1
 set rtp+=~/.fzf
 nnoremap <C-p> :FZF<SPACE><CR>
 
+" === QUICK PREVIEW
+let g:ale_set_loclist = 1
+let g:ale_open_list = 1
+let g:ale_list_window_size = 4"
+
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-surround'
     Plug 'kana/vim-repeat'
     Plug 'ervandew/supertab'
-    Plug 'scrooloose/syntastic'
+    Plug 'dense-analysis/ale'
     Plug 'tpope/vim-commentary'
     Plug '907th/vim-auto-save'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -300,4 +294,3 @@ let g:lightline = {
   \ }
 set laststatus=2
 colorscheme onedark
-

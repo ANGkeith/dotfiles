@@ -12,6 +12,7 @@ Read the article to learn how to resolve merge conflict using Gdiff
 
 
 hunk jumping: [c ]c
+syntax error jumping: [l ]l
 
 # backupEnter copy mode: <prefix>+[
 Start copy: <Space>

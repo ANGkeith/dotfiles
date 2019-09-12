@@ -26,6 +26,9 @@ cp -r ./ranger ~/.config/
 cp -r ./vim/* ~/.vim
 cp ./.vimrc ~/.vimrc
 
+# python
+cp ./.isort.cfg ~/.isort.cfg
+
 # tmux
 cp ./.tmux.conf ~/.tmux.conf
 

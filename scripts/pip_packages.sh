@@ -15,7 +15,11 @@ python -m pip install ranger-fm
 mkvirtualenv jupyter
 pip install jupyterlab
 pip install jupyter-nbextensions-configurator
+jupyter nbextensions_configurator enable --user
 mkdir -p $(jupyter --data-dir)/nbextensions/
 git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding
 deactivate
+
+pip install --user mypy black autopep8 isort flake8
+
 
