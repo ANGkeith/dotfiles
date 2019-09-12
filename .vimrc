@@ -6,6 +6,9 @@ cmap w!! w !sudo tee > /dev/null %
 " Show cursor line
 set cursorline
 
+" auto save when cursor not moving
+autocmd CursorHold * update
+
 " Map emacs binding in insert mode
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
@@ -233,9 +236,6 @@ let g:tagbar_type_vimwiki = {
 let g:tagbar_width = 30
 let g:tagbar_left = 1
 
-" === vim-autosave
-let g:auto_save = 1
-
 " === fzf
 set rtp+=~/.fzf
 nnoremap <C-p> :FZF<SPACE><CR>
@@ -252,7 +252,6 @@ call plug#begin()
     Plug 'ervandew/supertab'
     Plug 'dense-analysis/ale'
     Plug 'tpope/vim-commentary'
-    Plug '907th/vim-auto-save'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
