@@ -138,8 +138,8 @@ set path+=**
 set wildmenu
 
 " Folding settings
-set foldmethod=indent
-set foldlevel=99
+set foldlevel=4
+set foldlevelstart=1
 
 " Search settings
 set hlsearch
@@ -287,10 +287,11 @@ call plug#begin()
     Plug 'itchyny/lightline.vim'
 call plug#end()
 
-" " onedark configuartions
+" onedark configuartions
 let g:onedark_terminal_italics = 1
 let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ }
 set laststatus=2
 colorscheme onedark
+
