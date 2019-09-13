@@ -1,5 +1,3 @@
-" ======================================================================== Key Bindings
-" Read up https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
@@ -30,6 +28,13 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+" change working directory to current directory
+nnoremap <Leader>cd :cd %:p:h<CR>
+
+" pwd
+nnoremap <Leader>pwd :pwd<CR>
+
+" ####################################################### all the F<?> mappings
 " F1 to toggle relative number
 function! g:ToggleNuMode()
   if &nu == 1 && &rnu == 1
@@ -38,16 +43,8 @@ function! g:ToggleNuMode()
      set nu rnu
   endif
 endfunction
-
-" change working directory to current directory
-nnoremap <Leader>cd :cd %:p:h<CR>
-
-" pwd
-nnoremap <Leader>pwd :pwd<CR>
-
-" ####################################################### all the F<?> mappings
 " hide number column and column sign
-map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>
+map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>:IndentLinesToggle<cr>
 
 " remove trailing spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -203,7 +200,6 @@ let g:quickr_preview_position = 'below'
 let g:quickr_preview_keymaps = 0
 let g:quickr_preview_size = '4'
 
-
 " === SIGNIFY
 let g:signify_vcs_list = [ 'git' ]
 
@@ -243,11 +239,17 @@ set rtp+=~/.fzf
 nnoremap <C-p> :FZF<SPACE><CR>
 
 " === ALE
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 0
 let g:ale_set_highlights = 1
 let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 1
+" Run :ALEFix upon save
+let g:ale_fix_on_save = 1
+" python ALE configurations
+let b:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
+let g:ale_python_autopep8_options = "-i"
+let g:ale_python_black_options = "-l 80"
+let g:ale_python_mypy_options = "--ignore-missing-imports --disallow-untyped-defs"
 
 " === ALE Light Line
 let g:lightline#ale#indicator_checking = "\uf110 "
