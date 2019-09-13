@@ -196,11 +196,13 @@ let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
 
 " === QUICK PREVIEW
-let g:quickr_preview_exit_on_enter = 1
-let g:quickr_preview_on_cursor = 1
+let g:quickr_preview_exit_on_enter = 0
+let g:quickr_preview_on_cursor = 0
 let g:quickr_preview_position = 'below'
 " disable key mappings for quick previewr
 let g:quickr_preview_keymaps = 0
+let g:quickr_preview_size = '4'
+
 
 " === SIGNIFY
 let g:signify_vcs_list = [ 'git' ]
@@ -240,10 +242,46 @@ let g:tagbar_left = 1
 set rtp+=~/.fzf
 nnoremap <C-p> :FZF<SPACE><CR>
 
-" === QUICK PREVIEW
+" === ALE
 let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 1
+let g:ale_set_highlights = 1
 let g:ale_open_list = 1
-let g:ale_list_window_size = 4"
+let g:ale_keep_list_window_open = 1
+
+" === ALE Light Line
+let g:lightline#ale#indicator_checking = "\uf110 "
+let g:lightline#ale#indicator_warnings = "\uf071 "
+let g:lightline#ale#indicator_errors = "\uf05e "
+let g:lightline#ale#indicator_ok = "\uf00c "
+
+" === Light Line
+let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
+    \   'right': [
+    \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+    \             [ 'lineinfo' ],
+    \             [ 'percent' ],
+    \             [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ]],
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head',
+    \ },
+    \ 'component_expand': {
+    \   'linter_checking': 'lightline#ale#checking',
+    \   'linter_warnings': 'lightline#ale#warnings',
+    \   'linter_errors': 'lightline#ale#errors',
+    \   'linter_ok': 'lightline#ale#ok',
+    \ },
+    \ 'component_type': {
+    \   'linter_checking': 'left',
+    \   'linter_warnings': 'warning',
+    \   'linter_errors': 'error',
+    \   'linter_ok': 'left',
+    \ }}
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
@@ -256,6 +294,7 @@ call plug#begin()
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
     Plug 'ycm-core/YouCompleteMe'
+    Plug 'maximbaz/lightline-ale'
 
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
@@ -288,9 +327,7 @@ call plug#end()
 
 " onedark configuartions
 let g:onedark_terminal_italics = 1
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
+
 set laststatus=2
 colorscheme onedark
 
