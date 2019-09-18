@@ -216,7 +216,7 @@ for_window [instance="my_terminal"] move workspace $ws2, exec "i3-persist lock"
 
 
 # Create dropdown browser
-exec qutebrowser
-for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "i3-persist lock" \
-resize set height 1000, resize set width 1900
-bindsym $mod+w  [instance="qutebrowser"] scratchpad show
+# exec qutebrowser
+# for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "i3-persist lock" \
+# resize set height 1000, resize set width 1900
+# bindsym $mod+w  [instance="qutebrowser"] scratchpad show
