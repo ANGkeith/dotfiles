@@ -1,6 +1,8 @@
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+let mapleader = "\\"
+
 " Show cursor line
 set cursorline
 
@@ -8,8 +10,8 @@ set cursorline
 autocmd CursorHold * update
 
 " Map emacs binding in insert mode
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
+inoremap <C-A> <Home>
+inoremap <C-E> <End>
 inoremap <C-K> <Esc>ld$i
 
 " Natural split
@@ -44,7 +46,7 @@ function! g:ToggleNuMode()
   endif
 endfunction
 " hide number column and column sign
-map <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>:IndentLinesToggle<cr>
+noremap <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>:IndentLinesToggle<cr>
 
 " remove trailing spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -60,13 +62,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" map Ctrl-C to copy
-vnoremap <C-C>c "+y
-vnoremap <C-C>v "*y
-
-" map Ctrl-V to copy
-inoremap <C-V>c <ESC>"+p
-inoremap <C-V>v <ESC>"*p
+" Map Ctrl c & v for copy and paste from system clipboard
+vnoremap <C-C> "+y
+inoremap <C-V> <ESC>"+p
+" Map leader c & v for copy and paste from buffer
+vnoremap <leader>c "*y
+nnoremap <leader>v "*p
 
 " Replace bullet glyph with *
 command Replacebullet %s/[•|❒|❍]/*/g
@@ -112,10 +113,16 @@ nnoremap <C-Left> <C-W><
 nnoremap <Leader>q :q<CR>
 
 " Quickly source .vimrc
-nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Quickly edit .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " Toggle between buffer
 nnoremap <Leader><Leader> :b#<CR>
+
+" change word to uppercase
+nnoremap <C-U> viwU
 
 " ===================================================================== custom settings
 
@@ -155,6 +162,7 @@ syntax on
 
 " 88 columns limit
 set colorcolumn=80
+set textwidth=80
 
 " Highlight trailing spaces for all files to red underline (onedark theme)
 match SpellBad /\s\+$/
@@ -245,6 +253,8 @@ let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 1
 " Run :ALEFix upon save
 let g:ale_fix_on_save = 1
+" general ALE config
+let g:ale_fixers = {'*': ['remove_trailing_lines']}
 " python ALE configurations
 let b:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
 let g:ale_python_autopep8_options = "-i"
@@ -284,6 +294,10 @@ let g:lightline = {
     \   'linter_errors': 'error',
     \   'linter_ok': 'left',
     \ }}
+
+" === vim-diminactive
+let g:diminactive_enable_focus = 1
+
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
@@ -325,6 +339,11 @@ call plug#begin()
     Plug 'joshdick/onedark.vim'
     Plug 'guns/xterm-color-table.vim'
     Plug 'itchyny/lightline.vim'
+
+    Plug 'blueyed/vim-diminactive'
+    " for better integration with diminactive
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+
 call plug#end()
 
 " onedark configuartions
@@ -332,4 +351,3 @@ let g:onedark_terminal_italics = 1
 
 set laststatus=2
 colorscheme onedark
-
