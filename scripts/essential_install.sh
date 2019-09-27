@@ -31,7 +31,7 @@ touch /etc/systemd/system/docker.service.d/startup_options.conf
 echo "# /etc/systemd/system/docker.service.d/override.conf
 [Service]
 ExecStart=
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376" |
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375" |
     sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
 sudo systemctl daemon-reload
 sudo systemctl restart docker.service
