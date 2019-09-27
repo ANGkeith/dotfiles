@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 
-# ====================================================================== Custom 
+# ====================================================================== Custom
 # auto launch tmux
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach -t default || tmux new -s default
@@ -126,7 +126,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
 source $HOME/.local/bin/virtualenvwrapper.sh
 
-# node version manager 
+# node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -135,6 +135,9 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # fzf to use ag instead of find
 export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.ignore --nocolor --hidden -g ""'
+
+# cheat
+export CHEAT_HIGHLIGHT=magenta
 
 # ============================================================== Custom Aliases
 # utils
@@ -153,7 +156,7 @@ alias bashrc='vim ~/.bashrc'
 alias i3rc='vim ~/.config/i3/config'
 alias vimrc='vim ~/.vimrc'
 alias tmuxrc='vim ~/.tmux.conf'
-alias zshrc="vim ~/.zshrc" 
+alias zshrc="vim ~/.zshrc"
 
 alias gs="git status -sb"
 function gdh() {
