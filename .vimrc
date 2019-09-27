@@ -213,6 +213,7 @@ let g:signify_vcs_list = [ 'git' ]
 
 " === vim-markdown
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_auto_insert_bullets = 0
 
 " === vim-wiki
 " Do not use vimwiki filetype for non-vimwiki md files
