@@ -141,8 +141,8 @@ export CHEAT_HIGHLIGHT=magenta
 
 # ============================================================== Custom Aliases
 # utils
-alias pycharm='/opt/pycharm-2019.1.3/bin/pycharm.sh & disown $!'
-alias pycharmf='/opt/pycharm-2019.1.3/bin/pycharm.sh . & disown $!'
+alias pycharm='/opt/pycharm-2019.2.3/bin/pycharm.sh & disown $!'
+alias pycharmf='/opt/pycharm-2019.2.3/bin/pycharm.sh . & disown $!'
 
 alias copy='xclip -sel clipboard'
 alias untar='tar -zxvf'

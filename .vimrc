@@ -1,3 +1,7 @@
+" unwrap current line
+nnoremap <Leader><BS> 0i<BS><Space><Esc>
+
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
