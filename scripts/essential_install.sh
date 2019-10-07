@@ -27,7 +27,7 @@ sudo apt install docker-compose
 
 # to allow pycharm integration with docker
 sudo mkdir /etc/systemd/system/docker.service.d/
-touch /etc/systemd/system/docker.service.d/startup_options.conf
+sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
 echo "# /etc/systemd/system/docker.service.d/override.conf
 [Service]
 ExecStart=
