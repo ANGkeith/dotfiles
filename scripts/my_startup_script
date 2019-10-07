@@ -1,0 +1,5 @@
+#!/bin/bash
+
+" settings for keychron
+echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
+setxkbmap -option caps:swapescape

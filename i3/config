@@ -97,7 +97,7 @@ bindsym $mod+Right resize grow width 10 px or 10 ppt
 ## resize window (you can also use the mouse for that)
 # mode "resize" {
 #         # These bindings trigger as soon as you enter the resize mode
-# 
+#
 #         # Pressing left will shrink the window’s width.
 #         # Pressing right will grow the window’s width.
 #         # Pressing up will shrink the window’s height.
@@ -106,13 +106,13 @@ bindsym $mod+Right resize grow width 10 px or 10 ppt
 #         bindsym $mod+j resize grow height 10 px or 10 ppt
 #         bindsym $mod+k resize shrink height 10 px or 10 ppt
 #         bindsym $mod+l resize grow width 10 px or 10 ppt
-# 
+#
 #         # same bindings, but for the arrow keys
 #         bindsym Left resize shrink width 10 px or 10 ppt
 #         bindsym Down resize grow height 10 px or 10 ppt
 #         bindsym Up resize shrink height 10 px or 10 ppt
 #         bindsym Right resize grow width 10 px or 10 ppt
-# 
+#
 #         # back to normal: Enter or Escape or $mod+r
 #         bindsym Return mode "default"
 #         bindsym Escape mode "default"
@@ -130,9 +130,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase sc
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
 bindsym --release Print exec gnome-screenshot -ac
 bindsym --release $mod+Print exec ~/.config/i3/scripts/screenshot
- 
+
 bindsym $mod+d exec dmenu_run
-# bindsym $mod+d exec --no-startup-id rofi -show run 
+# bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+backslash exec --no-startup-id i3lock -c 000000
 
 # Alt-tab like behaviour for workspace
@@ -143,6 +143,7 @@ workspace_auto_back_and_forth yes
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 exec_always --no-startup-id setxkbmap -option caps:swapescape
+exec_always --no-startup-id setxkbmap -option echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 exec_always --no-startup-id compton
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
