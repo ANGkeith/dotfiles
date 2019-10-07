@@ -78,7 +78,7 @@ au Filetype vimwiki
     \ command! Replacebullet %s/[•|❒|❍]/*/g
 
 au Filetype vimwiki
-    \ command! Spoiler execute "normal! i<details><CR><Tab><summary>Label</summary><CR><Tab>Description<CR></details><CR><Esc>"
+    \ command! Spoiler execute "normal! i<details><CR><Tab><summary><CR><TAB>Label<CR><Esc>ciw<Tab></summary><CR>Description<CR><Esc>ciw</details><CR><Esc>"
 
 " == The Silver Searcher
 if executable('ag')
