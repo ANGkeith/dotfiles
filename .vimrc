@@ -70,7 +70,11 @@ vnoremap <leader>c "*y
 nnoremap <leader>v "*p
 
 " Replace bullet glyph with *
-command Replacebullet %s/[•|❒|❍]/*/g
+au Filetype vimwiki
+    \ command! Replacebullet %s/[•|❒|❍]/*/g
+
+au Filetype vimwiki
+    \ command! Spoiler execute "normal! i<details><CR><Tab><summary>Label</summary><CR><Tab>Description<CR></details><CR><Esc>"
 
 " == The Silver Searcher
 if executable('ag')
