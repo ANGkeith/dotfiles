@@ -121,13 +121,6 @@ bindsym $mod+Right resize grow width 10 px or 10 ppt
 # }
 # bindsym $mod+r mode "resize"
 
-# Show caps
-mode "caps" {
-        bindsym Caps_Lock mode "default"
-}
-bindsym Caps_Lock mode "caps"
-
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
