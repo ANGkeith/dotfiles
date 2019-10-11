@@ -69,7 +69,7 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  # git
   zsh-syntax-highlighting
   zsh-autosuggestions
   z
@@ -158,7 +158,35 @@ alias vimrc='vim ~/.vimrc'
 alias tmuxrc='vim ~/.tmux.conf'
 alias zshrc="vim ~/.zshrc"
 
+# bulk find and replace
+function agr {
+    ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'
+}
+
+# pyenv path
+# git alias
+alias ga-"git add"
+alias gb="git branch"
+alias gc="git commit -m"
+alias gcl="git clone"
+alias gca="git commit --no-edit --amend"
+alias gco="git checkout"
+alias gl="git pull"
+alias gp="git push"
+alias grb="git rebase"
 alias gs="git status -sb"
+function gst() {
+    if [[ ! -z $1 ]]; then
+        git stash push -m $1
+    else
+        git stash push
+    fi
+}
+alias gsta="git stash apply"
+alias gstl="git stash list"
+alias gstp="git stash pop"
+alias gsts="git stash show -v"
+
 function gdh() {
     git diff HEAD $1
 }
