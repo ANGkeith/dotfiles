@@ -39,3 +39,7 @@ cp .cheat/* ~/.cheat
 
 # ctags
 cp .ctags ~/.ctags
+
+# global gitignore files
+cp .gitignore_global ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
