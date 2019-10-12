@@ -9,15 +9,14 @@ cp ./.zshrc ~/.zshrc
 cp ./.p10k.zsh ~/.p10k.zsh
 
 # i3
-cp ~/.config/i3/statusbar.toml ~/.config/i3/statusbar.toml.backup
 cp -r ./i3 ~/.config/
-mv ~/.config/i3/statusbar.toml.backup ~/.config/i3/statusbar.toml
 cp -r ./rofi ~/.config/
 cp ./.fehbg ~/.fehbg
 cp wallpaper.jpg ~/Pictures/wallpaper.jpg
 cp .compton.conf ~/.compton.conf
 
 # konsole
+cp ./konsole/konsolerc ~/.config/
 cp -r ./konsole/konsole ~/.local/share
 
 # ranger
