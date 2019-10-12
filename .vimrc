@@ -256,19 +256,26 @@ set rtp+=~/.fzf
 nnoremap <C-p> :FZF<SPACE><CR>
 
 " === ALE
+
+let g:ale_completion_tsserver_autoimport = 1
 let g:ale_set_quickfix = 0
 let g:ale_set_highlights = 1
 let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 1
+" Error message format
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " Run :ALEFix upon save
 let g:ale_fix_on_save = 1
 " general ALE config
 let g:ale_fixers = {'*': ['remove_trailing_lines']}
 " python ALE configurations
-let b:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
+let g:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
 let g:ale_python_autopep8_options = "-i"
 let g:ale_python_black_options = "-l 80"
 let g:ale_python_mypy_options = "--ignore-missing-imports --disallow-untyped-defs"
+let g:ale_python_flake8_options = "--max-line-length=80"
 
 " === ALE Light Line
 let g:lightline#ale#indicator_checking = "\uf110 "
