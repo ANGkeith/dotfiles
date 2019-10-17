@@ -16,6 +16,7 @@ set $ws10 "Distractions"
 # swap workspace
 # bindsym $mod+Tab exec ~/.config/i3/scripts/swap_ws
 bindsym Mod1+Tab workspace back_and_forth
+# bindsym Mod1+Tab workspace next_on_output
 
 # resize window with mouse
 floating_modifier $mod
@@ -148,7 +149,7 @@ exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/f
 exec_always --no-startup-id compton
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-exec --no-startup-id i3-msg 'exec workspace $ws2; exec google-chrome --password-store=gnome'
+exec --no-startup-id i3-msg 'exec workspace $ws1; exec google-chrome --password-store=gnome'
 
 # turn off display after 60s
 exec xset dpms 0 0 3600
