@@ -61,10 +61,10 @@ noremap <Leader>gd :Gvdiff<cr>
 nnoremap gb :ls<CR>:b<Space>
 
 " Easier splilt navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 " Map Ctrl c & v for copy and paste from system clipboard
 vnoremap <C-C> "+y
@@ -157,7 +157,6 @@ set foldlevel=4
 set foldlevelstart=1
 
 " Search settings
-set hlsearch
 set incsearch
 
 " Show line number
@@ -260,8 +259,9 @@ nnoremap <C-p> :FZF<SPACE><CR>
 let g:ale_completion_tsserver_autoimport = 1
 let g:ale_set_quickfix = 0
 let g:ale_set_highlights = 1
-let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " Error message format
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
