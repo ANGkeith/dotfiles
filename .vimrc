@@ -314,6 +314,20 @@ let g:lightline = {
 " === vim-diminactive
 let g:diminactive_enable_focus = 1
 
+" === easy-motion
+" Disable default mappings
+let g:EasyMotion_do_mapping = 0
+nmap s <Plug>(easymotion-overwin-f2)
+" case insensitive
+let g:EasyMotion_smartcase = 1
+" Smartsign (type `3` and match `3`&`#`)
+let g:EasyMotion_use_smartsign_us = 1
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 call plug#begin()
     Plug 'scrooloose/nerdtree'
@@ -327,6 +341,7 @@ call plug#begin()
     Plug 'majutsushi/tagbar'
     Plug 'ycm-core/YouCompleteMe'
     Plug 'maximbaz/lightline-ale'
+    Plug 'easymotion/vim-easymotion'
 
     " markdown plugin
     Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
