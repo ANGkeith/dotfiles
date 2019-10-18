@@ -165,7 +165,7 @@ function agr {
 
 # pyenv path
 # git alias
-alias ga-"git add"
+alias ga="git add"
 alias gb="git branch"
 alias gc="git commit -m"
 alias gcl="git clone"
