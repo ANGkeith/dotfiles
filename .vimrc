@@ -1,7 +1,6 @@
 " unwrap current line
 nnoremap <Leader><BS> 0i<BS><Space><Esc>
 
-
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
@@ -12,6 +11,15 @@ set cursorline
 
 " auto save when cursor not moving
 autocmd CursorHold * update
+
+" Change cursor in the various different mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if exists('$TMUX')
+  let &t_SI = "\ePtmux;\e" . &t_SI . "\e\\"
+  let &t_EI = "\ePtmux;\e" . &t_EI . "\e\\"
+endif
 
 " Map emacs binding in insert mode
 inoremap <C-A> <Home>
