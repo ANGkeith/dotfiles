@@ -26,7 +26,7 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+x exec i3-persist kill
+bindsym $mod+x exec ~/.config/i3/scripts/i3_persist kill
 
 # change focus
 bindsym $mod+h focus left
@@ -47,7 +47,9 @@ bindsym $mod+Shift+space floating toggle
 # bindsym $mod+space focus mode_toggle
 
 # cycle between windows (mod + <backtick>)
-bindsym $mod+grave exec i3-cycle-windows
+bindsym $mod+grave exec ~/.config/i3/scripts/i3_cycle_windows
+
+
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -212,14 +214,14 @@ gaps outer 6
 # Create dropdown terminal
 # exec i3-sensible-terminal --name my_terminal
 # for_window [instance="my_terminal"] floating enable, move scratchpad, scratchpad show \
-# resize set height 1000, resize set width 1900, exec "i3-persist lock"
+# resize set height 1000, resize set width 1900, exec "~/.config/i3/scripts/i3_persist lock"
 # bindsym $mod+Return  [instance="my_terminal"] scratchpad show
 exec i3-sensible-terminal --name my_terminal
-for_window [instance="my_terminal"] move workspace $ws2, exec "i3-persist lock"
+for_window [instance="my_terminal"] move workspace $ws2, exec "~/.config/i3/scripts/i3_persist lock"
 
 
 # Create dropdown browser
 # exec qutebrowser
-# for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "i3-persist lock" \
+# for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "~/.config/i3/scripts/i3_persist lock" \
 # resize set height 1000, resize set width 1900
 # bindsym $mod+w  [instance="qutebrowser"] scratchpad show

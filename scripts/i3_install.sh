@@ -3,13 +3,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# add i3-persist script
+# dependencies for i3_persist
 sudo apt install -y jq
-sudo cp ./scripts/i3_persist.sh /usr/bin/i3-persist
-sudo cp ./scripts/i3_cycle_windows.sh /usr/bin/i3-cycle-windows
 
 sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool libxcb-shape0-dev cargo
-
 
 # dependencies for i3_cycle_windows
 sudo apt install -y libjson-perl
