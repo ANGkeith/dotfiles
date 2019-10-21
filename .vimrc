@@ -326,6 +326,7 @@ let g:diminactive_enable_focus = 1
 " Disable default mappings
 let g:EasyMotion_do_mapping = 0
 nmap s <Plug>(easymotion-overwin-f2)
+nmap S <Plug>(easymotion-overwin-f)
 " case insensitive
 let g:EasyMotion_smartcase = 1
 " Smartsign (type `3` and match `3`&`#`)
@@ -347,7 +348,7 @@ call plug#begin()
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
-    Plug 'ycm-core/YouCompleteMe'
+    " Plug 'ycm-core/YouCompleteMe'
     Plug 'maximbaz/lightline-ale'
     Plug 'easymotion/vim-easymotion'
 
