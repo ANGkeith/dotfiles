@@ -1,5 +1,5 @@
-" unwrap current line
-nnoremap <Leader><BS> 0i<BS><Space><Esc>
+" wrap current line
+nnoremap <Leader>j viw<ESC>mpa<CR><ESC>`p
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -331,8 +331,6 @@ nmap S <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1
 " Smartsign (type `3` and match `3`&`#`)
 let g:EasyMotion_use_smartsign_us = 1
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
