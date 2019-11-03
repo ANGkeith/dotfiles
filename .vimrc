@@ -175,9 +175,9 @@ set nocompatible
 filetype plugin on
 syntax on
 
-" 88 columns limit
+" 80 columns limit
 set colorcolumn=80
-set textwidth=80
+au BufRead,BufNewFile *.md setlocal textwidth=80
 
 " Highlight trailing spaces for all files to red underline (onedark theme)
 match SpellBad /\s\+$/
