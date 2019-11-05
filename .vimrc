@@ -351,7 +351,8 @@ call plug#begin()
     Plug 'easymotion/vim-easymotion'
 
     " markdown plugin
-    Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+    Plug 'godlygeek/tabular'
+    "| Plug 'plasticboy/vim-markdown'
     Plug 'vimwiki/vimwiki'
 
     " indentation line
