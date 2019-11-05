@@ -135,7 +135,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease 
 bindsym --release Print exec gnome-screenshot -ac
 bindsym --release $mod+Print exec ~/.config/i3/scripts/screenshot
 
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+backslash exec --no-startup-id i3lock -c 000000
 
@@ -151,7 +151,7 @@ exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/f
 exec_always --no-startup-id compton
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-exec --no-startup-id i3-msg 'exec workspace $ws1; exec google-chrome --password-store=gnome'
+# exec --no-startup-id i3-msg 'exec workspace $ws1; exec google-chrome --password-store=gnome'
 
 # turn off display after 60s
 exec xset dpms 0 0 3600
