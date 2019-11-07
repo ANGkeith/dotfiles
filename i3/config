@@ -132,7 +132,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
-bindsym --release Print exec gnome-screenshot -ac
+bindsym --release Print exec maim -s --format=png /dev/stdout | xclip -selection clipboard -t image/png -i
 bindsym --release $mod+Print exec ~/.config/i3/scripts/screenshot
 
 bindsym $mod+d exec i3-dmenu-desktop
@@ -151,7 +151,6 @@ exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/f
 exec_always --no-startup-id compton
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-# exec --no-startup-id i3-msg 'exec workspace $ws1; exec google-chrome --password-store=gnome'
 
 # turn off display after 60s
 exec xset dpms 0 0 3600

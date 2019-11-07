@@ -11,6 +11,9 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0
 # dependencies for i3_cycle_windows
 sudo apt install -y libjson-perl
 
+# dependencies for screenshot
+sudo apt install -y maim
+
 cd /tmp
 git clone https://github.com/Airblader/xcb-util-xrm
 cd xcb-util-xrm
