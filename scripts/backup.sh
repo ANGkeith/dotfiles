@@ -44,3 +44,6 @@ cp ~/.ctags ./.ctags
 
 # global gitignore files
 cp ~/.gitignore_global .gitignore_global
+
+# radare2
+cp ~/.radare2rc ./.radare2rc

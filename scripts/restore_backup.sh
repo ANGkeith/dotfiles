@@ -43,3 +43,6 @@ cp .ctags ~/.ctags
 # global gitignore files
 cp .gitignore_global ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
+
+# radare2 config
+cp .radare2rc ~/.radare2rc
