@@ -46,3 +46,4 @@ git config --global core.excludesfile ~/.gitignore_global
 
 # radare2 config
 cp .radare2rc ~/.radare2rc
+cp .gdbinit ~/.gdbinit
