@@ -12,7 +12,7 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0
 sudo apt install -y libjson-perl
 
 # dependencies for screenshot
-sudo apt install -y maim
+sudo apt install -y flameshot
 
 cd /tmp
 git clone https://github.com/Airblader/xcb-util-xrm

@@ -49,3 +49,5 @@ cp ~/.gitignore_global .gitignore_global
 cp ~/.radare2rc ./.radare2rc
 cp ~/.gdbinit ./.gdbinit
 
+# flameshot
+cp ~/.config/Dharkael/flameshot.ini .flameshot.ini

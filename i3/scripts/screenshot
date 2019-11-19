@@ -1,6 +1,0 @@
-#!/bin/bash
-# not the the -f filepath is a relative path from $HOME
-filename="$(date +\%Y-\%m-\%d)-$(date +\%H-\%M-\%S).png" 
-filepath="vimwiki/assets/images/temp/${filename}"
-gnome-screenshot -a -f "${filepath}"
-echo "<img src='/assets/images/temp/${filename}'/>" | xclip -sel clipboard
