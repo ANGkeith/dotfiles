@@ -152,8 +152,8 @@ exec_always --no-startup-id compton
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
-# turn off display after 70s
-exec xset dpms 0 0 70
+# turn off display after 10min
+exec xset dpms 0 0 600
 # auto lock in 1 minute
 exec xautolock -time 1 -corners ---- -locker "i3lock -c 000000"
 
