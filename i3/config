@@ -149,6 +149,7 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 exec_always --no-startup-id setxkbmap -option caps:swapescape
 exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 exec_always --no-startup-id compton
+exec --no-startup-id flameshot
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
