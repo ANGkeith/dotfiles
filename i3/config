@@ -156,7 +156,7 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # turn off display after 10min
 exec xset dpms 0 0 600
 # auto lock in 1 minute
-exec xautolock -time 1 -corners ---- -locker "betterlockscreen -l dim"
+exec xautolock -time 1 -corners 0-00 -cornersize 100 -locker "betterlockscreen -l dim"
 
 ########## Assigning an application to a workspace
 # run xprop on terminal to get class of an application
