@@ -3,6 +3,27 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# dependencies for betterlockscreen
+sudo apt install -y libev-dev libxcb-composite0 libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev libjpeg-turbo8-dev libpam0g-dev
+cd /tmp
+git clone https://github.com/PandorasFox/i3lock-color.git
+cd i3lock-color
+autoreconf --force --install
+rm -rf build/
+mkdir -p build && cd build/
+../configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --disable-sanitizers
+make
+# the make will most likely trigger some err flag
+sudo cp i3lock /usr/bin
+
+cd /tmp
+git clone https://github.com/pavanjadhaw/betterlockscreen
+cd betterlockscreen
+sudo cp betterlockscreen /usr/bin/
+
 # dependencies for i3_persist
 sudo apt install -y jq
 
@@ -43,7 +64,7 @@ sudo apt install -y feh xautolock
 # install font
 sudo apt install -y fonts-font-awesome libdbus-1-dev fonts-powerline powerline
 
-# status bar 
+# status bar
 cd /tmp
 git clone https://github.com/greshake/i3status-rust
 cd i3status-rust && cargo build --release

@@ -137,7 +137,7 @@ bindsym --release $mod+Print exec ~/.config/i3/scripts/vimwiki_screenshot
 
 bindsym $mod+d exec i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+backslash exec --no-startup-id i3lock -c 000000
+bindsym $mod+backslash exec --no-startup-id betterlockscreen -l dim
 
 # Alt-tab like behaviour for workspace
 workspace_auto_back_and_forth yes
@@ -156,7 +156,7 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # turn off display after 10min
 exec xset dpms 0 0 600
 # auto lock in 1 minute
-exec xautolock -time 1 -corners ---- -locker "i3lock -c 000000"
+exec xautolock -time 1 -corners ---- -locker "betterlockscreen -l dim"
 
 ########## Assigning an application to a workspace
 # run xprop on terminal to get class of an application
