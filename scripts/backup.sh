@@ -51,3 +51,6 @@ cp ~/.gdbinit ./.gdbinit
 
 # flameshot
 cp ~/.config/Dharkael/flameshot.ini .flameshot.ini
+
+# xmodmap
+cp ~/.Xmodmap .Xmodmap

@@ -27,7 +27,6 @@ floating_modifier $mod
 
 # kill focused window
 bindsym $mod+x exec ~/.config/i3/scripts/i3_persist kill
-
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -146,9 +145,9 @@ workspace_auto_back_and_forth yes
 # This is needed for google-chrome
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
-exec_always --no-startup-id setxkbmap -option caps:swapescape
 exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 exec_always --no-startup-id compton
+exec_always --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id flameshot
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets

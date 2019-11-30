@@ -1,0 +1,16 @@
+! use `xev` to check keycode
+
+! map Right Alternate to Super
+clear mod1
+clear mod4
+add mod1 = Alt_L Meta_L
+add mod4 = Super_L Alt_R
+
+! swap Escape and Caps_lock
+clear lock
+keycode 66 = Escape
+keycode 9 = Caps_Lock
+! to reverse the swap
+! clear lock
+! keycode 66 = Escape
+! keycode 9 = Caps_Lock
