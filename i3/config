@@ -216,7 +216,7 @@ gaps outer 6
 # resize set height 1000, resize set width 1900, exec "~/.config/i3/scripts/i3_persist lock"
 # bindsym $mod+Return  [instance="my_terminal"] scratchpad show
 exec i3-sensible-terminal --name my_terminal
-for_window [instance="my_terminal"] move workspace $ws2, exec "~/.config/i3/scripts/i3_persist lock"
+# for_window [instance="my_terminal"] move workspace $ws2, exec "~/.config/i3/scripts/i3_persist lock"
 
 
 # Create dropdown browser
