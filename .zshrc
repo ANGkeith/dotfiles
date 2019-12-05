@@ -189,10 +189,10 @@ alias gsta="git stash apply"
 alias gstl="git stash list"
 alias gstp="git stash pop"
 alias gsts="git stash show -v"
-
 function gdh() {
     git diff HEAD $1
 }
+alias vf='vim $(fzf)'
 
 # pyenv path
 export PYENV_ROOT="$HOME/.pyenv"
