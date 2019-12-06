@@ -105,7 +105,7 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Enable folding with the spacebar
-nnoremap <Leader>space za
+" nnoremap <Leader>space za
 
 " mapping space to toggle pane
 nnoremap <space> <C-w>w
@@ -137,9 +137,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Toggle between buffer
 nnoremap <Leader><Leader> :b#<CR>
 
-" change word to uppercase
-nnoremap <C-U> viwU
-
 " ===================================================================== custom settings
 
 " Theme Settings
@@ -157,7 +154,7 @@ set background=dark
 
 " Display all matching files when we tab complete
 set path+=**
-" Show statusline
+" Visual autocomplete for command menu
 set wildmenu
 
 " Folding settings
@@ -216,12 +213,12 @@ let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
 
 " === QUICK PREVIEW
-let g:quickr_preview_exit_on_enter = 0
-let g:quickr_preview_on_cursor = 0
+let g:quickr_preview_exit_on_enter = 1
+let g:quickr_preview_on_cursor = 1
 let g:quickr_preview_position = 'below'
 " disable key mappings for quick previewr
 let g:quickr_preview_keymaps = 0
-let g:quickr_preview_size = '4'
+let g:quickr_preview_size = '8'
 
 " === SIGNIFY
 let g:signify_vcs_list = [ 'git' ]
@@ -244,6 +241,15 @@ let g:vimwiki_conceallevel = 0
 let g:vmt_fence_text = 'Do not edit, run `:UpdateToc` to update'
 let g:vmt_auto_update_on_save = 0
 
+" === vim-instant-markdown
+let g:instant_markdown_slow = 0
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_autoscroll = 1
+let g:instant_markdown_browser = "google-chrome-stable --new-window"
+noremap <Leader>p :InstantMarkdownPreview<cr>
+
 " === vim-tagbar
 " source code is modified to remove mapping of <Space> as it clashes with my
 " pane switching key binding
@@ -261,6 +267,8 @@ let g:tagbar_left = 1
 " === fzf
 set rtp+=~/.fzf
 nnoremap <C-p> :FZF<SPACE><CR>
+" search hidden file as well
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
 " === ALE
 
@@ -354,6 +362,7 @@ call plug#begin()
     Plug 'godlygeek/tabular'
     "| Plug 'plasticboy/vim-markdown'
     Plug 'vimwiki/vimwiki'
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
     " indentation line
     Plug 'yggdroot/indentline'
@@ -378,6 +387,8 @@ call plug#begin()
     Plug 'joshdick/onedark.vim'
     Plug 'guns/xterm-color-table.vim'
     Plug 'itchyny/lightline.vim'
+    " improved syntax highlighting
+    Plug 'sheerun/vim-polyglot'
 
     Plug 'blueyed/vim-diminactive'
     " for better integration with diminactive
@@ -386,7 +397,23 @@ call plug#begin()
 call plug#end()
 
 " onedark configuartions
+set showmatch
 let g:onedark_terminal_italics = 1
-
+let g:onedark_hide_endofbuffer = 1
 set laststatus=2
+
+" customize individual aspects of onedark.vim's existing highlight groups
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:colors = onedark#GetColors()
+    let s:red = s:colors.green
+    let s:white = s:colors.white
+    autocmd ColorScheme * call onedark#extend_highlight("MatchParen", { "fg": s:white, "bg": s:red })
+  augroup END
+endif
+
 colorscheme onedark
+
+" inside last parenthesis operator
+:onoremap il( :<c-u>normal! F)vi(<cr>
