@@ -1,183 +1,17 @@
-" wrap current line
-nnoremap <Leader>j viw<ESC>mpa<CR><ESC>`p
+" Good Read
+" https://github.com/romainl/idiomatic-vimrc
+"  UI ----------------------------------------------------------------------{{{
+" Show line number
+set relativenumber
+set number
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-
-let mapleader = "\\"
-
-" Show cursor line
-set cursorline
-
-" auto save when cursor not moving
-autocmd CursorHold * update
-
-" Change cursor in the various different mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-if exists('$TMUX')
-  let &t_SI = "\ePtmux;\e" . &t_SI . "\e\\"
-  let &t_EI = "\ePtmux;\e" . &t_EI . "\e\\"
-endif
-
-" Map emacs binding in insert mode
-inoremap <C-A> <Home>
-inoremap <C-E> <End>
-inoremap <C-K> <Esc>ld$i
-
-" Natural split
 set splitbelow
 set splitright
-
-" If a line gets wrapped to two lines, j wont skip over the '2nd line'
-nnoremap j gj
-nnoremap k gk
-
-" highlight last inserted text
-nnoremap gV `[v`]
-
-" enable true colorsupport
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-" change working directory to current directory
-nnoremap <Leader>cd :cd %:p:h<CR>
-
-" pwd
-nnoremap <Leader>pwd :pwd<CR>
-
-" ####################################################### all the F<?> mappings
-" F1 to toggle relative number
-function! g:ToggleNuMode()
-  if &nu == 1 && &rnu == 1
-     set nornu nonu
-  else
-     set nu rnu
-  endif
-endfunction
-" hide number column and column sign
-noremap <F1> :SignifyToggle<cr>:call g:ToggleNuMode()<cr>:IndentLinesToggle<cr>
-
-" remove trailing spaces
-nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-
-noremap <Leader>gd :Gvdiff<cr>
-
-" Easier buffer navigations
-nnoremap gb :ls<CR>:b<Space>
-
-" Easier splilt navigations
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
-
-" Map Ctrl c & v for copy and paste from system clipboard
-vnoremap <C-C> "+y
-inoremap <C-V> <ESC>"+p
-" Map leader c & v for copy and paste from buffer
-vnoremap <leader>c "*y
-nnoremap <leader>v "*p
-
-" Replace bullet glyph with *
-au Filetype vimwiki
-    \ command! Replacebullet %s/[•|❒|❍]/*/g
-
-au Filetype vimwiki
-    \ command! Spoiler execute "normal! i<details><CR><Tab><summary><CR><TAB>Label<CR><Esc>ciw<Tab></summary><CR>Description<CR><Esc>ciw</details><CR><Esc>"
-
-" == The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
-" Defines a new command Ag to search for the provided text and open a 'quickfix' window
-" bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-" bind CtrlF to search with Ag
-" nnoremap <C-f> :Ag<SPACE>
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Enable folding with the spacebar
-" nnoremap <Leader>space za
-
-" mapping space to toggle pane
-nnoremap <space> <C-w>w
-
-" go to insert mode <C-v> <some key> to get the literal terminal keycode
-set timeout timeoutlen=1000 ttimeoutlen=100
-set <F37>=[1;5A
-map <F37> <C-Up>
-nnoremap <C-Up> <C-W>+
-set <F36>=[1;5B
-map <F36> <C-Down>
-nnoremap <C-Down> <C-W>-
-set <F35>=[1;5C
-map <F35> <C-Right>
-nnoremap <C-Right> <C-W>>
-set <F34>=[1;5D
-map <F34> <C-Left>
-nnoremap <C-Left> <C-W><
-
-" Quickly quit editting without save
-nnoremap <Leader>q :q<CR>
-
-" Quickly source .vimrc
-nnoremap <leader>sv :source $MYVIMRC<CR>
-
-" Quickly edit .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
-" Toggle between buffer
-nnoremap <Leader><Leader> :b#<CR>
-
-" ===================================================================== custom settings
-
-" Theme Settings
-set t_Co=256
-set background=dark
-" let g:PaperColor_Theme_Options = {
-"   \   'theme': {
-"   \     'default.dark': {
-"   \       'transparent_background': 1,
-"   \       'allow_bold': 1,
-"   \       'allow_italic': 1
-"   \     }
-"   \   }
-"   \ }
 
 " Display all matching files when we tab complete
 set path+=**
 " Visual autocomplete for command menu
 set wildmenu
-
-" Folding settings
-set foldlevel=4
-set foldlevelstart=1
-
-" Search settings
-set incsearch
-
-" Show line number
-set relativenumber
-set number
-
-set nocompatible
-filetype plugin on
-syntax on
-
-" 80 columns limit
-set colorcolumn=80
-au BufRead,BufNewFile *.md setlocal textwidth=80
-
-" Highlight trailing spaces for all files to red underline (onedark theme)
-match SpellBad /\s\+$/
 
 " Replace existing tab with 4 spaces width
 set tabstop=4
@@ -189,16 +23,207 @@ set expandtab
 " hitting `>>` will bring to 4 spaces instead of 3+`shiftwidth` spaces
 set shiftround
 
-set directory=~/.vim/swapfiles/
+" Trigger SpellBad highlight group for trailing spaces
+match SpellBad /\s\+$/
+" highlight matching [{()}]
+set showmatch
+" highlight search term on the fly
+set incsearch
 
-" ==================================================================== Plugins Settings
+" highlight current line based on CursorLine
+set cursorline
+" highlight column based on ColorColumn
+set colorcolumn=80
+set textwidth=0
 
-" === NERDTREE
+" autoreload the file in Vim if it has been changed outside of Vim
+set autoread
+
+" Change cursor in the various different mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if exists('$TMUX')
+    let &t_SI = "\ePtmux;\e" . &t_SI . "\e\\"
+    let &t_EI = "\ePtmux;\e" . &t_EI . "\e\\"
+endif
+
+" Always showing status line
+set laststatus=2
+
+set noswapfile
+
+"---------------------------------------------------------------------------}}}
+" Misc ---------------------------------------------------------------------{{{
+" enable true colorsupport
+set nocompatible
+filetype plugin on
+
+" `matchit.vim` is built-in so let's enable it!
+" Hit `%` on `if` to jump to `else`.
+runtime macros/matchit.vim
+
+" auto save when cursor not moving
+autocmd CursorHold * update
+
+if executable('ag')
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" Defines a new command Ag to search for the provided text and open a 'quickfix' window
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" ---------------------------------------------------------------------------}}}
+" i3/tmux like behaviour ---------------------------------------------------{{{
+" Map emacs binding in insert mode
+inoremap <c-a> <home>
+inoremap <c-e> <end>
+inoremap <c-k> <esc>ld$i
+
+" If a line gets wrapped to two lines, j wont skip over the '2nd line'
+nnoremap j gj
+nnoremap k gk
+
+" move to and highlight last edited text
+nnoremap gV `[v`]
+
+" Panes Management
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-l> <c-w><c-l>
+nnoremap <c-h> <c-w><c-h>
+" mapping space to toggle pane
+nnoremap <space> <c-w>w
+" Pane Resize
+" go to insert mode <c-v> <some key> to get the literal terminal keycode
+set timeout timeoutlen=1000 ttimeoutlen=100
+set <f37>=[1;5a
+map <f37> <c-up>
+nnoremap <c-up> <c-w>+
+set <f36>=[1;5b
+map <f36> <c-down>
+nnoremap <c-down> <c-w>-
+set <f35>=[1;5c
+map <f35> <c-right>
+nnoremap <c-right> <c-w>>
+set <f34>=[1;5d
+map <f34> <c-left>
+nnoremap <c-left> <c-w><
+" --------------------------------------------------------------------------}}}
+" Custom Functions ---------------------------------------------------------{{{
+function! g:ToggleBetweenRelativeAndNothing()
+  if &nu == 1 && &rnu == 1
+     set nornu nonu
+  else
+     set nu rnu
+  endif
+endfunction
+
+function! g:ToggleBetweenRelativeAndNumber()
+  if &rnu == 1
+     set nornu
+  else
+     set rnu
+  endif
+endfunction
+" --------------------------------------------------------------------------}}}
+" Mapping ------------------------------------------------------------------{{{
+""" Use :map <F6> to see what is mapped to <F6> and in which mode.
+" wrap current line
+nnoremap <leader>j viw<ESC>mpa<CR><ESC>`p
+
+" bind CtrlF to search with Ag
+nnoremap <c-f> :Ag<space>
+
+" bind k to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Quickly quit editing without save
+nnoremap <leader>q :q<CR>
+
+" Quickly source .vimrc
+nnoremap <leader>sv :source $MYVIMRC<CR>
+" Quickly edit .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Toggle between buffer
+nnoremap <leader><leader> :b#<cr>
+
+" inside last parenthesis operator
+onoremap il( :<c-u>normal! F)vi(<cr>
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+" Map Ctrl c & v for copy and paste from system clipboard
+vnoremap <c-c> "+y
+inoremap <c-v> <esc>"+p
+" map leader c & v for copy and paste from buffer
+vnoremap <leader>c "*y
+nnoremap <leader>v "*p
+
+" Distraction Free Mode
+noremap <f1> :SignifyToggle<cr>:call g:ToggleBetweenRelativeAndNothing()<cr>:IndentLinesToggle<cr>
+noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
+" remove trailing spaces
+nnoremap <silent> <f5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" Easier buffer navigations
+nnoremap gb :ls<CR>:b<Space>
+" Plugins --------------------------------------------------------------{{{
+noremap <leader>p :InstantMarkdownPreview<cr>
+nnoremap <leader>tb :TagbarToggle<cr>
+nnoremap <c-p> :FZF<space><cr>
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+nmap s <Plug>(easymotion-overwin-f2)
+nmap S <Plug>(easymotion-overwin-f)
+" case insensitive
+" Smartsign (type `3` and match `3`&`#`)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+
+nnoremap <leader>hd :SignifyHunkDiff<cr>
+nnoremap <leader>hu :SignifyHunkUndo<cr>
+" ----------------------------------------------------------------------}}}
+" }}}
+"  Filetype settings -------------------------------------------------------{{{
+"  vim -----------------------------------------------------------------{{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" ----------------------------------------------------------------------}}}
+"  vimwiki -------------------------------------------------------------{{{
+" Replace bullet glyph with *
+au Filetype vimwiki
+    \ command! Replacebullet %s/[•|❒|❍]/*/g
+
+au Filetype vimwiki
+    \ command! Spoiler execute "normal! i<details><CR><Tab><summary><CR><TAB>Label<CR><Esc>ciw<Tab></summary><CR>Description<CR><Esc>ciw</details><CR><Esc>"
+" ----------------------------------------------------------------------}}}
+" markdown -------------------------------------------------------------{{{
+au Filetype markdown
+    \ setlocal textwidth=80
+" ----------------------------------------------------------------------}}}
+"  yaml ----------------------------------------------------------------{{{
+au Filetype yaml
+    \ setlocal tabstop=2
+    \ setlocal shiftwidth=2
+" ----------------------------------------------------------------------}}}
+" --------------------------------------------------------------------------}}}
+" Plugin Configurations ----------------------------------------------------{{{
+" nerdtree -------------------------------------------------------------{{{
 map <C-n> :NERDTreeToggle<CR>
 " Show line numbers in NERDTree
 let NERDTreeShowLineNumbers=1
-
-" === INDENT LINE
+" ----------------------------------------------------------------------}}}
+" indentline {{{
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " By default identLine set conceal level to 2 thus and causing some concealed
 " text to be completely hidden. ie. Text surrounded by ``
@@ -211,23 +236,19 @@ let g:indentLine_setConceal = 2
 " " c for Command line editing, for 'incsearch'
 " default value is "inc"
 let g:indentLine_concealcursor = ""
-
-" === QUICK PREVIEW
+" }}}
+" quickr-preview {{{
 let g:quickr_preview_exit_on_enter = 1
 let g:quickr_preview_on_cursor = 1
 let g:quickr_preview_position = 'below'
 " disable key mappings for quick previewr
 let g:quickr_preview_keymaps = 0
 let g:quickr_preview_size = '8'
-
-" === SIGNIFY
+" }}}
+" vim-signify {{{
 let g:signify_vcs_list = [ 'git' ]
-
-" === vim-markdown
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_auto_insert_bullets = 0
-
-" === vim-wiki
+"}}}
+" vimwiki {{{
 " Do not use vimwiki filetype for non-vimwiki md files
 let g:vimwiki_global_ext = 0
 " if the path is changed, remember to update the screenshot script as well
@@ -236,24 +257,25 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'ext': '.md',
                       \ 'index': 'README',}]
 let g:vimwiki_conceallevel = 0
-
-" === vim-markdown-toc
+"}}}
+" vim-markdown {{{
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_auto_insert_bullets = 0
+"}}}
+" vim-markdown-toc {{{
 let g:vmt_fence_text = 'Do not edit, run `:UpdateToc` to update'
 let g:vmt_auto_update_on_save = 0
-
-" === vim-instant-markdown
+"}}}
+" vim-instant-markdown {{{
 let g:instant_markdown_slow = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_mathjax = 1
 let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 let g:instant_markdown_autoscroll = 1
 let g:instant_markdown_browser = "google-chrome-stable --new-window"
-noremap <Leader>p :InstantMarkdownPreview<cr>
 
-" === vim-tagbar
-" source code is modified to remove mapping of <Space> as it clashes with my
-" pane switching key binding
-nnoremap <leader>tb :TagbarToggle<CR>
+" }}}
+" tagbar {{{
 let g:tagbar_type_vimwiki = {
         \ 'ctagstype' : 'vimwiki',
         \ 'kinds' : [
@@ -263,20 +285,16 @@ let g:tagbar_type_vimwiki = {
 \ }
 let g:tagbar_width = 30
 let g:tagbar_left = 1
-
-" === fzf
+"}}}
+" fzf {{{
 set rtp+=~/.fzf
-nnoremap <C-p> :FZF<SPACE><CR>
 " search hidden file as well
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-
-" === ALE
-
+"}}}
+" ale {{{
 let g:ale_completion_tsserver_autoimport = 1
 let g:ale_set_quickfix = 0
 let g:ale_set_highlights = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Error message format
 let g:ale_echo_msg_error_str = 'E'
@@ -292,14 +310,14 @@ let g:ale_python_autopep8_options = "-i"
 let g:ale_python_black_options = "-l 80"
 let g:ale_python_mypy_options = "--ignore-missing-imports --disallow-untyped-defs"
 let g:ale_python_flake8_options = "--max-line-length=80"
-
-" === ALE Light Line
+"}}}
+" lightline-ale {{{
 let g:lightline#ale#indicator_checking = "\uf110 "
 let g:lightline#ale#indicator_warnings = "\uf071 "
 let g:lightline#ale#indicator_errors = "\uf05e "
 let g:lightline#ale#indicator_ok = "\uf00c "
-
-" === Light Line
+" }}}
+" lightline {{{
 let g:lightline = {
     \ 'colorscheme': 'onedark',
     \ 'active': {
@@ -326,24 +344,18 @@ let g:lightline = {
     \   'linter_errors': 'error',
     \   'linter_ok': 'left',
     \ }}
-
-" === vim-diminactive
+" }}}
+" vim-diminactive {{{
 let g:diminactive_enable_focus = 1
-
-" === easy-motion
+" }}}
+" vim-easymotion {{{
 " Disable default mappings
 let g:EasyMotion_do_mapping = 0
-nmap s <Plug>(easymotion-overwin-f2)
-nmap S <Plug>(easymotion-overwin-f)
-" case insensitive
 let g:EasyMotion_smartcase = 1
-" Smartsign (type `3` and match `3`&`#`)
 let g:EasyMotion_use_smartsign_us = 1
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-
+" }}}
+" }}}
+"  Plugins --------------------------------------------------------------------{{{
 call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-surround'
@@ -354,13 +366,11 @@ call plug#begin()
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
-    " Plug 'ycm-core/YouCompleteMe'
     Plug 'maximbaz/lightline-ale'
     Plug 'easymotion/vim-easymotion'
 
     " markdown plugin
     Plug 'godlygeek/tabular'
-    "| Plug 'plasticboy/vim-markdown'
     Plug 'vimwiki/vimwiki'
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
@@ -395,25 +405,27 @@ call plug#begin()
     Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
+"---------------------------------------------------------------------------}}}
+" Colorscheme {{{
+set t_Co=256
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" onedark configuartions
-set showmatch
+syntax on
 let g:onedark_terminal_italics = 1
 let g:onedark_hide_endofbuffer = 1
-set laststatus=2
 
 " customize individual aspects of onedark.vim's existing highlight groups
 if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:colors = onedark#GetColors()
-    let s:red = s:colors.green
-    let s:white = s:colors.white
-    autocmd ColorScheme * call onedark#extend_highlight("MatchParen", { "fg": s:white, "bg": s:red })
-  augroup END
+    augroup colorset
+        autocmd!
+        let s:colors = onedark#GetColors()
+        let s:red = s:colors.red
+        let s:white = s:colors.white
+        autocmd ColorScheme * call onedark#extend_highlight("MatchParen", { "fg": s:white, "bg": s:red })
+    augroup END
 endif
 
 colorscheme onedark
-
-" inside last parenthesis operator
-:onoremap il( :<c-u>normal! F)vi(<cr>
+" }}}
