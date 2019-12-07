@@ -173,6 +173,8 @@ nnoremap <silent> <f5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 " Easier buffer navigations
 nnoremap gb :ls<CR>:b<Space>
 
+" Map ctrl space to toggle foldings
+nnoremap <c-@> za
 " Plugins --------------------------------------------------------------{{{
 noremap <leader>p :InstantMarkdownPreview<cr>
 nnoremap <leader>tb :TagbarToggle<cr>
@@ -192,6 +194,8 @@ map  N <Plug>(easymotion-prev)
 
 nnoremap <leader>hd :SignifyHunkDiff<cr>
 nnoremap <leader>hu :SignifyHunkUndo<cr>
+
+nmap <Leader>s <Plug>(Scalpel)
 " ----------------------------------------------------------------------}}}
 " }}}
 "  Filetype settings -------------------------------------------------------{{{
@@ -224,7 +228,6 @@ au Filetype yaml
 let g:ScalpelMap=0
 " Show line numbers in NERDTree
 " Use <Leader>s instead of default <Leader>e:
-nmap <Leader>s <Plug>(Scalpel)
 " ----------------------------------------------------------------------}}}
 " nerdtree -------------------------------------------------------------{{{
 map <C-n> :NERDTreeToggle<CR>
@@ -365,29 +368,35 @@ let g:EasyMotion_use_smartsign_us = 1
 " }}}
 "  Plugins --------------------------------------------------------------------{{{
 call plug#begin()
+    " utils
     Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-surround'
     Plug 'kana/vim-repeat'
     Plug 'ervandew/supertab'
-    Plug 'dense-analysis/ale'
+    Plug 'ronakg/quickr-preview.vim'
     Plug 'tpope/vim-commentary'
+    Plug 'majutsushi/tagbar'
+    Plug 'easymotion/vim-easymotion'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'majutsushi/tagbar'
-    Plug 'maximbaz/lightline-ale'
-    Plug 'easymotion/vim-easymotion'
     " Substitute word on cursor
     Plug 'wincent/scalpel'
 
-    " markdown plugin
+    Plug 'dense-analysis/ale'
+    " improved syntax highlighting
+    Plug 'sheerun/vim-polyglot'
+
+    " filetype markdown {{{
     Plug 'godlygeek/tabular'
     Plug 'vimwiki/vimwiki'
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-
-    " indentation line
-    Plug 'yggdroot/indentline'
-
-    " git Plugin
+    ":GenTocGFM -> generate toc with github flavoured markdown
+    Plug 'mzlogin/vim-markdown-toc'
+    " }}}
+    " filetype javascript {{{
+    Plug 'pangloss/vim-javascript'
+    " }}}
+    " git integration {{{
     Plug 'tpope/vim-fugitive'
     " indicate added/modified/removed lines in a file
     Plug 'mhinz/vim-signify'
@@ -395,25 +404,19 @@ call plug#begin()
     Plug 'tpope/vim-unimpaired'
     " git commit browser
     Plug 'junegunn/gv.vim'
-
-    ":GenTocGFM -> generate toc with github flavoured markdown
-    Plug 'mzlogin/vim-markdown-toc'
-
-    Plug 'ronakg/quickr-preview.vim'
-
-    Plug 'pangloss/vim-javascript'
-
-    " asthethics
+    " }}}
+    " asthethics {{{
     Plug 'joshdick/onedark.vim'
-    Plug 'guns/xterm-color-table.vim'
     Plug 'itchyny/lightline.vim'
-    " improved syntax highlighting
-    Plug 'sheerun/vim-polyglot'
-
+    Plug 'maximbaz/lightline-ale'
+    " indentation line
+    Plug 'yggdroot/indentline'
     Plug 'blueyed/vim-diminactive'
     " for better integration with diminactive
     Plug 'tmux-plugins/vim-tmux-focus-events'
-
+    "  }}}
+    Plug 'glts/vim-magnum'
+    Plug 'glts/vim-radical'
 call plug#end()
 "---------------------------------------------------------------------------}}}
 " Colorscheme {{{
