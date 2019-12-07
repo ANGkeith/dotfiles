@@ -53,6 +53,7 @@ set laststatus=2
 
 set noswapfile
 
+set hidden
 "---------------------------------------------------------------------------}}}
 " Misc ---------------------------------------------------------------------{{{
 " enable true colorsupport
@@ -171,6 +172,7 @@ nnoremap <silent> <f5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 
 " Easier buffer navigations
 nnoremap gb :ls<CR>:b<Space>
+
 " Plugins --------------------------------------------------------------{{{
 noremap <leader>p :InstantMarkdownPreview<cr>
 nnoremap <leader>tb :TagbarToggle<cr>
@@ -218,6 +220,12 @@ au Filetype yaml
 " ----------------------------------------------------------------------}}}
 " --------------------------------------------------------------------------}}}
 " Plugin Configurations ----------------------------------------------------{{{
+" scapel -------------------------------------------------------------{{{
+let g:ScalpelMap=0
+" Show line numbers in NERDTree
+" Use <Leader>s instead of default <Leader>e:
+nmap <Leader>s <Plug>(Scalpel)
+" ----------------------------------------------------------------------}}}
 " nerdtree -------------------------------------------------------------{{{
 map <C-n> :NERDTreeToggle<CR>
 " Show line numbers in NERDTree
@@ -368,6 +376,8 @@ call plug#begin()
     Plug 'majutsushi/tagbar'
     Plug 'maximbaz/lightline-ale'
     Plug 'easymotion/vim-easymotion'
+    " Substitute word on cursor
+    Plug 'wincent/scalpel'
 
     " markdown plugin
     Plug 'godlygeek/tabular'
