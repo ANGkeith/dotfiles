@@ -54,6 +54,9 @@ set laststatus=2
 set noswapfile
 
 set hidden
+
+" Don't update the display while executing macros
+set lazyredraw
 "---------------------------------------------------------------------------}}}
 " Misc ---------------------------------------------------------------------{{{
 " enable true colorsupport
@@ -442,3 +445,8 @@ endif
 
 colorscheme onedark
 " }}}
+
+" make a copy of the file and overwrite the original one. ie. inode of file
+" remains unchanged otherwise links may be broken
+
+set backupcopy=yes
