@@ -1,3 +1,1 @@
-vim/swapfiles/*
-vim/autoload/*
-i3/statusbar.toml
+dotfiles/vim/.vim/plugged

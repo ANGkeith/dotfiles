@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/ukeithu/backup/scripts/tmp'
+let g:netrw_dirhist_2='/home/ukeithu/.config/konsole'
+let g:netrw_dirhist_3='/home/ukeithu/backup/scripts'
+let g:netrw_dirhist_4='/home/ukeithu/backup/vim'
+let g:netrw_dirhist_5='/home/ukeithu/backup/scripts'
