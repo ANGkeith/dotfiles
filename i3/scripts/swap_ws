@@ -1,2 +1,0 @@
-#!/bin/bash
-i3-msg "workspace 8; focus parent; move container to workspace temp; workspace 7; focus parent; move container to workspace 8; workspace temp; focus parent; move container to workspace 7; workspace 7"

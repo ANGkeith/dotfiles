@@ -1,0 +1,5 @@
+[user]
+	email = kang024@e.ntu.edu.sg
+	name = ANGkeith
+[core]
+	excludesfile = /home/ukeithu/.gitignore_global

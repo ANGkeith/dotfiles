@@ -1,8 +1,0 @@
---langdef=vimwiki
---langmap=vimwiki:.md
---regex-vimwiki=/^#{1}[ \t]*([^#]+.*)/. \1/h,headings/
---regex-vimwiki=/^#{2}[ \t]*([^#]+.*)/.   \1/h,headings/
---regex-vimwiki=/^#{3}[ \t]*([^#]+.*)/.     \1/h,headings/
---regex-vimwiki=/^#{4}[ \t]*([^#]+.*)/.       \1/h,headings/
---regex-vimwiki=/^#{5}[ \t]*([^#]+.*)/.         \1/h,headings/
---regex-vimwiki=/^#{6}[ \t]*([^#]+.*)/.           \1/h,headings/
