@@ -1,0 +1,226 @@
+set $mod Mod4
+focus_follows_mouse no
+
+################# Set Variable
+set $ws1 "1| Internet"
+set $ws2 "2| Terminal"
+set $ws3 "3| IDE"
+set $ws4 "4| Postman"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "Distractions"
+
+# swap workspace
+# bindsym $mod+Tab exec ~/.config/i3/scripts/swap_ws
+bindsym Mod1+Tab workspace back_and_forth
+# bindsym Mod1+Tab workspace next_on_output
+
+# resize window with mouse
+floating_modifier $mod
+
+########## Tiling Configuration
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+x exec ~/.config/i3/scripts/i3_persist kill
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+
+# cycle between windows (mod + <backtick>)
+bindsym $mod+grave exec ~/.config/i3/scripts/i3_cycle_windows
+
+
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# split in horizontal orientation
+bindsym $mod+s split v
+
+# split in vertical orientation
+bindsym $mod+v split h
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Shift+t layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+a focus parent
+######### key bindings
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+r exec i3-msg restart
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/exit_menu
+
+bindsym $mod+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Right resize grow width 10 px or 10 ppt
+## resize window (you can also use the mouse for that)
+# mode "resize" {
+#         # These bindings trigger as soon as you enter the resize mode
+#
+#         # Pressing left will shrink the window’s width.
+#         # Pressing right will grow the window’s width.
+#         # Pressing up will shrink the window’s height.
+#         # Pressing down will grow the window’s height.
+#         bindsym $mod+h resize shrink width 10 px or 10 ppt
+#         bindsym $mod+j resize grow height 10 px or 10 ppt
+#         bindsym $mod+k resize shrink height 10 px or 10 ppt
+#         bindsym $mod+l resize grow width 10 px or 10 ppt
+#
+#         # same bindings, but for the arrow keys
+#         bindsym Left resize shrink width 10 px or 10 ppt
+#         bindsym Down resize grow height 10 px or 10 ppt
+#         bindsym Up resize shrink height 10 px or 10 ppt
+#         bindsym Right resize grow width 10 px or 10 ppt
+#
+#         # back to normal: Enter or Escape or $mod+r
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+#         bindsym $mod+r mode "default"
+# }
+# bindsym $mod+r mode "resize"
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
+bindsym --release Print exec flameshot gui
+bindsym --release $mod+Print exec ~/.config/i3/scripts/vimwiki_screenshot
+
+bindsym $mod+d exec i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+backslash exec --no-startup-id betterlockscreen -l dim
+
+# Alt-tab like behaviour for workspace
+workspace_auto_back_and_forth yes
+
+#################################################################### Autostart services
+# This is needed for google-chrome
+
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
+exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
+exec_always --no-startup-id compton
+exec_always --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id flameshot
+
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
+# turn off display after 10min
+exec xset dpms 0 0 600
+# auto lock in 1 minute
+exec xautolock -time 1 -corners 0-00 -cornersize 100 -locker "betterlockscreen -l dim"
+
+########## Assigning an application to a workspace
+# run xprop on terminal to get class of an application
+assign [class="Postman"] $ws4
+
+font pango:Misc Termsyn 14
+
+set $TEXT_COLOR "#cecece"
+set $ACTIVE_BORDER_COLOR "#cecece"
+set $ACTIVE_BG "#9575cd"
+set $NO_COLOR "argb:00000000"
+set $INACTIVE_BG_COLOR "#212121"
+set $NO_COLOR "argb:00000000"
+
+set $FOCUS_BG_COLOR "#cecece"
+
+set $ERR_COLOR "#00ff00"
+set $NOTIF_BG_COLOR="argb:ee212121"
+set $BORDER_COLOR "#0d1010"
+
+#                       border  bg      text    indicator
+client.focused_inactive $BORDER_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR $NO_COLOR
+client.unfocused        $BORDER_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR $NO_COLOR
+client.focused          $BORDER_COLOR $FOCUS_BG_COLOR $INACTIVE_BG_COLOR $NO_COLOR
+client.urgent           #ff0000 #ff0000 #d9d9d9 #00ff00
+
+client.placeholder $ERR_COLOR $ERR_COLOR $ERR_COLOR $ERR_COLOR
+
+bar {
+    bindsym --release button3 exec --no-startup-id gnome-screenshot -ac
+    font pango:DejaVu Sans Mono, FontAwesome 12
+    status_command i3status-rs ~/.config/i3/statusbar.toml
+    position top
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
+# hide window title bar
+for_window [class=".*"] border pixel 1
+
+bindsym $mod+Shift+plus gaps inner current plus 1
+bindsym $mod+minus gaps inner current minus 1
+bindsym $mod+plus gaps inner current set 3; gaps outer current set 3
+
+gaps inner 6
+gaps outer 6
+
+# Create dropdown terminal
+# exec i3-sensible-terminal --name my_terminal
+# for_window [instance="my_terminal"] floating enable, move scratchpad, scratchpad show \
+# resize set height 1000, resize set width 1900, exec "~/.config/i3/scripts/i3_persist lock"
+# bindsym $mod+Return  [instance="my_terminal"] scratchpad show
+exec i3-sensible-terminal --name my_terminal
+# for_window [instance="my_terminal"] move workspace $ws2, exec "~/.config/i3/scripts/i3_persist lock"
+
+
+# Create dropdown browser
+# exec qutebrowser
+# for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "~/.config/i3/scripts/i3_persist lock" \
+# resize set height 1000, resize set width 1900
+# bindsym $mod+w  [instance="qutebrowser"] scratchpad show
