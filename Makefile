@@ -1,40 +1,27 @@
 .PHONY: help
 help:
-	@echo "    backup"
-	@echo "        Pull configuration files from local computer"
-	@echo "    restore_backup"
-	@echo "        Push configuration files to local computer"
-	@echo "    install"
-	@echo "        Use to install all applications and dependencies"
-	@echo "    commit"
-	@echo "        Auto generate commit message"
-	@echo "    full_backup"
-	@echo "        Pull all configuration files from local computer"
-	@echo "    full_restore_backup"
-	@echo "        Push all configuration files to local computer"
+	@echo "    create_sym_link"
+	@echo "        Generates symbolic link in the home directory"
+	@echo "    delete_sym_link"
+	@echo "        Remove the symblic link that was generated in the respective 'HOME' directory"
+	@echo "    setup_arch"
+	@echo "        Automate package installation for archlinux based OS"
+	@echo "    setup_ubuntu"
+	@echo "        Automate package installation for debian(Ubuntu) based OS (depreciated)"
 
 
-.PHONY: backup
-backup:
-	@./scripts/backup.sh
+.PHONY: create_sym_link
+create_sym_link:
+	@./scripts/create_sym_link.sh
 
-.PHONY: restore_backup
-restore_backup:
-	@./scripts/restore_backup.sh
+.PHONY: delete_sym_link
+delete_sym_link:
+	@./scripts/delete_sym_link.sh
 
-.PHONY: install
-install:
-	@./scripts/install.sh
+.PHONY: setup_arch
+setup_arch:
+	@./scripts/setup_arch.sh
 
-.PHONY: commit
-commit:
-	@./scripts/commit.sh
-
-.PHONY: full_backup
-full_backup:
-	@./scripts/full_backup.sh
-
-.PHONY: full_restore_backup
-full_restore_backup:
-	@./scripts/full_restore_backup.sh
-
+.PHONY: setup_ubuntu
+setup_ubuntu:
+	@./scripts/setup_ubuntu.sh
