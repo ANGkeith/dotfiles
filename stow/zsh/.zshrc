@@ -70,9 +70,10 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   # git
-  zsh-syntax-highlighting
+  zsh-history-substring-search
   zsh-autosuggestions
   z
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -219,4 +220,4 @@ bindkey '^Z' fg-bg
 
 # enable true color
 export TERM="xterm-256color"
-export DOT="$HOME/dotfiles/dotfiles"
+export DOTFILE="$HOME/dotfiles/stow"
