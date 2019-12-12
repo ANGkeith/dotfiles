@@ -8,11 +8,11 @@ Favorites=
 ShowMenuBarByDefault=false
 
 [MainWindow]
-Height 1080=1080
+Height 1080=1031
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAAB2YAAAQJAAAABAAAAAQAAAAIAAAACPwAAAAA
+State=AAAA/wAAAAD9AAAAAAAAB2YAAAP1AAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1920=1920
+Width 1920=1894
 Window-Maximized 1080x1920=true
 Window-Maximized 720x1280=true
 
