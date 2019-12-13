@@ -70,7 +70,9 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
             echo "The path `${PATH_TO_WALLPAPER}` does not exist. "
         fi
     # Internet Browser
-        pacman -S chromium --noconfirm
+        sudo pacman -S chromium --noconfirm
+    # Display Compositor
+        sudo pacman -S compton --noconfirm
 
 # install docker
     sudo pacman -S docker docker-compose --noconfirm

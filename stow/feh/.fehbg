@@ -1,2 +1,2 @@
 #!/bin/sh
-'feh' '--bg-scale' "$HOME/.config/wallpaper.jpg"
+feh --no-fehbg --bg-scale '/home/artemis/.config/wallpaper.jpg' 

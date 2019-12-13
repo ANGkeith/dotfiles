@@ -53,7 +53,7 @@ interval = 20
 
 [[block]]
 block = "disk_space"
-path = "/home/ukeithu"
+path = "/home/artemis"
 alias = "~"
 info_type = "available"
 unit = "GB"
@@ -72,5 +72,3 @@ on_click = "i3-nagbar -t warning -m 'What do you want to do?' -b 'Shutdown' 'shu
 
 [[block]]
 block = "uptime"
-
-
