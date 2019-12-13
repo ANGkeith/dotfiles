@@ -85,9 +85,9 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm
         sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
     # Display Compositor
-        sudo pacman -S compton --noconfirm
+        sudo pacman -S picom --noconfirm
     # conky
-        sudo pacman -S conky --noconfirm 
+        sudo pacman -S conky --noconfirm
 
 # install docker
     sudo pacman -S docker docker-compose --noconfirm
