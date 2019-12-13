@@ -16,8 +16,7 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     makepkg -si
 
 # Text editor
-    sudo pacman -S vim the_silver_searcher xclip --noconfirm
-    sudo pacman -S vim .--noconfirm
+    sudo pacman -S gvim the_silver_searcher xclip --noconfirm
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -77,9 +76,10 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         sudo pacman -S adobe-source-han-serif-cn-fonts --noconfirm
         sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm
         sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
-
     # Display Compositor
         sudo pacman -S compton --noconfirm
+    # conky
+        sudo pacman -S conky --noconfirm 
 
 # install docker
     sudo pacman -S docker docker-compose --noconfirm
