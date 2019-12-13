@@ -51,6 +51,8 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     pacman -S i3 --noconfirm
     # Install fonts
         sudo pacman -S powerline-fonts --noconfirm
+    # Install dependency for `i3_cycle_windows` script
+        sudo pacman -S perl-json --noconfirm
     # Volume manager
         sudo pacman -S pavucontrol --noconfirm
     # Show cpu temperatures
