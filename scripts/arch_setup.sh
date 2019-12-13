@@ -71,6 +71,13 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         fi
     # Internet Browser
         sudo pacman -S chromium --noconfirm
+        # install random chinese fonts lol
+        sudo pacman -S adobe-source-han-sans-cn-fonts --noconfirm
+        sudo pacman -S adobe-source-han-sans-tw-fonts --noconfirm
+        sudo pacman -S adobe-source-han-serif-cn-fonts --noconfirm
+        sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm
+        sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
+
     # Display Compositor
         sudo pacman -S compton --noconfirm
 
