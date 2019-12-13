@@ -9,6 +9,9 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 # Standard folders
     mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
 
+# utils
+    pacman -S zip unzip
+
 # Install yay
     cd /tmp
     git clone https://aur.archlinux.org/yay.git
