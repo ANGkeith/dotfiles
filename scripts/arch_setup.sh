@@ -10,7 +10,10 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
 
 # utils
-    pacman -S zip unzip
+    sudo pacman -S zip unzip
+
+# terminal and multiplexer
+    sudo pacman -S tmux konsole
 
 # Install yay
     cd /tmp
