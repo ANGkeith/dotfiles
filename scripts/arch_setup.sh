@@ -93,20 +93,25 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     # conky
         sudo pacman -S conky --noconfirm
 
-# install docker
-    sudo pacman -S docker docker-compose --noconfirm
-    sudo systemctl start docker
-    sudo systemctl enable docker
-    sudo usermod -aG docker $USER
-    newgrp docker
-    # to allow pycharm integration with docker
-        sudo mkdir /etc/systemd/system/docker.service.d/
-        sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
-        echo "# /etc/systemd/system/docker.service.d/override.conf
-        [Service]
-        ExecStart=
-        ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375" |
-            sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
-        sudo systemctl daemon-reload
-        sudo systemctl restart docker.service
+# development
+    # install docker
+        sudo pacman -S docker docker-compose --noconfirm
+        sudo systemctl start docker
+        sudo systemctl enable docker
+        sudo usermod -aG docker $USER
+        newgrp docker
+        # to allow pycharm integration with docker
+            sudo mkdir /etc/systemd/system/docker.service.d/
+            sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
+            echo "# /etc/systemd/system/docker.service.d/override.conf
+            [Service]
+            ExecStart=
+            ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375" |
+                sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
+            sudo systemctl daemon-reload
+            sudo systemctl restart docker.service
 
+    # python
+        sudo pacman -S python-pip
+        pip install virtualenv --user
+        pip install virtualenvwrapper --user
