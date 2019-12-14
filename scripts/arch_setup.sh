@@ -10,7 +10,11 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
 
 # utils
+    # file compression
     sudo pacman -S zip unzip
+    # bluetooth
+    sudo pacman -S bluez-utils
+    sudo systemctl enable bluetooth.service
 
 # terminal and multiplexer
     sudo pacman -S tmux konsole
