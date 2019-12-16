@@ -127,6 +127,12 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
 source $HOME/.local/bin/virtualenvwrapper.sh
 
+# for easy reference to DOTFILE dir
+export DOTFILE="$HOME/dotfiles/stow"
+
+# add python `pip install --user` to path
+export PATH=$HOME/.local/bin:$PATH
+
 # node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -220,4 +226,3 @@ bindkey '^Z' fg-bg
 
 # enable true color
 export TERM="xterm-256color"
-export DOTFILE="$HOME/dotfiles/stow"
