@@ -115,3 +115,6 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         sudo pacman -S python-pip
         pip install virtualenv --user
         pip install virtualenvwrapper --user
+
+# maintanence
+    yay -S timeshift
