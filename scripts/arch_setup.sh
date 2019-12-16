@@ -91,7 +91,7 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     # Display Compositor
         sudo pacman -S picom --noconfirm
     # conky
-        sudo pacman -S conky --noconfirm
+        sudo pacman -S conky-lua-nvidia --noconfirm
 
 # development
     # install docker
