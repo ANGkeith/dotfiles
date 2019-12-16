@@ -93,8 +93,8 @@ nnoremap k gk
 nnoremap gV `[v`]
 
 " Panes Management
-nnoremap <c-j> <c-w><c-j>
-nnoremap <c-k> <c-w><c-k>
+" nnoremap <c-j> <c-w><c-j>
+" nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 " mapping space to toggle pane
@@ -195,8 +195,8 @@ onoremap iv :exec "normal! HVL"<cr>
 noremap <leader>p :InstantMarkdownPreview<cr>
 nnoremap <leader>tb :TagbarToggle<cr>
 nnoremap <c-p> :FZF<space><cr>
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 nmap S <Plug>(easymotion-overwin-f2)
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -332,7 +332,7 @@ let g:ale_set_highlights = 1
 " Error message format
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
 " Run :ALEFix upon save
 let g:ale_fix_on_save = 1
 " general ALE config
@@ -412,7 +412,7 @@ call plug#begin()
     Plug 'sheerun/vim-polyglot'
 
     " filetype python {{{
-    Plug 'python-mode/python-mode'
+    Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
     " }}}
     " filetype markdown {{{
     Plug 'godlygeek/tabular'
