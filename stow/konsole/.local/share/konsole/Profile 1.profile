@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=onedark
-Font=Fira Code,12,-1,5,50,0,0,0,0,0,Regular
+Font=FiraCode Nerd Font,12,-1,5,50,0,0,0,0,0,Regular
 
 [General]
 LocalTabTitleFormat=%d : %n

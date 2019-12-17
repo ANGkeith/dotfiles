@@ -187,7 +187,7 @@ client.placeholder $ERR_COLOR $ERR_COLOR $ERR_COLOR $ERR_COLOR
 
 bar {
     bindsym --release button3 exec --no-startup-id gnome-screenshot -ac
-    font pango:DejaVu Sans Mono, FontAwesome 12
+    font pango:DejaVu Sans Mono, FontAwesome 15
     status_command i3status-rs ~/.config/i3/statusbar.toml
     position top
     colors {
