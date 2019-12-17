@@ -90,8 +90,6 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
     # Display Compositor
         sudo pacman -S picom --noconfirm
-    # conky
-        sudo pacman -S conky-lua-nvidia --noconfirm
 
 # development
     # install docker
@@ -118,3 +116,7 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
 # maintanence
     yay -S timeshift
+
+# bloat
+    sudo pacman -S neofetch --noconfirm
+    sudo pacman -S conky-lua-nvidia --noconfirm

@@ -226,3 +226,4 @@ bindkey '^Z' fg-bg
 
 # enable true color
 export TERM="xterm-256color"
+neofetch
