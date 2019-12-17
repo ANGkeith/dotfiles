@@ -8,7 +8,7 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
 sudo apt update
 sudo apt install -y vim vim-gnome kdiff3 xclip git gitk wget curl make build-essential \
-libssl-dev tmux silversearcher-ag konsole exuberant-ctags
+libssl-dev tmux silversearcher-ag konsole exuberant-ctags ctags
 
 sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
 

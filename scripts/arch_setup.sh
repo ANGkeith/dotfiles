@@ -11,13 +11,15 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
 # utils
     # file compression
-    sudo pacman -S zip unzip
+    sudo pacman -S zip unzip --noconfirm
     # bluetooth
-    sudo pacman -S bluez-utils
+    sudo pacman -S bluez-utils --noconfirm
     sudo systemctl enable bluetooth.service
 
+    sudo pacman -S ctags --noconfirm
+
 # terminal and multiplexer
-    sudo pacman -S tmux konsole
+    sudo pacman -S tmux konsole --noconfirm
 
 # Install yay
     cd /tmp

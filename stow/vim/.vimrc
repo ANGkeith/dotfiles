@@ -63,6 +63,9 @@ set lazyredraw
 set nocompatible
 filetype plugin on
 
+" allow using of mouse in vim
+set mouse=a
+
 " `matchit.vim` is built-in so let's enable it!
 " Hit `%` on `if` to jump to `else`.
 runtime macros/matchit.vim
@@ -150,7 +153,7 @@ nnoremap <leader>q :q<CR>
 " Quickly source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " Quickly edit .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>394G
 
 " Toggle between buffer
 nnoremap <leader><leader> :b#<cr>
@@ -395,14 +398,14 @@ let g:pymode_python = 'python3'
 call plug#begin()
     " utils
     Plug 'scrooloose/nerdtree'
-    Plug 'tpope/vim-surround'
-    Plug 'kana/vim-repeat'
-    Plug 'ervandew/supertab'
-    Plug 'ronakg/quickr-preview.vim'
+    " Plug 'tpope/vim-surround'
+    " Plug 'kana/vim-repeat'
+    " Plug 'ervandew/supertab'
+    " Plug 'ronakg/quickr-preview.vim'
     Plug 'tpope/vim-commentary'
     Plug 'majutsushi/tagbar'
     Plug 'easymotion/vim-easymotion'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     " Substitute word on cursor
     Plug 'wincent/scalpel'
@@ -412,7 +415,7 @@ call plug#begin()
     Plug 'sheerun/vim-polyglot'
 
     " filetype python {{{
-    Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+    " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
     " }}}
     " filetype markdown {{{
     Plug 'godlygeek/tabular'
