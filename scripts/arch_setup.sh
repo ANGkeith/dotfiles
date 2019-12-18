@@ -28,9 +28,13 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     makepkg -si
 
 # Text editor
-    sudo pacman -S gvim the_silver_searcher xclip --noconfirm
+    sudo pacman -S the_silver_searcher xclip --noconfirm
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    # neovim
+    sudo pacman -S neovim python-pynvim --noconfirm
+
 
 # Install git and dependency for gitk
     sudo pacman -S git tk --noconfirm
@@ -112,12 +116,18 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
             sudo systemctl restart docker.service
 
     # python
-        sudo pacman -S python-pip
-        pip install virtualenv --user
-        pip install virtualenvwrapper --user
+        sudo pacman -S python-pip --noconfirm
+        sudo pacman -S python-virtualenv --noconfirm
+        sudo pacman -S python-virtualenvwrapper --noconfirm
+
+    # nodejs
+        yay -S nvm
 
 # maintanence
     yay -S timeshift
+    # depenency for nvim coc plugin
+    source ~/.zshrc
+    nvm install 8.17.0
 
 # bloat
     sudo pacman -S neofetch --noconfirm

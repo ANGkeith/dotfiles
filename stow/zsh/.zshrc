@@ -125,8 +125,8 @@ export EDITOR=vim
 # virtual env var
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
-source $HOME/.local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+source /usr/bin/virtualenvwrapper.sh
 
 # for easy reference to DOTFILE dir
 export DOTFILE="$HOME/dotfiles/stow"
@@ -134,10 +134,12 @@ export DOTFILE="$HOME/dotfiles/stow"
 # add python `pip install --user` to path
 export PATH=$HOME/.local/bin:$PATH
 
-# node version manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Set up Node Version Manager
+source /usr/share/nvm/init-nvm.sh
+# Set up Node Version Manager
+export NVM_DIR="$HOME/.nvm"                            # You can change this if you want.
+export NVM_SOURCE="/usr/share/nvm"                     # The AUR package installs it to here.
+[ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
 
 # fzf configurations
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -200,7 +202,8 @@ alias gsts="git stash show -v"
 function gdh() {
     git diff HEAD $1
 }
-alias vf='vim $(fzf)'
+alias vf='nvim $(fzf)'
+alias vim='nvim'
 
 # pyenv path
 export PYENV_ROOT="$HOME/.pyenv"
