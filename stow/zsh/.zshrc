@@ -146,12 +146,14 @@ export PATH=$HOME/.local/bin:$PATH
 # by checking whether __init_nvm is a function.
 if [ -s "$HOME/.nvm/nvm.sh" ]; then
   export NVM_DIR="$HOME/.nvm"
+  export NVM_SOURCE="/usr/share/nvm" # The AUR package installs it here
   # https://www.growingwiththeweb.com/2018/01/slow-nvm-init.html
   # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+  # nvim depends on npm
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack' 'nvim' )
   function __init_nvm() {
     for i in "${__node_commands[@]}"; do unalias $i; done
-    . "$NVM_DIR"/nvm.sh
+    [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
     unset __node_commands
     unset -f __init_nvm
   }
