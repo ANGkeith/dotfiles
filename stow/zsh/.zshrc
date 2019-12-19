@@ -133,6 +133,8 @@ export EDITOR=vim
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+# create .venv file in project directory
+export PIPENV_VENV_IN_PROJECT=true
 source /usr/bin/virtualenvwrapper.sh
 
 # for easy reference to DOTFILE dir
@@ -248,5 +250,5 @@ bindkey '^Z' fg-bg
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # enable true color
-export TERM="xterm-256color"
+export TERM="tmux-256color"
 neofetch

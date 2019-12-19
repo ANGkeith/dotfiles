@@ -1,0 +1,15 @@
+{
+    "suggest.enablePreview": true,
+
+    "python.jediPath": "/usr/lib/python3.8/site-packages/jedi",
+    "python.pythonPath": "/usr/bin/python3",
+
+    "python.linting.pylintPath": ".venv/bin/pylint",
+    "python.linting.pylintUseMinimalCheckers": false, "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "none",
+
+    "python.linting.mypyPath": ".venv/bin/mypy",
+    "python.linting.mypyArgs": [ "--disallow-untyped-defs", "--show-column-number", "--ignore-missing-imports"],
+    "python.linting.mypyEnabled": true,
+}
+

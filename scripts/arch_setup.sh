@@ -116,9 +116,15 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
             sudo systemctl restart docker.service
 
     # python
+        sudo pacman -S pyenv --noconfirm
         sudo pacman -S python-pip --noconfirm
+        sudo pacman -S python-pipenv --noconfirm
         sudo pacman -S python-virtualenv --noconfirm
         sudo pacman -S python-virtualenvwrapper --noconfirm
+
+        # for vim-coc integration
+        sudo pacman -S python-pynvim python-jedi --noconfirm
+
 
     # nodejs
         yay -S nvm

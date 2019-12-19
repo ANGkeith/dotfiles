@@ -29,7 +29,7 @@
     match SpellBad /\s\+$/
     " highlight matching [{()}]
     set showmatch
-    
+
     " highlight search term on the fly
     set incsearch
 
@@ -82,7 +82,12 @@
     nnoremap <c-l> <c-w><c-l>
     nnoremap <c-h> <c-w><c-h>
     " mapping space to toggle pane
-    nnoremap <space> <c-w>w
+    if has('nvim')
+        nnoremap <c-space><space> <c-w>w
+    else
+        nnoremap <c-@><space> <c-w>w
+    endif
+
     " Pane Resize
     " go to insert mode <c-v> <some key> to get the literal terminal keycode
     set timeout timeoutlen=1000 ttimeoutlen=100
@@ -139,15 +144,8 @@
     " Easier buffer navigations
     nnoremap gb :ls<CR>:b<Space>
 
-    " Map ctrl space to toggle foldings
-    if has('nvim')
-        nnoremap <c-space> za
-    else
-        nnoremap <c-@> za
-    endif
-
     " Map ctrl a to copy whole file
-    nnoremap <c-a> ggVG"+y
+    nnoremap <c-a> gVG"+y
 
     if executable('ag')
         " Use ag over grep
@@ -252,14 +250,14 @@
         nnoremap <c-p> :FZF<space><cr>
     "}}}
     " ale {{{
-        let g:ale_completion_tsserver_autoimport = 1
-        let g:ale_set_quickfix = 0
+        " let g:ale_completion_tsserver_autoimport = 1
+        " let g:ale_set_quickfix = 0
         let g:ale_set_highlights = 1
 
-        " Error message format
-        let g:ale_echo_msg_error_str = 'E'
-        let g:ale_echo_msg_warning_str = 'W'
-        let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
+        " " Error message format
+        " let g:ale_echo_msg_error_str = 'E'
+        " let g:ale_echo_msg_warning_str = 'W'
+        " let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
         " Run :ALEFix upon save
         let g:ale_fix_on_save = 1
         " general ALE config
@@ -272,8 +270,8 @@
         let g:ale_python_flake8_options = "--max-line-length=80"
 
         " error navigation
-        nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-        nmap <silent> <C-j> <Plug>(ale_next_wrap)
+        " nmap <silent> [g <Plug>(ale_previous_wrap)
+        " nmap <silent> ]g <Plug>(ale_next_wrap)
     "}}}
     " lightline-ale {{{
         let g:lightline#ale#indicator_checking = "\uf110 "
@@ -330,20 +328,113 @@
         map  N <Plug>(easymotion-prev)
 
            " }}}
-    " python-mode {{{
-        let g:pymode_python = 'python3'
-    " }}}
     " vim-subversive {{{
         nmap s <plug>(SubversiveSubstituteRangeConfirm)
         xmap s <plug>(SubversiveSubstituteRangeConfirm)
         nmap ss <plug>(SubversiveSubstituteWordRangeConfirm)
     " }}}
     " coc {{{
-        let g:coc_node_path='/home/artemis/.nvm/versions/node/v8.17.0/bin/node'
+        if has('nvim')
+            let g:coc_node_path='/home/artemis/.nvm/versions/node/v8.17.0/bin/node'
+            let g:python3_host_prog = '/usr/bin/python'
+            " You will have bad experience for diagnostic messages when it's default 4000.
+            set updatetime=300
+
+            " Use <c-space> to trigger completion.
+            inoremap <silent><expr> <c-space> coc#refresh()
+
+            " Use `[g` and `]g` to navigate diagnostics
+            nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
+            nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
+
+            " Remap keys for gotos
+            nmap <silent> gd <Plug>(coc-definition)
+            nmap <silent> gy <Plug>(coc-type-definition)
+            nmap <silent> gi <Plug>(coc-implementation)
+            nmap <silent> gr <Plug>(coc-references)
+
+            " show_documentation function {{{
+                function! s:show_documentation()
+                    if (index(['vim','help'], &filetype) >= 0)
+                        execute 'h '.expand('<cword>')
+                    else
+                        call CocAction('doHover')
+                    endif
+                endfunction
+            " }}}
+            " Use K to show documentation in preview window
+            nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+
+            " Highlight symbol under cursor on CursorHold (use with coc-highlight)
+            autocmd CursorHold * silent call CocActionAsync('highlight')
+
+            " Remap for rename current word
+            nmap <leader>rn <Plug>(coc-rename)
+
+            " Remap for format selected region
+            xmap <leader>f  <Plug>(coc-format-selected)
+            nmap <leader>f  <Plug>(coc-format-selected)
+
+            augroup mygroup
+                autocmd!
+                " Setup formatexpr specified filetype(s).
+                autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+                " Update signature help on jump placeholder
+                autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+            augroup end
+
+            " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+            xmap <leader>a  <Plug>(coc-codeaction-selected)
+            nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+            " Remap for do codeAction of current line
+            nmap <leader>ac  <Plug>(coc-codeaction)
+
+            " Create mappings for function text object, requires document symbols feature of languageserver.
+            xmap if <Plug>(coc-funcobj-i)
+            xmap af <Plug>(coc-funcobj-a)
+            omap if <Plug>(coc-funcobj-i)
+            omap af <Plug>(coc-funcobj-a)
+
+            " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+            nmap <silent> <C-d> <Plug>(coc-range-select)
+            xmap <silent> <C-d> <Plug>(coc-range-select)
+
+            " Use `:Format` to format current buffer
+            command! -nargs=0 Format :call CocAction('format')
+
+            " Use `:Fold` to fold current buffer
+            command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+            " use `:OR` for organize import of current buffer
+            command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+            " Add status line support, for integration with other plugin, checkout `:h coc-status`
+            set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+            " Using CocList
+            " Show all diagnostics
+            nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+            " Manage extensions
+            nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+            " Show commands
+            nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+            " Find symbol of current document
+            nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+            " Search workspace symbols
+            nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+            " Do default action for next item.
+            nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+            " Do default action for previous item.
+            nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+            " Resume latest coc list
+            nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+        endif
     " }}}
     " vim-devicons {{{
         let g:DevIconsEnableFoldersOpenClose = 1
-        " quickfix for orange color folder
+        " quickfix to prevent orange color folder
         highlight! link NERDTreeFlags NERDTreeDir
 
         function! MyFiletype()
@@ -357,37 +448,29 @@
 "  Plugins {{{
 call plug#begin()
     " essentials {{{
-    Plug 'tpope/vim-surround'
-    Plug 'kana/vim-repeat'
-    Plug 'tpope/vim-commentary'
-    Plug 'ervandew/supertab'
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-    Plug 'ronakg/quickr-preview.vim'
-    Plug 'easymotion/vim-easymotion'
-    " Plugin outside ~/.vim/plugged with post-update hook
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-    " }}}
+        Plug 'tpope/vim-surround'
+        Plug 'kana/vim-repeat'
+        Plug 'tpope/vim-commentary'
+        Plug 'ervandew/supertab'
+        Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+        Plug 'ronakg/quickr-preview.vim'
+        Plug 'easymotion/vim-easymotion'
+        " Plugin outside ~/.vim/plugged with post-update hook
+        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+        Plug 'junegunn/fzf.vim'
 
-    Plug 'dense-analysis/ale'
+    " }}}
     " improved syntax highlighting
     Plug 'sheerun/vim-polyglot'
 
+    " formatter
+    Plug 'dense-analysis/ale'
     " autocompletion
     if has('nvim')
         " Use release branch (Recommend)
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    else
-        " coc performs poorly with vim 8 thus, use deoplete instead
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
     endif
 
-
-    " filetype python {{{
-        " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-    " }}}
     " filetype markdown {{{
         Plug 'godlygeek/tabular'
         Plug 'vimwiki/vimwiki'

@@ -8,4 +8,3 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
 setlocal fileformat=unix
-setlocal textwidth=80
