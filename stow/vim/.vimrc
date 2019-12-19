@@ -249,6 +249,36 @@
         let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
         nnoremap <c-p> :FZF<space><cr>
     "}}}
+    " ale {{{
+        " let g:ale_completion_tsserver_autoimport = 1
+        " let g:ale_set_quickfix = 0
+        let g:ale_set_highlights = 1
+
+        " " Error message format
+        " let g:ale_echo_msg_error_str = 'E'
+        " let g:ale_echo_msg_warning_str = 'W'
+        " let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
+        " Run :ALEFix upon save
+        let g:ale_fix_on_save = 1
+        " general ALE config
+        let g:ale_fixers = {'*': ['remove_trailing_lines']}
+        " python ALE configurations
+        let g:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
+        let g:ale_python_autopep8_options = "-i"
+        let g:ale_python_black_options = "-l 80"
+        let g:ale_python_mypy_options = "--ignore-missing-imports --disallow-untyped-defs"
+        let g:ale_python_flake8_options = "--max-line-length=80"
+
+        " error navigation
+        " nmap <silent> [g <Plug>(ale_previous_wrap)
+        " nmap <silent> ]g <Plug>(ale_next_wrap)
+    "}}}
+    " lightline-ale {{{
+        let g:lightline#ale#indicator_checking = "\uf110 "
+        let g:lightline#ale#indicator_warnings = "\uf071 "
+        let g:lightline#ale#indicator_errors = "\uf05e "
+        let g:lightline#ale#indicator_ok = "\uf00c "
+    " }}}
     " lightline {{{
         let g:lightline = {
             \ 'colorscheme': 'onedark',
@@ -256,6 +286,7 @@
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
             \   'right': [
+            \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
             \             [ 'lineinfo' ],
             \             [ 'percent' ],
             \             [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ]],
@@ -265,7 +296,18 @@
             \   'filetype': 'MyFiletype',
             \   'fileformat': 'MyFileformat',
             \ },
-            \}
+            \ 'component_expand': {
+            \   'linter_checking': 'lightline#ale#checking',
+            \   'linter_warnings': 'lightline#ale#warnings',
+            \   'linter_errors': 'lightline#ale#errors',
+            \   'linter_ok': 'lightline#ale#ok',
+            \ },
+            \ 'component_type': {
+            \   'linter_checking': 'left',
+            \   'linter_warnings': 'warning',
+            \   'linter_errors': 'error',
+            \   'linter_ok': 'left',
+            \ }}
     " }}}
     " vim-diminactive {{{
         let g:diminactive_enable_focus = 1
@@ -296,7 +338,7 @@
             let g:coc_node_path='/home/artemis/.nvm/versions/node/v8.17.0/bin/node'
             let g:python3_host_prog = '/usr/bin/python'
             " You will have bad experience for diagnostic messages when it's default 4000.
-            set updatetime=100
+            set updatetime=300
 
             " Use <c-space> to trigger completion.
             inoremap <silent><expr> <c-space> coc#refresh()
@@ -363,31 +405,31 @@
             command! -nargs=0 Format :call CocAction('format')
 
             " Use `:Fold` to fold current buffer
-            command! -nargs=? Fold :call CocAction('fold', <f-args>)
+            command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
             " use `:OR` for organize import of current buffer
-            command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+            command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
             " Add status line support, for integration with other plugin, checkout `:h coc-status`
             set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
             " Using CocList
             " Show all diagnostics
-            nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+            nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
             " Manage extensions
-            nnoremap <silent> <space>e :<C-u>CocList extensions<cr>
+            nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
             " Show commands
-            nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+            nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
             " Find symbol of current document
-            nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+            nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
             " Search workspace symbols
-            nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+            nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
             " Do default action for next item.
-            nnoremap <silent> <space>j :<C-u>CocNext<CR>
+            nnoremap <silent> <space>j  :<C-u>CocNext<CR>
             " Do default action for previous item.
-            nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+            nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
             " Resume latest coc list
-            nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+            nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
         endif
     " }}}
     " vim-devicons {{{
@@ -421,6 +463,8 @@ call plug#begin()
     " improved syntax highlighting
     Plug 'sheerun/vim-polyglot'
 
+    " formatter
+    Plug 'dense-analysis/ale'
     " autocompletion
     if has('nvim')
         " Use release branch (Recommend)
@@ -450,6 +494,7 @@ call plug#begin()
     " asthethics {{{
         Plug 'joshdick/onedark.vim'
         Plug 'itchyny/lightline.vim'
+        Plug 'maximbaz/lightline-ale'
         " indentation line
         Plug 'yggdroot/indentline'
         Plug 'blueyed/vim-diminactive'
