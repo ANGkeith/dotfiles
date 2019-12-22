@@ -1,14 +1,14 @@
-" Good Read
-" https://github.com/romainl/idiomatic-vimrc
-"  Settings {{{
+" Good Read https://github.com/romainl/idiomatic-vimrc
+"  Behaviour Modification {{{
     " Show line number
     set relativenumber
     set number
 
+    " Open new split panes to right and bottom which feels more natural
     set splitbelow
     set splitright
 
-    " Display all matching files when we tab complete
+    " Display all matcModificationhing files when we tab complete
     set path+=**
     " Visual autocomplete for command menu
     set wildmenu
@@ -35,20 +35,28 @@
 
     " highlight current line based on CursorLine
     set cursorline
-    " highlight column based on ColorColumn
-    set colorcolumn=80
+
+    " highlight column based on ColorColumn highlight group
+    let &colorcolumn=join(range(81, 999),',')
+
+    set fillchars+=vert:│
+
     set textwidth=0
 
     " autoreload the file in Vim if it has been changed outside of Vim
     set autoread
 
     " Change cursor in the various different mode
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    if exists('$TMUX')
-        let &t_SI = "\ePtmux;\e" . &t_SI . "\e\\"
-        let &t_EI = "\ePtmux;\e" . &t_EI . "\e\\"
+    if has('nvim')
+        set guicursor=n-c:block,i-ci-ve:ver40,r-cr-v:hor20,o:hor50,a:Cursor/lCursor,sm:block
+    else
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+        if exists('$TMUX')
+            let &t_SI = "\ePtmux;\e" . &t_SI . "\e\\"
+            let &t_EI = "\ePtmux;\e" . &t_EI . "\e\\"
+        endif
     endif
 
     " Always showing status line
@@ -56,18 +64,32 @@
 
     set noswapfile
     set hidden
-    " Don't update the display while executing macros
+
+    " Should make scrolling faster
     set lazyredraw
+
+       " Always use vertical diffs
+     set diffopt+=vertical
 
     " make a copy of the file and overwrite the original one. ie. inode of file
     " remains unchanged otherwise links may be broken
     set backupcopy=yes
+
+    " show live preview when doing commands like :substitute
+    set inccommand=nosplit
+
+    " Hide the vim mode message in the last line (Insert, Replace, Visual)
+    set noshowmode
 "}}}
 " Custom Mapping {{{
+    " note that <space> in normal mode is mapped to right, thus this is to override that settings
+    nnoremap <space> <Nop>
+    let mapleader="\<space>"
+
     " Map emacs binding in insert mode
     inoremap <c-a> <home>
     inoremap <c-e> <end>
-    inoremap <c-k> <esc>ld$i
+    inoremap <c-k> <esc>ld$A
 
     " If a line gets wrapped to two lines, j wont skip over the '2nd line'
     nnoremap j gj
@@ -77,16 +99,12 @@
     nnoremap gV `[v`]
 
     " Panes Management
-    " nnoremap <c-j> <c-w><c-j>
-    " nnoremap <c-k> <c-w><c-k>
+    nnoremap <c-j> <c-w><c-j>
+    nnoremap <c-k> <c-w><c-k>
     nnoremap <c-l> <c-w><c-l>
     nnoremap <c-h> <c-w><c-h>
     " mapping space to toggle pane
-    if has('nvim')
-        nnoremap <c-space><space> <c-w>w
-    else
-        nnoremap <c-@><space> <c-w>w
-    endif
+    nnoremap <leader><space> <c-w>w
 
     " Pane Resize
     " go to insert mode <c-v> <some key> to get the literal terminal keycode
@@ -107,9 +125,6 @@
     " wrap current line
     nnoremap <leader>j viw<ESC>mpa<CR><ESC>`p
 
-    " bind CtrlF to search with Ag
-    nnoremap <c-f> :Ag<space>
-
     " bind k to grep word under cursor
     nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -125,21 +140,92 @@
     endif
 
     " Toggle between buffer
-    nnoremap <leader><leader> :b#<cr>
+    nnoremap \\ :b#<cr>
 
     " Allow saving of files as sudo when I forgot to start vim using sudo.
     cmap w!! w !sudo tee > /dev/null %
 
     " Map Ctrl c & v for copy and paste from system clipboard
     vnoremap <c-c> "+y
-    " inoremap <c-v> <esc>"+p
     " map leader c & v for copy and paste from buffer
     vnoremap <leader>c "*y
     nnoremap <leader>v "*p
-
     noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
     " remove trailing spaces
     nnoremap <silent> <f5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+    " ToggleBetweenRelative* function {{{
+        function! g:ToggleBetweenRelativeAndNothing()
+            if &nu == 1 && &rnu == 1
+                set nornu nonu
+            else
+                set nu rnu
+            endif
+        endfunction
+
+        function! g:ToggleBetweenRelativeAndNumber()
+            if &rnu == 1
+                set nornu
+            else
+                set rnu
+            endif
+        endfunction
+    " }}}
+    noremap <f1> :SignifyToggle<cr>:call g:ToggleBetweenRelativeAndNothing()<cr>:IndentLinesToggle<cr>
+    noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
+
+    " My quickterm {{{
+        " opens terminal in a window it behaves a loclist/quickfix list
+
+        " map escape to exit terminal mode
+        if exists(':tnoremap')
+            tnoremap <Esc> <C-\><C-n>
+        endif
+
+        let g:quickterm_height = 15
+        function! g:CreateQuicktermBuffer()
+            silent! execute 'bot split'
+            silent! execute 'terminal'
+            silent! execute 'res ' . g:quickterm_height
+            silent! execute 'setlocal nonu nornu'
+            silent! execute 'IndentLinesDisable'
+            silent! execute 'set winfixheight'
+            silent! execute 'set winfixwidth'
+            silent! execute 'set filetype=quickterm'
+            let g:quickterm_buffer_name = expand('%:p')
+        endfunction
+
+        function! g:ToggleQuickTerm()
+            if ! QuickTermIsOpen()
+                if !exists("g:quickterm_buffer_name")
+                    silent! execute 'call CreateQuicktermBuffer()'
+                else
+                    " Open buffer
+                    silent! execute 'bot split'
+                    silent! execute "buffer " . g:quickterm_buffer_name
+                    silent! execute 'res ' . g:quickterm_height
+                endif
+            else
+                " Hide Buffer
+                " jump to quickterm buffer
+                silent! execute "drop " . g:quickterm_buffer_name
+                silent! execute 'hide'
+            endif
+        endfunction
+
+        function! g:QuickTermIsOpen()
+            if !exists("g:quickterm_buffer_name")
+                return 0
+            endif
+            " detect if quickterm buffer is active
+            if bufwinnr(g:quickterm_buffer_name) > 0
+                return 1
+            else
+                return 0
+            endif
+        endfunction
+
+        nnoremap <c-t> :call g:ToggleQuickTerm()<cr>
+    " }}}
 
     " Easier buffer navigations
     nnoremap gb :ls<CR>:b<Space>
@@ -196,7 +282,7 @@
         let g:quickr_preview_keymaps = 0
         let g:quickr_preview_size = '8'
 
-        noremap <leader>p :InstantMarkdownPreview<cr>
+        noremap \p :InstantMarkdownPreview<cr>
     " }}}
     " vim-signify {{{
         let g:signify_vcs_list = [ 'git' ]
@@ -241,7 +327,7 @@
         let g:tagbar_width = 30
         let g:tagbar_left = 1
 
-        nnoremap <leader>tb :TagbarToggle<cr>
+        nnoremap \tb :TagbarToggle<cr>
     "}}}
     " fzf {{{
         set rtp+=~/.fzf
@@ -250,28 +336,29 @@
         nnoremap <c-p> :FZF<space><cr>
     "}}}
     " ale {{{
-        " let g:ale_completion_tsserver_autoimport = 1
-        " let g:ale_set_quickfix = 0
+        let g:ale_completion_tsserver_autoimport = 0
+        let g:ale_set_quickfix = 0
         let g:ale_set_highlights = 1
 
         " " Error message format
-        " let g:ale_echo_msg_error_str = 'E'
-        " let g:ale_echo_msg_warning_str = 'W'
-        " let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
+        let g:ale_echo_msg_error_str = 'E'
+        let g:ale_echo_msg_warning_str = 'W'
+        let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
         " Run :ALEFix upon save
         let g:ale_fix_on_save = 1
         " general ALE config
         let g:ale_fixers = {'*': ['remove_trailing_lines']}
         " python ALE configurations
         let g:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
+        let g:ale_linters = {'python': ['pylint']}
         let g:ale_python_autopep8_options = "-i"
         let g:ale_python_black_options = "-l 80"
         let g:ale_python_mypy_options = "--ignore-missing-imports --disallow-untyped-defs"
         let g:ale_python_flake8_options = "--max-line-length=80"
 
         " error navigation
-        " nmap <silent> [g <Plug>(ale_previous_wrap)
-        " nmap <silent> ]g <Plug>(ale_next_wrap)
+        " nmap <silent> <c-j> <Plug>(ale_previous_wrap)
+        " nmap <silent> <c-k> <Plug>(ale_next_wrap)
     "}}}
     " lightline-ale {{{
         let g:lightline#ale#indicator_checking = "\uf110 "
@@ -291,10 +378,17 @@
             \             [ 'percent' ],
             \             [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ]],
             \ },
+            \ 'inactive': {
+            \   'left': [ [ 'horizontal_seperator' ] ],
+            \   'right': [],
+            \ },
             \ 'component_function': {
             \   'gitbranch': 'fugitive#head',
-            \   'filetype': 'MyFiletype',
-            \   'fileformat': 'MyFileformat',
+            \   'filetype': 'DeviconFileType',
+            \   'fileformat': 'DeviconFileFormat',
+            \   'cocstatus': 'coc#status',
+            \   'readonly': 'LightlineReadonly',
+            \   'horizontal_seperator': 'HorizontalSeperator',
             \ },
             \ 'component_expand': {
             \   'linter_checking': 'lightline#ale#checking',
@@ -308,20 +402,64 @@
             \   'linter_errors': 'error',
             \   'linter_ok': 'left',
             \ }}
+
+        " helper function {{{
+            function! DeviconFileType()
+                return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+            endfunction
+            function! DeviconFileFormat()
+                return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+            endfunction
+
+            function! HorizontalSeperator()
+                let l:fillChar = '─'
+                let l:fileName = ' ' . expand('%:t') . ' '
+                let l:fileNameLength = len(fileName)
+                let l:totalCharsNeeded = winwidth(0) - 2
+                let l:charsToFill =  totalCharsNeeded - fileNameLength
+
+                if l:fileNameLength
+                    let l:left_part = repeat(fillChar, l:charsToFill/2)
+                    let l:middle_part = fileName
+                    let l:right_part = repeat(fillChar, l:charsToFill/2)
+
+                    " if odd
+                    if charsToFill % 2
+                        let l:right_part = right_part . fillChar
+                    endif
+                else
+                    return repeat(fillChar, winwidth(0) - 2)
+                endif
+
+                return l:left_part . l:middle_part . l:right_part
+            endfunction
+
+            autocmd VimEnter * call SetupLightlineColors()
+                function SetupLightlineColors() abort
+                let l:pallete = lightline#palette()
+                let l:pallete.inactive.left = [
+                \ ['#5fafaf', '#282c34', '145', '236'],
+                \ ['#5fafaf', '#282c34', '145', '236']
+                \]
+                call lightline#colorscheme()
+            endfunction
+        "  }}}
     " }}}
     " vim-diminactive {{{
         let g:diminactive_enable_focus = 1
+        " to make dimainactive have effect on the listed file type
+        let g:diminactive_filetype_whitelist = [ 'help', 'quickterm' ]
     " }}}
     " vim-easymotion {{{
         " Disable default mappings
         let g:EasyMotion_do_mapping = 0
+        " case insensitive
         let g:EasyMotion_smartcase = 1
+        " Smartsign (type `3` and match `3`&`#`)
         let g:EasyMotion_use_smartsign_us = 1
 
-        nmap ,s <Plug>(easymotion-overwin-f2)
+        nmap <leader>s <Plug>(easymotion-overwin-f2)
 
-        " case insensitive
-        " Smartsign (type `3` and match `3`&`#`)
         map  / <Plug>(easymotion-sn)
         omap / <Plug>(easymotion-tn)
         map  n <Plug>(easymotion-next)
@@ -333,116 +471,114 @@
         xmap s <plug>(SubversiveSubstituteRangeConfirm)
         nmap ss <plug>(SubversiveSubstituteWordRangeConfirm)
     " }}}
+    " supertab {{{
+        let g:SuperTabDefaultCompletionType = "<c-n>"
+    " }}}
     " coc {{{
-        if has('nvim')
-            let g:coc_node_path='/home/artemis/.nvm/versions/node/v8.17.0/bin/node'
-            let g:python3_host_prog = '/usr/bin/python'
-            " You will have bad experience for diagnostic messages when it's default 4000.
-            set updatetime=300
+        let g:coc_node_path = expand("$HOME") .  '/.nvm/versions/node/v8.17.0/bin/node'
+        let g:python3_host_prog = '/usr/bin/python'
 
-            " Use <c-space> to trigger completion.
-            inoremap <silent><expr> <c-space> coc#refresh()
+        " You will have bad experience for diagnostic messages when it's default 4000.
+        set updatetime=300
 
-            " Use `[g` and `]g` to navigate diagnostics
-            nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
-            nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
+        " show_documentation function {{{
+            function! s:show_documentation()
+                if (index(['vim','help'], &filetype) >= 0)
+                    execute 'h '.expand('<cword>')
+                else
+                    call CocAction('doHover')
+                endif
+            endfunction
+        " }}}
+        " Highlight symbol under cursor on CursorHold (use with coc-highlight)
+        autocmd CursorHold * silent call CocActionAsync('highlight')
 
-            " Remap keys for gotos
-            nmap <silent> gd <Plug>(coc-definition)
-            nmap <silent> gy <Plug>(coc-type-definition)
-            nmap <silent> gi <Plug>(coc-implementation)
-            nmap <silent> gr <Plug>(coc-references)
-
-            " show_documentation function {{{
-                function! s:show_documentation()
-                    if (index(['vim','help'], &filetype) >= 0)
-                        execute 'h '.expand('<cword>')
-                    else
-                        call CocAction('doHover')
-                    endif
-                endfunction
-            " }}}
-            " Use K to show documentation in preview window
-            nnoremap <silent> K :call <SID>show_documentation()<CR>
+        augroup mygroup
+            autocmd!
+            " Setup formatexpr specified filetype(s).
+            autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+            " Update signature help on jump placeholder
+            autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+        augroup end
 
 
-            " Highlight symbol under cursor on CursorHold (use with coc-highlight)
-            autocmd CursorHold * silent call CocActionAsync('highlight')
+        " Create mappings for function text object, requires document symbols feature of languageserver.
+        xmap if <Plug>(coc-funcobj-i)
+        xmap af <Plug>(coc-funcobj-a)
+        omap if <Plug>(coc-funcobj-i)
+        omap af <Plug>(coc-funcobj-a)
 
-            " Remap for rename current word
-            nmap <leader>rn <Plug>(coc-rename)
+        " Use `:Format` to format current buffer
+        command! -nargs=0 Format :call CocAction('format')
 
-            " Remap for format selected region
-            xmap <leader>f  <Plug>(coc-format-selected)
-            nmap <leader>f  <Plug>(coc-format-selected)
+        " Use `:Fold` to fold current buffer
+        command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-            augroup mygroup
-                autocmd!
-                " Setup formatexpr specified filetype(s).
-                autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-                " Update signature help on jump placeholder
-                autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-            augroup end
+        " use `:OR` for organize import of current buffer
+        command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-            " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-            xmap <leader>a  <Plug>(coc-codeaction-selected)
-            nmap <leader>a  <Plug>(coc-codeaction-selected)
+       " Use K to show documentation in preview window
+        nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-            " Remap for do codeAction of current line
-            nmap <leader>ac  <Plug>(coc-codeaction)
+        " Remap keys for gotos
+        nmap <silent> gd <Plug>(coc-definition)
+        nmap <silent> gy <Plug>(coc-type-definition)
+        nmap <silent> gi <Plug>(coc-implementation)
+        nmap <silent> gr <Plug>(coc-references)
+        " Use <c-space> to trigger completion.
+        inoremap <silent><expr> <c-space> coc#refresh()
 
-            " Create mappings for function text object, requires document symbols feature of languageserver.
-            xmap if <Plug>(coc-funcobj-i)
-            xmap af <Plug>(coc-funcobj-a)
-            omap if <Plug>(coc-funcobj-i)
-            omap af <Plug>(coc-funcobj-a)
 
-            " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-            nmap <silent> <C-d> <Plug>(coc-range-select)
-            xmap <silent> <C-d> <Plug>(coc-range-select)
+        " Remap for rename current word
+        nmap \rn <Plug>(coc-rename)
 
-            " Use `:Format` to format current buffer
-            command! -nargs=0 Format :call CocAction('format')
+        " Remap for format selected region
+        xmap \f  <Plug>(coc-format-selected)
+        nmap \f  <Plug>(coc-format-selected)
 
-            " Use `:Fold` to fold current buffer
-            command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+        " Use `[g` and `]g` to navigate diagnostics
+        nmap <silent> [g <Plug>(coc-diagnostic-prev)
+        nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-            " use `:OR` for organize import of current buffer
-            command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+        " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+        xmap \a  <Plug>(coc-codeaction-selected)
+        nmap \a  <Plug>(coc-codeaction-selected)
 
-            " Add status line support, for integration with other plugin, checkout `:h coc-status`
-            set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+        " Remap for do codeAction of current line
+        nmap \ac  <Plug>(coc-codeaction)
 
-            " Using CocList
-            " Show all diagnostics
-            nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-            " Manage extensions
-            nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-            " Show commands
-            nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-            " Find symbol of current document
-            nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-            " Search workspace symbols
-            nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-            " Do default action for next item.
-            nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-            " Do default action for previous item.
-            nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-            " Resume latest coc list
-            nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-        endif
+        " Using CocList
+        " Show all diagnostics
+        nnoremap <silent> \a  :<C-u>CocList diagnostics<cr>
+        " Manage extensions
+        nnoremap <silent> \e  :<C-u>CocList extensions<cr>
+        " Show commands
+        nnoremap <silent> \c  :<C-u>CocList commands<cr>
+        " Find symbol of current document
+        nnoremap <silent> \o  :<C-u>CocList outline<cr>
+        " Search workspace symbols
+        nnoremap <silent> \s  :<C-u>CocList -I symbols<cr>
+        " Do default action for next item.
+        nnoremap <silent> \j  :<C-u>CocNext<CR>
+        " Do default action for previous item.
+        nnoremap <silent> \k  :<C-u>CocPrev<CR>
+        " Resume latest coc list
+        nnoremap <silent> \p  :<C-u>CocListResume<CR>
     " }}}
     " vim-devicons {{{
         let g:DevIconsEnableFoldersOpenClose = 1
         " quickfix to prevent orange color folder
         highlight! link NERDTreeFlags NERDTreeDir
-
-        function! MyFiletype()
-            return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-        endfunction
-        function! MyFileformat()
-            return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-        endfunction
+    " }}}
+    " vim-maximizer {{{
+        nnoremap <c-f> :MaximizerToggle<CR>
+        vnoremap <c-f> :MaximizerToggle<CR>gv
+        inoremap <c-f> <C-o>:MaximizerToggle<CR>
+    "
+    " }}}
+    " vim-polyglot {{{
+        " polylglot clashes with vimwiki plugin
+        let g:polyglot_disabled = ['markdown']
     " }}}
 " }}}
 "  Plugins {{{
@@ -458,21 +594,19 @@ call plug#begin()
         " Plugin outside ~/.vim/plugged with post-update hook
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
-
+        " add some square bracket mappings
+        Plug 'tpope/vim-unimpaired'
     " }}}
-    " improved syntax highlighting
-    Plug 'sheerun/vim-polyglot'
-
-    " formatter
-    Plug 'dense-analysis/ale'
-    " autocompletion
-    if has('nvim')
-        " Use release branch (Recommend)
+    
+    " IDE {{{
+        " improved syntax highlighting
+        Plug 'sheerun/vim-polyglot'
+        " Used mainly for fixing and linting
+        Plug 'dense-analysis/ale'
+        " Mainly for autocompletion
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    endif
-
+    " }}}
     " filetype markdown {{{
-        Plug 'godlygeek/tabular'
         Plug 'vimwiki/vimwiki'
         ":GenTocGFM -> generate toc with github flavoured markdown
         Plug 'mzlogin/vim-markdown-toc', { 'for': 'vimwiki' }
@@ -486,8 +620,6 @@ call plug#begin()
         Plug 'tpope/vim-fugitive'
         " indicate added/modified/removed lines in a file
         Plug 'mhinz/vim-signify'
-        " add some square bracket mappings
-        Plug 'tpope/vim-unimpaired'
         " git commit browser
         Plug 'junegunn/gv.vim'
     " }}}
@@ -501,21 +633,30 @@ call plug#begin()
         " for better integration with diminactive
         Plug 'tmux-plugins/vim-tmux-focus-events'
         Plug 'ryanoasis/vim-devicons'
+        Plug 'machakann/vim-highlightedyank'
     "  }}}
-    " dependency for vim-radical
-    Plug 'glts/vim-magnum'
-    " convert between decimal, hex, octal and binary representation
-    Plug 'glts/vim-radical'
+    "  bloat {{{
+        " dependency for vim-radical
+        Plug 'glts/vim-magnum'
+        " convert between decimal, hex, octal and binary representation
+        Plug 'glts/vim-radical'
 
-    Plug 'svermeulen/vim-subversive'
-    " for toggling between different variant
-    Plug 'tpope/vim-abolish'
+        Plug 'svermeulen/vim-subversive'
+        " for toggling between different variant
+        Plug 'tpope/vim-abolish'
+    "  }}}
+    " utils {{{
+        " full screen
+        Plug 'szw/vim-maximizer'
 
+        Plug 'godlygeek/tabular'
+    " }}}
     Plug 'majutsushi/tagbar'
 call plug#end()
 "}}}
 " Colorscheme {{{
     set t_Co=256
+    " True color support
     set termguicolors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -531,11 +672,15 @@ call plug#end()
             let s:colors = onedark#GetColors()
             let s:red = s:colors.red
             let s:white = s:colors.white
-            autocmd ColorScheme * call onedark#extend_highlight("MatchParen", { "fg": s:white, "bg": s:red })
+            autocmd ColorScheme * call onedark#set_highlight("CocErrorSign", { "fg": s:colors.red })
+            autocmd ColorScheme * call onedark#set_highlight("CocErrorFloat", { "fg": { "cterm": 204, "gui": "#eb4034" } })
+            autocmd ColorScheme * call onedark#set_highlight("CocWarningSign", { "fg": s:colors.red })
+            autocmd ColorScheme * call onedark#set_highlight("CocWarningLine", { "fg": { "cterm": 204, "gui": "#eb4034" } })
         augroup END
     endif
-
     colorscheme onedark
-" }}}
 
-" Testing
+    " Change the filler background color after the end of the buffer
+    hi! link EndOfBuffer ColorColumn
+    hi VertSplit guifg=#5fafaf
+" }}}

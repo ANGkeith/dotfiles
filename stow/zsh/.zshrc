@@ -250,5 +250,6 @@ bindkey '^Z' fg-bg
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # enable true color
-export TERM="tmux-256color"
+export TERM="xterm-256color"
 neofetch
+
