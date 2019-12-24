@@ -6,7 +6,7 @@
 
     "python.linting.pylintPath": ".venv/bin/pylint",
     "python.linting.pylintUseMinimalCheckers": false,
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.formatting.provider": "none",
 
     "python.linting.mypyPath": ".venv/bin/mypy",

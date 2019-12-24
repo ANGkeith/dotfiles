@@ -149,8 +149,10 @@ workspace_auto_back_and_forth yes
 exec_always --no-startup-id feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg
 exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 exec_always --no-startup-id xmodmap ~/.config/Xmodmap
+
 exec --no-startup-id flameshot
 exec --no-startup-id picom -b
+exec --no-startup-id ~/.config/i3/scripts/smart_brightness
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 # turn off display after 10min
@@ -165,7 +167,7 @@ assign [class="Postman"] $ws4
 font pango:Misc Termsyn 14
 
 set $TEXT_COLOR "#cecece"
-set $ACTIVE_BORDER_COLOR "#cecece"
+set $ACTIVE_BORDER_COLOR "#5fafaf"
 set $ACTIVE_BG "#9575cd"
 set $NO_COLOR "argb:00000000"
 set $INACTIVE_BG_COLOR "#212121"
@@ -180,7 +182,7 @@ set $BORDER_COLOR "#0d1010"
 #                       border  bg      text    indicator
 client.focused_inactive $BORDER_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR $NO_COLOR
 client.unfocused        $BORDER_COLOR $INACTIVE_BG_COLOR $TEXT_COLOR $NO_COLOR
-client.focused          $BORDER_COLOR $FOCUS_BG_COLOR $INACTIVE_BG_COLOR $NO_COLOR
+client.focused          $BORDER_COLOR $ACTIVE_BORDER_COLOR $INACTIVE_BG_COLOR $NO_COLOR
 client.urgent           #ff0000 #ff0000 #d9d9d9 #00ff00
 
 client.placeholder $ERR_COLOR $ERR_COLOR $ERR_COLOR $ERR_COLOR
@@ -194,7 +196,7 @@ bar {
         separator #666666
         background #222222
         statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
+        focused_workspace #1793d0 #1793d0 #ffffff
         active_workspace #333333 #333333 #ffffff
         inactive_workspace #333333 #333333 #888888
         urgent_workspace #2f343a #900000 #ffffff
@@ -225,3 +227,4 @@ exec i3-sensible-terminal --name my_terminal
 # for_window [instance="qutebrowser"] floating enable, move scratchpad, scratchpad show, exec "~/.config/i3/scripts/i3_persist lock" \
 # resize set height 1000, resize set width 1900
 # bindsym $mod+w  [instance="qutebrowser"] scratchpad show
+

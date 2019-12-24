@@ -114,10 +114,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 # ====================================================================== Custom
-# auto launch tmux
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach -t default || tmux new -s default
-fi
 
 # allow change of directory by keying in only the directory path, use `setopt
 # noautocd` and etc to reverse the changes
@@ -165,7 +161,8 @@ fi
 # fzf configurations
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # fzf to use ag instead of find
-export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.ignore --nocolor --hidden -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_ALT_C_COMMAND='ag --hidden --ignore .git -g ""'
 
 # cheat
 export CHEAT_HIGHLIGHT=magenta
@@ -244,6 +241,13 @@ function fg-bg() {
 zle -N fg-bg
 bindkey '^Z' fg-bg
 
+function t() {
+    # auto launch tmux
+    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+        tmux attach -t default || tmux new -s default
+    fi
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
@@ -252,4 +256,3 @@ bindkey '^Z' fg-bg
 # enable true color
 export TERM="xterm-256color"
 neofetch
-

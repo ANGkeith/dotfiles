@@ -4,6 +4,9 @@
     set relativenumber
     set number
 
+    " Better mouse support
+    set mouse=a
+
     " Open new split panes to right and bottom which feels more natural
     set splitbelow
     set splitright
@@ -12,6 +15,8 @@
     set path+=**
     " Visual autocomplete for command menu
     set wildmenu
+
+    filetype plugin on
 
     " Replace existing tab with 4 spaces width
     set tabstop=4
@@ -104,7 +109,7 @@
     nnoremap <c-l> <c-w><c-l>
     nnoremap <c-h> <c-w><c-h>
     " mapping space to toggle pane
-    nnoremap <leader><space> <c-w>w
+    nnoremap <tab> <c-w>w
 
     " Pane Resize
     " go to insert mode <c-v> <some key> to get the literal terminal keycode
@@ -132,11 +137,11 @@
     nnoremap <leader>q :q<CR>
 
     if has('nvim')
-        nnoremap <leader>sv :source $MYVIMRC<CR>
-        nnoremap <leader>ev :vsplit ~/.vimrc<cr>394G
+        nnoremap <leader>sv :source $MYVIMRC<cr>
+        nnoremap <leader>ev :vsplit ~/.vimrc<cr>
     else
-        nnoremap <leader>sv :source $MYVIMRC<CR>
-        nnoremap <leader>ev :vsplit $MYVIMRC<cr>394G
+        nnoremap <leader>sv :source $MYVIMRC<cr>
+        nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     endif
 
     " Toggle between buffer
@@ -173,58 +178,66 @@
     noremap <f1> :SignifyToggle<cr>:call g:ToggleBetweenRelativeAndNothing()<cr>:IndentLinesToggle<cr>
     noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
 
-    " My quickterm {{{
-        " opens terminal in a window it behaves a loclist/quickfix list
+    " My vim_terminal {{{
+        augroup neovim_terminal
+            autocmd!
+            " autocmd TermOpen * :set filetype=vim_terminal
 
-        " map escape to exit terminal mode
-        if exists(':tnoremap')
-            tnoremap <Esc> <C-\><C-n>
-        endif
+            " map escape to exit terminal mode
+            if exists(':tnoremap')
+                autocmd TermOpen *   tnoremap <Esc> <C-\><C-n>
+                autocmd TermOpen *   tnoremap <m-g> <C-\><C-n> :call g:ToggleQuickTerm()<cr>
+            endif
+            autocmd TermOpen * silent! execute 'IndentLinesDisable'
 
-        let g:quickterm_height = 15
+            " Disables number lines on terminal buffers
+            autocmd TermOpen * set norelativenumber
+            autocmd TermOpen * set nonumber
+            autocmd TermOpen * map <buffer> <cr> i
+            autocmd TermOpen * startinsert
+        augroup END
+        " opens erminal in a window it behaves a loclist/quickfix list
+
+        let g:vim_terminal_height = 15
         function! g:CreateQuicktermBuffer()
-            silent! execute 'bot split'
+            silent! execute 'bot vsplit'
             silent! execute 'terminal'
-            silent! execute 'res ' . g:quickterm_height
-            silent! execute 'setlocal nonu nornu'
-            silent! execute 'IndentLinesDisable'
-            silent! execute 'set winfixheight'
-            silent! execute 'set winfixwidth'
-            silent! execute 'set filetype=quickterm'
-            let g:quickterm_buffer_name = expand('%:p')
+            let g:vim_terminal_buffer_name = expand('%:p')
         endfunction
 
         function! g:ToggleQuickTerm()
             if ! QuickTermIsOpen()
-                if !exists("g:quickterm_buffer_name")
+                if !exists("g:vim_terminal_buffer_name")
                     silent! execute 'call CreateQuicktermBuffer()'
                 else
                     " Open buffer
-                    silent! execute 'bot split'
-                    silent! execute "buffer " . g:quickterm_buffer_name
-                    silent! execute 'res ' . g:quickterm_height
+                    silent! execute 'bot vsplit'
+                    silent! execute "buffer " . g:vim_terminal_buffer_name
+                    silent! startinsert 
                 endif
             else
                 " Hide Buffer
-                " jump to quickterm buffer
-                silent! execute "drop " . g:quickterm_buffer_name
+                " jump to vim_terminal buffer
+                silent! execute "drop " . g:vim_terminal_buffer_name
                 silent! execute 'hide'
             endif
         endfunction
 
         function! g:QuickTermIsOpen()
-            if !exists("g:quickterm_buffer_name")
+            if !exists("g:vim_terminal_buffer_name")
                 return 0
             endif
-            " detect if quickterm buffer is active
-            if bufwinnr(g:quickterm_buffer_name) > 0
+            " detect if vim_terminal buffer is active
+            if bufwinnr(g:vim_terminal_buffer_name) > 0
                 return 1
             else
                 return 0
             endif
         endfunction
 
-        nnoremap <c-t> :call g:ToggleQuickTerm()<cr>
+        noremap <m-g> :call g:ToggleQuickTerm()<cr>
+        inoremap <m-g> <esc>:call g:ToggleQuickTerm()<cr>
+        vnoremap <m-g> <esc>:call g:ToggleQuickTerm()<cr>
     " }}}
 
     " Easier buffer navigations
@@ -343,22 +356,23 @@
         " " Error message format
         let g:ale_echo_msg_error_str = 'E'
         let g:ale_echo_msg_warning_str = 'W'
-        let g:ale_echo_msg_format = '[%linter%] %code%: %s [%severity%]'
+        let g:ale_echo_msg_format = '[%linter%] %s [%severity%] [%code%]'
         " Run :ALEFix upon save
         let g:ale_fix_on_save = 1
         " general ALE config
         let g:ale_fixers = {'*': ['remove_trailing_lines']}
         " python ALE configurations
         let g:ale_fixers = {'python': ['isort', 'autopep8', 'black']}
-        let g:ale_linters = {'python': ['pylint']}
         let g:ale_python_autopep8_options = "-i"
         let g:ale_python_black_options = "-l 80"
         let g:ale_python_mypy_options = "--ignore-missing-imports --disallow-untyped-defs"
         let g:ale_python_flake8_options = "--max-line-length=80"
+        let g:ale_python_pylint_use_msg_id = 1
+
 
         " error navigation
-        " nmap <silent> <c-j> <Plug>(ale_previous_wrap)
-        " nmap <silent> <c-k> <Plug>(ale_next_wrap)
+        nmap <silent> ,e <Plug>(ale_previous_wrap)
+        nmap <silent> ,d <Plug>(ale_next_wrap)
     "}}}
     " lightline-ale {{{
         let g:lightline#ale#indicator_checking = "\uf110 "
@@ -448,7 +462,7 @@
     " vim-diminactive {{{
         let g:diminactive_enable_focus = 1
         " to make dimainactive have effect on the listed file type
-        let g:diminactive_filetype_whitelist = [ 'help', 'quickterm' ]
+        let g:diminactive_filetype_whitelist = [ 'help', 'vim_terminal' ]
     " }}}
     " vim-easymotion {{{
         " Disable default mappings
@@ -461,7 +475,9 @@
         nmap <leader>s <Plug>(easymotion-overwin-f2)
 
         map  / <Plug>(easymotion-sn)
+        nmap * "pyiw/<c-r>p<cr>
         omap / <Plug>(easymotion-tn)
+
         map  n <Plug>(easymotion-next)
         map  N <Plug>(easymotion-prev)
 
@@ -635,7 +651,7 @@ call plug#begin()
                 let bt = &buftype
                 " Check white/blacklist.
                 if &diff || (index(['dirvish'], ft) == -1
-                        \ && (index(['nofile', 'nowrite', 'acwrite', 'quickfix', 'help'], bt) != -1
+                        \ && (index(['nofile', 'nowrite', 'acwrite'], bt) != -1
                         \     || index(['startify'], ft) != -1))
                     set winhighlight=NormalNC:MyNormalWin
                 else
@@ -700,10 +716,10 @@ call plug#end()
             let s:colors = onedark#GetColors()
             let s:red = s:colors.red
             let s:white = s:colors.white
-            autocmd ColorScheme * call onedark#set_highlight("CocErrorSign", { "fg": s:colors.red })
+            " autocmd ColorScheme * call onedark#set_highlight("CocErrorSign", { "fg": s:colors.red })
             autocmd ColorScheme * call onedark#set_highlight("CocErrorFloat", { "fg": { "cterm": 204, "gui": "#eb4034" } })
-            autocmd ColorScheme * call onedark#set_highlight("CocWarningSign", { "fg": s:colors.red })
-            autocmd ColorScheme * call onedark#set_highlight("CocWarningLine", { "fg": { "cterm": 204, "gui": "#eb4034" } })
+            " autocmd ColorScheme * call onedark#set_highlight("CocWarningSign", { "fg": s:colors.red })
+            autocmd ColorScheme * call onedark#set_highlight("CocWarningFloat", { "fg": { "cterm": 204, "gui": "#eb4034" } })
         augroup END
     endif
     colorscheme onedark
@@ -712,4 +728,3 @@ call plug#end()
     hi! link EndOfBuffer ColorColumn
     hi VertSplit guifg=#5fafaf
 " }}}
-

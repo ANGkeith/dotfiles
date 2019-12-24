@@ -1,0 +1,13 @@
+#!/bin/bash
+i3-msg -t subscribe -m '[ "window" ]' |
+jq --unbuffered -r '.container.window_properties.class' |
+while read -r class; do
+    case $class in
+    google-chrome|Chromium|firefox)
+      xrandr --output HDMI-1-2 --brightness 0.6
+    ;;
+    *)
+      xrandr --output HDMI-1-2 --brightness 0.8  # or whatever
+    ;;
+    esac
+done

@@ -18,6 +18,9 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
     sudo pacman -S ctags --noconfirm
 
+# networking
+    sudo pacman -S netcat --noconfirm
+
 # terminal and multiplexer
     sudo pacman -S tmux konsole --noconfirm
 
@@ -121,6 +124,9 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         sudo pacman -S python-pipenv --noconfirm
         sudo pacman -S python-virtualenv --noconfirm
         sudo pacman -S python-virtualenvwrapper --noconfirm
+
+        # linters
+        sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm
 
         # for vim-coc integration
         sudo pacman -S python-pynvim python-jedi --noconfirm
