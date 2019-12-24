@@ -130,9 +130,6 @@
     " wrap current line
     nnoremap <leader>j viw<ESC>mpa<CR><ESC>`p
 
-    " bind k to grep word under cursor
-    nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
     " Quickly quit editing without save
     nnoremap <leader>q :q<CR>
 
@@ -213,7 +210,7 @@
                     " Open buffer
                     silent! execute 'bot vsplit'
                     silent! execute "buffer " . g:vim_terminal_buffer_name
-                    silent! startinsert 
+                    silent! startinsert
                 endif
             else
                 " Hide Buffer
@@ -245,15 +242,7 @@
 
     " Map ctrl a to copy whole file
     nnoremap <c-a> gVG"+y
-
-    if executable('ag')
-        " Use ag over grep
-        set grepprg=ag\ --nogroup\ --nocolor
-    endif
-    " Defines a new command Ag to search for the provided text and open a 'quickfix' window
-    " bind \ (backward slash) to grep shortcut
-    command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
+    
     " Custom Text Objects {{{
 
         " ie = inner entire buffer
@@ -342,11 +331,48 @@
 
         nnoremap \tb :TagbarToggle<cr>
     "}}}
-    " fzf {{{
+    " fzf & searching stuff {{{
         set rtp+=~/.fzf
-        " search hidden file as well
-        let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-        nnoremap <c-p> :FZF<space><cr>
+
+        " ripgrep
+        if executable('rg')
+            let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+            set grepprg=rg\ --vimgrep
+        endif
+
+        nnoremap <c-p> :Files<space><cr>
+
+        " Fuzzy find words (set base dir to git root)
+        command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --smart-case '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+        " Finding files with preview equivalent to (C-T) in terminal (set base dir to git root)
+        command! -bang -nargs=? -complete=dir Files
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+        " floating window {{{
+            if has('nvim')
+            let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+
+            function! FloatingFZF()
+                let width = float2nr(&columns * 0.9)
+                let height = float2nr(&lines * 0.6)
+                let opts = { 'relative': 'editor',
+                        \ 'row': (&lines - height) / 2,
+                        \ 'col': (&columns - width) / 2,
+                        \ 'width': width,
+                        \ 'height': height }
+
+                let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+                call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+            endfunction
+
+            let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+            endif
+        " }}}
+
     "}}}
     " ale {{{
         let g:ale_completion_tsserver_autoimport = 0
@@ -728,3 +754,7 @@ call plug#end()
     hi! link EndOfBuffer ColorColumn
     hi VertSplit guifg=#5fafaf
 " }}}
+""
+
+
+

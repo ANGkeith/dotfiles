@@ -16,6 +16,8 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     sudo pacman -S bluez-utils --noconfirm
     sudo systemctl enable bluetooth.service
 
+    sudo pacman -S xclip --noconfirm
+
     sudo pacman -S ctags --noconfirm
 
 # networking
@@ -30,13 +32,18 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     cd yay
     makepkg -si
 
+# Searching tool
+    sudo pacman -S ripgrep --noconfirm
+
 # Text editor
-    sudo pacman -S the_silver_searcher xclip --noconfirm
+    # vim plugin manager
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
     # neovim
     sudo pacman -S neovim python-pynvim --noconfirm
+    # used for previewing
+    sudo pacman -S bat --noconfirm
+
 
 
 # Install git and dependency for gitk

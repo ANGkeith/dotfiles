@@ -160,9 +160,11 @@ fi
 
 # fzf configurations
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-# fzf to use ag instead of find
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_ALT_C_COMMAND='ag --hidden --ignore .git -g ""'
+# fzf to use rg instead of find
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
 
 # cheat
 export CHEAT_HIGHLIGHT=magenta
@@ -185,11 +187,6 @@ alias i3rc='vim ~/.config/i3/config'
 alias vimrc='vim ~/.vimrc'
 alias tmuxrc='vim ~/.tmux.conf'
 alias zshrc="vim ~/.zshrc"
-
-# bulk find and replace
-function agr {
-    ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'
-}
 
 # pyenv path
 # git alias
@@ -255,4 +252,5 @@ function t() {
 
 # enable true color
 export TERM="xterm-256color"
+
 neofetch
