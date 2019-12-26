@@ -254,3 +254,25 @@ function t() {
 export TERM="xterm-256color"
 
 neofetch
+
+# cd. - Use fzf to search for a file and cd into the directory of that file
+cd.() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1" --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' ) && dir=$(dirname "$file") && cd "$dir"
+}
+
+# cd.. Use fzf to cd into one of its parent/ancenstor dir
+cd..() {
+  local declare dirs=()
+  get_parent_dirs() {
+    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+    if [[ "${1}" == '/' ]]; then
+      for _dir in "${dirs[@]}"; do echo $_dir; done
+    else
+      get_parent_dirs $(dirname "$1")
+    fi
+  }
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  cd "$DIR"
+}
