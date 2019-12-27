@@ -77,11 +77,14 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   # git
-  zsh-history-substring-search
+
+  # provides suggestion as I type based on history
   zsh-autosuggestions
   z
   zsh-syntax-highlighting
   fzf
+  # provides function for searching history based on substring
+  history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -227,17 +230,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Make CTRL-Z background things and unbackground them.
-function fg-bg() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    fg
-  else
-    zle push-input
-  fi
-}
-zle -N fg-bg
-bindkey '^Z' fg-bg
-
 function t() {
     # auto launch tmux
     if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
@@ -276,3 +268,34 @@ cd..() {
   local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
   cd "$DIR"
 }
+
+bindkey -v
+set editing-mode vi
+set blink-matching-paren on
+
+# inherit some useful emac mode commands
+bindkey "^E" end-of-line
+bindkey "^A" beginning-of-line
+bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-history
+bindkey "^R" fzf-history-widget
+bindkey "^T" fzf-file-widget
+bindkey "^[c" fzf-cd-widget
+bindkey "^I" fzf-completion
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# removes the delay when changing between modes
+export KEYTIMEOUT=1
+
+# Make CTRL-Z background things and unbackground them.
+function fg-bg() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+  else
+    zle push-input
+  fi
+}
+zle -N fg-bg
+bindkey '^Z' fg-bg
