@@ -299,3 +299,22 @@ function fg-bg() {
 }
 zle -N fg-bg
 bindkey '^Z' fg-bg
+
+if [[ ! -d ~/.zplug ]];then
+    # Install the zplug
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+
+source ~/.zplug/init.zsh
+
+# Allows zplug to update itself
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
+zplug "kutsan/zsh-system-clipboard"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
