@@ -51,18 +51,8 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
 # Install zsh
     sudo pacman -S zsh --noconfirm
-    # Ohmyzsh
-        sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    # Themes
-        git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
     # Font for theme
         yay -S nerd-fonts-complete
-    # Plugins zsh-syntax-highlighting
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-            ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    # Plugins zsh-autosuggestions
-        git clone https://github.com/zsh-users/zsh-autosuggestions \
-            ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # Backup DE
     # pacman -S sddm plasma --noconfirm

@@ -332,7 +332,7 @@
         nnoremap \tb :TagbarToggle<cr>
     "}}}
     " fzf & searching stuff {{{
-        set rtp+=~/.fzf
+        set rtp+=~/.local/lib/fzf
 
         " ripgrep
         if executable('rg')
@@ -634,7 +634,7 @@ call plug#begin()
         Plug 'ronakg/quickr-preview.vim'
         Plug 'easymotion/vim-easymotion'
         " Plugin outside ~/.vim/plugged with post-update hook
-        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+        Plug 'junegunn/fzf', { 'dir': '~/.local/lib/fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
         " add some square bracket mappings
         Plug 'tpope/vim-unimpaired'
@@ -719,6 +719,8 @@ call plug#begin()
         Plug 'szw/vim-maximizer'
 
         Plug 'godlygeek/tabular'
+        
+        Plug 'obreitwi/vim-sort-folds'
     " }}}
     Plug 'majutsushi/tagbar'
 
