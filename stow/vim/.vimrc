@@ -340,7 +340,15 @@
             set grepprg=rg\ --vimgrep
         endif
 
-        nnoremap <c-p> :Files<space><cr>
+        let git_root_dir = systemlist('git rev-parse --show-toplevel')[0]
+        " Finding files with preview equivalent to (C-T) in terminal (set base dir to git root)
+        if v:shell_error != 0
+            echom "ohno"
+            nnoremap <c-p> :Files<space><cr>
+        else
+            nnoremap <c-p> :GitFiles<space><cr>
+        endif
+
 
         " Fuzzy find words (set base dir to git root)
         command! -bang -nargs=* Rg
@@ -350,8 +358,13 @@
 
         " Finding files with preview equivalent to (C-T) in terminal (set base dir to git root)
         command! -bang -nargs=? -complete=dir Files
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'dir': getcwd()}), <bang>0)
+
+        command! -bang -nargs=? -complete=dir GitFiles
             \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
+        " command! -bang -nargs=? -complete=dir Files
+        "     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'dir': getcwd()}), <bang>0)
         " floating window {{{
             if has('nvim')
             let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
@@ -757,6 +770,3 @@ call plug#end()
     hi VertSplit guifg=#5fafaf
 " }}}
 ""
-
-
-
