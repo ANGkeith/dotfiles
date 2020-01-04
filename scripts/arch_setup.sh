@@ -9,6 +9,8 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 # Standard folders
     mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
 
+source $XDG_CONFIG_HOME/zsh/exports.zsh
+
 # utils
     # file compression
     sudo pacman -S zip unzip --noconfirm
