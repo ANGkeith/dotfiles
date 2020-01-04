@@ -80,11 +80,13 @@
     " remains unchanged otherwise links may be broken
     set backupcopy=yes
 
-    " show live preview when doing commands like :substitute
-    set inccommand=nosplit
+    if has("nvim")
+        " show live preview when doing commands like :substitute
+        set inccommand=nosplit
 
-    " Hide the vim mode message in the last line (Insert, Replace, Visual)
-    set noshowmode
+        " Hide the vim mode message in the last line (Insert, Replace, Visual)
+        set noshowmode
+    endif
 "}}}
 " Custom Mapping {{{
     " note that <space> in normal mode is mapped to right, thus this is to override that settings
@@ -176,23 +178,23 @@
     noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
 
     " My vim_terminal {{{
-        augroup neovim_terminal
-            autocmd!
-            " autocmd TermOpen * :set filetype=vim_terminal
+        if has('nvim')
+            augroup neovim_terminal
+                autocmd!
+                " autocmd TermOpen * :set filetype=vim_terminal
 
-            " map escape to exit terminal mode
-            if exists(':tnoremap')
+                " map escape to exit terminal mode
                 autocmd TermOpen *   tnoremap <Esc> <C-\><C-n>
                 autocmd TermOpen *   tnoremap <m-g> <C-\><C-n> :call g:ToggleQuickTerm()<cr>
-            endif
-            autocmd TermOpen * silent! execute 'IndentLinesDisable'
+                autocmd TermOpen * silent! execute 'IndentLinesDisable'
 
-            " Disables number lines on terminal buffers
-            autocmd TermOpen * set norelativenumber
-            autocmd TermOpen * set nonumber
-            autocmd TermOpen * map <buffer> <cr> i
-            autocmd TermOpen * startinsert
-        augroup END
+                " Disables number lines on terminal buffers
+                autocmd TermOpen * set norelativenumber
+                autocmd TermOpen * set nonumber
+                autocmd TermOpen * map <buffer> <cr> i
+                autocmd TermOpen * startinsert
+            augroup END
+        endif
         " opens erminal in a window it behaves a loclist/quickfix list
 
         let g:vim_terminal_height = 15
@@ -736,6 +738,7 @@ call plug#begin()
         Plug 'obreitwi/vim-sort-folds'
     " }}}
     Plug 'majutsushi/tagbar'
+    Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 "}}}

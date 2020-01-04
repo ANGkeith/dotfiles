@@ -1,7 +1,7 @@
 source $ZDOTDIR/exports.zsh
 [[ -f $ZDOTDIR/themes/p10k.zsh ]] && source $ZDOTDIR/themes/p10k.zsh
 
-source $ZDOTDIR/setup.zsh
+# source $ZDOTDIR/setup.zsh
 
 source ~/.zplug/init.zsh
 

@@ -7,6 +7,8 @@ script_root="$(cd $(dirname $BASH_SOURCE[0]) && pwd -P)"
 project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
 sudo apt update
+
+sed -i 's/# source $ZDOTDIR\/setup.zsh/source $ZDOTDIR\/setup.zsh/g' $XDG_CONFIG_HOME/zsh/.zshrc
 sudo apt install -y vim vim-gnome kdiff3 xclip git gitk wget curl make build-essential \
 libssl-dev tmux silversearcher-ag konsole exuberant-ctags ctags
 

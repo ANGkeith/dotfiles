@@ -21,6 +21,9 @@ zplug "plugins/history-substring-search", from:oh-my-zsh, defer:3
 zplug "erydo/oh-my-zsh", use:"plugins/vi-mode/vi-mode.plugin.zsh", at:vi-mode
 zplug "plugins/fzf", from:oh-my-zsh
 
+# expands alias
+zplug "plugins/globalias", from:oh-my-zsh
+
 zplug "kutsan/zsh-system-clipboard"
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 

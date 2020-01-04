@@ -40,6 +40,9 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
     sudo pacman -S ripgrep --noconfirm
 
 # Text editor
+    # uncomment out zsh setup script
+    sed -i 's/# source $ZDOTDIR\/setup.zsh/source $ZDOTDIR\/setup.zsh/g' $XDG_CONFIG_HOME/zsh/.zshrc
+
     # vim plugin manager
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

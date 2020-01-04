@@ -14,6 +14,3 @@ if [[ ! -d $XDG_DATA_HOME/zsh ]]; then
 else
     echo "[$(basename $0):$LINENO]: This section can be commented out. $XDG_DATA_HOME/zsh already exists"
 fi
-
-sed -i 's/source $ZDOTDIR\/setup.zsh/# source $ZDOTDIR\/setup.zsh/g' $XDG_CONFIG_HOME/zsh/.zshrc
-
