@@ -93,7 +93,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod+Shift+r exec i3-msg restart
-bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/exit_menu
+bindsym $mod+Shift+e exec ~/.config/rofi/scripts/system-menu
 
 bindsym $mod+Left resize shrink width 10 px or 10 ppt
 bindsym $mod+Down resize grow height 10 px or 10 ppt
@@ -136,7 +136,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease 
 bindsym --release Print exec flameshot gui
 bindsym --release $mod+Print exec ~/.config/i3/scripts/vimwiki_screenshot
 
-bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec ~/.config/rofi/scripts/menu
 # bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+backslash exec --no-startup-id betterlockscreen -l dim
 
@@ -146,13 +146,13 @@ workspace_auto_back_and_forth yes
 #################################################################### Autostart services
 # This is needed for google-chrome
 
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/.config/wallpaper/wallpaper.jpg
 exec_always --no-startup-id echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 exec_always --no-startup-id xmodmap ~/.config/Xmodmap
+exec --no-startup-id ~/.config/polybar/launch.sh
 
 exec --no-startup-id flameshot
 exec --no-startup-id picom -b
-exec --no-startup-id ~/.config/i3/scripts/smart_brightness
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 # turn off display after 10min
@@ -187,21 +187,23 @@ client.urgent           #ff0000 #ff0000 #d9d9d9 #00ff00
 
 client.placeholder $ERR_COLOR $ERR_COLOR $ERR_COLOR $ERR_COLOR
 
-bar {
-    bindsym --release button3 exec --no-startup-id gnome-screenshot -ac
-    font pango:DejaVu Sans Mono, FontAwesome 15
-    status_command i3status-rs ~/.config/i3/statusbar.toml
-    position top
-    colors {
-        separator #666666
-        background #222222
-        statusline #dddddd
-        focused_workspace #1793d0 #1793d0 #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
-    }
-}
+
+# # backup status bar
+# bar {
+#     bindsym --release button3 exec --no-startup-id gnome-screenshot -ac
+#     font pango:DejaVu Sans Mono, FontAwesome 15
+#     status_command i3status-rs ~/.config/i3/statusbar.toml
+#     position top
+#     colors {
+#         separator #666666
+#         background #222222
+#         statusline #dddddd
+#         focused_workspace #1793d0 #1793d0 #ffffff
+#         active_workspace #333333 #333333 #ffffff
+#         inactive_workspace #333333 #333333 #888888
+#         urgent_workspace #2f343a #900000 #ffffff
+#     }
+# }
 
 # hide window title bar
 for_window [class=".*"] border pixel 1

@@ -1,0 +1,110 @@
+#!/bin/bash
+max_brightness=1
+min_brightness=0
+icon=
+# Change this to your primary monitor
+monitor_backlight_supported="eDP-1-1"
+
+
+
+
+
+monitors=($(xrandr --listactivemonitors  | awk '{print $4}')) num_monitors=${#monitors[@]}
+brightness=($(xrandr --verbose | grep Brightness | awk '{print $2}'))
+
+xrandr_monitor_index=/tmp/polybar_xrandr_index
+raw_string_that_polybar_reads=/tmp/polybar_xrandr_current_brightness
+
+function convert_to_percentage() {
+    float=$(echo "$1*100" | bc)
+    echo ${float%.*}
+}
+
+function step_brightness() {
+    index=$(get_current_index)
+    step=$1
+
+    if [[ ${monitors[index]} -eq $monitor_backlight_supported ]]; then
+        # adjusts monitor's brightness through the hardware layer
+        if [[ $(echo "$step > 0" | bc) -eq 1 ]]; then
+            light -A $(echo "$step * 100" | bc)
+        elif [[ $(echo "$step < 0" | bc) -eq 1 ]]; then
+            light -U $(echo "$step * -100" | bc)
+        fi
+    else
+        # adjusts monitor's brightness through the software layer
+        # note that this is achieved through the gamma, and turn down this brightness does not save electricity
+        current_brightness=${brightness[index]}
+        new_brightness=$(echo "$current_brightness + $step" | bc)
+
+        is_more_than_max=$(echo "$new_brightness > $max_brightness" | bc)
+        is_less_than_min=$(echo "$new_brightness < $min_brightness" | bc)
+
+        if [[ $is_more_than_max -eq 1 ]]; then
+            xrandr --output ${monitors[index]} --brightness $max_brightness
+        elif [[ $is_less_than_min -eq 1 ]]; then
+            xrandr --output ${monitors[index]} --brightness $min_brightness
+        else
+            xrandr --output ${monitors[index]} --brightness $new_brightness
+        fi
+    fi
+}
+
+
+function get_current_index() {
+    # if we don't have a file, initialize the file
+    if [ ! -f "$xrandr_monitor_index" ] ; then
+        echo 0 > $xrandr_monitor_index
+    fi
+    # read the value from the file
+    value=$(cat $xrandr_monitor_index)
+
+    echo $value
+}
+
+
+function toggle_index() {
+    current_value=$(get_current_index)
+    echo $current_value
+    # increment the value
+    new_value=$(( ($current_value + 1) %  $num_monitors ))
+    echo "${new_value}" > $xrandr_monitor_index
+}
+
+function update() {
+    # Essentially, running update will update the raw_string_that_polybar_reads with the brightness of the 
+    # display
+
+    if [[ ${monitors[$(get_current_index)]} -eq $monitor_backlight_supported ]]; then
+        float=$(light -G)
+        # light -G is already in percentage, thus just need to convert it to integer
+        update="${monitors[$(get_current_index)]} ${float%.*}"
+    else
+        update="${monitors[$(get_current_index)]} $(convert_to_percentage ${brightness[$(get_current_index)]})"
+    fi
+
+    format-and-save $update
+}
+
+function format-and-save() {
+    display_port=$1
+    value=$2
+    echo "%{A1:~/.config/polybar/scripts/xrandr toggle:}%{A4:~/.config/polybar/scripts/xrandr inc 0.1:}%{A5:~/.config/polybar/scripts/xrandr dec 0.1:}%{T5}%{B#1793d1}%{F#FFFFFF} $icon  %{T1}$display_port%{T-1} %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} $value% %{T-B-F-}%{A}%{A}%{A}" >> $raw_string_that_polybar_reads
+}
+
+case "$1" in
+    get)
+        update
+        tail -f $raw_string_that_polybar_reads 2> /dev/null;;
+    inc)
+        echo $(step_brightness $2)
+        update;;
+    dec)
+        echo $(step_brightness -$2)
+        update;;
+    toggle)
+        toggle_index
+        update;;
+    update)
+        update;;
+esac

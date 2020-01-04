@@ -20,6 +20,10 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
     sudo pacman -S ctags --noconfirm
 
+    sudo pacman -S network-manager-applet --noconfirm
+
+    sudo pacman -S light --noconfirm
+
 # networking
     sudo pacman -S netcat --noconfirm
 
@@ -105,15 +109,14 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
         sudo usermod -aG docker $USER
         newgrp docker
         # to allow pycharm integration with docker
-            sudo mkdir /etc/systemd/system/docker.service.d/
-            sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
-            echo "# /etc/systemd/system/docker.service.d/override.conf
-            [Service]
-            ExecStart=
-            ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375" |
-                sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
-            sudo systemctl daemon-reload
-            sudo systemctl restart docker.service
+            # sudo mkdir /etc/systemd/system/docker.service.d/
+            # sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
+            # echo "# /etc/systemd/system/docker.service.d/override.conf
+            # [Service]
+            # ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375" |
+            #     sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
+            # sudo systemctl daemon-reload
+            # sudo systemctl restart docker.service
 
     # python
         sudo pacman -S pyenv --noconfirm

@@ -1,0 +1,307 @@
+[color]
+background = #5f3f3f3f
+; background = #0f1793d1
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary= #1793d1
+secondary = #e60053
+alert = #bd2c40
+warn = #e60053
+transparent = #00000000
+blue= #1793d1
+bg-alt=#1A000000
+
+
+fg = #1C1E20
+mf = #C4C7C5
+
+red = #EC7875
+pink = #EC6798
+purple = #BE78D1
+; blue = #75A4CD
+cyan = #00C7DF
+teal = #00B19F
+green = #61C766
+lime = #B9C244
+yellow = #EBD369
+amber = #EDB83F
+orange = #E57C46
+brown = #AC8476
+grey = #8C8C8C
+indigo = #6C77BB
+blue-gray = #6D8895
+
+
+[bar/main]
+;------------;
+; DIMENSIONS ;
+;------------;
+width = 100%
+height = 25
+offset-y = 0
+offset-x = 0
+
+; border-top-size = 5
+; border-bottom-size = 5
+; border-right-size = 0
+; border-left-size = 0
+
+border-size = 5
+
+;----------;
+; LOCATION ;
+;----------;
+bottom = false
+monitor = HDMI-1-2
+; wm-restack = none
+override-redirect = false
+;-------;
+; FONTS ;
+;-------;
+font-0 = Hack:size=10;3
+
+font-1 = "FontAwesome:style=Regular:pixelsize=13;3"
+; not used
+font-2 = PowerlineSymbols:size=5;1
+; not used
+font-3 = FiraCodeNerdFont:style=Regular:pixelsize=13;3
+font-4 = "Material Icons:size=13;4"
+font-5 = "Font Awesome 5 Free:style=Free:pixelsize=13;2"
+
+
+
+;--------;
+; COLORS ;
+;--------;
+background = ${color.background}
+foreground = ${color.foreground}
+border-color = ${color.background}
+
+line-size = 3
+
+;---------------;
+; MISCELLANEOUS ;
+;---------------;
+
+fixed-center = true
+padding-left = 1
+padding-right = 1
+module-margin = 0
+
+modules-left = logo sep i3
+modules-center =
+; modules-right = lan volume temperature cpu uptime date sep2
+modules-right = wlan sep cpu sep memory sep temperature sep brightness sep volume sep date sep system-menu
+
+tray-position = right
+tray-detached = false
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+mount-1 = /home/artemis
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${color.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${color.background-alt}
+label-focused-underline= ${color.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${color.alert}
+label-urgent-padding = 2
+
+
+[module/date]
+type = internal/date
+time = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{B#C4C7C5}%{F#1C1E20}%{T1} %I:%M %p %{T-B-F-}
+; TODO change the calender icon
+time-alt = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{B#C4C7C5}%{F#1C1E20}%{T1} %A, %e %B %{T-B-F-}
+label = %time%
+format =  <label>
+
+[module/volume]
+type = internal/alsa
+format-volume = %{A1:pactl set-sink-mute 0 toggle:}%{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-volume> %{T-B-F-}%{A}
+format-muted = %{A1:pactl set-sink-mute 0 toggle:}%{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} Muted %{T-B-F-}%{A}
+
+
+[module/temperature]
+type = internal/temperature
+interval = 1
+thermal-zone = 0
+warn-temperature = 70
+label = %temperature-c%
+label-warn = %temperature-c%
+format = %{T2}%{B#1793d1}%{F#FFFFFF}    %{B-F-T-}%{T1}%{B#C4C7C5}%{F#1C1E20}  <label> %{T-B-F-}
+format-warn = %{T2}%{B#1793d1}%{F#FFFFFF}    %{B-F-T-}%{T1}%{B#C4C7C5}%{F#E24c49} <label-warn> %{T-B-F-}
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 5
+label-connected = "%{A1:nm-connection-editor:}%essid%%{A}"
+label-disconnected = "%{A1:nm-connection-editor:}Not Connected%{A}"
+format-connected = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-connected> %{T-B-F-}
+format-disconnected = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-disconnected> %{T-B-F-}
+
+
+[module/cpu]
+type = internal/cpu
+label = "%percentage%%"
+format = %{T4}%{B#1793d1}%{F#FFFFFF} %{O-4}  %{O-8}%{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label> %{T-B-F-}
+
+
+[module/memory]
+type = internal/memory
+; label = %gb_used%/%gb_total%
+label = %percentage_used%%
+format = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label> %{T-B-F-}
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/battery]
+; Note - if battery isn't showing, try BAT0 or BAT1, etc.
+type = internal/battery
+
+full-at = 95
+
+battery = BAT1
+adapter = ACAD
+
+poll-interval = 5
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = 2
+
+format-full = <ramp-capacity> <label-full>
+format-full-padding = 2
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 2
+
+label-discharging = %percentage%%
+label-charging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 500
+
+[module/network]
+type = internal/network
+interface = wlp2s0
+label-connected =  %downspeed% |  %upspeed%
+
+[module/logo]
+type = custom/text
+content = "%{A1:~/.config/rofi/scripts/menu:} %{O-4}%{A}"
+content-font = 4
+format-prefix-foreground = #5b
+content-padding = 1
+content-foreground = #1C1E20
+content-background = #C4C7C5
+
+[module/brightness]
+
+type = custom/script
+exec = ~/.config/polybar/scripts/xrandr get
+format = <label>
+tail=true
+
+; click-left = ~/.config/polybar/scripts/xrandr toggle
+; scroll-up = ~/.config/polybar/scripts/xrandr inc 0.1
+; scroll-down = ~/.config/polybar/scripts/xrandr dec 0.1
+
+
+[module/system-menu]
+type = custom/text
+content-padding = 1
+content-foreground = #1C1E20
+content-background = #C4C7C5
+content = "%{A1:~/.config/rofi/scripts/system-menu:}%{A}"
+
+[module/sep]
+type = custom/text
+content = |
+content-foreground = ${color.background}
+content-background = ${color.background}
+content-padding = 0
+
+[module/sep2]
+type = custom/text
+content = |
+content-foreground = ${color.background}
+content-background = ${color.background}
+content-padding = 0
+
+; vim:ft=dosini
