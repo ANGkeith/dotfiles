@@ -106,6 +106,10 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
     # Display Compositor
         sudo pacman -S picom --noconfirm
 
+# bspwm
+    sudo pacman -S bspwm sxhkd --noconfirm
+     
+
 # development
     # install docker
         sudo pacman -S docker docker-compose --noconfirm
