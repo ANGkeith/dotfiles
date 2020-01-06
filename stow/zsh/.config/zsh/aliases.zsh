@@ -3,10 +3,11 @@
 
 # configurations {{{
 alias bashrc="vim ~/.bashrc"
-alias i3rc="vim ~/.config/i3/config"
+alias i3rc="vim $XDG_CONFIG_HOME/i3/config"
+alias bspwmrc="vim $XDG_CONFIG_HOME/bspwm/bspwmrc"
 alias sourcez="source $ZDOTDIR/.zshrc"
-alias tmuxrc="vim ~/.config/tmux/tmux.conf"
-alias vimrc="vim ~/.vimrc"
+alias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias vimrc="vim $XDG_CONFIG_HOME/vim/vimrc"
 alias zshrc="vim $ZDOTDIR/.zshrc"
 # }}}
 

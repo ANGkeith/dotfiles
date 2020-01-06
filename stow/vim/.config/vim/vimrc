@@ -1,4 +1,15 @@
 " Good Read https://github.com/romainl/idiomatic-vimrc
+if has('nvim')
+    " with this line, neovim will not read configurations from
+    " $XDG_CONFIG_HOME/nvim/init.vim
+    set runtimepath^=$XDG_CONFIG_HOME/vim runtimepath+=$XDG_CONFIG_HOME/vim/after
+    let &packpath = &runtimepath
+else
+    set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+    set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+    let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+endif
+
 "  Behaviour Modification {{{
     " Show line number
     set relativenumber
@@ -342,10 +353,15 @@
             set grepprg=rg\ --vimgrep
         endif
 
-        let git_root_dir = systemlist('git rev-parse --show-toplevel')[0]
+        try
+            let git_root_dir = systemlist('git rev-parse --show-toplevel')[0]
+        catch "E684"
+            " vim throws this error
+        endtry
+
         " Finding files with preview equivalent to (C-T) in terminal (set base dir to git root)
         if v:shell_error != 0
-            echom "ohno"
+            echom "No git directory found"
             nnoremap <c-p> :Files<space><cr>
         else
             nnoremap <c-p> :GitFiles<space><cr>

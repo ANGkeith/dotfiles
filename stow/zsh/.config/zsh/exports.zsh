@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # make vim the default editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # XDG base directory specification
 # User-specific configurations
@@ -55,3 +55,6 @@ export KEYTIMEOUT=1
 
 # Change default location of .zsh_history
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
+
+export VIMINIT='source $MYVIMRC'
+export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
