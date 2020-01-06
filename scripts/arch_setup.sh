@@ -40,6 +40,7 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
 
 # Searching tool
     sudo pacman -S ripgrep --noconfirm
+    sudo pacman -S the_silver_searcher --noconfirm
 
 # Text editor
     # uncomment out zsh setup script
@@ -89,7 +90,7 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
     # Screenlocker
         yay -S betterlockscreen
         # Generate cache for betterlockscreen
-        PATH_TO_WALLPAPER="$HOME/.config/wallpaper.jpg"
+        PATH_TO_WALLPAPER="$XDG_CONFIG_HOME"/wallpaper/wallpaper.jpg
         if [ -e ${PATH_TO_WALLPAPER} ]; then
             betterlockscreen -u ${PATH_TO_WALLPAPER}
         else
@@ -146,9 +147,11 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
 
 # maintanence
     yay -S timeshift
+
     # depenency for nvim coc plugin
-    source ~/.zshrc
-    nvm install 8.17.0
+    source $ZDOTDIR/.zshrc
+    nvm install 10.18.0
+    nvm alias default 10.18.0
 
 # bloat
     sudo pacman -S neofetch --noconfirm

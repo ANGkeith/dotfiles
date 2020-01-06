@@ -27,8 +27,8 @@ workon() {
 }
 
 # pyenv
+# enable shims and autocompletion
 pyenv() {
-    # Remove this function, subsequent calls will execute 'workon' directly
     unfunction "$0"
     if command -v pyenv 1>/dev/null 2>&1; then
         eval "$(pyenv init -)"
