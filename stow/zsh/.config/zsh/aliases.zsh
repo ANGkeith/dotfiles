@@ -2,11 +2,11 @@
 # vim:fdm=marker
 
 # configurations {{{
-alias bashrc='vim ~/.bashrc'
-alias i3rc='vim ~/.config/i3/config'
+alias bashrc="vim ~/.bashrc"
+alias i3rc="vim ~/.config/i3/config"
 alias sourcez="source $ZDOTDIR/.zshrc"
-alias tmuxrc='vim ~/.tmux.conf'
-alias vimrc='vim ~/.vimrc'
+alias tmuxrc="vim ~/.config/tmux/tmux.conf"
+alias vimrc="vim ~/.vimrc"
 alias zshrc="vim $ZDOTDIR/.zshrc"
 # }}}
 
@@ -74,7 +74,7 @@ alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
 # auto launch tmux
 function t() {
     if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-        tmux attach -t default || tmux new -s default
+        tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf attach -t default  || tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new -s default
     fi
 }
 # }}}
