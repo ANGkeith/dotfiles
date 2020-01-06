@@ -347,6 +347,7 @@ endif
     " fzf & searching stuff {{{
         set rtp+=~/.local/lib/fzf
 
+
         " ripgrep
         if executable('rg')
             let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
@@ -548,7 +549,8 @@ endif
         let g:SuperTabDefaultCompletionType = "<c-n>"
     " }}}
     " coc {{{
-        let g:coc_node_path = expand("$HOME") .  '/.nvm/versions/node/v8.17.0/bin/node'
+        " add npm to path
+        let g:coc_node_path = expand("$NVM_DIR") .  '/versions/node/v10.18.0/bin/node'
         let g:python3_host_prog = '/usr/bin/python'
 
         " You will have bad experience for diagnostic messages when it's default 4000.
