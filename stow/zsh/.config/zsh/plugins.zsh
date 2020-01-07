@@ -1,30 +1,81 @@
-#!/usr/bin/env zsh
-# Allows zplug to update itself
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
+source $HOME/.local/lib/zplugin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# TODO: move .zcompdump to $XDG_DATA_HOME/zsh once the following issue is
-# resolved "https://github.com/ohmyzsh/ohmyzsh/issues/7332"
-zplug "robbyrussell/oh-my-zsh", use:"lib/{clipboard,completion,directories,history,termsupport,git,grep,key-bindings,theme-and-appearance,prompt_info_functions,compfix,nvm}.zsh"
+# easy way for ls colors
+zplugin snippet OMZ::lib/theme-and-appearance.zsh
 
-# Provides aliases for extracting archive files
-zplug "plugins/extract", from:oh-my-zsh
+# Themes
+zplugin ice depth=1 atload'!source $ZDOTDIR/themes/p10k.zsh' lucid nocd
+zplugin load romkatv/powerlevel10k
 
-zplug "plugins/z", from:oh-my-zsh
+# zplugin extensions
+zplugin load zplugin/z-a-bin-gem-node
 
-#   # provides suggestion as I type based on history
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "plugins/history-substring-search", from:oh-my-zsh, defer:3
-# TODO: waiting for PR to be merge. https://github.com/ohmyzsh/ohmyzsh/pull/8004
-# zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "erydo/oh-my-zsh", use:"plugins/vi-mode/vi-mode.plugin.zsh", at:vi-mode
-zplug "plugins/fzf", from:oh-my-zsh
+# Turbo MODE {{{
 
-# expands alias
-zplug "plugins/globalias", from:oh-my-zsh
+    # Used by OMZ vi-mode
+    zplugin wait lucid for OMZ::lib/clipboard.zsh
 
-zplug "kutsan/zsh-system-clipboard"
-zplug "romkatv/powerlevel10k", as:theme, depth:1
+    # TODO: waiting for PR to be merge. https://github.com/ohmyzsh/ohmyzsh/pull/8004
+    zplugin ice wait lucid
+    zplugin snippet 'https://github.com/erydo/oh-my-zsh/blob/vi-mode/plugins/vi-mode/vi-mode.plugin.zsh'
 
-# return 0 # in case zplug adds plugs ignore them
+    # yank to clipboard in vim mode
+    zplugin ice wait lucid
+    zplugin snippet "https://github.com/kutsan/zsh-system-clipboard/blob/master/zsh-system-clipboard.zsh"
+
+    # add widgets
+    zplugin wait lucid for OMZ::plugins/fzf/fzf.plugin.zsh
+
+    # expand alias
+    zplugin wait lucid for OMZ::plugins/globalias/globalias.plugin.zsh
+
+    # install additional completions
+    zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
+    zplugin load zsh-users/zsh-completions
+
+    zplugin ice wait as"completion" lucid
+    zplugin snippet OMZ::plugins/docker/_docker
+
+    zplugin wait lucid for atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions
+
+    # zplugin ice wait lucid
+    # zplugin snippet OMZ::plugins/z/z.sh
+    zplugin ice as"null" atload'eval "$(lua z.lua --init zsh enhanced once fzf)"'
+    zplugin load https://github.com/skywind3000/z.lua
+
+    zplugin wait lucid for hlissner/zsh-autopair
+
+    zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"
+    zplugin load zdharma/fast-syntax-highlighting
+
+    # Keep this below, so that this can override plugins default
+    zplugin ice wait lucid atload" \
+        source $ZDOTDIR/key_bindings.zsh; \
+        source $ZDOTDIR/aliases.zsh; \
+        source $ZDOTDIR/options.zsh;"
+    zplugin load zdharma/null
+# }}}
+
+# Command {{{
+    # prettier git diff, use `git dsf` to trigger
+    zplugin ice as"null" wait"2" lucid sbin"bin/git-dsf;bin/diff-so-fancy"
+    zplugin load zdharma/zsh-diff-so-fancy
+
+    # easier to use `find`
+    zplugin ice as"null" wait"2" lucid from"gh-r" mv"fd* -> fd" sbin"fd/fd"
+    zplugin load sharkdp/fd
+
+    # shows aliases of a command
+    zplugin wait"2" lucid for \
+        from'gh-r' sbin"def-matcher" sei40kr/fast-alias-tips-bin \
+                                     sei40kr/zsh-fast-alias-tips
+# }}}
+
+# Loaded on-demand {{{
+    # Least frequently used
+    zplugin trigger-load'!extract' for OMZ::plugins/extract/extract.plugin.zsh
+# }}}
+
+# vim: foldmethod=marker

@@ -37,13 +37,21 @@ export CHEAT_HIGHLIGHT=magenta
 # pyenv
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-
 # enable true color
 export TERM="xterm-256color"
 
 # Better transition for changing of vim mode in terminal
 export KEYTIMEOUT=1
 
+export FAST_ALIAS_TIPS_PREFIX="\x1b[33;40m ﯦ  \x1b[0m $(tput bold)"
+
+# Use nvim for navigating man page instead of less
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist rnu noma' -\""
+
+# history settings
+export HISTSIZE=9999999999
+export SAVEHIST=$HISTSIZE
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|\ls --color=tty -la|\ls --color=tty|nvim|gitk)"
 # Respect XDG {{{
     # fzf
     export FZF_BASE=~/.local/lib/fzf
@@ -52,10 +60,7 @@ export KEYTIMEOUT=1
     export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
     # zsh
-    export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
-    # zplug will look at the file in this variable
-    export ZPLUG_LOADFILE=$XDG_CONFIG_HOME/zsh/plugins.zsh
-
+    export HISTFILE=$XDG_DATA_HOME/zsh/zsh_history
 
     # vim
     export VIMINIT='source $MYVIMRC'
@@ -95,6 +100,17 @@ export KEYTIMEOUT=1
     export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
     export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 
-    # z
-    export _Z_DATA="$XDG_DATA_HOME/z"
+    # z.lua
+    export _ZL_DATA="$XDG_DATA_HOME/z"
+
+    # zplugin
+    declare -A ZPLGM
+    export ZPLGM[BIN_DIR]="$HOME/.local/bin/zplugin"
+    export ZPLGM[HOME_DIR]="$XDG_DATA_HOME/zplugin"
+    export ZPLGM[PLUGINS_DIR]="$XDG_DATA_HOME/zplugin/plugins"
+    export ZPLGM[SNIPPETS_DIR]="$XDG_DATA_HOME/zplugin/snippets"
+    export ZPLGM[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zcompdump"
+
 # }}}
+
+# vim: foldmethod=marker
