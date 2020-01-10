@@ -63,9 +63,7 @@ override-redirect = false
 font-0 = Hack:size=10;3
 
 font-1 = "FontAwesome:style=Regular:pixelsize=13;3"
-; not used
 font-2 = PowerlineSymbols:size=5;1
-; not used
 font-3 = FiraCodeNerdFont:style=Regular:pixelsize=13;3
 font-4 = "Material Icons:size=13;4"
 font-5 = "Font Awesome 5 Free:style=Free:pixelsize=13;2"

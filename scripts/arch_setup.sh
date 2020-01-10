@@ -54,62 +54,50 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
     # used for previewing
     sudo pacman -S bat --noconfirm
 
-
+# File manager
+    sudo pacman -S nautilus ranger --noconfirm
 
 # Install git and dependency for gitk
     sudo pacman -S git tk --noconfirm
 
 # Install zsh
     sudo pacman -S zsh --noconfirm
-    # Font for theme
-        yay -S nerd-fonts-complete
 
-# Backup DE
-    # pacman -S sddm plasma --noconfirm
+# Desktop applications
+    sudo pacman -S sddm plasma --noconfirm
 
-# i3
-    pacman -S i3 --noconfirm
-    # Install fonts
-        sudo pacman -S powerline-fonts --noconfirm
-    # Install dependency for `i3_cycle_windows` script
-        sudo pacman -S perl-json --noconfirm
-    # Volume manager
-        sudo pacman -S pavucontrol --noconfirm
-    # Show cpu temperatures
-        sudo pacman -S lm-sensors --noconfirm
-    # Dependencies for screenshot
-        sudo pacman -S flameshot --noconfirm
-    # Replacement for dmenu
-        # sudo pacman -S rofi --nocofirm
-    # Screen locker
-        sudo pacman -S feh xautolock --noconfirm
-    # Status_bar
-        yay -S i3status-rust
-        # i3status-rust required ttf-font-awesome-4
-        yay -S ttf-font-awesome-4
-    # Screenlocker
-        yay -S betterlockscreen
-        # Generate cache for betterlockscreen
-        PATH_TO_WALLPAPER="$XDG_CONFIG_HOME"/wallpaper/wallpaper.jpg
-        if [ -e ${PATH_TO_WALLPAPER} ]; then
-            betterlockscreen -u ${PATH_TO_WALLPAPER}
-        else
-            echo "The path `${PATH_TO_WALLPAPER}` does not exist. "
-        fi
-    # Internet Browser
-        sudo pacman -S chromium --noconfirm
-        # install random chinese fonts lol
-        sudo pacman -S adobe-source-han-sans-cn-fonts --noconfirm
-        sudo pacman -S adobe-source-han-sans-tw-fonts --noconfirm
-        sudo pacman -S adobe-source-han-serif-cn-fonts --noconfirm
-        sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm
-        sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
-    # Display Compositor
-        sudo pacman -S picom --noconfirm
+# Volume manager
+    sudo pacman -S pavucontrol --noconfirm
 
-# bspwm
+# Show cpu temperatures
+    sudo pacman -S lm-sensors --noconfirm
+
+# Dependencies for screenshot
+    sudo pacman -S flameshot --noconfirm
+
+# For spawning menus
+    sudo pacman -S rofi --nocofirm
+
+# Screen locker
+    sudo pacman -S feh xautolock --noconfirm
+    yay -S betterlockscreen
+    # Generate cache for betterlockscreen
+    PATH_TO_WALLPAPER="$XDG_CONFIG_HOME"/wallpaper/wallpaper.jpg
+    if [ -e ${PATH_TO_WALLPAPER} ]; then
+        betterlockscreen -u ${PATH_TO_WALLPAPER}
+    else
+        echo "The path `${PATH_TO_WALLPAPER}` does not exist. "
+    fi
+
+# Internet Browser
+    sudo pacman -S chromium --noconfirm
+
+# Display Compositor
+    sudo pacman -S picom --noconfirm
+
+# Window Manager
     sudo pacman -S bspwm sxhkd --noconfirm
-     
+
 
 # development
     # install docker
@@ -145,6 +133,9 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
     # nodejs
         yay -S nvm
 
+    # ??
+        sudo pacman -S perl-json --noconfirm
+
 # maintanence
     yay -S timeshift
 
@@ -153,6 +144,24 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
     nvm install 10.18.0
     nvm alias default 10.18.0
 
+# fonts
+    # p10k
+        yay -S nerd-fonts-complete
+
+    # zsh tmux themes
+        sudo pacman -S powerline-fonts --noconfirm
+
+    # install random chinese fonts for chromium
+        sudo pacman -S adobe-source-han-sans-cn-fonts --noconfirm
+        sudo pacman -S adobe-source-han-sans-tw-fonts --noconfirm
+        sudo pacman -S adobe-source-han-serif-cn-fonts --noconfirm
+        sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm
+        sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
+
+    # polybar
+        yay -S ttf-material-design-icons
+
 # bloat
     sudo pacman -S neofetch --noconfirm
     sudo pacman -S conky-lua-nvidia --noconfirm
+
