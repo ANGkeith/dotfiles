@@ -53,9 +53,6 @@ export HISTSIZE=9999999999
 export SAVEHIST=$HISTSIZE
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|\ls --color=tty -la|\ls --color=tty|nvim|gitk)"
 # Respect XDG {{{
-    # fzf
-    export FZF_BASE=~/.local/lib/fzf
-
     # cargo
     export CARGO_HOME="$XDG_DATA_HOME"/cargo
 

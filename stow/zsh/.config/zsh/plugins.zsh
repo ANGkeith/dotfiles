@@ -67,6 +67,9 @@ zplugin load zplugin/z-a-bin-gem-node
     zplugin ice as"null" wait"2" lucid from"gh-r" mv"fd* -> fd" sbin"fd/fd"
     zplugin load sharkdp/fd
 
+    zplugin ice cloneonly from"gh-r" sbin"g:fzf -> fzf"
+    zplugin load junegunn/fzf-bin
+
     # shows aliases of a command
     zplugin wait"2" lucid for \
         from'gh-r' sbin"def-matcher" sei40kr/fast-alias-tips-bin \

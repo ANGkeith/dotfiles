@@ -345,8 +345,6 @@ endif
         nnoremap \tb :TagbarToggle<cr>
     "}}}
     " fzf & searching stuff {{{
-        set rtp+=~/.local/lib/fzf
-
 
         " ripgrep
         if executable('rg')
@@ -667,7 +665,6 @@ call plug#begin()
         Plug 'ronakg/quickr-preview.vim'
         Plug 'easymotion/vim-easymotion'
         " Plugin outside ~/.vim/plugged with post-update hook
-        Plug 'junegunn/fzf', { 'dir': '~/.local/lib/fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
         " add some square bracket mappings
         Plug 'tpope/vim-unimpaired'
