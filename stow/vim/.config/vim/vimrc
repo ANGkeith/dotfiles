@@ -345,8 +345,7 @@ endif
         nnoremap \tb :TagbarToggle<cr>
     "}}}
     " fzf & searching stuff {{{
-
-        " ripgrep
+    " ripgrep
         if executable('rg')
             let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
             set grepprg=rg\ --vimgrep
@@ -665,6 +664,7 @@ call plug#begin()
         Plug 'ronakg/quickr-preview.vim'
         Plug 'easymotion/vim-easymotion'
         " Plugin outside ~/.vim/plugged with post-update hook
+        Plug 'junegunn/fzf'
         Plug 'junegunn/fzf.vim'
         " add some square bracket mappings
         Plug 'tpope/vim-unimpaired'

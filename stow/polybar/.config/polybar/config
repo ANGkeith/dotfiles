@@ -106,7 +106,7 @@ type = internal/fs
 
 ; Mountpoints to display
 mount-0 = /
-mount-1 = /home/artemis
+mount-1 = /home/angkeith
 
 ; Seconds to sleep between updates
 ; Default: 30
@@ -199,8 +199,8 @@ thermal-zone = 0
 warn-temperature = 70
 label = %temperature-c%
 label-warn = %temperature-c%
-format = %{T2}%{B#1793d1}%{F#FFFFFF}    %{B-F-T-}%{T1}%{B#C4C7C5}%{F#1C1E20}  <label> %{T-B-F-}
-format-warn = %{T2}%{B#1793d1}%{F#FFFFFF}    %{B-F-T-}%{T1}%{B#C4C7C5}%{F#E24c49} <label-warn> %{T-B-F-}
+format = %{T2}%{B#1793d1}%{F#FFFFFF}    %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20}  <label> %{T-B-F-}
+format-warn = %{T2}%{B#1793d1}%{F#FFFFFF}    %{T-B-F-}%{T1}%{B#C4C7C5}%{F#E24c49} <label-warn> %{T-B-F-}
 
 [module/wlan]
 type = internal/network

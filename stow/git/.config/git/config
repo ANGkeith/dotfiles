@@ -2,5 +2,5 @@
 	email = kang024@e.ntu.edu.sg
 	name = ANGkeith
 [core]
-    excludesfile = /home/artemis/.config/git/gitignore_global
+    excludesfile = /home/angkeith/.config/git/gitignore_global
 

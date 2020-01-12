@@ -93,9 +93,9 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|\ls --color=tty -la|\ls --color=tty|nv
     # wget
     export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
-    # xinit
-    export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-    export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+    # # xinit
+    # export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+    # export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 
     # z.lua
     export _ZL_DATA="$XDG_DATA_HOME/z"

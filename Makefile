@@ -21,9 +21,9 @@ delete_sym_link:
 .PHONY: setup_arch
 setup_arch:
 	@./scripts/create_sym_link.sh
-	@./scripts/setup_arch.sh
+	@./scripts/arch_setup.sh
 
 .PHONY: setup_ubuntu
 setup_ubuntu:
 	@./scripts/create_sym_link.sh
-	@./scripts/setup_ubuntu.sh
+	@./scripts/ubuntu_setup.sh

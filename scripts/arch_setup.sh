@@ -1,21 +1,28 @@
 #!/bin/bash
+
 set -o errexit
 set -o nounset
 set -o pipefail
+set -o xtrace
 
 script_root="$(cd $(dirname $BASH_SOURCE[0]) && pwd -P)"
 project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
+sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
+
 # Standard folders
     mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
 
-source $XDG_CONFIG_HOME/zsh/exports.zsh
+    sudo pacman -Syu
+
+    sudo pacman -S lua --noconfirm
+    sudo pacman -S xorg-xmodmap --noconfirm
 
 # utils
     # file compression
     sudo pacman -S zip unzip --noconfirm
     # bluetooth
-    sudo pacman -S bluez-utils --noconfirm
+    sudo pacman -S bluez bluez-utils --noconfirm
     sudo systemctl enable bluetooth.service
 
     sudo pacman -S xclip --noconfirm
@@ -28,27 +35,27 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
 
 # networking
     sudo pacman -S netcat --noconfirm
+    sudo pacman -S wget --noconfirm
 
 # terminal and multiplexer
     sudo pacman -S tmux konsole --noconfirm
 
 # Install yay
     cd /tmp
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
+    if [[ ! -d /tmp/yay  ]]; then
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+    fi
 
 # Searching tool
     sudo pacman -S ripgrep --noconfirm
     sudo pacman -S the_silver_searcher --noconfirm
 
 # Text editor
-    # uncomment out zsh setup script
-    sed -i 's/# source $ZDOTDIR\/setup.zsh/source $ZDOTDIR\/setup.zsh/g' $XDG_CONFIG_HOME/zsh/.zshrc
-
     # vim plugin manager
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    # curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    #     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     # neovim
     sudo pacman -S neovim python-pynvim --noconfirm
     # used for previewing
@@ -64,23 +71,43 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
     sudo pacman -S zsh --noconfirm
 
 # Desktop applications
-    sudo pacman -S sddm plasma --noconfirm
+    sudo pacman -S sddm --noconfirm
+    sudo systemctl enable sddm.service
+
+    # sddm themes
+    sudo pacman -S ssddm-theme-sugar-candy --noconfirm
+
+    sudo sed -i 's/\(AccentColor=\)".*"/\1"#5fafaf"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+    sudo sed -i 's/\(ForceHideCompletePassword=\)".*"/\1"true"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+    sudo sed -i 's/\(Font=\)".*"/\1"Hack Nerd Font"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+    sudo sed -i 's/\(FontSize=\)".*"/\1"14"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+    sudo sed -i 's/\(HourFormat=\)".*"/\1"\\nHH:mm"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+    sudo sed -i 's/\(DateFormat=\)".*"/\1"dddd, d MMMM"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+    # Larger welcome text
+    sudo sed -i 's/\(config.HeaderText.*\)\*.*/\1* 5 : 0/g' /usr/share/sddm/themes/Sugar-Candy/Components/Clock.qml
+
+    sudo cp ~/.config/wallpaper/wallpaper.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/Mountain.jpg
+
+# use the theme
+echo "[Theme]
+Current=sugar-candy" | sudo tee /etc/sddm.conf
+
 
 # Volume manager
-    sudo pacman -S pavucontrol --noconfirm
+    sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm
 
-# Show cpu temperatures
-    sudo pacman -S lm-sensors --noconfirm
+# Show cpu temperatures (lm-sensors)
+    sudo pacman -S i2c-tools --noconfirm
 
 # Dependencies for screenshot
     sudo pacman -S flameshot --noconfirm
 
 # For spawning menus
-    sudo pacman -S rofi --nocofirm
+    sudo pacman -S rofi --noconfirm
 
 # Screen locker
     sudo pacman -S feh xautolock --noconfirm
-    yay -S betterlockscreen
+    yay -S betterlockscreen --noconfirm
     # Generate cache for betterlockscreen
     PATH_TO_WALLPAPER="$XDG_CONFIG_HOME"/wallpaper/wallpaper.jpg
     if [ -e ${PATH_TO_WALLPAPER} ]; then
@@ -97,6 +124,7 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
 
 # Window Manager
     sudo pacman -S bspwm sxhkd --noconfirm
+    yay -S polybar --noconfirm
 
 
 # development
@@ -105,6 +133,7 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
         sudo systemctl start docker
         sudo systemctl enable docker
         sudo usermod -aG docker $USER
+
         newgrp docker
         # to allow pycharm integration with docker
             # sudo mkdir /etc/systemd/system/docker.service.d/
@@ -131,22 +160,25 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
 
 
     # nodejs
-        yay -S nvm
+        yay -S nvm --noconfirm
 
     # ??
         sudo pacman -S perl-json --noconfirm
 
 # maintanence
-    yay -S timeshift
+    yay -S timeshift --noconfirm
+    # systemctl enable --now cronie.service
 
+    NVM_SOURCE=/usr/share/nvm
+    [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
     # depenency for nvim coc plugin
-    source $ZDOTDIR/.zshrc
     nvm install 10.18.0
-    nvm alias default 10.18.0
+    # nvm alias default 10.18.0
 
 # fonts
-    # p10k
-        yay -S nerd-fonts-complete
+    # to resolve nerd-fonts-complete error
+    sudo mkdir -p /usr/share/fonts/TTF
+    sudo mkdir -p /usr/share/fonts/OTF
 
     # zsh tmux themes
         sudo pacman -S powerline-fonts --noconfirm
@@ -158,8 +190,16 @@ source $XDG_CONFIG_HOME/zsh/exports.zsh
         sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm
         sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
 
+    # p10k
+        yay -S nerd-fonts-complete --noconfirm
+
     # polybar
-        yay -S ttf-material-design-icons
+        yay -S ttf-material-design-icons --noconfirm
+        yay -S ttf-font-awesome-4 --noconfirm
+
+    # Fira Code
+        wget --directory-prefix ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
+
 
 # bloat
     sudo pacman -S neofetch --noconfirm

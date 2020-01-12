@@ -26,7 +26,8 @@ zplugin load zplugin/z-a-bin-gem-node
     zplugin snippet "https://github.com/kutsan/zsh-system-clipboard/blob/master/zsh-system-clipboard.zsh"
 
     # add widgets
-    zplugin wait lucid for OMZ::plugins/fzf/fzf.plugin.zsh
+    zplugin wait lucid
+    zplugin snippet "https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh"
 
     # expand alias
     zplugin wait lucid for OMZ::plugins/globalias/globalias.plugin.zsh

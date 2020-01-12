@@ -105,7 +105,7 @@ agr() {
     if [[ -z $2 ]]; then
         echo "Please provide more arguments"
     else
-        ag -0 -l "$1" | ARG_FROM="$1" ARG_TO="$2" xargs -r0 perl -pi -e 's/$ENV{ARG_FROM}/$ENV{ARG_TO}/g'
+        ag --hidden -0 -l "$1" | ARG_FROM="$1" ARG_TO="$2" xargs -r0 perl -pi -e 's/$ENV{ARG_FROM}/$ENV{ARG_TO}/g'
     fi
     # ag -l "$1" | xargs perl -pi.bak -e "s/$1/$2/g"
 }
