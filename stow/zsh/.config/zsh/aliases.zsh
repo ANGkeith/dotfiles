@@ -24,7 +24,7 @@ alias gca="git commit --no-edit --amend"
 alias gco="git checkout"
 alias gcoh="git checkout HEAD"
 alias gd="git diff"
-function gdh() { git dsf HEAD $1; }
+alias gdh="git dsf HEAD"
 alias gl="git pull"
 alias gitll='git log --graph --pretty=format:'"'"'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %Creset'"'"'% --abbrev-commit --date=relative'
 alias glrb="git pull --rebase"
@@ -32,13 +32,8 @@ alias gp="git push"
 alias gpf="git push --force"
 alias grb="git rebase"
 alias gs="git status -sb"
-function gst() {
-    if [[ ! -z $1 ]]; then
-        git stash push -m $1
-    else
-        git stash push
-    fi
-}
+alias gst="git stash push"
+alias gstn="git stash push -m"
 alias gsta="git stash apply"
 alias gstl="git stash list"
 alias gstp="git stash pop"
@@ -133,3 +128,7 @@ palette() {
     local colors; for n in {000..255}; do colors+=("%F{$n}$n%f"); done; print -cP $colors; 
 }
 # }}}
+
+get_temp() {
+    paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/' 
+}

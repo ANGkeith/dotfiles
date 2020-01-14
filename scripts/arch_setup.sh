@@ -206,4 +206,5 @@ UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
 # bloat
     sudo pacman -S neofetch --noconfirm
     sudo pacman -S conky-lua-nvidia --noconfirm
+    sudo pacman -S keychain --noconfirm
 
