@@ -12,3 +12,8 @@ mkdir -p ~/.local/lib
 mkdir -p ~/.local/share
 cd ${project_root}/stow
 stow -v -S -t ~ * --adopt
+
+### don't sym link
+rm ~/.config/konsolerc
+cp $DOTFILE/konsole/.config/konsolerc $XDG_CONFIG_HOME/konsolerc
+
