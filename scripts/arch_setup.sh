@@ -88,10 +88,12 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
     sudo cp ~/.config/wallpaper/wallpaper.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/Mountain.jpg
 
-# use the theme
+# use the theme and set path for Xauthority
 echo "[Theme]
-Current=sugar-candy" | sudo tee /etc/sddm.conf
+Current=sugar-candy
 
+[X11]
+UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
 
 # Volume manager
     sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm
@@ -167,7 +169,7 @@ Current=sugar-candy" | sudo tee /etc/sddm.conf
 
 # maintanence
     yay -S timeshift --noconfirm
-    # systemctl enable --now cronie.service
+    systemctl enable --now cronie.service
 
     NVM_SOURCE=/usr/share/nvm
     [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
