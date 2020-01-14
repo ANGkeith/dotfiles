@@ -146,13 +146,8 @@ endif
     " Quickly quit editing without save
     nnoremap <leader>q :q<CR>
 
-    if has('nvim')
-        nnoremap <leader>sv :source $MYVIMRC<cr>
-        nnoremap <leader>ev :vsplit ~/.vimrc<cr>
-    else
-        nnoremap <leader>sv :source $MYVIMRC<cr>
-        nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-    endif
+    nnoremap <leader>sv :source $MYVIMRC<cr>
+    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
     " Toggle between buffer
     nnoremap \\ :b#<cr>
@@ -296,8 +291,6 @@ endif
         " disable key mappings for quick previewr
         let g:quickr_preview_keymaps = 0
         let g:quickr_preview_size = '8'
-
-        noremap \p :InstantMarkdownPreview<cr>
     " }}}
     " vim-signify {{{
         let g:signify_vcs_list = [ 'git' ]
@@ -328,7 +321,7 @@ endif
         let g:instant_markdown_mathjax = 1
         let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
         let g:instant_markdown_autoscroll = 1
-        let g:instant_markdown_browser = "google-chrome-stable --new-window"
+        let g:instant_markdown_browser = "chromium new-window"
 
     " }}}
     " tagbar {{{
@@ -681,7 +674,6 @@ call plug#begin()
         Plug 'vimwiki/vimwiki'
         ":GenTocGFM -> generate toc with github flavoured markdown
         Plug 'mzlogin/vim-markdown-toc', { 'for': 'vimwiki' }
-        Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
     " }}}
     " filetype javascript {{{
         Plug 'pangloss/vim-javascript', {'for': 'js'}

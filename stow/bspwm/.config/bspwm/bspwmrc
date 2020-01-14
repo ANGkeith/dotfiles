@@ -23,7 +23,7 @@ bspc config presel_feedback_color	"#5fafaf"
 bspc config urgent_border_color 	"#dd2727"
 
 ### Rules ###
-bspc rule -a Chromium desktop='^2'
+# bspc rule -a Chromium desktop='^2'
 bspc rule -a Screenkey manage=off
 
 

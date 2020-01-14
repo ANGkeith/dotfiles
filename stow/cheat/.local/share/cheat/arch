@@ -163,4 +163,8 @@ echo "Host *
 
 # setup timeshift
 
+git clone git@github.com:ANGkeith/vimwiki.git ~/Documents
+git clone git@github.com:ANGkeith/Mousehunt.git ~/Documents
+
+
 # vim: foldmethod=marker
