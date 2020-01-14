@@ -15,5 +15,6 @@ stow -v -S -t ~ * --adopt
 
 ### don't sym link
 rm ~/.config/konsolerc
-cp $DOTFILE/konsole/.config/konsolerc $XDG_CONFIG_HOME/konsolerc
+# dont use variable
+cp $HOME/dotfiles/stow/konsole/.config/konsolerc $HOME/.config/konsolerc
 

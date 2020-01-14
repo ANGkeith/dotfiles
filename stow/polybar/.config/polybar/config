@@ -53,7 +53,7 @@ border-size = 5
 ; LOCATION ;
 ;----------;
 bottom = false
-monitor = HDMI-1-2
+monitor = eDP-1
 ; hide bar in full screenmode
 wm-restack = bspwm
 override-redirect = false

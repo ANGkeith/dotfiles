@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -21,7 +20,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 # utils
     # file compression
     sudo pacman -S zip unzip --noconfirm
-    # bluetooth
+    # bluetooth 
     sudo pacman -S bluez bluez-utils --noconfirm
     sudo systemctl enable bluetooth.service
 
@@ -75,7 +74,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     sudo systemctl enable sddm.service
 
     # sddm themes
-    sudo pacman -S ssddm-theme-sugar-candy --noconfirm
+    yay -S sddm-theme-sugar-candy --noconfirm
 
     sudo sed -i 's/\(AccentColor=\)".*"/\1"#5fafaf"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
     sudo sed -i 's/\(ForceHideCompletePassword=\)".*"/\1"true"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
@@ -90,7 +89,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # use the theme and set path for Xauthority
 echo "[Theme]
-Current=sugar-candy
+Current=Sugar-Candy
 
 [X11]
 UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
@@ -136,7 +135,6 @@ UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
         sudo systemctl enable docker
         sudo usermod -aG docker $USER
 
-        newgrp docker
         # to allow pycharm integration with docker
             # sudo mkdir /etc/systemd/system/docker.service.d/
             # sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
@@ -169,7 +167,7 @@ UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
 
 # maintanence
     yay -S timeshift --noconfirm
-    systemctl enable --now cronie.service
+    sudo systemctl enable --now cronie.service
 
     NVM_SOURCE=/usr/share/nvm
     [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
@@ -205,7 +203,9 @@ UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
 
 # bloat
     sudo pacman -S neofetch --noconfirm
-    sudo pacman -S conky-lua-nvidia --noconfirm
     sudo pacman -S keychain --noconfirm
-    sudo pacman -S python-grip --nonconfirm
+    yay -S python-grip --nonconfirm
+
+
+reboot
 

@@ -149,8 +149,6 @@ sudo reboot
 
 
 ### }}}
-sudo systemctl enable sddm.service
-
 
 # setup ssh keys
 ssh-keygen -t rsa -b 4096 -C "angkeith@github.com"
@@ -160,11 +158,14 @@ touch ~/.ssh/config
 chmod 600 ~/.ssh/config
 echo "Host *
     AddKeysToAgent yes" > ~/.ssh/config
+cp ~/.ssh/id_rsa.pub | clipcopy
 
 # setup timeshift
 
-git clone git@github.com:ANGkeith/vimwiki.git ~/Documents
-git clone git@github.com:ANGkeith/Mousehunt.git ~/Documents
+git clone git@github.com:ANGkeith/vimwiki.git ~/Documents/vimwiki
+git clone git@github.com:ANGkeith/Mousehunt.git ~/Documents/Mousehunt
+
+cd ~/dotfiles; git remote set-url origin git@github.com:ANGkeith/dotfiles.git
 
 
 # vim: foldmethod=marker
