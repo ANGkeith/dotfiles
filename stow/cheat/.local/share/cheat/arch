@@ -1,0 +1,166 @@
+#!/bin/sh
+set -o errexit
+set -o pipefail
+set -o nounset
+
+### preinstall {{{
+    timedatectl set-ntp true
+    # Format partitions with cfdisk
+    # sda1 260m
+    # sda2 40G
+    # sda3 20G
+    # sda4 51.5G
+    mkfs.vfat -F32 /dev/sda1
+    mkfs.ext4 /dev/sda2
+    mkfs.ext4 /dev/sda4
+
+    # validate result with `parted -l`
+
+    # create mounting points & mounting the file system
+    mount /dev/sda2 /mnt
+    mkdir /mnt/boot
+    mount /dev/sda1 /mnt/boot
+    mkdir /mnt/home
+    mount /dev/sda4 /mnt/home
+    mkswap /dev/sda3
+    swapon /dev/sda3
+
+    # pacman -S reflector
+    # reflector --country "Singapore" --country "Taiwan" --country "Hong Kong" --country "Australia"  --protocol https --verbose --sort rate --save /etc/pacman.d/mirrorlist
+
+    # Install essential package
+    pacstrap /mnt base linux linux-firmware base-devel
+
+    # Generate fstab file
+    genfstab -U /mnt >> /mnt/etc/fstab
+
+    # Change root into the new system
+    arch-chroot /mnt
+# }}}
+
+### Chroot {{{
+    # Time zone
+    ln -sf /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+    hwclock --systohc
+
+    sed -i 's/#en_SG.UTF-8 UTF-8/en_SG.UTF-8 UTF-8/g' /etc/locale.gen
+    sed -i 's/#zh_SG.UTF-8 UTF-8/zh_SG.UTF-8 UTF-8/g' /etc/locale.gen
+    echo 'LANG=en_SG.UTF-8' | tee /etc/locale.conf
+    locale-gen
+    echo 'artemis' > /etc/hostname
+echo "127.0.0.1    localhost
+::1          localhost
+127.0.1.1    artemis.localdomain    artemis" > /etc/hosts
+
+    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager
+    # additional instructions
+
+    pacman -S stow git
+
+    # ssh
+    systemctl enable sshd
+    systemctl enable NetworkManager
+
+    useradd -m -s /usr/bin/zsh artemis
+    # set root passwd
+    passwd
+    # set angkeith passwd
+    passwd angkeith
+    usermod -aG wheel,audio,video,power,storage angkeith
+
+    # and then edit comment out the wheel portion
+    visudo
+
+    mkinitcpio -P
+
+    ### Bootloader {{{
+    # choose EITHER one
+        # GRUB bootloader {{{
+        pacman -S grub efibootmgr
+        grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+        # }}}
+        # systemd boot {{{
+        bootctl --path=/boot install
+        echo "default arch-*" | sudo tee /boot/loader/loader.conf
+        vim /boot/loader/entries/arch.conf
+
+        # # title   Arch Linux
+        # linux   /vmlinuz-linux
+        # initrd  /intel-ucode.img
+        # initrd  /initramfs-linux.img
+        # options root=UUID=<UUID of root partition (get the uuid using `r! blkid`> rw
+
+        # ie. options root=UUID=<UUID of root partition> rw
+        # }}}
+    # }}}
+
+    # exit chroot 
+    exit
+    # unmount
+    umount -R /mnt
+    reboot
+# }}}
+
+### Post-Installation {{{
+
+# update
+sudo pacman -Syyu
+sudo pacman -S sddm --noconfirm
+# dependency of zsh plugins
+sudo pacman -S lua xclip --noconfirm
+
+    # for nvidia {{{
+    sudo pacman -S nvidia mesa-demos --noconfirm
+    sudo mkdir -p /etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+echo 'Section "OutputClass"
+    Identifier "intel"
+    MatchDriver "i915"
+    Driver "modesetting"
+EndSection
+
+Section "OutputClass"
+    Identifier "nvidia"
+    MatchDriver "nvidia-drm"
+    Driver "nvidia"
+    Option "AllowEmptyInitialConfiguration"
+    Option "PrimaryGPU" "yes"
+    ModulePath "/usr/lib/nvidia/xorg"
+    ModulePath "/usr/lib/xorg/modules"
+EndSection' | sudo tee /etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+
+
+echo "xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto" | sudo tee -a /usr/share/sddm/scripts/Xsetup
+
+    # verify that nvidia is loaded
+    glxinfo | grep NVIDIA
+    #}}}
+
+# get dotfiles
+cd; git clone https://github.com/ANGkeith/dotfiles.git
+cd dotfiles
+make create_sym_links
+
+sudo reboot
+
+
+
+
+
+
+### }}}
+sudo systemctl enable sddm.service
+
+
+# setup ssh keys
+ssh-keygen -t rsa -b 4096 -C "angkeith@github.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+echo "Host *
+    AddKeysToAgent yes" > ~/.ssh/config
+
+# setup timeshift
+
+# vim: foldmethod=marker

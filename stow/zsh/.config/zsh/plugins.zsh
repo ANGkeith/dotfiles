@@ -65,8 +65,11 @@ zplugin load zplugin/z-a-bin-gem-node
     zplugin load zdharma/zsh-diff-so-fancy
 
     # easier to use `find`
-    zplugin ice as"null" wait"2" lucid from"gh-r" mv"fd* -> fd" sbin"fd/fd"
+    zplugin ice cloneonly wait"2" lucid from"gh-r" mv"fd* -> fd" sbin"fd/fd"
     zplugin load sharkdp/fd
+
+    zplugin ice cloneonly wait"2" lucid from"gh-r" mv"cheat* -> cheat" sbin"cheat"
+    zplugin load cheat/cheat
 
     zplugin ice cloneonly from"gh-r" sbin"g:fzf -> fzf"
     zplugin load junegunn/fzf-bin
