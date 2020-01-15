@@ -78,7 +78,6 @@ echo "127.0.0.1    localhost
         # GRUB bootloader {{{
         pacman -S grub efibootmgr --noconfirm
         grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-        pacman -S os-prober --noconfirm
         grub-mkconfig -o /boot/grub/grub.cfg
         # }}}
         # systemd boot {{{
@@ -171,5 +170,17 @@ git clone git@github.com:ANGkeith/Mousehunt.git ~/Documents/Mousehunt
 
 cd ~/dotfiles; git remote set-url origin git@github.com:ANGkeith/dotfiles.git
 
+#### Dual boot{{{
+# install the windows normally
+
+# tool used to detect windows
+pacman -S os-prober --noconfirm
+
+# update the grub so that the grub splash screen will allow us to select windows
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Make linux use localtime instead of UTC
+timedatectl set-local-rtc 1 --adjust-system-clock
+}}}
 
 # vim: foldmethod=marker
