@@ -53,7 +53,7 @@ border-size = 5
 ; LOCATION ;
 ;----------;
 bottom = false
-monitor = eDP-1
+monitor = ${env:MONITOR:}
 ; hide bar in full screenmode
 wm-restack = bspwm
 override-redirect = false
@@ -84,14 +84,15 @@ line-size = 3
 ;---------------;
 
 fixed-center = true
-padding-left = 1
-padding-right = 1
-module-margin = 0
+padding-left = 0
+padding-right = 0
+module-margin = 1
+separator = |
 
-modules-left = logo sep bspwm
-modules-center = xwindow
+modules-left = logo bspwm
+modules-center = date
 ; modules-right = lan volume temperature cpu uptime date sep2
-modules-right = wlan sep cpu sep memory sep temperature sep brightness sep volume sep date sep system-menu
+modules-right = wlan cpu memory temperature brightness volume battery system-menu
 
 tray-position = right
 tray-detached = false
@@ -180,16 +181,18 @@ label-urgent-padding = 2
 
 [module/date]
 type = internal/date
-time = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{B#C4C7C5}%{F#1C1E20}%{T1} %I:%M %p %{T-B-F-}
-; TODO change the calender icon
-time-alt = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{B#C4C7C5}%{F#1C1E20}%{T1} %A, %e %B %{T-B-F-}
+time = %{T5}%{T-} %I:%M %p
+time-alt = %{T5}%{T-} %A, %e %B
 label = %time%
 format =  <label>
 
 [module/volume]
 type = internal/alsa
-format-volume = %{A1:pactl set-sink-mute 0 toggle:}%{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-volume> %{T-B-F-}%{A}
-format-muted = %{A1:pactl set-sink-mute 0 toggle:}%{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} Muted %{T-B-F-}%{A}
+; format-volume = %{A1:pactl set-sink-mute 0 toggle:}%{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-volume> %{T-B-F-}%{A}
+; format-muted = %{A1:pactl set-sink-mute 0 toggle:}%{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} Muted %{T-B-F-}%{A}
+
+format-volume = %{T5}%{T-} <label-volume>
+format-muted = %{T5}%{T-} Muted
 
 
 [module/temperature]
@@ -199,8 +202,8 @@ thermal-zone = 0
 warn-temperature = 70
 label = %temperature-c%
 label-warn = %temperature-c%
-format = %{T2}%{B#1793d1}%{F#FFFFFF}    %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20}  <label> %{T-B-F-}
-format-warn = %{T2}%{B#1793d1}%{F#FFFFFF}    %{T-B-F-}%{T1}%{B#C4C7C5}%{F#E24c49} <label-warn> %{T-B-F-}
+format = %{T2}%{T-} <label>
+format-warn = %{T2}%{T-} <label-warn>
 
 [module/wlan]
 type = internal/network
@@ -208,21 +211,21 @@ interface = wlp2s0
 interval = 5
 label-connected = "%{A1:nm-connection-editor:}%essid%%{A}"
 label-disconnected = "%{A1:nm-connection-editor:}Not Connected%{A}"
-format-connected = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-connected> %{T-B-F-}
-format-disconnected = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label-disconnected> %{T-B-F-}
+format-connected =%{T5}%{T-} <label-connected>
+format-disconnected = %{T5} %{T-} <label-disconnected>
 
 
 [module/cpu]
 type = internal/cpu
 label = "%percentage%%"
-format = %{T4}%{B#1793d1}%{F#FFFFFF} %{O-4}  %{O-8}%{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label> %{T-B-F-}
+format = %{T4} %{T-} %{O-5}<label>
 
 
 [module/memory]
 type = internal/memory
 ; label = %gb_used%/%gb_total%
 label = %percentage_used%%
-format = %{T5}%{B#1793d1}%{F#FFFFFF}  %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} <label> %{T-B-F-}
+format = %{T5} %{T-}%{T1}<label>%{T-}
 
 [module/battery]
 ; Note - if battery isn't showing, try BAT0 or BAT1, etc.
@@ -230,19 +233,16 @@ type = internal/battery
 
 full-at = 95
 
-battery = BAT1
+battery = BAT0
 adapter = ACAD
 
 poll-interval = 5
 
 format-charging = <animation-charging> <label-charging>
-format-charging-padding = 2
 
 format-full = <ramp-capacity> <label-full>
-format-full-padding = 2
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-padding = 2
 
 label-discharging = %percentage%%
 label-charging = %percentage%%
@@ -272,8 +272,7 @@ content = "%{A1:~/.config/rofi/scripts/menu:} %{O-4}%{A}"
 content-font = 4
 format-prefix-foreground = #5b
 content-padding = 1
-content-foreground = #1C1E20
-content-background = #C4C7C5
+separator = 
 
 [module/brightness]
 
@@ -289,16 +288,13 @@ tail=true
 
 [module/system-menu]
 type = custom/text
-content-padding = 1
-content-foreground = #1C1E20
-content-background = #C4C7C5
 content = "%{A1:~/.config/rofi/scripts/system-menu:}%{A}"
 
 [module/sep]
 type = custom/text
 content = |
-content-foreground = ${color.background}
-content-background = ${color.background}
+; content-foreground = ${color.background}
+; content-background = ${color.background}
 content-padding = 0
 
 [module/sep2]

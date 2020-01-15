@@ -5,10 +5,6 @@ icon=
 # Change this to your primary monitor
 monitor_backlight_supported="eDP-1-1"
 
-
-
-
-
 monitors=($(xrandr --listactivemonitors  | awk '{print $4}')) num_monitors=${#monitors[@]}
 brightness=($(xrandr --verbose | grep Brightness | awk '{print $2}'))
 
@@ -89,7 +85,7 @@ function update() {
 function format-and-save() {
     display_port=$1
     value=$2
-    echo "%{A1:~/.config/polybar/scripts/xrandr toggle:}%{A4:~/.config/polybar/scripts/xrandr inc 0.1:}%{A5:~/.config/polybar/scripts/xrandr dec 0.1:}%{T5}%{B#1793d1}%{F#FFFFFF} $icon  %{T1}$display_port%{T-1} %{T-B-F-}%{T1}%{B#C4C7C5}%{F#1C1E20} $value% %{T-B-F-}%{A}%{A}%{A}" >> $raw_string_that_polybar_reads
+    echo "%{A1:~/.config/polybar/scripts/xrandr toggle:}%{A4:~/.config/polybar/scripts/xrandr inc 0.1:}%{A5:~/.config/polybar/scripts/xrandr dec 0.1:}%{T5}$icon%{T-} $display_port $value%{A}%{A}%{A}" >> $raw_string_that_polybar_reads
 }
 
 case "$1" in
