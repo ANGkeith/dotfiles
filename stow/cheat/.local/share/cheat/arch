@@ -52,16 +52,16 @@ echo "127.0.0.1    localhost
 ::1          localhost
 127.0.1.1    artemis.localdomain    artemis" > /etc/hosts
 
-    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager
+    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager --noconfirm
     # additional instructions
 
-    pacman -S stow git
+    pacman -S stow git --noconfirm
 
     # ssh
     systemctl enable sshd
     systemctl enable NetworkManager
 
-    useradd -m -s /usr/bin/zsh artemis
+    useradd -m -s /usr/bin/zsh angkeith
     # set root passwd
     passwd
     # set angkeith passwd
@@ -76,8 +76,10 @@ echo "127.0.0.1    localhost
     ### Bootloader {{{
     # choose EITHER one
         # GRUB bootloader {{{
-        pacman -S grub efibootmgr
+        pacman -S grub efibootmgr --noconfirm
         grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+        pacman -S os-prober --noconfirm
+        grub-mkconfig -o /boot/grub/grub.cfg
         # }}}
         # systemd boot {{{
         bootctl --path=/boot install
@@ -139,9 +141,10 @@ xrandr --auto" | sudo tee -a /usr/share/sddm/scripts/Xsetup
 # get dotfiles
 cd; git clone https://github.com/ANGkeith/dotfiles.git
 cd dotfiles
-make create_sym_links
+make create_sym_link
 
 sudo reboot
+cd ~/dotfiles
 
 
 
@@ -149,6 +152,7 @@ sudo reboot
 
 
 ### }}}
+sudo systemctl enable sddm.service
 
 # setup ssh keys
 ssh-keygen -t rsa -b 4096 -C "angkeith@github.com"
