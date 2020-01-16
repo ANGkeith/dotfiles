@@ -52,6 +52,11 @@ export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist rnu
 export HISTSIZE=9999999999
 export SAVEHIST=$HISTSIZE
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|\ls --color=tty -la|\ls --color=tty|nvim|gitk)"
+
+# stderred
+export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+# export STDERRED_BLACKLIST="^(bash|test.*)$"
+
 # Respect XDG {{{
 
     # Xauthority

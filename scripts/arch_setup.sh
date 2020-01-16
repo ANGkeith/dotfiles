@@ -70,6 +70,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # Install zsh
     sudo pacman -S zsh --noconfirm
+    yay -S stderred-git --noconfirm
 
 # Desktop applications
     sudo pacman -S sddm --noconfirm
