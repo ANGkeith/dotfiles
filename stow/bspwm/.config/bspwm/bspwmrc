@@ -31,8 +31,12 @@ bspc rule -a Screenkey manage=off
 
 
 ### Floating Applications ###
+# use xprop then look at the `WM_String` field
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Gitk state=floating follow=on
+bspc rule -a Nm-connection-editor state=floating follow=on
+bspc rule -a Pavucontrol state=floating follow=on
+bspc rule -a Timeshift-gtk state=floating follow=on
 
 
 
