@@ -43,3 +43,5 @@ bspc rule -a Timeshift-gtk state=floating follow=on
 ### autostart ###
 # need to place here otherwise polybar gets buggy
 $XDG_CONFIG_HOME/bspwm/autostart.sh
+
+sleep 5; xmodmap $XDG_CONFIG_HOME/Xmodmap
