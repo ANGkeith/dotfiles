@@ -98,6 +98,9 @@ UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
 
 # Volume manager
     sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm
+    # required to play sound over bluetooth
+    sudo pacman -S pulseaudio-bluetooth --noconfirm
+
 
 # Show cpu temperatures (lm-sensors)
     sudo pacman -S i2c-tools --noconfirm
