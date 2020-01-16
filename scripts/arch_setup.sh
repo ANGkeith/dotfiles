@@ -92,10 +92,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # use the theme and set path for Xauthority
 echo "[Theme]
-Current=Sugar-Candy
-
-[X11]
-UserAuthFile=.cache/Xauthority" | sudo tee /etc/sddm.conf
+Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
 # Volume manager
     sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm

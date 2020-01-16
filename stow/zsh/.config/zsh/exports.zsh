@@ -59,8 +59,6 @@ export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 
 # Respect XDG {{{
 
-    # Xauthority
-    export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
     # cargo
     export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
