@@ -212,6 +212,8 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S keychain --noconfirm
     yay -S python-grip --nonconfirm
 
+# cheat
+    git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
 
 reboot
 
