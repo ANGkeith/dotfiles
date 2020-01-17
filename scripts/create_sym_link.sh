@@ -17,4 +17,5 @@ stow -v -S -t ~ * --adopt
 rm ~/.config/konsolerc
 # dont use variable
 cp $HOME/dotfiles/stow/konsole/.config/konsolerc $HOME/.config/konsolerc
+git checkout HEAD $HOME/dotfiles/stow/konsole/.config/konsolerc
 
