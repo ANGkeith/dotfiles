@@ -35,6 +35,9 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 # networking
     sudo pacman -S netcat --noconfirm
     sudo pacman -S wget --noconfirm
+    sudo pacman -S nmap --noconfirm
+    sudo pacman -S lsof --noconfirm
+
     # dig
     sudo pacman -S bind-tools --noconfirm
 
