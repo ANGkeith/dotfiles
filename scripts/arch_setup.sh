@@ -20,7 +20,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 # utils
     # file compression
     sudo pacman -S zip unzip --noconfirm
-    # bluetooth 
+    # bluetooth
     sudo pacman -S bluez bluez-utils --noconfirm
     sudo systemctl enable bluetooth.service
 
@@ -132,6 +132,9 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 # Window Manager
     sudo pacman -S bspwm sxhkd --noconfirm
     yay -S polybar --noconfirm
+
+# notification daemon
+    sudo pacman -S dunst --noconfirm
 
 
 # development
