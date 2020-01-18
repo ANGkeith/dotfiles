@@ -109,3 +109,7 @@ Print
     flameshot gui
 super + Print
     ~/.config/i3/scripts/vimwiki_screenshot
+
+### quick shortcut
+super + F1
+    killall dunst; ~/Documents/Mousehunt/scripts/sad
