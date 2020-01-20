@@ -116,7 +116,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S feh xautolock --noconfirm
     yay -S betterlockscreen --noconfirm
     # Generate cache for betterlockscreen
-    PATH_TO_WALLPAPER="$XDG_CONFIG_HOME"/wallpaper/wallpaper.jpg
+    PATH_TO_WALLPAPER=~/.config/wallpaper/wallpaper.jpg
     if [ -e ${PATH_TO_WALLPAPER} ]; then
         betterlockscreen -u ${PATH_TO_WALLPAPER}
     else
