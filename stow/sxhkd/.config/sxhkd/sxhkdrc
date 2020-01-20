@@ -1,25 +1,18 @@
 #
 # wm independent hotkeys
 #
-
-# terminal emulator
-super + Return
-	konsole
-
 super + d
     $XDG_CONFIG_HOME/rofi/scripts/menu
 
 super + shift + e
     $XDG_CONFIG_HOME/rofi/scripts/system-menu
 
-# bindsym $mod+backslash exec --no-startup-id betterlockscreen -l dim
-
-super + backslash
-    betterlockscreen -l dim
+# super + backslash
+#     betterlockscreen -l dim
 
 # bspwm hotkeys
 # restart bspwm
-super + r
+super + shift + r
 	bspc wm -r
 
 # close and kill
@@ -53,8 +46,8 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -68,8 +61,11 @@ alt + Tab
 super + {_,shift + }grave
 	bspc node -f {next,prev}.local
 
+super + {_,shift + }backtick
+	bspc node -f {next,prev}.local
+
 # focus the older or newer node in the focus history
-super + {o,i}
+super + {o,n}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
@@ -110,6 +106,14 @@ Print
 super + Print
     ~/.config/i3/scripts/vimwiki_screenshot
 
-### quick shortcut
+### Quick shortcut
+super + r; c
+    chromium
+
+super + r; k
+    konsole
+
 super + F1
     killall dunst; ~/Documents/Mousehunt/scripts/sad
+
+### quick shortcut

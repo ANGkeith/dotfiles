@@ -17,6 +17,7 @@ alias dockersrm='docker rm -f $(docker ps -aq)'
 
 # git {{{
 alias ga="git add"
+alias gaa="git add -A"
 alias gb="git branch"
 alias gc="git commit -m"
 alias gcl="git clone"
