@@ -10,8 +10,7 @@ project_root=$(cd $(dirname ${script_root}) && pwd -P)
 sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # Standard folders
-    mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
-
+    mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop 
     sudo pacman -Syu
 
     sudo pacman -S lua --noconfirm
@@ -214,6 +213,9 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S neofetch --noconfirm
     sudo pacman -S keychain --noconfirm
     yay -S python-grip --nonconfirm
+
+# photoshop
+    sudo pacman -S gimp --noconfirm
 
 # cheat
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community

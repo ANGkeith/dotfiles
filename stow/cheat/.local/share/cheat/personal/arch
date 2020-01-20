@@ -183,4 +183,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 timedatectl set-local-rtc 1 --adjust-system-clock
 }}}
 
+
+### Vim{{{
+# run PlugInstall
+# run CocInstall coc-python
+
+### }}}
 # vim: foldmethod=marker
