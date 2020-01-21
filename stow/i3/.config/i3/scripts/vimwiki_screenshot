@@ -1,6 +1,6 @@
 #!/bin/bash
 filename="$(date +\%Y-\%m-\%d)-$(date +\%H-\%M-\%S).png"
-filepath="${HOME}/vimwiki/assets/images/temp/${filename}"
+filepath="${HOME}/Documents/vimwiki/assets/images/temp/${filename}"
 flameshot gui -p /tmp -r > ${filepath}
 # add border to screenshot
 convert -border 2 -bordercolor black ${filepath} ${filepath}

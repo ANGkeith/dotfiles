@@ -126,7 +126,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%a</b>\n\n%s"
+    format = "<b>%a</b>\n\n%s\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -167,7 +167,7 @@
     max_icon_size = 54
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Adwaita/48x48/status/:/usr/share/icons/Adwaita/48x48/devices/:/usr/share/icons/Adwaita/48x48/emblems/
+    icon_path = /usr/share/icons/Adwaita/48x48/status/:/usr/share/icons/Adwaita/48x48/devices/:/usr/share/icons/Adwaita/48x48/emblems/:/usr/share/icons/hicolor/48x48/apps
 
     ### History ###
 
