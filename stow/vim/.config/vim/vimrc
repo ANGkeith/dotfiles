@@ -122,7 +122,8 @@ endif
     nnoremap <c-l> <c-w><c-l>
     nnoremap <c-h> <c-w><c-h>
     " mapping space to toggle pane
-    nnoremap <tab> <c-w>w
+    nnoremap <Bs> <c-w>w
+
 
     " Pane Resize
     " go to insert mode <c-v> <some key> to get the literal terminal keycode
@@ -534,6 +535,8 @@ endif
         nmap s <plug>(SubversiveSubstituteRangeConfirm)
         xmap s <plug>(SubversiveSubstituteRangeConfirm)
         nmap ss <plug>(SubversiveSubstituteWordRangeConfirm)
+        " ie = inner entire buffer
+        onoremap ie :exec "normal! ggVG"<cr>
     " }}}
     " supertab {{{
         let g:SuperTabDefaultCompletionType = "<c-n>"

@@ -155,6 +155,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
     # python
         sudo pacman -S pyenv --noconfirm
+        sudo pacman -S python-pytest --noconfirm
         sudo pacman -S python-pip --noconfirm
         sudo pacman -S python-pipenv --noconfirm
         sudo pacman -S python-virtualenv --noconfirm
