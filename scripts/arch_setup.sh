@@ -4,13 +4,14 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
+
 script_root="$(cd $(dirname $BASH_SOURCE[0]) && pwd -P)"
 project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
 sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
-# Standard folders
-    mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop 
+# Standard folder
+    mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
     sudo pacman -Syu
 
     sudo pacman -S lua --noconfirm
@@ -30,6 +31,8 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     sudo pacman -S network-manager-applet --noconfirm
 
     sudo pacman -S light --noconfirm
+    # file converter
+    sudo pacman -S texlive-most --no-confirm
 
 # networking
     sudo pacman -S netcat --noconfirm
@@ -61,8 +64,14 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     #     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     # neovim
     sudo pacman -S neovim python-pynvim --noconfirm
+
     # used for previewing
     sudo pacman -S bat --noconfirm
+
+    sudo pacman -S emacs --noconfirm
+
+# Spell checker for emacs
+    sudo pacman -S aspell aspell-en --noconfirm
 
 # File manager
     sudo pacman -S nautilus ranger --noconfirm

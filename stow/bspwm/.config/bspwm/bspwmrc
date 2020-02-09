@@ -37,6 +37,7 @@ bspc rule -a Gitk state=floating follow=on
 bspc rule -a Nm-connection-editor state=floating follow=on
 bspc rule -a Pavucontrol state=floating follow=on
 bspc rule -a Timeshift-gtk state=floating follow=on
+bspc rule -a Emacs state=tiled
 
 
 
