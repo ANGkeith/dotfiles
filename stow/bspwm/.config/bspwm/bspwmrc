@@ -8,6 +8,7 @@ done;
 # bspc monitor HDMI-1-2 -d 1 2 3 4 5 6 7 8 9 10
 
 
+bspc desktop -f 1
 ### Gaps ###
 bspc config border_width         3
 bspc config window_gap          12
@@ -44,3 +45,4 @@ bspc rule -a Emacs state=tiled
 ### autostart ###
 # need to place here otherwise polybar gets buggy
 $XDG_CONFIG_HOME/bspwm/autostart.sh
+
