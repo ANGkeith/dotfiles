@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-if [[ ! -f $HOME/.local/lib/zplugin/zplugin.zsh ]];then
+if [[ ! -f $HOME/.local/lib/zinit/zinit.zsh ]];then
     # Install the zplug
-    echo "zplugin not found. Attempting to install."
-    git clone https://github.com/zdharma/zplugin $HOME/.local/lib/zplugin
+    echo "zinit not found. Attempting to install."
+    git clone https://github.com/zdharma/zinit $HOME/.local/lib/zinit
 fi
 
 if [[ ! -f $HISTFILE ]];then

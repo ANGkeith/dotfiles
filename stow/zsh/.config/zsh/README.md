@@ -8,12 +8,12 @@ The following shows the order in which the files will be sourced:
   points to the directory that zsh looks for startup files (ie. `.zshrc`) from.
 * `.zshrc` - main file to load the rest, exports system variables, extends path
 * `exports.zsh` - contains all the environment variables
-* `plugins.zsh` - contains all the list of plugins managed by `zplugin`
+* `plugins.zsh` - contains all the list of plugins managed by `zinit`
 * `themes` - contains the themes
 * `lazy_load.zsh` - contains non-essential slow functions that can be loaded on
   demand
 
-## zplugins turbo mode
+## zinit turbo mode
 
 The following files will be ran after all the plugin has been loaded in the
 'turbo' mode so that it can override plugins configurations

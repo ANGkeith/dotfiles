@@ -106,12 +106,12 @@ export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
     # z.lua
     export _ZL_DATA="$XDG_DATA_HOME/z"
 
-    # zplugin
+    # zinit
     declare -A ZPLGM
-    export ZPLGM[BIN_DIR]="$HOME/.local/bin/zplugin"
-    export ZPLGM[HOME_DIR]="$XDG_DATA_HOME/zplugin"
-    export ZPLGM[PLUGINS_DIR]="$XDG_DATA_HOME/zplugin/plugins"
-    export ZPLGM[SNIPPETS_DIR]="$XDG_DATA_HOME/zplugin/snippets"
+    export ZPLGM[BIN_DIR]="$HOME/.local/bin/zinit"
+    export ZPLGM[HOME_DIR]="$XDG_DATA_HOME/zinit"
+    export ZPLGM[PLUGINS_DIR]="$XDG_DATA_HOME/zinit/plugins"
+    export ZPLGM[SNIPPETS_DIR]="$XDG_DATA_HOME/zinit/snippets"
     export ZPLGM[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zcompdump"
 
 # }}}
