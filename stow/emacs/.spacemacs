@@ -27,6 +27,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-ask-for-lazy-installation t
 
    ;; List of additional paths where to look for configuration layers.
+
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
 
@@ -71,7 +72,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(indent-guide column-enforce-mode)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -183,15 +184,14 @@ It should only modify the values of Spacemacs settings."
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
-   ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
-   ;; (default nil)
+   ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!" ;; (default nil)
    dotspacemacs-initial-scratch-message nil
 
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+                         monokai)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -224,7 +224,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
-   dotspacemacs-emacs-leader-key "M-m"
+   dotspacemacs-emacs-leader-key nil
 
    ;; Major mode leader key is a shortcut key which is the equivalent of
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
@@ -232,7 +232,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m")
-   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   dotspacemacs-major-mode-emacs-leader-key nil
 
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs `C-i', `TAB' and `C-m', `RET'.
@@ -240,7 +240,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -319,12 +319,12 @@ It should only modify the values of Spacemacs settings."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 100
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 100
 
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
@@ -453,6 +453,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
   (setq
    dotspacemacs-default-font '("Source Code Pro"
                                     :size 14.0
@@ -461,6 +462,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
    dotspacemacs-line-numbers 'relative
    dotspacemacs-which-key-delay 0.1
    dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5))
+
   )
 
 (defun dotspacemacs/user-load ()
@@ -476,6 +478,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
   (add-hook 'treemacs-mode-hook (lambda  () (treemacs-resize-icons 14)))
 
   ;; org-mode auto launch browser when export to html and open
@@ -490,10 +493,102 @@ before packages are loaded."
   (set-face-attribute 'mode-line nil :box nil)
   (set-face-attribute 'mode-line-inactive nil :box nil)
 
-  ;; set inactive powerline to bg color
-  (set-face-attribute 'powerline-inactive1 nil :background "#292b2e")
-  (set-face-attribute 'powerline-inactive2 nil :background "#292b2e")
+  ;; override mode-line color
+  (set-face-attribute 'mode-line nil :background "#3f3f3f")
+  (set-face-attribute 'mode-line nil :background "#3f3f3f")
+  (set-face-attribute 'powerline-inactive1 nil :background "#3f3f3f")
+  (set-face-attribute 'powerline-inactive2 nil :background "#3f3f3f")
+
+  ;; allow transparency
+  (set-frame-parameter (selected-frame) 'alpha
+                       (list dotspacemacs-active-transparency
+                             dotspacemacs-inactive-transparency))
+
+  ;; show column indicator
+  (setq fci-rule-column 80 fci-rule-color "#3f3f3f")
+  (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
+  (my-global-fci-mode 1)
+
+  ;; better mouse scrolling experience
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+  ;; custom highlight-indentation
+  (defun my-set-highlight-stipple ()
+    ;; See https://github.com/antonj/Highlight-Indentation-for-Emacs/issues/16
+    (let* ((char-width (frame-char-width (selected-frame)))
+          (hl-stipple (if (> char-width 8)
+                          (list char-width 1 (string 16 0 0 0 0 0 0 0))
+                        (list char-width 1 (string 16 0 0 0)))))
+      (set-face-attribute 'highlight-indentation-face nil
+                          :stipple hl-stipple
+                          :foreground "#3f3f3f"
+                          :inherit nil)
+      (set-face-attribute 'highlight-indentation-current-column-face nil
+                          :stipple hl-stipple
+                          :background "#292e34"
+                          :foreground "#5f5f5f"
+                          :inherit nil)
+    ))
+  ;; enable indent line
+  (add-hook 'prog-mode-hook 'highlight-indentation-mode)
+
+  ;; Patch highlight-indentation-mode to set/update a stipple attribute
+  (defadvice highlight-indentation-mode (before set-highlight-indentation-stipple activate)
+  "Sets the stipple used by indentation highlighting"
+    (my-set-highlight-stipple))
+
+  (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
+  (my-global-fci-mode 1)
+
+  ;; Turn off the tildes in the fringe
+  (global-vi-tilde-fringe-mode -1)
+
+  ;; Disable annoying `Symbolic link to Git-controlled source file; follow link? (y or n)` message
+  (setq vc-follow-symlinks nil)
+  ;; (scroll-bar-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(hl-todo-keyword-faces
+   (quote
+    (("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7")
+     ("OKAY" . "#4f97d7")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#86dc2f")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f"))))
+ '(initial-buffer-choice t)
+ '(package-selected-packages
+   (quote
+    (highlight-indent-guides yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here tagedit symon symbol-overlay string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lorem-ipsum live-py-mode link-hint indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-popup flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word cython-mode company-web company-statistics company-lsp company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+ '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)

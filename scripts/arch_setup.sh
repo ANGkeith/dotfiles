@@ -70,6 +70,9 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
     sudo pacman -S emacs --noconfirm
 
+    # emacs dependency
+    yay -S python-epc python-importmagic
+
 # Spell checker for emacs
     sudo pacman -S aspell aspell-en --noconfirm
 
