@@ -104,7 +104,7 @@ XF86MonBrightnessDown
 Print
     flameshot gui
 super + Print
-    ~/.config/i3/scripts/vimwiki_screenshot
+    ~/dotfiles/utils_script/org_screenshot
 
 ### Quick shortcut
 super + r; c
