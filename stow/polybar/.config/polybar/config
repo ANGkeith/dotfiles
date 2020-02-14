@@ -1,6 +1,6 @@
 [color]
-background = #5f3f3f3f
-; background = #0f1793d1
+; background = #5f3f3f3f
+background = #1f1793d1
 background-alt = #444
 foreground = #dfdfdf
 foreground-alt = #555
