@@ -145,6 +145,13 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S bspwm sxhkd --noconfirm
     yay -S polybar --noconfirm
 
+# gtk themes
+    # create filepath for configurations
+    mkdir -p ~/.config/gtk-1.0
+    mkdir -p ~/.config/gtk-2.0
+
+    sudo pacman -S lxappearance
+
 # notification daemon
     sudo pacman -S dunst --noconfirm
 
