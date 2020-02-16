@@ -79,6 +79,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # File manager
     sudo pacman -S nautilus ranger --noconfirm
+    yay -S nautilus-dropbox dropbox
 
 # Install git and dependency for gitk
     sudo pacman -S git tk --noconfirm
@@ -143,6 +144,8 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
 # Window Manager
     sudo pacman -S bspwm sxhkd --noconfirm
+    # used to check the keycode using `xev`
+    sudo pacman -S xorg-xev --noconfirm
     yay -S polybar --noconfirm
 
 # gtk themes
