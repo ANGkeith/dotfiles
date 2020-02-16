@@ -151,7 +151,7 @@ endif
     nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
     " Toggle between buffer
-    nnoremap \\ :b#<cr>
+    nnoremap <space><tab> :b#<cr>
 
     " Allow saving of files as sudo when I forgot to start vim using sudo.
     cmap w!! w !sudo tee > /dev/null %
