@@ -1,6 +1,6 @@
 #!/bin/bash
 filename="$(date +\%Y-\%m-\%d)-$(date +\%H-\%M-\%S).png"
-filedir="${HOME}/Documents/org/assets/images/"
+filedir="${HOME}/Dropbox/org/assets/images/"
 filepath="${filedir}${filename}"
 
 if [[ ! -d ${filedir} ]]; then
