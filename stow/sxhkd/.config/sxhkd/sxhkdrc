@@ -119,3 +119,5 @@ super + F1
     killall dunst; ~/Documents/Mousehunt/scripts/sad
 
 ### quick shortcut
+super + q
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratch_konsole

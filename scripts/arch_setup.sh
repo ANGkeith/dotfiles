@@ -34,6 +34,9 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     # file converter
     sudo pacman -S texlive-most --no-confirm
 
+    # use for managing window nodes
+    sudo pacman -S xdo --no-confirm
+
 # networking
     sudo pacman -S netcat --noconfirm
     sudo pacman -S wget --noconfirm
