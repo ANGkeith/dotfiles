@@ -67,9 +67,9 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
     # used for previewing
     sudo pacman -S bat --noconfirm
-
     sudo pacman -S emacs --noconfirm
     git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.a
+    git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
     # emacs dependency
     yay -S python-epc python-importmagic
