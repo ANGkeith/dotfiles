@@ -8,6 +8,9 @@ kill_and_rerun() {
 }
 
 kill_and_rerun picom -b
+
+kill_and_rerun dropbox &> /dev/null
+
 $HOME/.config/polybar/launch.sh
 
 kill_and_rerun sxhkd -c ~/.config/sxhkd/sxhkdrc

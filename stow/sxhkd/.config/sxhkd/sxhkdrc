@@ -113,7 +113,7 @@ super + r; k
     konsole
 
 super + r; e
-    emacs
+    emacsclient -c
 
 super + F1
     killall dunst; ~/Documents/Mousehunt/scripts/sad
