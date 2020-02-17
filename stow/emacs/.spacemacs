@@ -597,6 +597,15 @@ before packages are loaded."
   (define-key evil-visual-state-map "\\y" (lambda () (interactive) (kbd "\"+y"))) 
   (which-key-add-key-based-replacements "\\y" "Yank from system clipboard") 
 
+
+  ;; Syntax highlighting for sxhkdrc
+  (define-generic-mode sxhkd-mode
+    '(?#)
+    '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift")
+    nil
+    '("sxhkdrc")
+    nil
+    "Simple mode for sxhkdrc files.")
 )
 
 
