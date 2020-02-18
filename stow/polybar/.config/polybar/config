@@ -123,19 +123,19 @@ spacing = 4
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${color.background-alt}
 label-focused-underline= ${color.primary}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${color.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${color.foreground-alt}
 label-empty-padding = 2
 

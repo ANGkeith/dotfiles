@@ -1,12 +1,20 @@
 #!/bin/zsh
 
 ### Monitors ###
-monitors=($(xrandr --listactivemonitors  | awk '{print $4}')) num_monitors=${#monitors[@]}
-for monitor in $monitors; do
-    bspc monitor $monitor -d 1 2 3 4 5 6 7 8 9 10;
-done;
-# bspc monitor HDMI-1-2 -d 1 2 3 4 5 6 7 8 9 10
+monitors=($(xrandr --listactivemonitors  | awk '{print $4}'))
+num_monitors=${#monitors[@]}
+display_mode=$(mons | awk 'NR==2 {print $2}')
 
+if [[ $num_monitors -gt 1 ]]; then
+    if [[ $display_mode = "extend" ]]; then
+        bspc monitor $monitors[1] -d 1;
+        bspc monitor $monitors[2] -d 2 3 4 5 6 7 8 9 10;
+    else
+        bspc monitor $monitors[$num_monitors] -d 1 2 3 4 5 6 7 8 9 10;
+    fi
+else
+    bspc monitor $monitors[1] -d 1 2 3 4 5 6 7 8 9 10;
+fi
 
 bspc desktop -f 1
 ### Gaps ###

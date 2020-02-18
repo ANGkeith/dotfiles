@@ -151,6 +151,9 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S xorg-xev --noconfirm
     yay -S polybar --noconfirm
 
+    # Used for extending monitors
+    yay -S mons --noconfirm
+
 # gtk themes
     # create filepath for configurations
     mkdir -p ~/.config/gtk-1.0
