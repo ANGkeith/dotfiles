@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      python
+     docker
      auto-completion
      better-defaults
      emacs-lisp
@@ -66,7 +67,9 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      keychain-environment
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -455,7 +458,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   (setq
    dotspacemacs-default-font '("Source Code Pro"
-                                    :size 14.0
+                                    :size 10.0
                                     :weight normal
                                     :width normal)
    dotspacemacs-line-numbers 'relative
@@ -532,20 +535,17 @@ before packages are loaded."
     ))
   ;; enable indent line
   (add-hook 'prog-mode-hook 'highlight-indentation-mode)
-
   ;; Patch highlight-indentation-mode to set/update a stipple attribute
   (defadvice highlight-indentation-mode (before set-highlight-indentation-stipple activate)
   "Sets the stipple used by indentation highlighting"
     (my-set-highlight-stipple))
-
-  (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
-  (my-global-fci-mode 1)
 
   ;; Turn off the tildes in the fringe
   (global-vi-tilde-fringe-mode -1)
 
   ;; Disable annoying `Symbolic link to Git-controlled source file; follow link? (y or n)` message
   (setq vc-follow-symlinks nil)
+
   (scroll-bar-mode 1)
 
   ;; org mode configurations
@@ -555,18 +555,18 @@ before packages are loaded."
    org-refile-targets '((org-agenda-files :maxlevel . 6))
    org-default-notes-file (concat org-directory "notes.org"))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
-  
+
   ;; unbind `evil-execute-in-emacs-state`
   (define-key evil-motion-state-map "\\" nil)
 
   ;; kbd to go to main org file
-  (define-key evil-motion-state-map "\\o" 
-    (lambda () (interactive) (find-file (concat org-directory "notes.org")))) 
+  (define-key evil-motion-state-map "\\o"
+    (lambda () (interactive) (find-file (concat org-directory "notes.org"))))
   (which-key-add-key-based-replacements
-    "\\o" "Go to main org file") 
+    "\\o" "Go to main org file")
 
   ;; remap backspace to go to next window
-  (define-key evil-motion-state-map [backspace] 'evil-window-next) 
+  (define-key evil-motion-state-map [backspace] 'evil-window-next)
 
   ;; make calendar to always use window below
   (add-to-list 'display-buffer-alist
@@ -574,28 +574,28 @@ before packages are loaded."
                  (display-buffer-below-selected)))
 
   ;; use register for evil-mode yank/paste
-  (setq select-enable-clipboard nil) 
+  (setq select-enable-clipboard nil)
   (defun toggle-evil-mode-system-clipboard ()
     "Toggle between system/register clipboard"
     (interactive)
     ;; use a property “state”. Value is t or nil
     (if (get 'toggle-evil-mode-system-clipboard 'state)
         (progn
-          (setq select-enable-clipboard nil) 
+          (setq select-enable-clipboard nil)
           (put 'toggle-evil-mode-system-clipboard 'state nil)
           (message "evil-mode using register"))
       (progn
-        (setq select-enable-clipboard t) 
+        (setq select-enable-clipboard t)
         (put 'toggle-evil-mode-system-clipboard 'state t)
         (message "evil-mode using system"))
-      )) 
-  (define-key evil-motion-state-map "\\c" 
-    (lambda () (interactive) (toggle-evil-mode-system-clipboard))) 
+      ))
+  (define-key evil-motion-state-map "\\c"
+    (lambda () (interactive) (toggle-evil-mode-system-clipboard)))
 
-  (define-key evil-motion-state-map "\\p" (lambda () (interactive) (kbd "\"+p"))) 
-  (which-key-add-key-based-replacements "\\p" "Paste from system clipboard") 
-  (define-key evil-visual-state-map "\\y" (lambda () (interactive) (kbd "\"+y"))) 
-  (which-key-add-key-based-replacements "\\y" "Yank from system clipboard") 
+  (define-key evil-motion-state-map "\\p" (lambda () (interactive) (kbd "\"+p")))
+  (which-key-add-key-based-replacements "\\p" "Paste from system clipboard")
+  (define-key evil-visual-state-map "\\y" (lambda () (interactive) (kbd "\"+y")))
+  (which-key-add-key-based-replacements "\\y" "Yank from system clipboard")
 
 
   ;; Syntax highlighting for sxhkdrc
@@ -606,6 +606,16 @@ before packages are loaded."
     '("sxhkdrc")
     nil
     "Simple mode for sxhkdrc files.")
+
+  ;; Run/highlight code using babel in org-mode
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (shell . t)
+     (python . t)
+     ))
+  ;; Don't prompt before running code in org
+  (setq org-confirm-babel-evaluate nil)
 )
 
 
@@ -642,7 +652,7 @@ This function is called at the very end of Spacemacs initialization."
  '(initial-buffer-choice t)
  '(package-selected-packages
    (quote
-    (yaml-mode highlight-indent-guides yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here tagedit symon symbol-overlay string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lorem-ipsum live-py-mode link-hint indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-popup flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word cython-mode company-web company-statistics company-lsp company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+    (dockerfile-mode docker tablist json-mode docker-tramp json-snatcher json-reformat ranger keychain-environment yaml-mode highlight-indent-guides yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here tagedit symon symbol-overlay string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lorem-ipsum live-py-mode link-hint indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-popup flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word cython-mode company-web company-statistics company-lsp company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
