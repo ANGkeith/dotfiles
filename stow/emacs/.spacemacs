@@ -611,12 +611,11 @@ before packages are loaded."
       ))
   (define-key evil-motion-state-map "\\c"
     (lambda () (interactive) (toggle-evil-mode-system-clipboard)))
-
-  (define-key evil-motion-state-map "\\p" (lambda () (interactive) (kbd "\"+p")))
+  (evil-define-key 'normal global-map (kbd "\\p") (kbd "\"+p"))
   (which-key-add-key-based-replacements "\\p" "Paste from system clipboard")
-  (define-key evil-visual-state-map "\\y" (lambda () (interactive) (kbd "\"+y")))
-  (which-key-add-key-based-replacements "\\y" "Yank from system clipboard")
-
+  (evil-define-key 'visual global-map (kbd "\\y") (kbd "\"+y"))
+  ;; can use `C-h c` or `C-h k' to get kbd representation
+  (evil-define-key 'insert global-map (kbd "C-S-v") (kbd "<escape>\"+pa"))
 
   ;; Syntax highlighting for sxhkdrc
   (define-generic-mode sxhkd-mode
