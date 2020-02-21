@@ -1,0 +1,4 @@
+#!/bin/bash
+# linter for Dockerfile for spacemacs
+
+docker run --rm -i hadolint/hadolint < Dockerfile
