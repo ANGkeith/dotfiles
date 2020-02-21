@@ -464,7 +464,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
    dotspacemacs-line-numbers 'relative
    dotspacemacs-which-key-delay 0.1
    dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5))
-
   )
 
 (defun dotspacemacs/user-load ()
@@ -473,6 +472,27 @@ This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
   )
+
+(defun my-indent (n)
+  (message "Code style: (n=%d)" n)
+  (setq indent-tabs-mode nil)
+  ;; java/c/c++
+  (setq-local c-basic-offset n)
+  ;; web development
+  (setq-local coffee-tab-width n) ; coffeescript
+  (setq-local javascript-indent-level n) ; javascript-mode
+  (setq-local js-indent-level n) ; js-mode
+  (setq-local js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq-local web-mode-css-indent-offset n) ; web-mode, css in html file
+  (setq-local web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq-local css-indent-offset n) ; css-mode
+  (setq-local tab-width n)
+  )
+
+(defun my-setup-develop-environment-for-indentation ()
+  (interactive)
+  (my-indent 2))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -616,7 +636,10 @@ before packages are loaded."
      ))
   ;; Don't prompt before running code in org
   (setq org-confirm-babel-evaluate nil)
-)
+
+  (add-hook 'prog-mode-hook 'my-setup-develop-environment-for-indentation)
+  )
+
 
 
 ;; Do not write anything past this comment. This is where Emacs will
