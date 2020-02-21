@@ -561,7 +561,7 @@ before packages are loaded."
     (my-set-highlight-stipple))
 
   ;; Turn off the tildes in the fringe
-  (global-vi-tilde-fringe-mode -1)
+  (spacemacs/toggle-vi-tilde-fringe-off) 
 
   ;; Disable annoying `Symbolic link to Git-controlled source file; follow link? (y or n)` message
   (setq vc-follow-symlinks nil)
@@ -638,6 +638,9 @@ before packages are loaded."
   (setq org-confirm-babel-evaluate nil)
 
   (add-hook 'prog-mode-hook 'my-setup-develop-environment-for-indentation)
+
+  (define-key evil-motion-state-map " fed"
+    (lambda () (interactive) (find-file "~/dotfiles/stow/emacs/.spacemacs"))) 
   )
 
 
