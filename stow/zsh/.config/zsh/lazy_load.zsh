@@ -4,7 +4,7 @@
 # by checking whether __init_nvm is a function.
 if [ -s "$NVM_SOURCE/nvm.sh" ] && [ ! "$(type -w __init_nvm)" = "__init_nvm: function" ]; then
   # nvim depends on npm
-  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack' 'nvim' )
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack' 'nvim' 'emacs' )
   function __init_nvm() {
     for i in "${__node_commands[@]}"; do unalias $i; done
     [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
