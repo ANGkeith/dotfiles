@@ -63,7 +63,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # File manager
     sudo pacman -S nautilus ranger --noconfirm
-    yay -S nautilus-dropbox dropbox
+    yay -S nautilus-dropbox dropbox --noconfirm
 
 # Install git and dependency for gitk
     sudo pacman -S git tk --noconfirm
@@ -205,7 +205,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
         # Dependency
-        yay -S python-epc python-importmagic
+        yay -S python-epc python-importmagic --noconfirm
 
         # Spell checker for emacs
         sudo pacman -S aspell aspell-en --noconfirm
@@ -222,8 +222,8 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
             sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm
 
             # bash
-            yay -S bashate
-            yay -S shellcheck-static
+            yay -S bashate --noconfirm
+            yay -S shellcheck-static --noconfirm
 
 
 # maintanence
