@@ -61,25 +61,6 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     sudo pacman -S ripgrep --noconfirm
     sudo pacman -S the_silver_searcher --noconfirm
 
-# Text editor
-    # vim plugin manager
-    # curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    #     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    # neovim
-    sudo pacman -S neovim python-pynvim --noconfirm
-
-    # used for previewing
-    sudo pacman -S bat --noconfirm
-    sudo pacman -S emacs --noconfirm
-    systemctl --user enable --now emacs
-    git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
-    # emacs dependency
-    yay -S python-epc python-importmagic
-
-# Spell checker for emacs
-    sudo pacman -S aspell aspell-en --noconfirm
-
 # File manager
     sudo pacman -S nautilus ranger --noconfirm
     yay -S nautilus-dropbox dropbox
@@ -196,22 +177,50 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         # for vim-coc integration
         sudo pacman -S python-pynvim python-jedi --noconfirm
 
-
     # nodejs
         yay -S nvm --noconfirm
+
+        NVM_SOURCE=/usr/share/nvm
+        [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
+        # depenency for nvim coc plugin
+        nvm install 12.16.1
+        nvm alias default 12.16.1
+        nvm use default
+
+        # To upgrade nvm use the following:
+        # nvm install <version> --reinstall-packages-from=node
+        # nvm alias default <version>
+        # Remember to update hardcode path in `vimrc` and `.spacemacs`
 
     # ??
         sudo pacman -S perl-json --noconfirm
 
+    # Text editor
+        # neovim
+        sudo pacman -S neovim python-pynvim --noconfirm
+        npm install -g neovim
+
+        # used for previewing sudo pacman -S bat --noconfirm
+
+        # emacs
+        sudo pacman -S emacs --noconfirm
+        systemctl --user enable --now emacs
+        git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
+        # Dependency
+        yay -S python-epc python-importmagic
+
+        # Spell checker for emacs
+        sudo pacman -S aspell aspell-en --noconfirm
+
+        # lsp
+        sudo pacman -S python-language-server
+        npm install -g dockerfile-language-server-nodejs
+
+
 # maintanence
     yay -S timeshift --noconfirm
     sudo systemctl enable --now cronie.service
-
-    NVM_SOURCE=/usr/share/nvm
-    [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
-    # depenency for nvim coc plugin
-    nvm install 10.18.0
-    # nvm alias default 10.18.0
 
 # fonts
     # to resolve nerd-fonts-complete error
@@ -251,4 +260,3 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
 
 reboot
-

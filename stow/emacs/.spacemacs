@@ -457,6 +457,22 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
+  ;; Using linters instead of lsp for flycheck
+  ;; (add-hook 'python-mode-hook (lambda ()
+  ;;                               (setq flycheck-checker 'python-pylint
+  ;;                                     flycheck-checker-error-threshold 900
+  ;;                                     flycheck-pylintrc "~/.pylintrc")))
+  (add-hook 'python-mode-hook (lambda ()
+                                (flycheck-select-checker 'python-pylint)
+                                ))
+  (add-hook 'dockerfile-mode-hook (lambda ()
+                                    (flycheck-select-checker 'dockerfile-hadolint)
+                                ))
+
+  (setq exec-path
+        (append exec-path
+                (list (concat user-home-directory ".local/share/nvm/versions/node/v12.16.1/bin"))))
+
   (setq
    dotspacemacs-default-font '("Source Code Pro"
                                     :size 10.0
@@ -646,6 +662,7 @@ before packages are loaded."
   ;; bindings for mouse forward and backward
   (define-key (current-global-map) (kbd "<mouse-9>") 'next-buffer)
   (define-key (current-global-map) (kbd "<mouse-8>") 'previous-buffer)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
