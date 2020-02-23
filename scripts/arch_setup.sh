@@ -171,9 +171,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         sudo pacman -S python-virtualenv --noconfirm
         sudo pacman -S python-virtualenvwrapper --noconfirm
 
-        # linters
-        sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm
-
         # for vim-coc integration
         sudo pacman -S python-pynvim python-jedi --noconfirm
 
@@ -216,6 +213,17 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         # lsp
         sudo pacman -S python-language-server
         npm install -g dockerfile-language-server-nodejs
+        npm install -g bash-language-server
+
+
+        # linters
+
+            # python
+            sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm
+
+            # bash
+            yay -S bashate
+            yay -S shellcheck-static
 
 
 # maintanence

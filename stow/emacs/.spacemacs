@@ -54,6 +54,8 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     (shell-scripts :variables
+                    shell-scripts-backend 'lsp)
      (spell-checking :variables
                      enable-flyspell-auto-completion t)
      syntax-checking
@@ -468,6 +470,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (add-hook 'dockerfile-mode-hook (lambda ()
                                     (flycheck-select-checker 'dockerfile-hadolint)
                                 ))
+  (add-hook 'sh-mode-hook (lambda ()
+                                    (flycheck-select-checker 'sh-shellcheck)
+                                    ))
 
   (setq exec-path
         (append exec-path
