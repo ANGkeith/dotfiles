@@ -674,4 +674,30 @@ before packages are loaded."
   (setq
    dotspacemacs-auto-save-file-location 'cache
    auto-save-timeout 10)
-  )
+
+  ;; This is a forked version of the original function
+  (defun my-git-gutter+-revert-hunks ()
+    "Revert hunk at point. If region is active, revert all hunks within the region. Without prompt"
+    (interactive)
+    (let* ((diffinfos (git-gutter+-selected-diffinfos))
+           (one-diffinfo-p (= 1 (length diffinfos))))
+      (dolist (diffinfo (nreverse diffinfos))
+        (git-gutter+-do-revert-hunk diffinfo))
+      ))
+
+  ;; bindings for hunks
+  (define-key evil-motion-state-map (kbd "\\hh") 'git-gutter+-show-hunk-inline-at-point)
+  (define-key evil-motion-state-map (kbd "\\hu") 'git-gutter+-revert-hunk) ;; hunk undo
+  (define-key evil-motion-state-map (kbd "\\hs") 'git-gutter+-stage-hunks) ;; hunk stage
+
+  ;; use `c` instead of `h` for next/previous hunk
+  (define-key evil-motion-state-map (kbd "[c") 'spacemacs/vcs-previous-hunk)
+  (define-key evil-motion-state-map (kbd "]c") 'spacemacs/vcs-next-hunk)
+  (define-key evil-normal-state-map (kbd "[h") nil)
+  (define-key evil-normal-state-map (kbd "]h") nil)
+
+  ;; used `gb` instead of `:ls`
+  (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
+
+  (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
+)
