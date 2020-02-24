@@ -43,8 +43,12 @@ zinit load zinit-zsh/z-a-bin-gem-node
 
     # zinit ice wait lucid
     # zinit snippet OMZ::plugins/z/z.sh
-    zinit ice as"null" atload'eval "$(lua z.lua --init zsh enhanced once fzf)"'
-    zinit load https://github.com/skywind3000/z.lua
+    if [[ -z $(which lua) ]]; then
+        echo "lua executable missing"
+    else
+        zinit ice as"null" atload'eval "$(lua z.lua --init zsh enhanced once fzf)"'
+        zinit load https://github.com/skywind3000/z.lua
+    fi
 
     zinit wait lucid for hlissner/zsh-autopair
 
@@ -70,6 +74,9 @@ zinit load zinit-zsh/z-a-bin-gem-node
 
     zinit ice cloneonly wait"2" lucid from"gh-r" mv"cheat* -> cheat" sbin"cheat"
     zinit load cheat/cheat
+
+    # for raspberry, fzf need bpick *arm8*
+    # zinit ice cloneonly bpick"*arm8*" from"gh-r" sbin"g:fzf -> fzf"
 
     zinit ice cloneonly from"gh-r" sbin"g:fzf -> fzf"
     zinit load junegunn/fzf-bin

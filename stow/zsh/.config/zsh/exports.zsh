@@ -54,7 +54,12 @@ export SAVEHIST=$HISTSIZE
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|\ls --color=tty -la|\ls --color=tty|nvim|gitk)"
 
 # stderred
-export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+if [[ -x /usr/lib/libstderred.so ]]; then
+    export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+else
+    echo "Missing libstderred package"
+fi
+
 # export STDERRED_BLACKLIST="^(bash|test.*)$"
 
 # Respect XDG {{{
