@@ -604,9 +604,18 @@ before packages are loaded."
   (which-key-add-key-based-replacements
     "\\o" "Go to main org file")
 
+
+  (defun my-ctrl-p ()
+    (interactive)
+    (condition-case err
+        (helm-projectile-find-file)
+      ;; if not in a project
+      (error (helm-projectile-switch-project)))
+    )
+
   (with-eval-after-load 'evil-maps
-    (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
-    (define-key evil-motion-state-map (kbd "C-p") 'helm-projectile-find-file))
+    (define-key evil-normal-state-map (kbd "C-p") 'my-ctrl-p)
+    (define-key evil-motion-state-map (kbd "C-p") 'my-ctrl-p))
 
   ;; remap backspace to go to next window
   (define-key evil-motion-state-map [backspace] 'evil-window-next)
