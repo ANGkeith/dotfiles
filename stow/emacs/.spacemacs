@@ -713,4 +713,10 @@ before packages are loaded."
   (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
 
   (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
+
+  ;; display visual hint when yanking
+  (evil-goggles-mode)
+  (setq evil-goggles-async-duration 2.0)
+  (setq evil-goggles-blocking-duration 2.0)
+
 )
