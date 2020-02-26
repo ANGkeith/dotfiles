@@ -3,7 +3,7 @@
 super + d
     $XDG_CONFIG_HOME/rofi/scripts/menu
 
-super + shift + e
+super + shift + d
     $XDG_CONFIG_HOME/rofi/scripts/system-menu
 
 # super + backslash
@@ -125,5 +125,10 @@ super + q
 super + a
     ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratch_konsole "2"
 
+# toggle scratchpad e
 super + e
-    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratchpad "emacsclient -c -a emacs" "scratchpad_emacsclient1"
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/toggle_bookmark "scratchpad_e"
+
+# set current focus to scratchpad e
+super + shift + e
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/bookmark_current_focused_node "scratchpad_e"

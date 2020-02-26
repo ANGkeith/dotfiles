@@ -1,0 +1,14 @@
+#!/bin/sh
+# $1: A unique identifier for this scratchpad
+
+
+if [ -n "$XDG_CACHE_HOME" ]; then
+    SCRATCH_DIR="$XDG_CACHE_HOME"/my-scratchpad
+else
+    SCRATCH_DIR="$HOME"/.cache/my-scratchpad
+fi
+
+# get current focused id
+current_node_id=$(bspc query -N -n "focused")
+bspc node "$current_node_id" --flag sticky --flag locked --state floating -f
+echo "$current_node_id" > "$SCRATCH_DIR"/"$1"

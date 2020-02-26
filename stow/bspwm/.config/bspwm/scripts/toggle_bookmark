@@ -1,0 +1,13 @@
+#!/bin/sh
+# $1: A unique identifier for this scratchpad
+
+if [ -n "$XDG_CACHE_HOME" ]; then
+    SCRATCH_DIR="$XDG_CACHE_HOME"/my-scratchpad
+else
+    SCRATCH_DIR="$HOME"/.cache/my-scratchpad
+fi
+
+if [ -f "$SCRATCH_DIR"/"$1" ]; then
+    scratchpad_id=$(cat "$SCRATCH_DIR"/"$1")
+    bspc node "$scratchpad_id" --flag hidden -f
+fi
