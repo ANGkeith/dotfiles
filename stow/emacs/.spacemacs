@@ -584,19 +584,23 @@ before packages are loaded."
   (scroll-bar-mode 1)
 
   ;; org mode configurations
-  (setq
-   org-directory "~/Dropbox/org/"
-   org-agenda-files (concat org-directory "agenda.org")
-   org-refile-targets '((org-agenda-files :maxlevel . 6))
-   org-default-notes-file (concat org-directory "notes.org"))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
+
+  (defun my-go-to-org ()
+    (interactive)
+    (setq
+     org-directory "~/Dropbox/org/"
+     org-agenda-files (concat org-directory "agenda.org")
+     org-refile-targets '((org-agenda-files :maxlevel . 6))
+     org-default-notes-file (concat org-directory "notes.org"))
+    (find-file (concat org-directory "notes.org") ))
 
   ;; unbind `evil-execute-in-emacs-state`
   (define-key evil-motion-state-map "\\" nil)
 
   ;; kbd to go to main org file
   (define-key evil-motion-state-map "\\o"
-    (lambda () (interactive) (find-file (concat org-directory "notes.org"))))
+    (lambda () (interactive) (my-go-to-org)))
   (which-key-add-key-based-replacements
     "\\o" "Go to main org file")
 
@@ -687,7 +691,7 @@ before packages are loaded."
 
   ;; bindings for hunks
   (define-key evil-motion-state-map (kbd "\\hh") 'git-gutter+-show-hunk-inline-at-point)
-  (define-key evil-motion-state-map (kbd "\\hu") 'git-gutter+-revert-hunk) ;; hunk undo
+  (define-key evil-motion-state-map (kbd "\\hu") 'my-git-gutter+-revert-hunk) ;; hunk undo
   (define-key evil-motion-state-map (kbd "\\hs") 'git-gutter+-stage-hunks) ;; hunk stage
 
   ;; use `c` instead of `h` for next/previous hunk

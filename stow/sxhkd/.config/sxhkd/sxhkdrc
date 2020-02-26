@@ -113,11 +113,17 @@ super + r; k
     konsole
 
 super + r; e
-    emacsclient -c
+    emacsclient -c -a emacs
 
 super + F1
     killall dunst; ~/Documents/Mousehunt/scripts/sad
 
 ### quick shortcut
 super + q
-    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratch_konsole
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratch_konsole "1"
+
+super + a
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratch_konsole "2"
+
+super + e
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratchpad "emacsclient -c -a emacs" "scratchpad_emacsclient1"

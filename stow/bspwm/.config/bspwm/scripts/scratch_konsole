@@ -1,11 +1,11 @@
 #!/bin/sh
-id=$(xdo id -n dropdown-terminal);
+id=$(xdo id -n "dropdown-terminal$1");
 if [ -z "$id" ]; then
-    konsole --name dropdown-terminal &
+    konsole --name "dropdown-terminal$1" &
 
     # wait for konsole to start, and change it to floating mode immediately
     sleep 0.5
-    id=$(xdo id -n dropdown-terminal);
+    id=$(xdo id -n "dropdown-terminal$1");
     # sticky will make node stay on screen when workspace is changed
     # locked will prevent node from being closed by `bspc node -c`
     bspc node $id --flag sticky --flag locked --state floating -f
