@@ -1,0 +1,16 @@
+#!/bin/bash
+# $1: node id
+# Usage: use to resize the `$node_id` window
+
+left_offset=30
+right_offset=${left_offset}
+top_offset=50
+bottom_offset=20
+
+dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
+IFS='x' read -ra dimensions <<< "$dimensions"
+window_width=${dimensions[0]}
+window_height=${dimensions[1]}
+
+xdotool windowsize "$1" $(( "$window_width" - "$left_offset" - "$right_offset" )) $(( "$window_height" - "$top_offset" - "$bottom_offset"))
+xdotool windowmove "$1" "${left_offset}" "${top_offset}"
