@@ -617,9 +617,6 @@ before packages are loaded."
     (define-key evil-normal-state-map (kbd "C-p") 'my-ctrl-p)
     (define-key evil-motion-state-map (kbd "C-p") 'my-ctrl-p))
 
-  ;; remap backspace to go to next window
-  (define-key evil-motion-state-map [backspace] 'evil-window-next)
-
   ;; make calendar to always use window below
   (add-to-list 'display-buffer-alist
                `(,(rx string-start "*Calendar*" string-end)

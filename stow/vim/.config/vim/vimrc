@@ -122,7 +122,7 @@ endif
     nnoremap <c-l> <c-w><c-l>
     nnoremap <c-h> <c-w><c-h>
     " mapping space to toggle pane
-    nnoremap <Bs> <c-w>w
+    nnoremap <space>` <c-w>w
 
 
     " Pane Resize
