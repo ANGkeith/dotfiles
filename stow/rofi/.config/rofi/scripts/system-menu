@@ -37,7 +37,7 @@ LIGHT_GREEN="#7cb342"
 MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -hide-scrollbar true \
 -bw 1 \
--lines 4 \
+-lines 5 \
 -line-padding 10 \
 -padding 20 \
 -width 15 \
@@ -51,13 +51,14 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-active "$BACKGROUND,$MAGENTA,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-urgent "$BACKGROUND,$YELLOW,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< ">> Lock|>> Logout|>> Reboot|>> Shutdown")"
+<<< ">> Lock|>> Logout|>> Hibernate|>> Reboot|>> Shutdown")"
 case "$MENU" in
   *Lock) betterlockscreen -l dim;;
   # *Logout) i3-msg exit;;
   *Logout) bspc quit;;
+  *Hibernate) systemctl hibernate;;
   *Reboot) systemctl reboot ;;
-  *Shutdown) systemctl -i poweroff
+  *Shutdown) systemctl -i poweroff ;;
 esac
 
 # More Options
