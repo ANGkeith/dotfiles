@@ -222,7 +222,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
             sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm
 
             # bash
-            yay -S bashate --noconfirm
             yay -S shellcheck-static --noconfirm
 
 

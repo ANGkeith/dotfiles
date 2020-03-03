@@ -58,7 +58,10 @@ This function should only modify configuration layer settings."
      spell-checking
      syntax-checking
      treemacs
-     version-control
+     (version-control :variables
+                     version-control-diff-side 'left)
+     (solidity :variables
+               solidity-flycheck-solium-checker-active t)
      )
 
    ;; List of additional packages that will be installed without being
@@ -695,25 +698,54 @@ before packages are loaded."
         (git-gutter+-do-revert-hunk diffinfo))
       ))
 
-  ;; bindings for hunks
-  (define-key evil-motion-state-map (kbd "\\hh") 'git-gutter+-show-hunk-inline-at-point)
-  (define-key evil-motion-state-map (kbd "\\hu") 'my-git-gutter+-revert-hunk) ;; hunk undo
-  (define-key evil-motion-state-map (kbd "\\hs") 'git-gutter+-stage-hunks) ;; hunk stage
+  ;; emacs bindings in insert mode
+  (evil-define-key 'insert global-map (kbd "C-a") (kbd "<escape>0i"))
+  (evil-define-key 'insert global-map (kbd "C-e") (kbd "<escape>$a"))
+  (evil-define-key 'insert global-map (kbd "C-k") (kbd "<escape>ld$a"))
 
-  ;; use `c` instead of `h` for next/previous hunk
-  (define-key evil-motion-state-map (kbd "[c") 'spacemacs/vcs-previous-hunk)
-  (define-key evil-motion-state-map (kbd "]c") 'spacemacs/vcs-next-hunk)
-  (define-key evil-normal-state-map (kbd "[h") nil)
-  (define-key evil-normal-state-map (kbd "]h") nil)
+  ;; bindings for hunks
+  (define-key evil-motion-state-map (kbd "SPC hh") 'git-gutter+-show-hunk-inline-at-point)
+  ;; hunk undo
+  (define-key evil-motion-state-map (kbd "SPC hu") 'my-git-gutter+-revert-hunks)
+  ;; hunk stage
+  (define-key evil-motion-state-map (kbd "<space>hs") 'git-gutter+-stage-hunks)
 
   ;; used `gb` instead of `:ls`
   (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
 
   (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
 
+  ;; (define-key global-map (kbd "C-a") nil)
+  (evil-define-key 'normal global-map (kbd "C-a") (kbd "ggVG"))
+
   ;; display visual hint when yanking
   (evil-goggles-mode)
   (setq evil-goggles-async-duration 2.0)
   (setq evil-goggles-blocking-duration 2.0)
 
+  ;; emacs bindings in insert mode
+  (evil-define-key 'normal global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
+  (evil-define-key 'normal global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
+  (evil-define-key 'normal global-map (kbd "<C-up>") 'spacemacs/shrink-window)
+  (evil-define-key 'normal global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
+  (evil-define-key 'normal global-map (kbd "C-=") 'balance-windows)
+)
+
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 )
