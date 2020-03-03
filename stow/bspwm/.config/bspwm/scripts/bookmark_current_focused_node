@@ -8,6 +8,7 @@ if [ -n "$XDG_CACHE_HOME" ]; then
 else
     SCRATCH_DIR="$HOME"/.cache/my-scratchpad
 fi
+mkdir -p "$SCRATCH_DIR"
 
 # get current focused id
 current_node_id=$(bspc query -N -n "focused")

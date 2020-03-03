@@ -36,6 +36,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
     # use for managing window nodes
     sudo pacman -S xdo --no-confirm
+    sudo pacman -S xdotool --no-confirm
 
 # networking
     sudo pacman -S netcat --noconfirm

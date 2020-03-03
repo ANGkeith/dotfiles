@@ -62,6 +62,8 @@ This function should only modify configuration layer settings."
                      version-control-diff-side 'left)
      (solidity :variables
                solidity-flycheck-solium-checker-active t)
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+     fzf
      )
 
    ;; List of additional packages that will be installed without being
@@ -484,7 +486,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                                     :size 10.0
                                     :weight normal
                                     :width normal)
-   dotspacemacs-line-numbers 'relative
+   ;; dotspacemacs-line-numbers 'relative
    dotspacemacs-which-key-delay 0.1
    dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5))
   )
@@ -729,6 +731,8 @@ before packages are loaded."
   (evil-define-key 'normal global-map (kbd "<C-up>") 'spacemacs/shrink-window)
   (evil-define-key 'normal global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
   (evil-define-key 'normal global-map (kbd "C-=") 'balance-windows)
+
+  (setq avy-timeout-seconds 0.2)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
