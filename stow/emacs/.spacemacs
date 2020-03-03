@@ -609,18 +609,41 @@ before packages are loaded."
   (which-key-add-key-based-replacements
     "\\o" "Go to main org file")
 
-
-  (defun my-ctrl-p ()
+  (defun my-fzf-find-file (&optional directory)
+    ;; search for file inside project if cwd is in a project
     (interactive)
-    (condition-case err
-        (helm-projectile-find-file)
-      ;; if not in a project
-      (error (helm-projectile-switch-project)))
-    )
+    (let ((d (fzf/resolve-directory directory)))
+      (fzf-with-command (getenv "FZF_DEFAULT_COMMAND")
+                        (lambda (x)
+                          (let ((f (expand-file-name x d)))
+                            (when (file-exists-p f)
+                              (find-file f))))
+                        d
+                        )
+      ))
 
+  (defun my-fzf-find-file-from-home (&optional directory)
+    ;; search for file from HOME directory no matter what
+    (interactive)
+    (let ((d (getenv "HOME")))
+      (fzf-with-command (getenv "FZF_DEFAULT_COMMAND")
+                        (lambda (x)
+                          (let ((f (expand-file-name x d)))
+                            (when (file-exists-p f)
+                              (find-file f))))
+                        d
+                        )
+      ))
+
+  ;; show all options
+  (setq fzf/args "--height 100")
   (with-eval-after-load 'evil-maps
-    (define-key evil-normal-state-map (kbd "C-p") 'my-ctrl-p)
-    (define-key evil-motion-state-map (kbd "C-p") 'my-ctrl-p))
+    (define-key evil-normal-state-map (kbd "C-p") 'my-fzf-find-file)
+    (define-key evil-motion-state-map (kbd "C-p") 'my-fzf-find-file)
+
+    (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
+    (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
+    )
 
   ;; make calendar to always use window below
   (add-to-list 'display-buffer-alist
