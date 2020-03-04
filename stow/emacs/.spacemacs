@@ -486,7 +486,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                                     :size 10.0
                                     :weight normal
                                     :width normal)
-   ;; dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers 'relative
    dotspacemacs-which-key-delay 0.1
    dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5))
   )
@@ -643,6 +643,9 @@ before packages are loaded."
 
     (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
     (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
+
+    (define-key evil-motion-state-map (kbd "C-n") 'spacemacs/treemacs-project-toggle)
+    (define-key evil-normal-state-map (kbd "C-n") 'spacemacs/treemacs-project-toggle)
     )
 
   ;; make calendar to always use window below
@@ -668,11 +671,8 @@ before packages are loaded."
       ))
   (define-key evil-motion-state-map "\\c"
     (lambda () (interactive) (toggle-evil-mode-system-clipboard)))
-  (evil-define-key 'normal global-map (kbd "\\p") (kbd "\"+p"))
-  (which-key-add-key-based-replacements "\\p" "Paste from system clipboard")
-  (evil-define-key 'visual global-map (kbd "\\y") (kbd "\"+y"))
-  ;; can use `C-h c` or `C-h k' to get kbd representation
   (evil-define-key 'insert global-map (kbd "C-S-v") (kbd "<escape>\"+pa"))
+  (evil-define-key 'visual global-map (kbd "C-c") (kbd "\"+y"))
 
   ;; Syntax highlighting for sxhkdrc
   (define-generic-mode sxhkd-mode
@@ -726,7 +726,15 @@ before packages are loaded."
   ;; emacs bindings in insert mode
   (evil-define-key 'insert global-map (kbd "C-a") (kbd "<escape>0i"))
   (evil-define-key 'insert global-map (kbd "C-e") (kbd "<escape>$a"))
-  (evil-define-key 'insert global-map (kbd "C-k") (kbd "<escape>ld$a"))
+  (evil-define-key 'insert global-map (kbd "C-x C-f") 'company-files)
+
+  ;; emacs bindings in normal mode
+  (evil-define-key 'normal global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
+  (evil-define-key 'normal global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
+  (evil-define-key 'normal global-map (kbd "<C-up>") 'spacemacs/shrink-window)
+  (evil-define-key 'normal global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
+  (evil-define-key 'normal global-map (kbd "C-=") 'balance-windows)
+
 
   ;; bindings for hunks
   (define-key evil-motion-state-map (kbd "SPC hh") 'git-gutter+-show-hunk-inline-at-point)
@@ -747,13 +755,6 @@ before packages are loaded."
   (evil-goggles-mode)
   (setq evil-goggles-async-duration 2.0)
   (setq evil-goggles-blocking-duration 2.0)
-
-  ;; emacs bindings in insert mode
-  (evil-define-key 'normal global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
-  (evil-define-key 'normal global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
-  (evil-define-key 'normal global-map (kbd "<C-up>") 'spacemacs/shrink-window)
-  (evil-define-key 'normal global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
-  (evil-define-key 'normal global-map (kbd "C-=") 'balance-windows)
 
   (setq avy-timeout-seconds 0.2)
 )
