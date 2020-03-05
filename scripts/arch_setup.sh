@@ -225,6 +225,8 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
             # bash
             yay -S shellcheck-static --noconfirm
 
+            npm install  -g  eslint import-js
+
 
 # maintanence
     yay -S timeshift --noconfirm

@@ -42,7 +42,12 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      (python :variables python-backend 'lsp python-sort-imports-on-save t)
      (docker :variables docker-dockerfile-backend 'lsp)
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-complete-with-key-sequence "jk"
+                      auto-completion-idle-delay 0.1
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-use-company-box t
+                      )
      better-defaults
      emacs-lisp
      git
@@ -63,8 +68,14 @@ This function should only modify configuration layer settings."
                solidity-flycheck-solium-checker-active t)
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      fzf
-     )
+     (javascript :variables
+                 javascript-import-tool 'import-js
+                 javascript-backend 'tern
+                 javascript-disable-tern-port-files nil
 
+                 ;; javascript-lsp-linter nil
+                 )
+     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -74,6 +85,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       keychain-environment
+                                      helm-flyspell
+                                      helm-systemd
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -281,7 +294,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil, the paste transient-state is enabled. While enabled, after you
    ;; paste something, pressing `C-j' and `C-k' several times cycles through the
    ;; elements in the `kill-ring'. (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-enable-paste-transient-state t
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
@@ -475,6 +488,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; (add-hook 'sh-mode-hook (lambda ()
   ;;                                   (flycheck-select-checker 'sh-shellcheck)
   ;;                                   ))
+  (add-hook 'after-init-hook
+            'global-company-mode)
   (setq exec-path
         (append exec-path
                 (list (concat user-home-directory ".local/share/nvm/versions/node/v12.16.1/bin"))))
@@ -505,7 +520,7 @@ dump."
   (setq-local coffee-tab-width n) ; coffeescript
   (setq-local javascript-indent-level n) ; javascript-mode
   (setq-local js-indent-level n) ; js-mode
-  (setq-local js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  ;; (setq-local js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
   (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
   (setq-local web-mode-css-indent-offset n) ; web-mode, css in html file
   (setq-local web-mode-code-indent-offset n) ; web-mode, js code in html file
@@ -746,6 +761,8 @@ before packages are loaded."
 
   (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
 
+  (define-key evil-normal-state-map (kbd "SPC cw") 'helm-flyspell-correct)
+
   ;; (define-key global-map (kbd "C-a") nil)
   (evil-define-key 'normal global-map (kbd "C-a") (kbd "ggVG"))
 
@@ -767,11 +784,14 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   (quote
+    (helm-systemd helm-flyspell yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here tagedit systemd symon symbol-overlay string-inflection spaceline-all-the-icons solidity-flycheck smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nodejs-repl nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-python-ms lorem-ipsum livid-mode live-py-mode link-hint keychain-environment json-navigator js2-refactor js-doc insert-shebang indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fzf fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker diminish devdocs define-word dap-mode cython-mode company-web company-tern company-statistics company-shell company-quickhelp company-lsp company-box company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 )

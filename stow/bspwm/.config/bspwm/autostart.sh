@@ -23,5 +23,3 @@ my_file1=~/.cache/my-scratchpad/scratchpad_emacsclient1
 
 my_file2=~/.cache/my-scratchpad/scratchpad_emacsclient_org
 [ -f "$my_file2" ] && xdo close "$(cat $my_file2)"; rm "$my_file2"
-
-

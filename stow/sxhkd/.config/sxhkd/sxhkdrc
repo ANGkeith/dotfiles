@@ -73,6 +73,9 @@ super + {o,n}
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
 
+F{1-4}
+    bspc desktop -f {1-4}
+
 # resize
 super + {Left, Down, Up, Right}
     $XDG_CONFIG_HOME/bspwm/scripts/resize {left 1, down 1, up 1, right 1}
