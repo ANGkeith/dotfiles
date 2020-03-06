@@ -778,8 +778,10 @@ before packages are loaded."
 
   (setq avy-timeout-seconds 0.2)
 
+  ;; auto wraps when line gets too long
   (spacemacs/toggle-visual-line-navigation-globally-on)
-  (setq truncate-lines nil)
+  (global-visual-line-mode)
+  (setq word-wrap nil)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
