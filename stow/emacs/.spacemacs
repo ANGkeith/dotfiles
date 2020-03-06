@@ -61,7 +61,7 @@ This function should only modify configuration layer settings."
      (shell-scripts)
      spell-checking
      syntax-checking
-     treemacs
+     neotree
      (version-control :variables
                      version-control-diff-side 'left)
      (solidity :variables
@@ -87,6 +87,7 @@ This function should only modify configuration layer settings."
                                       keychain-environment
                                       helm-flyspell
                                       helm-systemd
+                                      doom-themes
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -210,8 +211,12 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         monokai)
+   dotspacemacs-themes '(
+                         doom-one
+                         doom-dracula
+                         doom-spacegrey
+                         spacemacs-dark
+                         )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -220,7 +225,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -500,8 +505,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                                     :weight normal
                                     :width normal)
    dotspacemacs-line-numbers 'relative
-   dotspacemacs-which-key-delay 0.1
-   dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5))
+   dotspacemacs-which-key-delay 0.1)
+
   )
 
 (defun dotspacemacs/user-load ()
@@ -539,7 +544,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (add-hook 'treemacs-mode-hook (lambda  () (treemacs-resize-icons 14)))
+  (spacemacs/toggle-truncate-lines-off)
 
   ;; org-mode auto launch browser when export to html and open
   (setq org-file-apps
@@ -599,7 +604,7 @@ before packages are loaded."
   ;; Disable annoying `Symbolic link to Git-controlled source file; follow link? (y or n)` message
   (setq vc-follow-symlinks nil)
 
-  (scroll-bar-mode 1)
+  ;; (scroll-bar-mode 1)
 
   ;; org mode configurations
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -657,8 +662,8 @@ before packages are loaded."
     (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
     (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
 
-    (define-key evil-motion-state-map (kbd "C-n") 'spacemacs/treemacs-project-toggle)
-    (define-key evil-normal-state-map (kbd "C-n") 'spacemacs/treemacs-project-toggle)
+    (define-key evil-motion-state-map (kbd "C-n") 'neotree-toggle)
+    (define-key evil-normal-state-map (kbd "C-n") 'neotree-toggle)
     )
 
   ;; make calendar to always use window below
@@ -772,6 +777,9 @@ before packages are loaded."
   (setq evil-goggles-blocking-duration 2.0)
 
   (setq avy-timeout-seconds 0.2)
+
+  (spacemacs/toggle-visual-line-navigation-globally-on)
+  (setq truncate-lines nil)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -784,14 +792,15 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (helm-systemd helm-flyspell yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here tagedit systemd symon symbol-overlay string-inflection spaceline-all-the-icons solidity-flycheck smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nodejs-repl nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-python-ms lorem-ipsum livid-mode live-py-mode link-hint keychain-environment json-navigator js2-refactor js-doc insert-shebang indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fzf fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker diminish devdocs define-word dap-mode cython-mode company-web company-tern company-statistics company-shell company-quickhelp company-lsp company-box company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(org-block ((t (:background "grey15"))))
+ '(org-block-begin-line ((t (:background "grey10"))))
+ '(org-block-end-line ((t (:inherit org-block-begin-line)))))
 )
