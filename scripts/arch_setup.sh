@@ -221,6 +221,8 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
             # python
             sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm
+            # auto remove unused imports
+            yay -S python-autoflake --noconfirm
 
             # bash
             yay -S shellcheck-static --noconfirm
@@ -269,4 +271,5 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 # cheat
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
 
+    echo "options hid_apple fnmode=0" | sudo tee /etc/modprobe.d/hid_apple.conf
 reboot

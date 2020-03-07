@@ -139,6 +139,10 @@ super + a
 super + e
     ~/dotfiles/stow/bspwm/.config/bspwm/scripts/toggle_bookmark "scratchpad_e"
 
+# toggle scratchpad e where i have remapped `esc` to `f25`
+F15
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/toggle_bookmark "scratchpad_e"
+
 # set current focus to scratchpad e
 super + shift + e
     ~/dotfiles/stow/bspwm/.config/bspwm/scripts/bookmark_current_focused_node "scratchpad_e"

@@ -23,5 +23,6 @@ if [[ "$DISPLAY" = :0 ]]; then
     # Keyboard, xset r rate <auto_repeat_delay> <repeat_rate>
     xset r rate 200 30
     setxkbmap -option shift:both_capslock
-    setxkbmap -option caps:swapescape
+    setxkbmap -option caps:escape
+    xmodmap -e "keycode 9 = F15"
 fi

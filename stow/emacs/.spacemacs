@@ -40,7 +40,11 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (python :variables python-backend 'lsp python-sort-imports-on-save t)
+     (python :variables
+             python-formatter 'black
+             python-backend 'lsp
+             python-test-runner 'pytest
+             python-sort-imports-on-save t)
      (docker :variables docker-dockerfile-backend 'lsp)
      (auto-completion :variables
                       auto-completion-complete-with-key-sequence "jk"
@@ -88,6 +92,7 @@ This function should only modify configuration layer settings."
                                       helm-flyspell
                                       helm-systemd
                                       doom-themes
+                                      transpose-frame
                                       )
 
    ;; A list of packages that cannot be updated.
