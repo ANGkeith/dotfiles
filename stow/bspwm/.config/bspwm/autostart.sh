@@ -15,11 +15,13 @@ kill_and_rerun dropbox &> /dev/null
 
 kill_and_rerun sxhkd -c ~/.config/sxhkd/sxhkdrc
 kill_and_rerun feh --no-fehbg --bg-scale ~/.config/wallpaper/wallpaper.jpg
-echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
+# cannot use sudo as the autostart.sh is run without sudo priviledge
+# echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 flameshot
 
-my_file1=~/.cache/my-scratchpad/scratchpad_emacsclient1
-[ -f "$my_file1" ] && xdo close "$(cat $my_file1)"; rm "$my_file1"
-
-my_file2=~/.cache/my-scratchpad/scratchpad_emacsclient_org
-[ -f "$my_file2" ] && xdo close "$(cat $my_file2)"; rm "$my_file2"
+if [[ "$DISPLAY" = :0 ]]; then
+    # Keyboard, xset r rate <auto_repeat_delay> <repeat_rate>
+    xset r rate 200 30
+    setxkbmap -option shift:both_capslock
+    setxkbmap -option caps:swapescape
+fi
