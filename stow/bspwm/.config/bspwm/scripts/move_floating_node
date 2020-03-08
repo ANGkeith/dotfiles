@@ -13,13 +13,22 @@ IFS='x' read -ra dimensions <<< "$dimensions"
 window_width=${dimensions[0]}
 window_height=${dimensions[1]}
 
-xdotool windowsize "$current_node_id" $(( ("$window_width" / 2 - "$left_offset" - "$right_offset") )) $(( "$window_height" - "$top_offset" - "$bottom_offset"))
 
 case "$1" in
     "left" )
+        xdotool windowsize "$current_node_id" $(( ("$window_width" / 2 - "$left_offset" - "$right_offset") )) $(( "$window_height" - "$top_offset" - "$bottom_offset"))
         xdotool windowmove "$current_node_id" "${left_offset}" "${top_offset}"
         ;;
     "right" )
+        xdotool windowsize "$current_node_id" $(( ("$window_width" / 2 - "$left_offset" - "$right_offset") )) $(( "$window_height" - "$top_offset" - "$bottom_offset"))
         xdotool windowmove "$current_node_id" $(( "$window_width" / 2 )) "${top_offset}"
+        ;;
+    "big" )
+        xdotool windowsize "$current_node_id" $(( "$window_width" - "$left_offset" - "$right_offset" )) $(( "$window_height" - "$top_offset" - "$bottom_offset"))
+        xdotool windowmove "$current_node_id" "${left_offset}" "${top_offset}"
+        ;;
+    "down" )
+        xdotool windowsize "$current_node_id" $(( ("$window_width" - "$left_offset" - "$right_offset") )) $(( ("$window_height" / 2 - "$top_offset" - "$bottom_offset") ))
+        xdotool windowmove "$current_node_id" "${left_offset}" "$(( ${top_offset} + $window_height "$window_height" /2 ))"
         ;;
 esac

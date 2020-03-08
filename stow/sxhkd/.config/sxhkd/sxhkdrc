@@ -77,8 +77,8 @@ F{1-4}
     bspc desktop -f {1-4}
 
 # resize
-super + {Left, Down, Up, Right}
-    $XDG_CONFIG_HOME/bspwm/scripts/resize {left 1, down 1, up 1, right 1}
+# super + {Left, Down, Up, Right}
+#     $XDG_CONFIG_HOME/bspwm/scripts/resize {left 1, down 1, up 1, right 1}
 
 # move a floating window
 super + shift + {Left,Down,Up,Right}
@@ -118,16 +118,19 @@ super + r; k
 super + r; e
     emacsclient -c -a emacs
 
-super + F1
-    killall dunst; ~/Documents/Mousehunt/scripts/sad
+super + r; f
+    nautilus
 
 ### quick shortcut
 
-super + control + Right
+super + Right
     ~/dotfiles/stow/bspwm/.config/bspwm/scripts/move_floating_node "right"
-
-super + control + Left
+super + Left
     ~/dotfiles/stow/bspwm/.config/bspwm/scripts/move_floating_node "left"
+super + Up
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/move_floating_node "big"
+super + Down
+    ~/dotfiles/stow/bspwm/.config/bspwm/scripts/move_floating_node "down"
 
 super + q
     ~/dotfiles/stow/bspwm/.config/bspwm/scripts/scratch_konsole "1"
