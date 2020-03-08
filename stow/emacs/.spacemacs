@@ -50,8 +50,7 @@ This function should only modify configuration layer settings."
                       auto-completion-complete-with-key-sequence "jk"
                       auto-completion-idle-delay 0.1
                       auto-completion-enable-help-tooltip t
-                      auto-completion-use-company-box t
-                      )
+                      auto-completion-use-company-box t)
      better-defaults
      emacs-lisp
      git
@@ -75,11 +74,8 @@ This function should only modify configuration layer settings."
      (javascript :variables
                  javascript-import-tool 'import-js
                  javascript-backend 'tern
-                 javascript-disable-tern-port-files nil
+                 javascript-disable-tern-port-files nil))
 
-                 ;; javascript-lsp-linter nil
-                 )
-     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -87,13 +83,11 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(
-                                      keychain-environment
+   dotspacemacs-additional-packages '(keychain-environment
                                       helm-flyspell
                                       helm-systemd
                                       doom-themes
-                                      transpose-frame
-                                      )
+                                      transpose-frame)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -109,6 +103,7 @@ This function should only modify configuration layer settings."
    ;; installs *all* packages supported by Spacemacs and never uninstalls them.
    ;; (default is `used-only')
    dotspacemacs-install-packages 'used-only))
+
 (defun dotspacemacs/init ()
   "Initialization:
 This function is called at the very beginning of Spacemacs startup,
@@ -216,12 +211,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         doom-one
+   dotspacemacs-themes '(doom-one
                          doom-dracula
                          doom-spacegrey
-                         spacemacs-dark
-                         )
+                         spacemacs-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -270,7 +263,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab t
+   dotspacemacs-distinguish-gui-tab nil
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -308,7 +301,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.2
 
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
@@ -390,7 +383,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -484,42 +477,27 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-  ;; Using linters instead of lsp for flycheck
-  ;; (add-hook 'python-mode-hook (lambda ()
-  ;;                               (setq flycheck-checker 'python-pylint
-  ;;                                     flycheck-checker-error-threshold 900
-  ;;                                     flycheck-pylintrc "~/.pylintrc")))
+  ;; try to incoporate good pracitse (use do hook)
   (add-hook 'python-mode-hook (lambda ()
                                 (flycheck-select-checker 'python-pylint)
-                                ))
-  (add-hook 'dockerfile-mode-hook (lambda ()
-                                    (flycheck-select-checker 'dockerfile-hadolint)
-                                ))
-  ;; (add-hook 'sh-mode-hook (lambda ()
-  ;;                                   (flycheck-select-checker 'sh-shellcheck)
-  ;;                                   ))
+                                (define-key evil-normal-state-map (kbd "\\ p") (lambda () (interactive)
+                                                                                 (insert "print(")
+                                                                                 (end-of-line)
+                                                                                 (insert ")")))))
+  (add-hook 'dockerfile-mode-hook (lambda () (flycheck-select-checker 'dockerfile-hadolint)))
   (add-hook 'after-init-hook
             'global-company-mode)
+
   (setq exec-path
         (append exec-path
-                (list (concat user-home-directory ".local/share/nvm/versions/node/v12.16.1/bin"))))
-
-  (setq
-   dotspacemacs-default-font '("Source Code Pro"
-                                    :size 10.0
-                                    :weight normal
-                                    :width normal)
-   dotspacemacs-line-numbers 'relative
-   dotspacemacs-which-key-delay 0.1)
-
-  )
+                (list (concat user-home-directory ".local/share/nvm/versions/node/v12.16.1/bin"))
+                (list (concat user-home-directory ".local/share/zinit/polaris/bin")))))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
-dump."
-  )
+dump.")
 
 (defun my-indent (n)
   (message "Code style: (n=%d)" n)
@@ -535,8 +513,7 @@ dump."
   (setq-local web-mode-css-indent-offset n) ; web-mode, css in html file
   (setq-local web-mode-code-indent-offset n) ; web-mode, js code in html file
   (setq-local css-indent-offset n) ; css-mode
-  (setq-local tab-width n)
-  )
+  (setq-local tab-width n))
 
 (defun my-setup-develop-environment-for-indentation ()
   (interactive)
@@ -548,9 +525,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
-  (spacemacs/toggle-truncate-lines-off)
-
   ;; org-mode auto launch browser when export to html and open
   (setq org-file-apps
         (quote
@@ -583,9 +557,9 @@ before packages are loaded."
   (defun my-set-highlight-stipple ()
     ;; See https://github.com/antonj/Highlight-Indentation-for-Emacs/issues/16
     (let* ((char-width (frame-char-width (selected-frame)))
-          (hl-stipple (if (> char-width 8)
-                          (list char-width 1 (string 16 0 0 0 0 0 0 0))
-                        (list char-width 1 (string 16 0 0 0)))))
+           (hl-stipple (if (> char-width 8)
+                           (list char-width 1 (string 16 0 0 0 0 0 0 0))
+                         (list char-width 1 (string 16 0 0 0)))))
       (set-face-attribute 'highlight-indentation-face nil
                           :stipple hl-stipple
                           :foreground "#3f3f3f"
@@ -594,22 +568,16 @@ before packages are loaded."
                           :stipple hl-stipple
                           :background "#292e34"
                           :foreground "#5f5f5f"
-                          :inherit nil)
-    ))
+                          :inherit nil)))
   ;; enable indent line
   (add-hook 'prog-mode-hook 'highlight-indentation-mode)
   ;; Patch highlight-indentation-mode to set/update a stipple attribute
   (defadvice highlight-indentation-mode (before set-highlight-indentation-stipple activate)
-  "Sets the stipple used by indentation highlighting"
+    "Sets the stipple used by indentation highlighting"
     (my-set-highlight-stipple))
-
-  ;; Turn off the tildes in the fringe
-  (spacemacs/toggle-vi-tilde-fringe-off)
 
   ;; Disable annoying `Symbolic link to Git-controlled source file; follow link? (y or n)` message
   (setq vc-follow-symlinks nil)
-
-  ;; (scroll-bar-mode 1)
 
   ;; org mode configurations
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -621,16 +589,7 @@ before packages are loaded."
      org-agenda-files (concat org-directory "agenda.org")
      org-refile-targets '((org-agenda-files :maxlevel . 6))
      org-default-notes-file (concat org-directory "notes.org"))
-    (find-file (concat org-directory "notes.org") ))
-
-  ;; unbind `evil-execute-in-emacs-state`
-  (define-key evil-motion-state-map "\\" nil)
-
-  ;; kbd to go to main org file
-  (define-key evil-motion-state-map "\\o"
-    (lambda () (interactive) (my-go-to-org)))
-  (which-key-add-key-based-replacements
-    "\\o" "Go to main org file")
+    (find-file (concat org-directory "notes.org")))
 
   (defun my-fzf-find-file (&optional directory)
     ;; search for file inside project if cwd is in a project
@@ -641,9 +600,7 @@ before packages are loaded."
                           (let ((f (expand-file-name x d)))
                             (when (file-exists-p f)
                               (find-file f))))
-                        d
-                        )
-      ))
+                        d)))
 
   (defun my-fzf-find-file-from-home (&optional directory)
     ;; search for file from HOME directory no matter what
@@ -654,48 +611,14 @@ before packages are loaded."
                           (let ((f (expand-file-name x d)))
                             (when (file-exists-p f)
                               (find-file f))))
-                        d
-                        )
-      ))
+                        d)))
 
   ;; show all options
   (setq fzf/args "--height 100")
-  (with-eval-after-load 'evil-maps
-    (define-key evil-normal-state-map (kbd "C-p") 'my-fzf-find-file)
-    (define-key evil-motion-state-map (kbd "C-p") 'my-fzf-find-file)
-
-    (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
-    (define-key evil-motion-state-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
-
-    (define-key evil-motion-state-map (kbd "C-n") 'neotree-toggle)
-    (define-key evil-normal-state-map (kbd "C-n") 'neotree-toggle)
-    )
-
   ;; make calendar to always use window below
   (add-to-list 'display-buffer-alist
                `(,(rx string-start "*Calendar*" string-end)
                  (display-buffer-below-selected)))
-
-  ;; use register for evil-mode yank/paste
-  (setq select-enable-clipboard nil)
-  (defun toggle-evil-mode-system-clipboard ()
-    "Toggle between system/register clipboard"
-    (interactive)
-    ;; use a property “state”. Value is t or nil
-    (if (get 'toggle-evil-mode-system-clipboard 'state)
-        (progn
-          (setq select-enable-clipboard nil)
-          (put 'toggle-evil-mode-system-clipboard 'state nil)
-          (message "evil-mode using register"))
-      (progn
-        (setq select-enable-clipboard t)
-        (put 'toggle-evil-mode-system-clipboard 'state t)
-        (message "evil-mode using system"))
-      ))
-  (define-key evil-motion-state-map "\\c"
-    (lambda () (interactive) (toggle-evil-mode-system-clipboard)))
-  (evil-define-key 'insert global-map (kbd "C-S-v") (kbd "<escape>\"+pa"))
-  (evil-define-key 'visual global-map (kbd "C-c") (kbd "\"+y"))
 
   ;; Syntax highlighting for sxhkdrc
   (define-generic-mode sxhkd-mode
@@ -706,35 +629,12 @@ before packages are loaded."
     nil
     "Simple mode for sxhkdrc files.")
 
-  ;; Run/highlight code using babel in org-mode
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (shell . t)
-     (python . t)
-     ))
-  ;; Don't prompt before running code in org
-  (setq org-confirm-babel-evaluate nil)
-
   ;; Use spaces instead of tab
   (add-hook 'prog-mode-hook 'my-setup-develop-environment-for-indentation)
   ;; Makefile requires tabs
   (add-hook 'makefile-mode-hook
             '(lambda()
-               (setq indent-tabs-mode t)
-               ))
-
-  (define-key evil-motion-state-map " fed"
-    (lambda () (interactive) (find-file "~/dotfiles/stow/emacs/.spacemacs")))
-
-  ;; bindings for mouse forward and backward
-  (define-key (current-global-map) (kbd "<mouse-9>") 'next-buffer)
-  (define-key (current-global-map) (kbd "<mouse-8>") 'previous-buffer)
-
-  ;; autosave after 10 sec of idle
-  (setq
-   dotspacemacs-auto-save-file-location 'cache
-   auto-save-timeout 10)
+               (setq indent-tabs-mode t)))
 
   ;; This is a forked version of the original function
   (defun my-git-gutter+-revert-hunks ()
@@ -743,38 +643,64 @@ before packages are loaded."
     (let* ((diffinfos (git-gutter+-selected-diffinfos))
            (one-diffinfo-p (= 1 (length diffinfos))))
       (dolist (diffinfo (nreverse diffinfos))
-        (git-gutter+-do-revert-hunk diffinfo))
-      ))
+        (git-gutter+-do-revert-hunk diffinfo))))
 
   ;; emacs bindings in insert mode
   (evil-define-key 'insert global-map (kbd "C-a") (kbd "<escape>0i"))
   (evil-define-key 'insert global-map (kbd "C-e") (kbd "<escape>$a"))
   (evil-define-key 'insert global-map (kbd "C-x C-f") 'company-files)
+  (evil-define-key 'insert global-map (kbd "C-S-v") (kbd "<escape>\"+pa"))
+  (evil-define-key 'visual global-map (kbd "C-c") (kbd "\"+y"))
 
   ;; emacs bindings in normal mode
-  (evil-define-key 'normal global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
-  (evil-define-key 'normal global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
-  (evil-define-key 'normal global-map (kbd "<C-up>") 'spacemacs/shrink-window)
-  (evil-define-key 'normal global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
-  (evil-define-key 'normal global-map (kbd "C-=") 'balance-windows)
-
-
-  ;; bindings for hunks
-  (define-key evil-motion-state-map (kbd "SPC hh") 'git-gutter+-show-hunk-inline-at-point)
-  ;; hunk undo
-  (define-key evil-motion-state-map (kbd "SPC hu") 'my-git-gutter+-revert-hunks)
-  ;; hunk stage
-  (define-key evil-motion-state-map (kbd "<space>hs") 'git-gutter+-stage-hunks)
-
-  ;; used `gb` instead of `:ls`
-  (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
-
-  (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
-
-  (define-key evil-normal-state-map (kbd "SPC cw") 'helm-flyspell-correct)
-
-  ;; (define-key global-map (kbd "C-a") nil)
+  (evil-define-key '(normal motion) global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
+  (evil-define-key '(normal motion) global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
+  (evil-define-key '(normal motion) global-map (kbd "<C-up>") 'spacemacs/shrink-window)
+  (evil-define-key '(normal motion) global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
+  (evil-define-key '(normal motion) global-map (kbd "C-=") 'balance-windows)
   (evil-define-key 'normal global-map (kbd "C-a") (kbd "ggVG"))
+
+  (evil-define-key '(normal motion) global-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
+  (evil-define-key '(normal motion) global-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
+  (evil-define-key '(normal motion) global-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
+  (evil-define-key '(normal motion) global-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
+  (evil-define-key '(normal motion) global-map (kbd "M-5") 'eyebrowse-switch-to-window-config-5)
+
+  (evil-define-key '(normal motion) global-map (kbd "C-p") 'my-fzf-find-file)
+  (evil-define-key '(normal motion) global-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
+
+  (evil-define-key '(normal motion) global-map (kbd "C-n") 'neotree-toggle)
+  ;; override `C-n` to neotree-toggle in neotree-mode
+  ;; (evil-define-key neotree-mode-map (kbd "C-n") 'neotree-toggle)
+
+  ;; (defvar neotree-mode-map
+  ;;   (let ((map (make-sparse-keymap)))
+  ;;     (define-key map (kbd "C-n")
+  ;;       'neotree-toggle) map))
+
+  (define-key evil-motion-state-map "\\" nil)
+  (define-key evil-motion-state-map (kbd "SPC hh") 'git-gutter+-show-hunk-inline-at-point)
+  (define-key evil-motion-state-map (kbd "SPC hu") 'my-git-gutter+-revert-hunks)
+  (define-key evil-motion-state-map (kbd "<space>hs") 'git-gutter+-stage-hunks)
+  (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
+  (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
+  (define-key evil-normal-state-map (kbd "SPC cw") 'helm-flyspell-correct)
+  (define-key evil-motion-state-map " fed"
+    (lambda () (interactive) (find-file "~/dotfiles/stow/emacs/.spacemacs")))
+
+  ;; kbd to go to main org file
+  (define-key evil-motion-state-map "\\o"
+    (lambda () (interactive) (my-go-to-org)))
+  (which-key-add-key-based-replacements
+    "\\o" "Go to main org file")
+
+  ;; mouse kbd
+  (define-key (current-global-map) (kbd "<mouse-9>") 'next-buffer)
+  (define-key (current-global-map) (kbd "<mouse-8>") 'previous-buffer)
+
+  ;; magit
+  (evil-define-key 'normal magit-status-mode-map (kbd "<escape>") nil)
+
 
   ;; display visual hint when yanking
   (evil-goggles-mode)
@@ -787,29 +713,40 @@ before packages are loaded."
   (spacemacs/toggle-visual-line-navigation-globally-on)
   (global-visual-line-mode)
   (setq word-wrap nil)
-)
+
+  (setq neo-theme 'icons)
+  (setq org-confirm-babel-evaluate nil) ;; Don't prompt before running code in org
+  (setq select-enable-clipboard nil) ;; use register for evil-mode yank/paste
+  (setq auto-save-timeout 10) ;; autosave after 10 sec of idle
+
+  ;; global mode
+  (spacemacs/toggle-mode-line-minor-modes-off)
+  (global-auto-complete-mode)
+  (smartparens-global-mode)
+  (spacemacs/toggle-vi-tilde-fringe-off)
+  (spacemacs/toggle-truncate-lines-off))
+
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(hl-paren-colors (quote ("Orange"))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
-   '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
-   '(org-block ((t (:background "grey16"))))
-   '(org-block-begin-line ((t (:background "grey10"))))
-   '(org-block-end-line ((t (:inherit org-block-begin-line))))
-   '(sp-show-pair-match-face ((t (:background "#1B2229" :foreground "#86dc2f" :weight ultra-bold :underline t)))))
-  )
+This function is called at the very end of  initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(all-the-icons-scale-factor 1)
+ '(hl-paren-colors (quote ("Orange"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(org-block ((t (:background "grey16"))))
+ '(org-block-begin-line ((t (:background "grey10"))))
+ '(org-block-end-line ((t (:inherit org-block-begin-line))))
+ '(sp-show-pair-match-face ((t (:background "#1B2229" :foreground "#86dc2f" :weight ultra-bold :underline t))))))
