@@ -21,3 +21,5 @@ rm ~/.config/konsolerc
 cp $HOME/dotfiles/stow/konsole/.config/konsolerc $HOME/.config/konsolerc
 git checkout HEAD $HOME/dotfiles/stow/konsole/.config/konsolerc
 
+git submodule init
+git submodule update

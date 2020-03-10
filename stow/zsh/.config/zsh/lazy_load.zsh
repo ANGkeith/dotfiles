@@ -32,15 +32,17 @@ pyenv() {
     fi
 }
 
-# keychain
-# Used for managing ssh keys
-if [ -s "/bin/keychain" ] && [ ! "$(type -w __init_keychain)" = "__init_keychain: function" ]; then
-    declare -a __keychain_commands=('ssh' 'git')
-    __init_keychain() {
-        for i in "${__keychain_commands[@]}"; do unalias $i; done
-        [ -s "/bin/keychain" ] && eval `keychain --eval --dir $XDG_CACHE_HOME/keychain`
-        unset __keychain_commands
-        unset -f __init_keychain
-  }
-  for i in "${__keychain_commands[@]}"; do alias $i='__init_keychain && '$i; done
-fi
+# # keychain
+# # Used for managing ssh keys
+# if [ -s "/bin/keychain" ] && [ ! "$(type -w __init_keychain)" = "__init_keychain: function" ]; then
+#     declare -a __keychain_commands=('ssh' 'git')
+#     __init_keychain() {
+#         for i in "${__keychain_commands[@]}"; do unalias $i; done
+#         [ -s "/bin/keychain" ] && eval `keychain --eval --dir $XDG_CACHE_HOME/keychain`
+#         unset __keychain_commands
+#         unset -f __init_keychain
+#   }
+#   for i in "${__keychain_commands[@]}"; do alias $i='__init_keychain && '$i; done
+# fi
+
+[ -s "/bin/keychain" ] && eval `keychain --eval --dir $XDG_CACHE_HOME/keychain &> /dev/null`

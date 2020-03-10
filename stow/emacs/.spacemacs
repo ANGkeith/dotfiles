@@ -1,7 +1,6 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-
 (defun dotspacemacs/layers ()
   "Layer configuration:
 This function should only modify configuration layer settings."
@@ -490,8 +489,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   (setq exec-path
         (append exec-path
-                (list (concat user-home-directory ".local/share/nvm/versions/node/v12.16.1/bin"))
-                (list (concat user-home-directory ".local/share/zinit/polaris/bin")))))
+                (list (concat user-home-directory ".local/share/nvm/versions/node/v12.16.1/bin")))))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.

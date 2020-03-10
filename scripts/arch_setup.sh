@@ -272,4 +272,8 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
 
     echo "options hid_apple fnmode=0" | sudo tee /etc/modprobe.d/hid_apple.conf
+
+# more usesable version of find
+sudo pacman -S fd --confirm
+
 reboot

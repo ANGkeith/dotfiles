@@ -1,0 +1,6 @@
+[submodule "stow/zsh/.config/zsh/locked_plugins/oh-my-zsh"]
+	path = stow/zsh/.config/zsh/locked_plugins/oh-my-zsh
+	url = https://github.com/erydo/oh-my-zsh.git
+[submodule "stow/zsh/.config/zsh/locked_plugins/zsh-system-clipboard"]
+	path = stow/zsh/.config/zsh/locked_plugins/zsh-system-clipboard
+	url = https://github.com/kutsan/zsh-system-clipboard.git

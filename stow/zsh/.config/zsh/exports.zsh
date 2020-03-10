@@ -108,8 +108,8 @@ fi
     # export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
     # export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 
-    # z.lua
-    export _ZL_DATA="$XDG_DATA_HOME/z"
+    # z
+    export _Z_DATA="$XDG_DATA_HOME/z"
 
     # zinit
     declare -A ZPLGM
@@ -118,6 +118,10 @@ fi
     export ZPLGM[PLUGINS_DIR]="$XDG_DATA_HOME/zinit/plugins"
     export ZPLGM[SNIPPETS_DIR]="$XDG_DATA_HOME/zinit/snippets"
     export ZPLGM[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zcompdump"
+
+    # zgen
+    export ZGEN_DIR="$HOME"/.config/zgen
+    export ZGEN_INIT="$ZGEN_DIR"/init.zsh
 
     # GTK
     export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
