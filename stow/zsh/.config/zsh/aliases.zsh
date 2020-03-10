@@ -134,3 +134,10 @@ palette() {
 get_temp() {
     paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/' 
 }
+
+github() {
+    # $1: is the name of repository
+    # Usage: github sei40kr/fast-alias-tips-bin
+    # Description: This will get from the latest release page the link
+    curl -sL https://api.github.com/repos/"$1"/releases/latest | jq -r '.assets[].browser_download_url'
+}

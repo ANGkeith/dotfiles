@@ -341,7 +341,7 @@ endif
     " fzf & searching stuff {{{
     " ripgrep
         if executable('rg')
-            let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+            let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*" 2> /dev/null'
             set grepprg=rg\ --vimgrep\ --hidden
         endif
 
@@ -363,8 +363,7 @@ endif
 
 
         " Finding files with preview equivalent to (C-T) in terminal (set base dir to git root)
-        command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'dir': getcwd()}), <bang>0)
+        command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, <bang>0)
 
         command! -bang -nargs=? -complete=dir GitFiles
             \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
