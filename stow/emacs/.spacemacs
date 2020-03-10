@@ -92,7 +92,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(indent-guide column-enforce-mode)
+   dotspacemacs-excluded-packages '(indent-guide column-enforce-mode vterm)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -316,7 +316,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-switch-to-buffer-prefers-purpose nil
 
    ;; If non-nil a progress bar is displayed when spacemacs is loading. This
-   ;; may increase the boot time on some systems and emacs builds, set it to
+     ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
    dotspacemacs-loading-progress-bar t
 
@@ -651,12 +651,12 @@ before packages are loaded."
   (evil-define-key 'visual global-map (kbd "C-c") (kbd "\"+y"))
 
   ;; emacs bindings in normal mode
-  (evil-define-key '(normal motion) global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
-  (evil-define-key '(normal motion) global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
-  (evil-define-key '(normal motion) global-map (kbd "<C-up>") 'spacemacs/shrink-window)
   (evil-define-key '(normal motion) global-map (kbd "<C-down>") 'spacemacs/enlarge-window)
+  (evil-define-key '(normal motion) global-map (kbd "<C-left>") 'spacemacs/shrink-window-horizontally)
+  (evil-define-key '(normal motion) global-map (kbd "<C-right>") 'spacemacs/enlarge-window-horizontally)
+  (evil-define-key '(normal motion) global-map (kbd "<C-up>") 'spacemacs/shrink-window)
   (evil-define-key '(normal motion) global-map (kbd "C-=") 'balance-windows)
-  (evil-define-key 'normal global-map (kbd "C-a") (kbd "ggVG"))
+  (evil-define-key '(normal motion) global-map (kbd "C-a") (kbd "ggVG"))
 
   (evil-define-key '(normal motion) global-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
   (evil-define-key '(normal motion) global-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
@@ -666,15 +666,27 @@ before packages are loaded."
 
   (evil-define-key '(normal motion) global-map (kbd "C-p") 'my-fzf-find-file)
   (evil-define-key '(normal motion) global-map (kbd "C-S-p") 'my-fzf-find-file-from-home)
-
   (evil-define-key '(normal motion) global-map (kbd "C-n") 'neotree-toggle)
-  ;; override `C-n` to neotree-toggle in neotree-mode
-  ;; (evil-define-key neotree-mode-map (kbd "C-n") 'neotree-toggle)
+  (evil-define-key '(normal motion) global-map (kbd "C-z") (lambda ()
+                                                             ;; cannot just set to nil, otherwise it will
+                                                             ;; somehow bind `C-z` to `suspend-frame`
+                                                             (interactive)
+                                                             (message "C-z is disabled")))
 
-  ;; (defvar neotree-mode-map
-  ;;   (let ((map (make-sparse-keymap)))
-  ;;     (define-key map (kbd "C-n")
-  ;;       'neotree-toggle) map))
+  (define-key evil-motion-state-map (kbd "n") (lambda ()
+                                                (interactive)
+                                                (evil-ex-search-next)
+                                                (evil-scroll-line-to-center (line-number-at-pos))
+                                                ))
+  (define-key evil-motion-state-map (kbd "N") (lambda ()
+                                                (interactive)
+                                                (evil-ex-search-previous)
+                                                (evil-scroll-line-to-center (line-number-at-pos))
+                                                ))
+  (defvar neotree-mode-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "C-n")
+        'neotree-toggle) map))
 
   (define-key evil-motion-state-map "\\" nil)
   (define-key evil-motion-state-map (kbd "SPC hh") 'git-gutter+-show-hunk-inline-at-point)
@@ -683,6 +695,7 @@ before packages are loaded."
   (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
   (define-key evil-normal-state-map (kbd "SPC cw") 'helm-flyspell-correct)
+  ;; (define-key evil-normal-state-map (kbd "SPC q") 'kill-this-buffer)
   (define-key evil-motion-state-map " fed"
     (lambda () (interactive) (find-file "~/dotfiles/stow/emacs/.spacemacs")))
 
@@ -716,6 +729,9 @@ before packages are loaded."
   (setq org-confirm-babel-evaluate nil) ;; Don't prompt before running code in org
   (setq select-enable-clipboard nil) ;; use register for evil-mode yank/paste
   (setq auto-save-timeout 10) ;; autosave after 10 sec of idle
+
+  ;; can cause neo tree to be slow
+  (setq neo-vc-integration '(face))
 
   ;; global mode
   (spacemacs/toggle-mode-line-minor-modes-off)
