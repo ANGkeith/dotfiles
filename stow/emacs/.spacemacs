@@ -695,7 +695,7 @@ before packages are loaded."
   (define-key evil-motion-state-map (kbd "gb") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "SPC `") 'evil-window-next)
   (define-key evil-normal-state-map (kbd "SPC cw") 'helm-flyspell-correct)
-  ;; (define-key evil-normal-state-map (kbd "SPC q") 'kill-this-buffer)
+  (define-key evil-normal-state-map (kbd "SPC q") 'kill-buffer-and-window)
   (define-key evil-motion-state-map " fed"
     (lambda () (interactive) (find-file "~/dotfiles/stow/emacs/.spacemacs")))
 
