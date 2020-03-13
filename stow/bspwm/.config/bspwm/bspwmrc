@@ -48,6 +48,7 @@ bspc rule -a Timeshift-gtk state=floating follow=on
 bspc rule -a "Org.gnome.Nautilus" state=floating
 bspc rule -a Emacs state=tiled
 
+bspc config external_rules_command ~/dotfiles/stow/bspwm/.config/bspwm/scripts/set_chromium_pop_up_to_float
 
 
 ### autostart ###
