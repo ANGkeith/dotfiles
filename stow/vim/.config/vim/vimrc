@@ -251,6 +251,7 @@ endif
 
     " Map ctrl a to copy whole file
     nnoremap <c-a> ggVG"+y
+    inoremap jk <esc>
 
     " Custom Text Objects {{{
 

@@ -47,8 +47,8 @@ This function should only modify configuration layer settings."
      (docker :variables docker-dockerfile-backend 'lsp)
      (auto-completion :variables
                       auto-completion-complete-with-key-sequence "jk"
-                      auto-completion-idle-delay 0.1
-                      auto-completion-enable-help-tooltip t
+                      auto-completion-idle-delay 0.2
+                      auto-completion-enable-help-tooltip nil
                       auto-completion-use-company-box t)
      better-defaults
      emacs-lisp
@@ -70,8 +70,11 @@ This function should only modify configuration layer settings."
                solidity-flycheck-solium-checker-active t)
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      fzf
+     prettier
      (javascript :variables
                  javascript-import-tool 'import-js
+                 javascript-fmt-tool 'prettier
+                 javascript-fmt-on-save t
                  javascript-backend 'tern
                  javascript-disable-tern-port-files nil))
 

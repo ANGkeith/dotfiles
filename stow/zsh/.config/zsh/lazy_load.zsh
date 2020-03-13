@@ -45,4 +45,4 @@ pyenv() {
 #   for i in "${__keychain_commands[@]}"; do alias $i='__init_keychain && '$i; done
 # fi
 
-[ -s "/bin/keychain" ] && eval `keychain --eval --dir $XDG_CACHE_HOME/keychain &> /dev/null`
+[ -s "/bin/keychain" ] && eval `keychain --eval --dir $XDG_CACHE_HOME/keychain`
