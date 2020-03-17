@@ -38,6 +38,10 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     sudo pacman -S xdo --no-confirm
     sudo pacman -S xdotool --no-confirm
 
+    # for debugging
+    sudo pacman -S peek --noconfirm
+    yay -S screenkey --noconfirm
+
 # networking
     sudo pacman -S netcat --noconfirm
     sudo pacman -S wget --noconfirm
@@ -82,14 +86,22 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
     sudo sed -i 's/\(AccentColor=\)".*"/\1"#5fafaf"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
     sudo sed -i 's/\(ForceHideCompletePassword=\)".*"/\1"true"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-    sudo sed -i 's/\(Font=\)".*"/\1"Hack Nerd Font"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-    sudo sed -i 's/\(FontSize=\)".*"/\1"14"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-    sudo sed -i 's/\(HourFormat=\)".*"/\1"\\nHH:mm"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-    sudo sed -i 's/\(DateFormat=\)".*"/\1"dddd, d MMMM"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-    # Larger welcome text
+#     sudo sed -i 's/\(Font=\)".*"/\1"Hack Nerd Font"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+#     sudo sed -i 's/\(FontSize=\)".*"/\1"14"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+#     sudo sed -i 's/\(HourFormat=\)".*"/\1"\\nHH:mm"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+#     sudo sed -i 's/\(DateFormat=\)".*"/\1"dddd, d MMMM"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
+#     # Larger welcome text
     sudo sed -i 's/\(config.HeaderText.*\)\*.*/\1* 5 : 0/g' /usr/share/sddm/themes/Sugar-Candy/Components/Clock.qml
 
     sudo cp ~/.config/wallpaper/wallpaper.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/Mountain.jpg
+
+    # kde asthetics
+    sudo pacman -S latte-dock --noconfirm
+    sudo pacman -S plasma5-applets-active-window-control --noconfirm
+    yay -S sierrabreeze-kwin-decoration-git --noconfirm
+    sudo pacman -S kvantum-q --noconfirm
+    yay -S mcmojave-kde-theme-git --noconfirm
+    sudo pacman -S dolphin --noconfirm
 
 # use the theme and set path for Xauthority
 echo "[Theme]
@@ -128,6 +140,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S picom --noconfirm
 
 # Window Manager
+    sudo pacman -S plasma --noconfirm
     sudo pacman -S bspwm sxhkd --noconfirm
     # used to check the keycode using `xev`
     sudo pacman -S xorg-xev --noconfirm
@@ -145,7 +158,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
 # notification daemon
     sudo pacman -S dunst --noconfirm
-
 
 # development
     # install docker
