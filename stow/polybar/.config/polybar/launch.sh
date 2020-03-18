@@ -5,16 +5,19 @@ killall -q polybar
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-
-if type "xrandr"; then
-    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m polybar --reload main &
-    done
+if [ $KDE_FULL_SESSION ]; then
+    polybar --reload time &
 else
-    polybar --reload main &
-fi
-# Launch polybar
-sleep 0.4
+    if type "xrandr"; then
+        for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+            MONITOR=$m polybar --reload main &
+        done
+    else
+        polybar --reload main &
+    fi
+    # Launch polybar
+    sleep 0.4
 
-# need to run this after launching bar otherwise the format tag cannot be parsed
-~/.config/polybar/scripts/xrandr update
+    # need to run this after launching bar otherwise the format tag cannot be parsed
+    ~/.config/polybar/scripts/xrandr update
+fi

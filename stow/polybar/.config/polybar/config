@@ -181,8 +181,8 @@ label-urgent-padding = 2
 
 [module/date]
 type = internal/date
-time = %{T5}%{T-} %I:%M:%S %p
-time-alt = %{T5}%{T-} %A, %e %B, %I:%M:%S %p
+time = %{T5}%{T-} %A, %e %B, %I:%M:%S %p
+time-alt = %{T5}%{T-} %I:%M:%S %p
 label = %time%
 format =  <label>
 
@@ -303,5 +303,65 @@ content = |
 content-foreground = ${color.background}
 content-background = ${color.background}
 content-padding = 0
+
+
+[bar/time]
+;------------;
+; DIMENSIONS ;
+;------------;
+width = 14%
+height = 25
+offset-y = 0
+offset-x = 43%
+
+; border-top-size = 5
+; border-bottom-size = 5
+; border-right-size = 0
+; border-left-size = 0
+
+border-size = 0
+
+;----------;
+; LOCATION ;
+;----------;
+bottom = false
+monitor = ${env:MONITOR:}
+; hide bar in full screenmode
+wm-restack = bspwm
+override-redirect = false
+;-------;
+; FONTS ;
+;-------;
+font-0 = Noto Sans:size=10;3
+
+font-1 = "FontAwesome:style=Regular:pixelsize=13;3"
+font-2 = PowerlineSymbols:size=5;1
+font-3 = FiraCodeNerdFont:style=Regular:pixelsize=13;3
+font-4 = "Material Icons:size=13;4"
+font-5 = "Font Awesome 5 Free:style=Free:pixelsize=13;2"
+
+
+
+;--------;
+; COLORS ;
+;--------;
+background = ${color.transparent}
+foreground = ${color.foreground}
+
+line-size = 3
+
+;---------------;
+; MISCELLANEOUS ;
+;---------------;
+
+fixed-center = true
+padding-left = 0
+padding-right = 0
+module-margin = 1
+separator = |
+
+modules-center = date
+
+tray-detached = false
 
 ; vim:ft=dosini
