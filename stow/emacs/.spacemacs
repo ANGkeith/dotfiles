@@ -89,6 +89,7 @@ This function should only modify configuration layer settings."
                                       helm-flyspell
                                       helm-systemd
                                       doom-themes
+                                      yaml-mode
                                       transpose-frame)
 
    ;; A list of packages that cannot be updated.
@@ -265,7 +266,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -510,9 +511,9 @@ dump.")
   (setq-local javascript-indent-level n) ; javascript-mode
   (setq-local js-indent-level n) ; js-mode
   ;; (setq-local js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
-  (setq-local web-mode-css-indent-offset n) ; web-mode, css in html file
-  (setq-local web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq-local web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq-local web-mode-css-indent-offset 2) ; web-mode, css in html file
+  (setq-local web-mode-code-indent-offset 2) ; web-mode, js code in html file
   (setq-local css-indent-offset n) ; css-mode
   (setq-local tab-width n))
 
@@ -675,17 +676,27 @@ before packages are loaded."
                                                              ;; somehow bind `C-z` to `suspend-frame`
                                                              (interactive)
                                                              (message "C-z is disabled")))
+  (evil-define-motion evil-ex-search-next-center (count)
+    "Goes to the next occurrence and center"
+    :jump t
+    :type exclusive
+    (evil-ex-search count)
+    (evil-scroll-line-to-center (line-number-at-pos)))
 
-  (define-key evil-motion-state-map (kbd "n") (lambda ()
-                                                (interactive)
-                                                (evil-ex-search-next)
-                                                (evil-scroll-line-to-center (line-number-at-pos))
-                                                ))
-  (define-key evil-motion-state-map (kbd "N") (lambda ()
-                                                (interactive)
-                                                (evil-ex-search-previous)
-                                                (evil-scroll-line-to-center (line-number-at-pos))
-                                                ))
+  (evil-define-motion evil-ex-search-previous-center (count)
+    "Goes the the previous occurrence."
+    :jump t
+    :type exclusive
+    (let ((evil-ex-search-direction
+           (if (eq evil-ex-search-direction 'backward) 'forward 'backward)))
+      (evil-ex-search count))
+    (evil-scroll-line-to-center (line-number-at-pos)))
+
+  (define-key evil-motion-state-map (kbd "n") 'evil-ex-search-next-center)
+  (define-key evil-motion-state-map (kbd "M-n") 'evil-ex-search-next)
+  (define-key evil-motion-state-map (kbd "N") 'evil-ex-search-previous-center)
+  (define-key evil-motion-state-map (kbd "M-N") 'evil-ex-search-previous)
+
   (defvar neotree-mode-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "C-n")
@@ -755,7 +766,10 @@ This function is called at the very end of  initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(all-the-icons-scale-factor 1)
- '(hl-paren-colors (quote ("Orange"))))
+ '(hl-paren-colors (quote ("Orange")))
+ '(package-selected-packages
+   (quote
+    (yaml-mode yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill transpose-frame toc-org terminal-here tagedit systemd symon symbol-overlay string-inflection spaceline-all-the-icons solidity-flycheck smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nodejs-repl neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-python-ms lorem-ipsum livid-mode live-py-mode link-hint keychain-environment json-navigator js2-refactor js-doc insert-shebang importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-systemd helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fzf fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline dockerfile-mode docker diminish devdocs define-word dap-mode cython-mode company-web company-tern company-statistics company-shell company-lsp company-box company-anaconda clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -766,4 +780,5 @@ This function is called at the very end of  initialization."
  '(org-block ((t (:background "grey16"))))
  '(org-block-begin-line ((t (:background "grey10"))))
  '(org-block-end-line ((t (:inherit org-block-begin-line))))
- '(sp-show-pair-match-face ((t (:background "#1B2229" :foreground "#86dc2f" :weight ultra-bold :underline t))))))
+ '(sp-show-pair-match-face ((t (:background "#1B2229" :foreground "#86dc2f" :weight ultra-bold :underline t)))))
+)
