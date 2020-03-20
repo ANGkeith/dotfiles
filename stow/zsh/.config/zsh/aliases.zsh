@@ -13,6 +13,10 @@ alias zshrc="vim $ZDOTDIR/.zshrc"
 
 # docker {{{
 alias dockersrm='docker rm -f $(docker ps -aq)'
+dex() {
+    docker exec -ti "$1" bash
+}
+
 # }}}
 
 # git {{{
