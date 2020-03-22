@@ -158,9 +158,12 @@ endif
 
     " Map Ctrl c & v for copy and paste from system clipboard
     vnoremap <c-c> "+y
-    " map leader c & v for copy and paste from buffer
+    nnoremap p p=`]
+
+    " secondary keyboard
     vnoremap <leader>c "*y
-    nnoremap <leader>v "*p
+    nnoremap <leader>v "*p=`]
+
     noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
     " remove trailing spaces
     nnoremap <silent> <f5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -250,7 +253,7 @@ endif
     nnoremap gb :ls<CR>:b<Space>
 
     " Map ctrl a to copy whole file
-    nnoremap <c-a> ggVG"+y
+    nnoremap <c-a> ggVG
     inoremap jk <esc>
 
     " Custom Text Objects {{{
