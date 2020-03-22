@@ -747,7 +747,29 @@ before packages are loaded."
   ;; can cause neo tree to be slow
   (setq neo-vc-integration '(face))
 
-  ;; global mode
+  ;; (evil-set-initial-state 'term-mode 'emacs)
+  ;; (evil-define-key 'normal term-raw-map "p" 'term-paste)
+  ;; (evil-define-key 'normal term-raw-map "j" 'term-send-down)
+  ;; (evil-define-key 'normal term-raw-map "k" 'term-send-up)
+  ;; (evil-define-key 'normal term-raw-map (kbd "C-c") 'term-send-raw)
+  ;; (evil-define-key 'insert term-raw-map (kbd "C-c") 'term-send-raw)
+  ;; (evil-define-key 'insert term-raw-map (kbd "C-r") 'term-send-raw)
+  ;; (evil-define-key 'insert term-raw-map (kbd "C-t") 'term-send-raw)
+
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+
+  (with-eval-after-load 'ibuf-ext
+    (define-ibuffer-filter unsaved-file-buffers
+        "Toggle current view to buffers whose file is unsaved."
+      (:description "file is unsaved")
+      (ignore qualifier)
+      (and (buffer-local-value 'buffer-file-name buf)
+           (buffer-modified-p buf)))
+    ;; TODO: make this work
+    ;; (evil-define-key 'normal 'ibuffer-mode-map (kbd "s u") 'ibuffer-filter-by-unsaved-file-buffers)
+    )
+
+  ;; Global mode
   (spacemacs/toggle-mode-line-minor-modes-off)
   (global-auto-complete-mode)
   (smartparens-global-mode)

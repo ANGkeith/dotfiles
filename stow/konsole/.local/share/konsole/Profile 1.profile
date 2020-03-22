@@ -11,7 +11,8 @@ ShowTerminalSizeHint=false
 [Interaction Options]
 AutoCopySelectedText=true
 TrimTrailingSpacesInSelectedText=true
-TripleClickMode=0
+TripleClickMode=1
+UnderlineFilesEnabled=false
 
 [Keyboard]
 KeyBindings=default

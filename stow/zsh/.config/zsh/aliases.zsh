@@ -16,6 +16,9 @@ alias dockersrm='docker rm -f $(docker ps -aq)'
 dex() {
     docker exec -ti "$1" bash
 }
+dexr() {
+    docker exec --user root -ti "$1" bash
+}
 
 # }}}
 
