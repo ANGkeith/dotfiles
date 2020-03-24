@@ -28,7 +28,7 @@ if ! zgen saved; then
         echo "Installing def-matcher binary ..."
         install_def_matcher_bin() {
             cd /tmp
-	        download_link=$(curl -sL https://api.github.com/repos/sei40kr/fast-alias-tips-bin/releases/latest | jq -r '.assets[].browser_download_url' | grep linux)
+            download_link=$(curl -sL https://api.github.com/repos/sei40kr/fast-alias-tips-bin/releases/latest | jq -r '.assets[].browser_download_url' | grep linux)
             wget -qO def-matcher.tar.gz "$download_link"
             tar -xzf def-matcher.tar.gz
             rm def-matcher.tar.gz
@@ -39,7 +39,7 @@ if ! zgen saved; then
         success_message "Installed def-matcher binary"
     fi
     zgen load sei40kr/zsh-fast-alias-tips
-#
+
     # add widgets
     # completions
     zgen oh-my-zsh plugins/docker

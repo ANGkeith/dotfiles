@@ -74,6 +74,9 @@ fi
     export VIMINIT='source $MYVIMRC'
     export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
+    # doom
+    export DOOMDIR="$XDG_CONFIG_HOME"/doom
+
     # less
     # disable less history
     export LESSHISTFILE=-
