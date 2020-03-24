@@ -739,7 +739,11 @@ before packages are loaded."
   (global-visual-line-mode)
   (setq word-wrap nil)
 
-  (setq neo-theme 'icons)
+  (setq
+   neo-smart-open t
+   neo-theme 'icons)
+
+
   (setq org-confirm-babel-evaluate nil) ;; Don't prompt before running code in org
   (setq select-enable-clipboard nil) ;; use register for evil-mode yank/paste
   (setq auto-save-timeout 10) ;; autosave after 10 sec of idle
