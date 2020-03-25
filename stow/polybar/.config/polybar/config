@@ -181,8 +181,8 @@ label-urgent-padding = 2
 
 [module/date]
 type = internal/date
-time = %{T5}%{T-} %A, %e %B, %I:%M:%S %p
-time-alt = %{T5}%{T-} %I:%M:%S %p
+time-alt = %{T5} %{T-} %A, %e %B, %I:%M:%S %p
+time = %{T5} %{T-} %I:%M:%S %p
 label = %time%
 format =  <label>
 
