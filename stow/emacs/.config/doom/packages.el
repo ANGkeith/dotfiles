@@ -52,22 +52,28 @@
 
 ;; ui
 (package! fill-column-indicator)
-(package! all-the-icons)
-(package! minimap)
 (package! yascroll)
 (package! pretty-mode)
+(package! all-the-icons)
+(package! all-the-icons-dired)
+(package! all-the-icons-ivy-rich)
+(package! all-the-icons-ibuffer)
 
 ;; Js
 (package! prettier-js)
 
+;; themes
+(package! leuven-theme)
+(package! vscode-icon)
+(package! dired-sidebar)
 
-;; works
+;; for fuzzy
+(package! flx)
+
+
+;; to try:
+;; wakatime
+
+
 (package! my-package
   :recipe (:local-repo "/home/angkeith/.config/doom/modules/fzf"))
-;; cant work
-;; (package! my-package
-;;   :recipe (:local-repo (concat (getenv "DOOMDIR") "/modules/fzf")))
-;; cant work
-;; (let ((path-to-fzf (concat (getenv "DOOMDIR") "/modules/fzf")))
-;;   (message path-to-fzf)
-;;   (package! my-package :recipe (:local-repo path-to-fzf)))

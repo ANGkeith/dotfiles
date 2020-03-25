@@ -60,7 +60,7 @@
   :type 'string
   :group 'fzf)
 
-(defcustom fzf/args "-x --color bw --print-query"
+(defcustom fzf/args "-x --print-query"
   "Additional arguments to pass into fzf."
   :type 'string
   :group 'fzf)

@@ -44,6 +44,8 @@
       :g      "C-S-v"     'clipboard-yank
       :g      "C-S-c"     'clipboard-kill-ring-save
       :gnm    "C-p"       'my-fzf-find-file
+      ;; inspired by web M-d for changing url
+      :nm     "M-d"       'counsel-find-file
       :gnm    "C-S-p"     'my-fzf-find-file-from-home)
 
 ;; org kbd

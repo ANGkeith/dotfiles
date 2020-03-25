@@ -1,5 +1,7 @@
 ;;; ~/.doom.d/my-functions.el -*- lexical-binding: t; -*-
 
+(define-globalized-minor-mode global-fci-mode fci-mode turn-on-fci-mode)
+
 (defun alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
 current window."
