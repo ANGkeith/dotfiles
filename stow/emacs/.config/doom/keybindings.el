@@ -58,3 +58,9 @@
 ;; (define-key (current-global-map) (kbd "<mouse-9>") 'next-buffer)
 ;; (define-key (current-global-map) (kbd "<mouse-8>") 'previous-buffer)
 
+;;; git-gutter+
+(map!
+ :leader
+ :nm "hh" 'git-gutter+-show-hunk-inline-at-point
+ :nm "hu" 'my-git-gutter+-revert-hunks
+ :nm "hs" 'git-gutter+-stage-hunks)

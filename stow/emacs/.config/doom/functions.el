@@ -69,3 +69,11 @@ eq to this one."
   (with-undo-collapse
     (evil-paste-before 1)
     (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\]))))
+
+(defun my-git-gutter+-revert-hunks ()
+  "Revert hunk at point. If region is active, revert all hunks within the region. Without prompt"
+  (interactive)
+  (let* ((diffinfos (git-gutter+-selected-diffinfos))
+         (one-diffinfo-p (= 1 (length diffinfos))))
+    (dolist (diffinfo (nreverse diffinfos))
+      (git-gutter+-do-revert-hunk diffinfo))))

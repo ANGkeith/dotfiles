@@ -12,6 +12,7 @@
 
 ;;; Global-modes
 (global-fci-mode t)
+(global-git-gutter+-mode t)
 (global-pretty-mode t)
 (global-whitespace-mode t)
 (global-yascroll-bar-mode t)

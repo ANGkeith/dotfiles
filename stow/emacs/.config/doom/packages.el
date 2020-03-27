@@ -70,6 +70,8 @@
 ;; for fuzzy
 (package! flx)
 
+;; misc
+(package! git-gutter+)
 
 ;; to try:
 ;; wakatime
