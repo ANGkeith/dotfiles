@@ -17,6 +17,8 @@
 (global-whitespace-mode t)
 (global-yascroll-bar-mode t)
 (all-the-icons-ibuffer-mode 1)
+(company-flx-mode t)
+(symbol-overlay-mode t)
 
 ;;; custom
 (custom-set-faces

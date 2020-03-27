@@ -55,9 +55,9 @@
 (package! yascroll)
 (package! pretty-mode)
 (package! all-the-icons)
-(package! all-the-icons-dired)
 (package! all-the-icons-ivy-rich)
 (package! all-the-icons-ibuffer)
+(package! symbol-overlay)
 
 ;; Js
 (package! prettier-js)
@@ -67,6 +67,7 @@
 
 ;; for fuzzy
 (package! flx)
+(package! company-flx)
 
 ;; misc
 (package! git-gutter+)
