@@ -24,6 +24,9 @@
  '(avy-lead-face-0 ((t (:foreground "limegreen" :background "black"))))
  '(avy-goto-char-timer-face ((t (:foreground "limegreen" :background "black")))))
 (custom-set-variables '(yascroll:delay-to-hide nil))
+;; default one is difficult to differentiate from currently selected search
+(custom-set-faces
+ '(evil-ex-lazy-highlight ((t (:foreground "black" :background "yellow")))))
 
 ;;; setq
 ;; This determines the style of line numbers in effect. If set to `nil', line
