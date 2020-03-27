@@ -17,7 +17,6 @@
 (global-whitespace-mode t)
 (global-yascroll-bar-mode t)
 (all-the-icons-ibuffer-mode 1)
-(all-the-icons-dired-mode 1)
 
 ;;; custom
 (custom-set-faces
@@ -36,7 +35,6 @@
 ;; (setq doom-font (font-spec :family "Source Code Pro" :size 14))
 ;; (setq doom-font (font-spec :family "MesloLGL Nerd Font" :size 12))
 
-
 (setq display-line-numbers-type 't)
 (setq fci-rule-column 80 fci-rule-color "#3f3f3f")
 (setq avy-timeout-seconds 0.2)
@@ -52,20 +50,11 @@
 (evil-put-command-property 'evil-yank-line :motion 'evil-line)
 (setq select-enable-clipboard nil)
 
-;; for neotree incase i switches back to it
 (setq neo-smart-open t
       neo-theme 'icons)
 ;; dont load the doom-neotree ui because I prefer the default appearance
 (after! doom-themes
   (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
-(setq dired-sidebar-theme 'icons)
-(setq dired-sidebar-use-term-integration t)
-
-;; (add-hook 'dired-sidebar-mode-hook
-;;           (lambda ()
-;;             (unless (file-remote-p default-directory)
-;;               (auto-revert-mode))))
-;; (setq dired-sidebar-subtree-line-prefix "__")
 
 (load! "keybindings" doom-private-dir)
 (load! "hooks" doom-private-dir)

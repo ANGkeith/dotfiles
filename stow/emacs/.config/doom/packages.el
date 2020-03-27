@@ -64,18 +64,14 @@
 
 ;; themes
 (package! leuven-theme)
-(package! vscode-icon)
-(package! dired-sidebar)
 
 ;; for fuzzy
 (package! flx)
 
 ;; misc
 (package! git-gutter+)
-
 ;; to try:
 ;; wakatime
-
 
 (package! my-package
   :recipe (:local-repo "/home/angkeith/.config/doom/modules/fzf"))
