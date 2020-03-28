@@ -71,8 +71,6 @@
 
 ;; misc
 (package! git-gutter+)
+(package! git-gutter-fringe+)
 ;; to try:
 ;; wakatime
-
-(package! my-package
-  :recipe (:local-repo "/home/angkeith/.config/doom/modules/fzf"))
