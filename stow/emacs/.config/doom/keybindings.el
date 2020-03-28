@@ -7,6 +7,7 @@
    :desc "Close and kill window"             "q"   #'kill-buffer-and-window
    :desc "Configurations"                    "ev"  #'doom/find-file-in-private-config
    :desc "Load doom configurations"          "sv"  #'doom/reload
+   :desc "Clean up projectile cache"         "pl"  #'projectile-invalidate-cache
    :desc "M-x"                               "SPC" #'counsel-M-x
    :desc "Jump to last changed"              "jc"  #'goto-last-change
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
