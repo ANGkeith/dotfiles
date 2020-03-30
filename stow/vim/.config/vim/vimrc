@@ -98,6 +98,9 @@ endif
         " Hide the vim mode message in the last line (Insert, Replace, Visual)
         set noshowmode
     endif
+
+    " cwd follow filpath
+    autocmd BufEnter * silent! lcd %:p:h
 "}}}
 " Custom Mapping {{{
     " note that <space> in normal mode is mapped to right, thus this is to override that settings
@@ -146,6 +149,7 @@ endif
 
     " Quickly quit editing without save
     nnoremap <leader>q :q<CR>
+    nnoremap <leader>fs :w<CR>
 
     nnoremap <leader>sv :source $MYVIMRC<cr>
     nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -541,7 +545,7 @@ endif
     " }}}
     " coc {{{
         " add npm to path
-        let g:coc_node_path = expand("$NVM_DIR") .  '/versions/node/v12.16.1/bin/node'
+        let g:coc_node_path = expand("$NODE_PATH") .  '/node'
         let g:python3_host_prog = '/usr/bin/python'
 
         " You will have bad experience for diagnostic messages when it's default 4000.
@@ -742,7 +746,7 @@ call plug#begin()
         Plug 'szw/vim-maximizer'
 
         Plug 'godlygeek/tabular'
-        
+
         Plug 'obreitwi/vim-sort-folds'
     " }}}
     Plug 'majutsushi/tagbar'
