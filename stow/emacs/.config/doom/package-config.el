@@ -1,14 +1,5 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/use-packages.el -*- lexical-binding: t; -*-
 
-;; avy
-(use-package! avy
-  :config
-  (setq avy-timeout-seconds 0.2)
-  (custom-set-faces
-   '(avy-lead-face ((t (:foreground "limegreen" :background "black"))))
-   '(avy-lead-face-0 ((t (:foreground "limegreen" :background "black"))))
-   '(avy-goto-char-timer-face ((t (:foreground "limegreen" :background "black"))))))
-
 ;; Company-box
 (use-package! company-box
   :init
@@ -16,33 +7,33 @@
         company-box-icons-all-the-icons
         (let ((all-the-icons-scale-factor 0.8))
           `(
-            (Unknown . ,(all-the-icons-octicon "file-text"))
-            (Text . ,(all-the-icons-faicon "file-text-o"))
-            (Method . ,(all-the-icons-faicon "cube"))
-            (Function . ,(all-the-icons-faicon "cube"))
-            (Constructor . ,(all-the-icons-faicon "cube"))
-            (Field . ,(all-the-icons-faicon "tag"))
-            (Variable . ,(all-the-icons-faicon "tag"))
-            (Class . ,(all-the-icons-faicon "cog"))
-            (Interface . ,(all-the-icons-faicon "cogs"))
-            (Module . ,(all-the-icons-alltheicon "less"))
-            (Property . ,(all-the-icons-faicon "wrench"))
-            (Unit . ,(all-the-icons-faicon "tag"))
-            (Value . ,(all-the-icons-faicon "tag"))
-            (Enum . ,(all-the-icons-faicon "file-text-o"))
-            (Keyword . ,(all-the-icons-material "format_align_center"))
-            (Snippet . ,(all-the-icons-material "content_paste"))
-            (Color . ,(all-the-icons-material "palette"))
-            (File . ,(all-the-icons-faicon "file"))
-            (Reference . ,(all-the-icons-faicon "tag"))
-            (Folder . ,(all-the-icons-faicon "folder"))
-            (EnumMember . ,(all-the-icons-faicon "tag"))
-            (Constant . ,(all-the-icons-faicon "tag"))
-            (Struct . ,(all-the-icons-faicon "cog"))
-            (Event . ,(all-the-icons-faicon "bolt"))
-            (Operator . ,(all-the-icons-faicon "tag"))
+            (Unknown       . ,(all-the-icons-octicon "file-text"))
+            (Text          . ,(all-the-icons-faicon "file-text-o"))
+            (Method        . ,(all-the-icons-faicon "cube"))
+            (Function      . ,(all-the-icons-faicon "cube"))
+            (Constructor   . ,(all-the-icons-faicon "cube"))
+            (Field         . ,(all-the-icons-faicon "tag"))
+            (Variable      . ,(all-the-icons-faicon "tag"))
+            (Class         . ,(all-the-icons-faicon "cog"))
+            (Interface     . ,(all-the-icons-faicon "cogs"))
+            (Module        . ,(all-the-icons-alltheicon "less"))
+            (Property      . ,(all-the-icons-faicon "wrench"))
+            (Unit          . ,(all-the-icons-faicon "tag"))
+            (Value         . ,(all-the-icons-faicon "tag"))
+            (Enum          . ,(all-the-icons-faicon "file-text-o"))
+            (Keyword       . ,(all-the-icons-material "format_align_center"))
+            (Snippet       . ,(all-the-icons-material "content_paste"))
+            (Color         . ,(all-the-icons-material "palette"))
+            (File          . ,(all-the-icons-faicon "file"))
+            (Reference     . ,(all-the-icons-faicon "tag"))
+            (Folder        . ,(all-the-icons-faicon "folder"))
+            ( EnumMember   . ,(all-the-icons-faicon "tag"))
+            (Constant      . ,(all-the-icons-faicon "tag"))
+            (Struct        . ,(all-the-icons-faicon "cog"))
+            (Event         . ,(all-the-icons-faicon "bolt"))
+            (Operator      . ,(all-the-icons-faicon "tag"))
             (TypeParameter . ,(all-the-icons-faicon "cog"))
-            (Template . ,(all-the-icons-octicon "file-code"))
+            (Template      . ,(all-the-icons-octicon "file-code"))
             (ElispFunction . ,(all-the-icons-material "functions"                :face 'all-the-icons-red))
             (ElispVariable . ,(all-the-icons-material "check_circle"             :face 'all-the-icons-blue))
             (ElispFeature  . ,(all-the-icons-material "stars"                    :face 'all-the-icons-orange))
@@ -54,18 +45,43 @@
   (define-key! company-active-map
     "M-h"       #'company-box-doc-manually))
 
+;; avy
+(use-package! avy
+  :config
+  (setq avy-timeout-seconds 0.2)
+  (custom-set-faces
+   '(avy-lead-face ((t (:foreground "limegreen" :background "black"))))
+   '(avy-lead-face-0 ((t (:foreground "limegreen" :background "black"))))
+   '(avy-goto-char-timer-face ((t (:foreground "limegreen" :background "black"))))))
+
+
+;; centaur-tabs
+(use-package! centaur-tabs
+  :config
+  (setq
+   centaur-tabs-set-bar 'under
+   centaur-tabs-set-icons t
+   centaur-tabs-set-close-button nil
+   x-underline-at-descent-line t
+   centaur-tabs-style "chamfer"
+   centaur-tabs-icon-scale-factor 0.8
+   centaur-tabs-modified-marker "")
+  (centaur-tabs-headline-match)
+  (custom-set-faces
+   '(centaur-tabs-modified-marker-selected   ((((class color) (background dark)) (:foreground "indianred" ))))
+   '(centaur-tabs-modified-marker-unselected ((((class color) (background dark)) (:foreground "indianred" ))))))
 
 ;; company
 (after! company
   (define-key! company-active-map
-    "RET"       #'company-complete-selection
-    [return]    #'company-complete-selection
-    "TAB"       #'company-select-next
-    [tab]       #'company-select-next
-    [backtab]   #'company-select-previous
-    (kbd "jk")  #'company-complete-selection
-    "C-n"       #'company-select-next
-    "C-p"       #'company-select-previous)
+    "RET"        #'company-complete-selection
+    [return]     #'company-complete-selection
+    "TAB"        #'company-select-next
+    [tab]        #'company-select-next
+    [backtab]    #'company-select-previous
+    (kbd "jk")   #'company-complete-selection
+    "C-n"        #'company-select-next
+    "C-p"        #'company-select-previous)
   (map! :i "M-c" #'company-dabbrev))
 
 ;; display-line-numbers
@@ -73,12 +89,10 @@
   :config
   (setq display-line-numbers-type 't))
 
-;; fill-column-indicator
-(use-package! fill-column-indicator
-  :config
-  (setq fci-rule-column 80 fci-rule-color "#3f3f3f"))
+;; evil-numbers
+(use-package! evil-numbers)
 
-;; git-gutte
+;; git-gutter
 (use-package! git-gutter+
   :config
   (map!
@@ -110,6 +124,10 @@
 ;; ivy
 (use-package! ivy
   :config
+  (map! :in "C-p" 'counsel-yank-pop)
+  (ivy-configure 'counsel-yank-pop
+    :height 10
+    :format-fn #'counsel--yank-pop-format-function)
   (custom-set-faces
    '(ivy-minibuffer-match-face-1((((class color) (background dark)) (:foreground "white smoke"))))))
 
@@ -127,9 +145,8 @@
 (use-package! fzf
   :load-path path-to-fzf
   :config
-  (map!
-   :gnm    "C-p"        'my-fzf-find-file
-   :gnm    "C-S-p"      'my-fzf-find-file-from-home))
+  (map! :gnm    "C-t"        'my-fzf-find-file
+        :gnm    "C-S-t"      'my-fzf-find-file-from-home))
 
 ;; neotree
 (use-package! neotree
@@ -148,6 +165,8 @@
 ;; org
 (use-package! org
   :config
+  (setq org-hide-emphasis-markers t
+        org-fontify-emphasized-text t)
   (map!
    :desc "Go to org file" :nm "\\o"
    (lambda() (interactive) (find-file "~/Dropbox/org/notes.org"))))
@@ -160,7 +179,7 @@
 ;; whitespace
 (use-package! whitespace
   :config
-  (setq whitespace-style '(face trailing tabs empty big-indent)))
+  (setq whitespace-style '(face trailing tabs empty)))
   ;; (setq whitespace-style '(face tabs tab-mark)))
 
 ;; yascroll

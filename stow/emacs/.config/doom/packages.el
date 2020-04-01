@@ -51,7 +51,6 @@
 ;(package! builtin-package :recipe (:branch "develop"))
 
 ;; ui
-(package! fill-column-indicator)
 (package! yascroll)
 (package! pretty-mode)
 (package! all-the-icons)
