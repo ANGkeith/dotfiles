@@ -74,5 +74,6 @@
 (package! command-log-mode)
 (package! evil-numbers)
 
+(package! mu4e-alert)
 ;; to try:
 ;; wakatime

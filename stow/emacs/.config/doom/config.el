@@ -1,15 +1,20 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 (load! "functions" doom-private-dir)
 
-(map! :nm "\\" nil )
-(setq exec-path (append exec-path (list (getenv "NODE_PATH"))))
+(map! :nm  "\\" nil
+      :g   "M-`" nil)
 
+;;; paths
+(setq exec-path (append exec-path (list (getenv "NODE_PATH"))))
+(setq auth-sources
+      (append (list (concat (getenv "DOOMDIR") "/authinfo.gpg")) auth-sources))
 (setq user-full-name "Ang Kok Jun Keith" user-mail-address "angkeith@hotmail.sg")
 
 ;;; ui
 (setq doom-theme 'doom-one)
 (setq doom-font (font-spec :family "Source Code Pro" :size 12))
 (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+(setq doom-modeline-mu4e t)
 ;; modeline
 (display-battery-mode 1)
 
@@ -80,3 +85,41 @@
           (lambda () (save-excursion
                   (delete-trailing-whitespace)
                   (doom/delete-trailing-newlines))))
+
+(setq mu4e-maildir (concat (getenv "HOME") "/.local/share/mail"))
+(setq smtpmail-smtp-server "smtp.office365.com"
+      message-send-mail-function 'message-smtpmail-send-it)
+
+;;; mail
+(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+(use-package! mu4e
+  :config
+  (set-email-account! "school"
+                      '((mu4e-sent-folder       . "/school/Sent")
+                        (mu4e-drafts-folder     . "/school/Drafts")
+                        (mu4e-trash-folder      . "/school/Deleted Items")
+                        (mu4e-refile-folder     . "/school/Archive")
+                        (smtpmail-smtp-user     . "kang024@e.ntu.edu.sg")
+                        (user-mail-address      . "kang024@e.ntu.edu.sg")
+                        (mu4e-compose-signature . "---\nKeith Ang"))
+                      t)
+  (map! :desc "Go to mu4e" :nm "\\m" #'mu4e~main-menu)
+  (custom-set-faces
+   '(mu4e-highlight-face
+     ((((class color) (background dark)) (:foreground "yellow" :weight bold)))))
+  (defun refresh-mu4e-alert-mode-line ()
+    " Cron function to be called to get mail updates "
+    (interactive)
+    (mu4e~proc-kill)
+    (mu4e-alert-enable-mode-line-display))
+  (run-with-timer 0 60 'refresh-mu4e-alert-mode-line)
+  (mu4e-alert-set-default-style 'libnotify))
+
+(use-package! mu4e-alert
+  :init
+  (setq mu4e-alert-interesting-mail-query
+        (concat
+         "flag:unread maildir:/school/Inbox "
+         ;; "OR "
+         ;; "flag:unread maildir:/sch/Inbox"
+         )))

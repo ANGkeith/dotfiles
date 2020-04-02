@@ -148,3 +148,5 @@ github() {
     # Description: This will get from the latest release page the link
     curl -sL https://api.github.com/repos/"$1"/releases/latest | jq -r '.assets[].browser_download_url'
 }
+
+alias syncmail="systemctl --user start mail-daemon.service; systemctl --user status mail-daemon.service"

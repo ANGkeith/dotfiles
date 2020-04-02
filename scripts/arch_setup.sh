@@ -224,7 +224,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         sudo pacman -S aspell aspell-en --noconfirm
 
         # lsp
-        sudo pacman -S python-language-server
+        sudo pacman -S python-language-server --noconfirm
         npm install -g dockerfile-language-server-nodejs
         npm install -g bash-language-server
 
@@ -271,10 +271,18 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     # Fira Code
         wget --directory-prefix ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
 
+# keyrings
+    sudo pacman -S gnome-keyring seahorse --noconfirm
+    sudo pacman -S keychain --noconfirm
+
+# mail client
+    yay -S mu --noconfirm
+    # imap
+    sudo pacman -S isync --noconfirm
+    mkdir -p ~/.local/share/mail/school
 
 # bloat
     sudo pacman -S neofetch --noconfirm
-    sudo pacman -S keychain --noconfirm
     yay -S python-grip --nonconfirm
 
 # photoshop
