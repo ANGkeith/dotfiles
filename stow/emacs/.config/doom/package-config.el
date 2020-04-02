@@ -1,50 +1,5 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/use-packages.el -*- lexical-binding: t; -*-
 
-;; Company-box
-(use-package! company-box
-  :init
-  (setq company-box-icons-alist 'company-box-icons-all-the-icons
-        company-box-icons-all-the-icons
-        (let ((all-the-icons-scale-factor 0.8))
-          `(
-            (Unknown       . ,(all-the-icons-octicon "file-text"))
-            (Text          . ,(all-the-icons-faicon "file-text-o"))
-            (Method        . ,(all-the-icons-faicon "cube"))
-            (Function      . ,(all-the-icons-faicon "cube"))
-            (Constructor   . ,(all-the-icons-faicon "cube"))
-            (Field         . ,(all-the-icons-faicon "tag"))
-            (Variable      . ,(all-the-icons-faicon "tag"))
-            (Class         . ,(all-the-icons-faicon "cog"))
-            (Interface     . ,(all-the-icons-faicon "cogs"))
-            (Module        . ,(all-the-icons-alltheicon "less"))
-            (Property      . ,(all-the-icons-faicon "wrench"))
-            (Unit          . ,(all-the-icons-faicon "tag"))
-            (Value         . ,(all-the-icons-faicon "tag"))
-            (Enum          . ,(all-the-icons-faicon "file-text-o"))
-            (Keyword       . ,(all-the-icons-material "format_align_center"))
-            (Snippet       . ,(all-the-icons-material "content_paste"))
-            (Color         . ,(all-the-icons-material "palette"))
-            (File          . ,(all-the-icons-faicon "file"))
-            (Reference     . ,(all-the-icons-faicon "tag"))
-            (Folder        . ,(all-the-icons-faicon "folder"))
-            ( EnumMember   . ,(all-the-icons-faicon "tag"))
-            (Constant      . ,(all-the-icons-faicon "tag"))
-            (Struct        . ,(all-the-icons-faicon "cog"))
-            (Event         . ,(all-the-icons-faicon "bolt"))
-            (Operator      . ,(all-the-icons-faicon "tag"))
-            (TypeParameter . ,(all-the-icons-faicon "cog"))
-            (Template      . ,(all-the-icons-octicon "file-code"))
-            (ElispFunction . ,(all-the-icons-material "functions"                :face 'all-the-icons-red))
-            (ElispVariable . ,(all-the-icons-material "check_circle"             :face 'all-the-icons-blue))
-            (ElispFeature  . ,(all-the-icons-material "stars"                    :face 'all-the-icons-orange))
-            (ElispFace     . ,(all-the-icons-material "format_paint"             :face 'all-the-icons-pink)))))
-  :config
-  (setq
-   company-box-max-candidates 100
-   company-box-doc-enable nil)
-  (define-key! company-active-map
-    "M-h"       #'company-box-doc-manually))
-
 ;; avy
 (use-package! avy
   :config
@@ -53,7 +8,6 @@
    '(avy-lead-face ((t (:foreground "limegreen" :background "black"))))
    '(avy-lead-face-0 ((t (:foreground "limegreen" :background "black"))))
    '(avy-goto-char-timer-face ((t (:foreground "limegreen" :background "black"))))))
-
 
 ;; centaur-tabs
 (use-package! centaur-tabs
@@ -83,6 +37,50 @@
     "C-n"        #'company-select-next
     "C-p"        #'company-select-previous)
   (map! :i "M-c" #'company-dabbrev))
+
+;; company-box
+(use-package! company-box
+  :init
+  (setq company-box-icons-alist 'company-box-icons-all-the-icons
+        company-box-icons-all-the-icons
+        (let ((all-the-icons-scale-factor 0.8))
+          `(
+            (Unknown       . ,(all-the-icons-octicon "file-text"))
+            (Text          . ,(all-the-icons-faicon "file-text-o"))
+            (Method        . ,(all-the-icons-faicon "cube"))
+            (Function      . ,(all-the-icons-faicon "cube"))
+            (Constructor   . ,(all-the-icons-faicon "cube"))
+            (Field         . ,(all-the-icons-faicon "tag"))
+            (Variable      . ,(all-the-icons-faicon "tag"))
+            (Class         . ,(all-the-icons-faicon "cog"))
+            (Interface     . ,(all-the-icons-faicon "cogs"))
+            (Module        . ,(all-the-icons-alltheicon "less"))
+            (Property      . ,(all-the-icons-faicon "wrench"))
+            (Unit          . ,(all-the-icons-faicon "tag"))
+            (Value         . ,(all-the-icons-faicon "tag"))
+            (Enum          . ,(all-the-icons-faicon "file-text-o"))
+            (Keyword       . ,(all-the-icons-material "format_align_center"))
+            (Snippet       . ,(all-the-icons-material "content_paste"))
+            (Color         . ,(all-the-icons-material "palette"))
+            (File          . ,(all-the-icons-faicon "file"))
+            (Reference     . ,(all-the-icons-faicon "tag"))
+            (Folder        . ,(all-the-icons-faicon "folder"))
+            (EnumMember    . ,(all-the-icons-faicon "tag"))
+            (Constant      . ,(all-the-icons-faicon "tag"))
+            (Struct        . ,(all-the-icons-faicon "cog"))
+            (Event         . ,(all-the-icons-faicon "bolt"))
+            (Operator      . ,(all-the-icons-faicon "tag"))
+            (TypeParameter . ,(all-the-icons-faicon "cog"))
+            (Template      . ,(all-the-icons-octicon "file-code"))
+            (ElispFunction . ,(all-the-icons-material "functions"                :face 'all-the-icons-red))
+            (ElispVariable . ,(all-the-icons-material "check_circle"             :face 'all-the-icons-blue))
+            (ElispFeature  . ,(all-the-icons-material "stars"                    :face 'all-the-icons-orange))
+            (ElispFace     . ,(all-the-icons-material "format_paint"             :face 'all-the-icons-pink)))))
+  :config
+  (setq company-box-max-candidates 100
+        company-box-doc-enable nil)
+  (define-key! company-active-map
+    "M-h"       #'company-box-doc-manually))
 
 ;; display-line-numbers
 (use-package! display-line-numbers
@@ -156,8 +154,8 @@
   (map!
    :inmg "C-n" 'neotree-toggle
    (:map neotree-mode-map
-     :n "h"    'neotree-select-up-node
-     :n "p"    'neotree-quick-look)))
+     :n "h" 'neotree-select-up-node
+     :n "p" 'neotree-quick-look)))
 ;; dont load the doom-neotree ui because I prefer the default appearance
 (after! doom-themes
   (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))

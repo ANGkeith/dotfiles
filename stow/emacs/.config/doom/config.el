@@ -42,7 +42,7 @@
 (custom-set-variables '(yascroll:delay-to-hide nil))
 ;; default one is difficult to differentiate from currently selected search
 (custom-set-faces
- '(evil-ex-lazy-highlight ((t (:foreground "black" :background "yellow")))))
+ '(evil-ex-lazy-highlight ((t (:foreground "black" :background "goldenrod3")))))
 
 (map!
  (:leader
