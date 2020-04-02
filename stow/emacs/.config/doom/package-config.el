@@ -125,7 +125,7 @@
 (use-package! ivy
   :config
   (map! :in "C-p" 'counsel-yank-pop)
-  (ivy-configure 'counsel-yank-pop
+  (ivy-configure  'counsel-yank-pop
     :height 10
     :format-fn #'counsel--yank-pop-format-function)
   (custom-set-faces
@@ -145,8 +145,8 @@
 (use-package! fzf
   :load-path path-to-fzf
   :config
-  (map! :gnm    "C-t"        'my-fzf-find-file
-        :gnm    "C-S-t"      'my-fzf-find-file-from-home))
+  (map! :gnm "C-S-t" 'my-fzf-find-file
+        :gnm "C-t"   'my-fzf-find-file-from-home))
 
 ;; neotree
 (use-package! neotree
@@ -156,8 +156,8 @@
   (map!
    :inmg "C-n" 'neotree-toggle
    (:map neotree-mode-map
-     :n "h" 'neotree-select-up-node
-     :n "p" 'neotree-quick-look)))
+     :n "h"    'neotree-select-up-node
+     :n "p"    'neotree-quick-look)))
 ;; dont load the doom-neotree ui because I prefer the default appearance
 (after! doom-themes
   (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
