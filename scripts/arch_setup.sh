@@ -274,6 +274,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 # keyrings
     sudo pacman -S gnome-keyring seahorse --noconfirm
     sudo pacman -S keychain --noconfirm
+    yay -S bitwarden-bin bitwarden-cli --noconfirm
 
 # mail client
     yay -S mu --noconfirm
