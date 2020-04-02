@@ -1,4 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+(setq user-full-name "Ang Kok Jun Keith" user-mail-address "angkeith@hotmail.sg")
 (load! "functions" doom-private-dir)
 
 (map! :nm  "\\" nil
@@ -8,7 +9,6 @@
 (setq exec-path (append exec-path (list (getenv "NODE_PATH"))))
 (setq auth-sources
       (append (list (concat (getenv "DOOMDIR") "/authinfo.gpg")) auth-sources))
-(setq user-full-name "Ang Kok Jun Keith" user-mail-address "angkeith@hotmail.sg")
 
 ;;; ui
 (setq doom-theme 'doom-one)
@@ -86,11 +86,13 @@
                   (delete-trailing-whitespace)
                   (doom/delete-trailing-newlines))))
 
-(setq mu4e-maildir (concat (getenv "HOME") "/.local/share/mail"))
-(setq smtpmail-smtp-server "smtp.office365.com"
-      message-send-mail-function 'message-smtpmail-send-it)
 
-;;; mail
+;; mail
+(setq smtpmail-default-smtp-server "smtp.office365.com"
+      mu4e-maildir (concat (getenv "HOME") "/.local/share/mail")
+      mu4e-attachment-dir (concat (getenv "HOME") "/.local/share/mail/attachment")
+      mu4e-get-mail-command (concat "mbsync -a -c " (concat (getenv "HOME") "/.config/mbsync/mbsyncrc"))
+      message-send-mail-function 'message-smtpmail-send-it)
 (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 (use-package! mu4e
   :config
@@ -101,8 +103,15 @@
                         (mu4e-refile-folder     . "/school/Archive")
                         (smtpmail-smtp-user     . "kang024@e.ntu.edu.sg")
                         (user-mail-address      . "kang024@e.ntu.edu.sg")
-                        (mu4e-compose-signature . "---\nKeith Ang"))
-                      t)
+                        (mu4e-compose-signature . "---\nKeith Ang")) nil)
+  (set-email-account! "main"
+                      '((mu4e-sent-folder       . "/main/Sent")
+                        (mu4e-drafts-folder     . "/main/Drafts")
+                        (mu4e-trash-folder      . "/main/Trash")
+                        (mu4e-refile-folder     . "/main/Archive")
+                        (smtpmail-smtp-user     . "angkeith@hotmail.sg")
+                        (user-mail-address      . "angkeith@hotmail.sg")
+                        (mu4e-compose-signature . "---\nKeith Ang")) t)
   (map! :desc "Go to mu4e" :nm "\\m" #'mu4e~main-menu)
   (custom-set-faces
    '(mu4e-highlight-face
@@ -114,12 +123,13 @@
     (mu4e-alert-enable-mode-line-display))
   (run-with-timer 0 60 'refresh-mu4e-alert-mode-line)
   (mu4e-alert-set-default-style 'libnotify))
-
 (use-package! mu4e-alert
-  :init
-  (setq mu4e-alert-interesting-mail-query
-        (concat
-         "flag:unread maildir:/school/Inbox "
-         ;; "OR "
-         ;; "flag:unread maildir:/sch/Inbox"
-         )))
+  :init (setq mu4e-alert-interesting-mail-query
+              (concat
+               "flag:unread maildir:/school/Inbox"
+               " OR "
+               "flag:unread maildir:/school/Junks Email"
+               " OR "
+               "flag:unread maildir:/main/Junk"
+               " OR "
+               "flag:unread maildir:/main/Inbox")))
