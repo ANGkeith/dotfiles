@@ -88,14 +88,14 @@
 
 
 ;; mail
-(setq smtpmail-default-smtp-server "smtp.office365.com"
-      mu4e-maildir (concat (getenv "HOME") "/.local/share/mail")
-      mu4e-attachment-dir (concat (getenv "HOME") "/.local/share/mail/attachment")
-      mu4e-get-mail-command (concat "mbsync -a -c " (concat (getenv "HOME") "/.config/mbsync/mbsyncrc"))
-      message-send-mail-function 'message-smtpmail-send-it)
 (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 (use-package! mu4e
   :config
+  (setq smtpmail-default-smtp-server "smtp.office365.com"
+        mu4e-maildir (concat (getenv "HOME") "/.local/share/mail")
+        mu4e-attachment-dir (concat (getenv "HOME") "/.local/share/mail/attachment")
+        mu4e-get-mail-command (concat "mbsync -a -c " (concat (getenv "HOME") "/.config/mbsync/mbsyncrc"))
+        message-send-mail-function 'message-smtpmail-send-it)
   (set-email-account! "school"
                       '((mu4e-sent-folder       . "/school/Sent")
                         (mu4e-drafts-folder     . "/school/Drafts")

@@ -122,7 +122,7 @@
 ;; ivy
 (use-package! ivy
   :config
-  (map! :in "C-p" 'counsel-yank-pop)
+  (map! :in "M-p" 'counsel-yank-pop)
   (ivy-configure  'counsel-yank-pop
     :height 10
     :format-fn #'counsel--yank-pop-format-function)
@@ -143,8 +143,8 @@
 (use-package! fzf
   :load-path path-to-fzf
   :config
-  (map! :gnm "C-S-t" 'my-fzf-find-file
-        :gnm "C-t"   'my-fzf-find-file-from-home))
+  (map! :gnm "C-S-p" 'my-fzf-find-file
+        :gnm "C-p"   'my-fzf-find-file-from-home))
 
 ;; neotree
 (use-package! neotree
