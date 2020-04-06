@@ -155,6 +155,8 @@
    :inmg "C-n" 'neotree-toggle
    (:map neotree-mode-map
      :n "h" 'neotree-select-up-node
+     :n "C" 'neotree-collapse-all
+     :n "D" 'make-directory
      :n "p" 'neotree-quick-look)))
 ;; dont load the doom-neotree ui because I prefer the default appearance
 (after! doom-themes
