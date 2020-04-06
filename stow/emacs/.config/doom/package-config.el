@@ -176,20 +176,12 @@
   (appendq! +pretty-code-symbols
             '(:checkbox    "☐"
               :pending     "◼"
-              :checkedbox  "☑"
-              :results     "🠶"
-              :title       "𝙏"
-              :author      "𝘼"
-              :date        "𝘿"))
-
+              :checkedbox  "☑"))
   (set-pretty-symbols! 'org-mode
     :merge t
     :checkbox    "[ ]"
     :pending     "[-]"
-    :checkedbox  "[X]"
-    :title       "#+TITLE:"
-    :author      "#+AUTHOR:"
-    :date        "#+DATE:"))
+    :checkedbox  "[X]"))
 
 ;; symbol-overlay
 (use-package! symbol-overlay

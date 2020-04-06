@@ -12,9 +12,13 @@
 
 ;;; ui
 (setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "Source Code Pro" :size 12))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
 (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
-(setq doom-modeline-mu4e t)
+(setq doom-modeline-major-mode-icon t
+      doom-modeline-buffer-modification-icon nil
+      doom-modeline-major-mode-color-icon nil
+      doom-modeline-mu4e t)
+
 ;; modeline
 (display-battery-mode 1)
 
@@ -80,11 +84,11 @@
 (after! flycheck
   (set-popup-rule! "^\\*Flycheck errors\\*" :side 'bottom))
 
-;;; hooks
-(add-hook 'before-save-hook
-          (lambda () (save-excursion
-                  (delete-trailing-whitespace)
-                  (doom/delete-trailing-newlines))))
+;; ;;; hooks
+;; (add-hook 'before-save-hook
+;;           (lambda () (save-excursion
+;;                   (delete-trailing-whitespace)
+;;                   (doom/delete-trailing-newlines))))
 
 
 ;; mail
@@ -133,3 +137,20 @@
                "flag:unread maildir:/main/Junk"
                " OR "
                "flag:unread maildir:/main/Inbox")))
+
+;;; patch for themes
+(if (eq doom-theme 'doom-one-light)
+  (custom-set-faces
+  '(hl-line ((t (:background "#fadeff"))))
+  '(solaire-hl-line-face ((t (:background "#e6e6e6"))))
+  '(fill-column-indicator ((t (:foreground "#4078f2"))))
+  '(font-lock-keyword-face ((t (:foreground "#4078f2"))))
+  '(font-lock-string-face ((t (:foreground "#0d850b"))))
+  '(font-lock-comment-delimiter-face ((t (:foreground "#84888b" :slant italic))))
+  '(font-lock-comment-face ((t (:foreground "#84888b" :slant italic))))
+  '(success ((t (:foreground "#2aa34d"))))
+  ))
+(if (eq doom-theme 'doom-one)
+    (custom-set-faces
+     '(success ((t (:foreground "#13cf45"))))
+     ))

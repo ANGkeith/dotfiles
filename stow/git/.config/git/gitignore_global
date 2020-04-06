@@ -67,3 +67,6 @@ atlassian-ide-plugin.xml
 ehthumbs.db
 Thumbs.db
 
+##
+*.gpg
+

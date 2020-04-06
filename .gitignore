@@ -2,4 +2,3 @@ stow/vim/.config/vim/plugged/
 stow/vim/.config/vim/.netrwhist
 stow/git/.config/git/gitk
 *.zcompdump
-*.gpg
