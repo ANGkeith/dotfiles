@@ -164,10 +164,30 @@
 (use-package! org
   :config
   (setq org-hide-emphasis-markers t
+        org-ellipsis " ▾ "
+        org-bullets-bullet-list '("⁖")
         org-fontify-emphasized-text t)
   (map!
    :desc "Go to org file" :nm "\\o"
    (lambda() (interactive) (find-file "~/Dropbox/org/notes.org"))))
+(after! org
+  (appendq! +pretty-code-symbols
+            '(:checkbox    "☐"
+              :pending     "◼"
+              :checkedbox  "☑"
+              :results     "🠶"
+              :title       "𝙏"
+              :author      "𝘼"
+              :date        "𝘿"))
+
+  (set-pretty-symbols! 'org-mode
+    :merge t
+    :checkbox    "[ ]"
+    :pending     "[-]"
+    :checkedbox  "[X]"
+    :title       "#+TITLE:"
+    :author      "#+AUTHOR:"
+    :date        "#+DATE:"))
 
 ;; symbol-overlay
 (use-package! symbol-overlay
