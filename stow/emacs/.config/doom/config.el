@@ -58,6 +58,7 @@
    :desc "Clean up projectile cache"         "pl"  #'projectile-invalidate-cache
    :desc "M-x"                               "SPC" #'counsel-M-x
    :desc "Jump to last changed"              "jc"  #'goto-last-change
+   :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "List buffers"                      "gb"  #'ibuffer)

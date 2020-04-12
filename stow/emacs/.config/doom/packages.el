@@ -61,9 +61,6 @@
 ;; Js
 (package! prettier-js)
 
-;; themes
-(package! leuven-theme)
-
 ;; for fuzzy
 (package! flx)
 (package! company-flx)
