@@ -154,3 +154,7 @@
     (custom-set-faces
      '(success ((t (:foreground "#13cf45"))))
      ))
+
+;;; flycheck
+(setq-hook! 'sh-mode-hook
+  flycheck-checker (if (eq sh-shell 'zsh) 'sh-zsh 'sh-shellcheck))
