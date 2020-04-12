@@ -39,6 +39,7 @@
 (global-yascroll-bar-mode t)
 (all-the-icons-ibuffer-mode 1)
 (company-flx-mode t)
+(eyebrowse-mode t)
 (add-hook 'after-change-major-mode-hook #'symbol-overlay-mode)
 
 ;;; custom

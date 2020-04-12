@@ -73,5 +73,6 @@
 (package! git-gutter-fringe+)
 (package! command-log-mode)
 (package! evil-numbers)
+(package! eyebrowse)
 ;; to try:
 ;; wakatime

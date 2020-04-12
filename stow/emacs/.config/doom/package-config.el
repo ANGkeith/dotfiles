@@ -90,6 +90,20 @@
 ;; evil-numbers
 (use-package! evil-numbers)
 
+;; eyebrowse
+(after! eyebrowse
+  :config
+  (map!
+   :n "M-1" 'eyebrowse-switch-to-window-config-1
+   :n "M-2" 'eyebrowse-switch-to-window-config-2
+   :n "M-3" 'eyebrowse-switch-to-window-config-3
+   :n "M-4" 'eyebrowse-switch-to-window-config-4
+   :n "M-5" 'eyebrowse-switch-to-window-config-5
+   :n "M-6" 'eyebrowse-switch-to-window-config-6
+   :n "M-7" 'eyebrowse-switch-to-window-config-7
+   :n "M-8" 'eyebrowse-switch-to-window-config-8
+   :n "M-9" 'eyebrowse-switch-to-window-config-9))
+
 ;; git-gutter
 (use-package! git-gutter+
   :config
