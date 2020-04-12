@@ -194,25 +194,6 @@
   )
 )
 
-(defun fzf-with-entries (entries action &optional directory)
-  "`entries' is a list of strings that is piped into `fzf' as a source."
-  ; FZF will read from stdin only if it detects stdin is not a tty, which amounts to something being
-  ; piped in. Unfortunately the emacs term-exec code runs /bin/sh -c exec "command", so it cannot
-  ; take in a pipeline of shell commands. Like bling/fzf.el/pull/20, abuse the FZF_DEFAULT_COMMAND,
-  ; environment var
-  (interactive)
-  (if entries
-    (fzf-with-command (concat "echo \"" (mapconcat (lambda (x) x) entries "\n") "\"") action directory)
-    (message "FZF not started because contents nil")
-  )
-)
-
-(defun fzf-base (action &optional directory)
-  "Run FZF without setting default command"
-  (interactive)
-  (fzf-with-command "" action directory)
-  )
-
 (defun fzf/resolve-directory (&optional directory)
   ; An example function to resolve a directory in a user command, before passing it to fzf. Here if
   ; directory is undefined, attempt to use the projectile root. Users can define their own as
@@ -230,59 +211,6 @@
   )
 )
 
-;; Prebuilt user commands
-(defun fzf-switch-buffer ()
-  (interactive)
-  (fzf-with-entries
-   (seq-filter
-    (lambda (x) (not (string-prefix-p " " x)))
-    (mapcar (function buffer-name) (buffer-list))
-   )
-    (lambda (x) (set-window-buffer nil x))
-  )
-)
-
-(defun fzf-find-file (&optional directory)
-  (interactive)
-  (let ((d (fzf/resolve-directory directory)))
-    (fzf-base
-    (lambda (x)
-        (let ((f (expand-file-name x d)))
-        (when (file-exists-p f)
-            (find-file f))))
-    d
-    )
-  )
-)
-
-(defun fzf-find-file-in-dir (directory)
-  (interactive "sDirectory: ")
-  (fzf-find-file directory)
-)
-
-(defun fzf-recentf ()
-  (interactive)
-  (fzf-with-entries recentf-list
-    (lambda (f) (when (file-exists-p f) (find-file f))))
-)
-
-(defun fzf-grep (search &optional directory)
-  (interactive "sGrep: ")
-  (let ((d (fzf/resolve-directory directory)))
-    (fzf-with-command
-    (format "grep -rHn %s ." search)
-    (lambda (x)
-      (let* ((parts (split-string x ":"))
-             (f (expand-file-name (nth 0 parts) d)))
-        (when (file-exists-p f)
-          (find-file f)
-          (goto-line (string-to-number (nth 1 parts))))))
-    d)))
-
-(defun fzf-test ()
-  (fzf-with-entries
-   (list "a" "b" "c")
-   (lambda (x) (print x))))
 
 ;; MODIFIED BY ME
 ;;;###autoload
