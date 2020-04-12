@@ -268,6 +268,9 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         yay -S ttf-material-design-icons --noconfirm
         yay -S ttf-font-awesome-4 --noconfirm
 
+    # emacs fallback unicode glyph fonts
+        yay -S ttf-symbola-infinality
+
     # Fira Code
         wget --directory-prefix ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
 
