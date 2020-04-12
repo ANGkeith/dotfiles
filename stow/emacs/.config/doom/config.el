@@ -16,8 +16,7 @@
 (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
 (setq doom-modeline-major-mode-icon t
       doom-modeline-buffer-modification-icon nil
-      doom-modeline-major-mode-color-icon nil
-      doom-modeline-mu4e t)
+      doom-modeline-major-mode-color-icon nil)
 
 ;; modeline
 (display-battery-mode 1)
@@ -83,60 +82,6 @@
 ;;; popup rules
 (after! flycheck
   (set-popup-rule! "^\\*Flycheck errors\\*" :side 'bottom))
-
-;; ;;; hooks
-;; (add-hook 'before-save-hook
-;;           (lambda () (save-excursion
-;;                   (delete-trailing-whitespace)
-;;                   (doom/delete-trailing-newlines))))
-
-
-;; mail
-(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-(use-package! mu4e
-  :config
-  (setq smtpmail-default-smtp-server "smtp.office365.com"
-        mu4e-maildir (concat (getenv "HOME") "/.local/share/mail")
-        mu4e-attachment-dir (concat (getenv "HOME") "/.local/share/mail/attachment")
-        mu4e-get-mail-command (concat "mbsync -a -c " (concat (getenv "HOME") "/.config/mbsync/mbsyncrc"))
-        message-send-mail-function 'message-smtpmail-send-it)
-  (set-email-account! "school"
-                      '((mu4e-sent-folder       . "/school/Sent")
-                        (mu4e-drafts-folder     . "/school/Drafts")
-                        (mu4e-trash-folder      . "/school/Deleted Items")
-                        (mu4e-refile-folder     . "/school/Archive")
-                        (smtpmail-smtp-user     . "kang024@e.ntu.edu.sg")
-                        (user-mail-address      . "kang024@e.ntu.edu.sg")
-                        (mu4e-compose-signature . "---\nKeith Ang")) nil)
-  (set-email-account! "main"
-                      '((mu4e-sent-folder       . "/main/Sent")
-                        (mu4e-drafts-folder     . "/main/Drafts")
-                        (mu4e-trash-folder      . "/main/Trash")
-                        (mu4e-refile-folder     . "/main/Archive")
-                        (smtpmail-smtp-user     . "angkeith@hotmail.sg")
-                        (user-mail-address      . "angkeith@hotmail.sg")
-                        (mu4e-compose-signature . "---\nKeith Ang")) t)
-  (map! :desc "Go to mu4e" :nm "\\m" #'mu4e~main-menu)
-  (custom-set-faces
-   '(mu4e-highlight-face
-     ((((class color) (background dark)) (:foreground "yellow" :weight bold)))))
-  (defun refresh-mu4e-alert-mode-line ()
-    " Cron function to be called to get mail updates "
-    (interactive)
-    (mu4e~proc-kill)
-    (mu4e-alert-enable-mode-line-display))
-  (run-with-timer 0 60 'refresh-mu4e-alert-mode-line)
-  (mu4e-alert-set-default-style 'libnotify))
-(use-package! mu4e-alert
-  :init (setq mu4e-alert-interesting-mail-query
-              (concat
-               "flag:unread maildir:/school/Inbox"
-               " OR "
-               "flag:unread maildir:/school/Junks Email"
-               " OR "
-               "flag:unread maildir:/main/Junk"
-               " OR "
-               "flag:unread maildir:/main/Inbox")))
 
 ;;; patch for themes
 (if (eq doom-theme 'doom-one-light)
