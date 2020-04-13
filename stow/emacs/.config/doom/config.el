@@ -24,12 +24,15 @@
 ;;; behaviour
 ;; better defaults for clipboard
 (setq select-enable-clipboard nil)
+(setq evil-want-fine-undo t)
 ;; yank whole line with Y
 (evil-put-command-property 'evil-yank-line :motion 'evil-line)
 ;; dont auto add comments
 (setq +evil-want-o/O-to-continue-comments nil)
 (setq tab-always-indent nil)
 (setq evil-vsplit-window-right t evil-split-window-below t)
+(setq trash-directory "/tmp/trash")
+(setq-default delete-by-moving-to-trash t)
 
 ;;; Global-modes
 (global-display-fill-column-indicator-mode t)
@@ -95,8 +98,8 @@
   '(font-lock-string-face ((t (:foreground "#0d850b"))))
   '(font-lock-comment-delimiter-face ((t (:foreground "#84888b" :slant italic))))
   '(font-lock-comment-face ((t (:foreground "#84888b" :slant italic))))
-  '(success ((t (:foreground "#2aa34d"))))
-  ))
+  '(success ((t (:foreground "#2aa34d"))))))
+
 (if (eq doom-theme 'doom-one)
     (custom-set-faces
      '(success ((t (:foreground "#13cf45"))))

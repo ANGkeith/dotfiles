@@ -16,9 +16,14 @@
    centaur-tabs-set-close-button nil
    x-underline-at-descent-line t
    centaur-tabs-style "chamfer"
+   centaur-tabs-cycle-scope 'tabs
    centaur-tabs-icon-scale-factor 0.8
    centaur-tabs-modified-marker "")
+  (map!
+   :n "<C-S-iso-lefttab>" 'centaur-tabs-counsel-switch-group
+   :n "<C-tab>" 'centaur-tabs-forward)
   (centaur-tabs-headline-match)
+  (add-hook 'term-mode-hook #'centaur-tabs-local-mode)
   (custom-set-faces
    '(centaur-tabs-modified-marker-selected   ((((class color) (background dark)) (:foreground "indianred" ))))
    '(centaur-tabs-modified-marker-unselected ((((class color) (background dark)) (:foreground "indianred" ))))))
