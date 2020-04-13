@@ -87,9 +87,6 @@
   :config
   (setq display-line-numbers-type 't))
 
-;; evil-numbers
-(use-package! evil-numbers)
-
 ;; eyebrowse
 (after! eyebrowse
   :config

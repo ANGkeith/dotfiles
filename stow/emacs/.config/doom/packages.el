@@ -53,8 +53,6 @@
 ;; ui
 (package! yascroll)
 (package! pretty-mode)
-(package! all-the-icons)
-(package! all-the-icons-ivy-rich)
 (package! all-the-icons-ibuffer)
 (package! symbol-overlay)
 
@@ -62,14 +60,14 @@
 (package! prettier-js)
 
 ;; for fuzzy
-(package! flx)
 (package! company-flx)
 
 ;; misc
 (package! git-gutter+)
 (package! git-gutter-fringe+)
 (package! command-log-mode)
-(package! evil-numbers)
 (package! eyebrowse)
 ;; to try:
 ;; wakatime
+
+(package! auto-yasnippet :disable t)
