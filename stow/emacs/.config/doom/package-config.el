@@ -20,8 +20,8 @@
    centaur-tabs-icon-scale-factor 0.8
    centaur-tabs-modified-marker "")
   (map!
-   :n "<C-S-iso-lefttab>" 'centaur-tabs-counsel-switch-group
-   :n "<C-tab>" 'centaur-tabs-forward)
+   :n "<C-S-iso-lefttab>" #'centaur-tabs-counsel-switch-group
+   :n "<C-tab>" #'centaur-tabs-forward)
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode)
   (custom-set-faces
@@ -88,36 +88,36 @@
 ;; eyebrowse
 (after! eyebrowse
   (map!
-   :n "M-1" 'eyebrowse-switch-to-window-config-1
-   :n "M-2" 'eyebrowse-switch-to-window-config-2
-   :n "M-3" 'eyebrowse-switch-to-window-config-3
-   :n "M-4" 'eyebrowse-switch-to-window-config-4
-   :n "M-5" 'eyebrowse-switch-to-window-config-5
-   :n "M-6" 'eyebrowse-switch-to-window-config-6
-   :n "M-7" 'eyebrowse-switch-to-window-config-7
-   :n "M-8" 'eyebrowse-switch-to-window-config-8
-   :n "M-9" 'eyebrowse-switch-to-window-config-9))
+   :n "M-1" #'eyebrowse-switch-to-window-config-1
+   :n "M-2" #'eyebrowse-switch-to-window-config-2
+   :n "M-3" #'eyebrowse-switch-to-window-config-3
+   :n "M-4" #'eyebrowse-switch-to-window-config-4
+   :n "M-5" #'eyebrowse-switch-to-window-config-5
+   :n "M-6" #'eyebrowse-switch-to-window-config-6
+   :n "M-7" #'eyebrowse-switch-to-window-config-7
+   :n "M-8" #'eyebrowse-switch-to-window-config-8
+   :n "M-9" #'eyebrowse-switch-to-window-config-9))
 
 ;; git-gutter
 (after! git-gutter+
   (map!
    :leader
-   :nm "hh" 'git-gutter+-show-hunk-inline-at-point
-   :nm "hu" 'my-git-gutter+-revert-hunks
-   :nm "hs" 'git-gutter+-stage-hunks)
+   :nm "hh" #'git-gutter+-show-hunk-inline-at-point
+   :nm "hu" #'my-git-gutter+-revert-hunks
+   :nm "hs" #'git-gutter+-stage-hunks)
   (map!
-   :nm "]h" 'git-gutter+-next-hunk
-   :nm "[h" 'git-gutter+-previous-hunk))
+   :nm "]h" #'git-gutter+-next-hunk
+   :nm "[h" #'git-gutter+-previous-hunk))
 
 ;; git-gutter-fringe+
 (use-package! git-gutter-fringe+
   :config
   (if (fboundp 'fringe-mode) (fringe-mode '4))
-  (fringe-helper-define 'git-gutter-fr+-added '(bottom repeated)
+  (fringe-helper-define #'git-gutter-fr+-added '(bottom repeated)
     "XX.....")
-  (fringe-helper-define 'git-gutter-fr+-modified '(bottom repeated)
+  (fringe-helper-define #'git-gutter-fr+-modified '(bottom repeated)
     "XX.....")
-  (fringe-helper-define 'git-gutter-fr+-deleted '(bottom nil)
+  (fringe-helper-define #'git-gutter-fr+-deleted '(bottom nil)
     "XX....."
     "XX....."
     "XX....."
@@ -127,8 +127,8 @@
 
 ;; ivy
 (after! ivy
-  (map! :in "M-p" 'counsel-yank-pop)
-  (ivy-configure  'counsel-yank-pop
+  (map! :in "M-p" #'counsel-yank-pop)
+  (ivy-configure  #'counsel-yank-pop
     :height 10
     :format-fn #'counsel--yank-pop-format-function)
   (custom-set-faces
@@ -148,20 +148,20 @@
 (use-package! fzf
   :load-path path-to-fzf
   :config
-  (map! :gnm "C-S-p" 'my-fzf-find-file
-        :gnm "C-p"   'my-fzf-find-file-from-home))
+  (map! :gnm "C-S-p" #'my-fzf-find-file
+        :gnm "C-p"   #'my-fzf-find-file-from-home))
 
 ;; neotree
 (after! neotree
   (setq neo-smart-open t
         neo-theme 'icons))
 (map!
- :inmg "C-n" 'neotree-toggle
+ :inmg "C-n" #'neotree-toggle
  (:map neotree-mode-map
-   :n "h" 'neotree-select-up-node
-   :n "C" 'neotree-collapse-all
-   :n "D" 'make-directory
-   :n "p" 'neotree-quick-look))
+   :n "h" #'neotree-select-up-node
+   :n "C" #'neotree-collapse-all
+   :n "D" #'make-directory
+   :n "p" #'neotree-quick-look))
 
 ;; dont load the doom-neotree ui because I prefer the default appearance
 (after! doom-themes
