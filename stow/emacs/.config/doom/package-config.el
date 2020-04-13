@@ -1,8 +1,7 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/use-packages.el -*- lexical-binding: t; -*-
 
 ;; avy
-(use-package! avy
-  :config
+(after! avy
   (setq avy-timeout-seconds 0.2)
   (custom-set-faces
    '(avy-lead-face ((t (:foreground "limegreen" :background "black"))))
@@ -10,8 +9,7 @@
    '(avy-goto-char-timer-face ((t (:foreground "limegreen" :background "black"))))))
 
 ;; centaur-tabs
-(use-package! centaur-tabs
-  :config
+(after! centaur-tabs
   (setq
    centaur-tabs-set-bar 'under
    centaur-tabs-set-icons t
@@ -39,8 +37,7 @@
   (map! :i "M-c" #'company-dabbrev))
 
 ;; company-box
-(use-package! company-box
-  :init
+(after! company-box
   (setq company-box-icons-alist 'company-box-icons-all-the-icons
         company-box-icons-all-the-icons
         (let ((all-the-icons-scale-factor 0.8))
@@ -76,20 +73,15 @@
             (ElispVariable . ,(all-the-icons-material "check_circle"             :face 'all-the-icons-blue))
             (ElispFeature  . ,(all-the-icons-material "stars"                    :face 'all-the-icons-orange))
             (ElispFace     . ,(all-the-icons-material "format_paint"             :face 'all-the-icons-pink)))))
-  :config
   (setq company-box-max-candidates 100
-        company-box-doc-enable nil)
-  (define-key! company-active-map
-    "M-h"       #'company-box-doc-manually))
+        company-box-doc-enable nil))
 
 ;; display-line-numbers
-(use-package! display-line-numbers
-  :config
+(after! display-line-numbers
   (setq display-line-numbers-type 't))
 
 ;; eyebrowse
 (after! eyebrowse
-  :config
   (map!
    :n "M-1" 'eyebrowse-switch-to-window-config-1
    :n "M-2" 'eyebrowse-switch-to-window-config-2
@@ -102,8 +94,7 @@
    :n "M-9" 'eyebrowse-switch-to-window-config-9))
 
 ;; git-gutter
-(use-package! git-gutter+
-  :config
+(after! git-gutter+
   (map!
    :leader
    :nm "hh" 'git-gutter+-show-hunk-inline-at-point
@@ -116,7 +107,6 @@
 ;; git-gutter-fringe+
 (use-package! git-gutter-fringe+
   :config
-  (require 'git-gutter-fringe+)
   (if (fboundp 'fringe-mode) (fringe-mode '4))
   (fringe-helper-define 'git-gutter-fr+-added '(bottom repeated)
     "XX.....")
@@ -131,8 +121,7 @@
     "XX....."))
 
 ;; ivy
-(use-package! ivy
-  :config
+(after! ivy
   (map! :in "M-p" 'counsel-yank-pop)
   (ivy-configure  'counsel-yank-pop
     :height 10
@@ -158,32 +147,30 @@
         :gnm "C-p"   'my-fzf-find-file-from-home))
 
 ;; neotree
-(use-package! neotree
-  :config
+(after! neotree
   (setq neo-smart-open t
-        neo-theme 'icons)
-  (map!
-   :inmg "C-n" 'neotree-toggle
-   (:map neotree-mode-map
-     :n "h" 'neotree-select-up-node
-     :n "C" 'neotree-collapse-all
-     :n "D" 'make-directory
-     :n "p" 'neotree-quick-look)))
+        neo-theme 'icons))
+(map!
+ :inmg "C-n" 'neotree-toggle
+ (:map neotree-mode-map
+   :n "h" 'neotree-select-up-node
+   :n "C" 'neotree-collapse-all
+   :n "D" 'make-directory
+   :n "p" 'neotree-quick-look))
+
 ;; dont load the doom-neotree ui because I prefer the default appearance
 (after! doom-themes
   (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
 
 ;; org
-(use-package! org
-  :config
+(map!
+ :desc "Go to org file" :nm "\\o"
+ (lambda() (interactive) (find-file "~/Dropbox/org/notes.org")))
+(after! org
   (setq org-hide-emphasis-markers t
         org-ellipsis " ▾ "
         org-bullets-bullet-list '("⁖")
         org-fontify-emphasized-text t)
-  (map!
-   :desc "Go to org file" :nm "\\o"
-   (lambda() (interactive) (find-file "~/Dropbox/org/notes.org"))))
-(after! org
   (appendq! +pretty-code-symbols
             '(:checkbox    "☐"
               :pending     "◼"
@@ -195,17 +182,14 @@
     :checkedbox  "[X]"))
 
 ;; symbol-overlay
-(use-package! symbol-overlay
-  :config
+(after! symbol-overlay
   (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
 
 ;; whitespace
-(use-package! whitespace
-  :config
+(after! whitespace
   (setq whitespace-style '(face trailing tabs empty)))
   ;; (setq whitespace-style '(face tabs tab-mark)))
 
 ;; yascroll
-(use-package! yascroll
-  :config
+(after! yascroll
   (setq yascroll:delay-to-hide nil))
