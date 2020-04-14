@@ -29,7 +29,7 @@
 (evil-put-command-property 'evil-yank-line :motion 'evil-line)
 ;; dont auto add comments
 (setq +evil-want-o/O-to-continue-comments nil)
-(setq tab-always-indent nil)
+;; (setq tab-always-indent nil)
 (setq evil-vsplit-window-right t evil-split-window-below t)
 (setq trash-directory "/tmp/trash")
 (setq-default delete-by-moving-to-trash t)
