@@ -46,8 +46,7 @@
 (add-hook 'after-change-major-mode-hook #'symbol-overlay-mode)
 
 ;;; custom
-(custom-set-variables '(yascroll:delay-to-hide nil))
-;; default one is difficult to differentiate from currently selected search
+(setq eros-eval-result-prefix "⇒ ")
 (custom-set-faces
  '(evil-ex-lazy-highlight ((t (:foreground "black" :background "goldenrod3")))))
 
