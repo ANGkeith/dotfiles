@@ -1,5 +1,13 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/use-packages.el -*- lexical-binding: t; -*-
 
+;; atomic-chrome
+(use-package! atomic-chrome
+  :after-call after-focus-change-function
+  :config
+  (setq atomic-chrome-default-major-mode 'markdown-mode
+        atomic-chrome-buffer-open-style 'frame)
+  (atomic-chrome-start-server))
+
 ;; avy
 (after! avy
   (setq avy-timeout-seconds 0.2)
@@ -85,6 +93,10 @@
 (after! display-line-numbers
   (setq display-line-numbers-type 't))
 
+;; dont load the doom-neotree ui because I prefer the default appearance
+(after! doom-themes
+  (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
+
 ;; eyebrowse
 (after! eyebrowse
   (map!
@@ -162,10 +174,6 @@
    :n "C" #'neotree-collapse-all
    :n "D" #'make-directory
    :n "p" #'neotree-quick-look))
-
-;; dont load the doom-neotree ui because I prefer the default appearance
-(after! doom-themes
-  (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
 
 ;; org
 (map!
