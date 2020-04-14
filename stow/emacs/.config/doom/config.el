@@ -90,13 +90,11 @@
 ;;; patch for themes
 (if (eq doom-theme 'doom-one-light)
   (custom-set-faces
-  '(hl-line ((t (:background "#fadeff"))))
-  '(solaire-hl-line-face ((t (:background "#e6e6e6"))))
   '(fill-column-indicator ((t (:foreground "#4078f2"))))
   '(font-lock-keyword-face ((t (:foreground "#4078f2"))))
   '(font-lock-string-face ((t (:foreground "#0d850b"))))
-  '(font-lock-comment-delimiter-face ((t (:foreground "#84888b" :slant italic))))
-  '(font-lock-comment-face ((t (:foreground "#84888b" :slant italic))))
+  '(font-lock-comment-face ((t (:weight semi-bold :slant italic))))
+  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
   '(success ((t (:foreground "#2aa34d"))))))
 
 (if (eq doom-theme 'doom-one)
