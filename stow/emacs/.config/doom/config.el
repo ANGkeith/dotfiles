@@ -22,6 +22,7 @@
 (display-battery-mode 1)
 
 ;;; behaviour
+(setq show-trailing-whitespace t)
 ;; better defaults for clipboard
 (setq select-enable-clipboard nil)
 (setq evil-want-fine-undo t)
@@ -38,7 +39,6 @@
 (global-display-fill-column-indicator-mode t)
 (global-git-gutter+-mode t)
 (global-pretty-mode t)
-(global-whitespace-mode t)
 (global-yascroll-bar-mode t)
 (all-the-icons-ibuffer-mode 1)
 (company-flx-mode t)

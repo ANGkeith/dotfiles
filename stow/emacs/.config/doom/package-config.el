@@ -203,11 +203,6 @@
 (after! symbol-overlay
   (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
 
-;; whitespace
-(after! whitespace
-  (setq whitespace-style '(face trailing tabs empty)))
-  ;; (setq whitespace-style '(face tabs tab-mark)))
-
 ;; yascroll
 (after! yascroll
   (setq yascroll:delay-to-hide nil))
