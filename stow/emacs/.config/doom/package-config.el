@@ -28,6 +28,11 @@
    centaur-tabs-icon-scale-factor 0.8
    centaur-tabs-modified-marker "")
   (map!
+   :n "C-1" #'centaur-tabs-select-visible-tab
+   :n "C-2" #'centaur-tabs-select-visible-tab
+   :n "C-3" #'centaur-tabs-select-visible-tab
+   :n "C-4" #'centaur-tabs-select-visible-tab
+   :n "C-5" #'centaur-tabs-select-visible-tab
    :n "<C-S-iso-lefttab>" #'centaur-tabs-counsel-switch-group
    :n "<C-tab>" #'centaur-tabs-forward)
   (centaur-tabs-headline-match)
