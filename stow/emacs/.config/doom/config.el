@@ -40,7 +40,6 @@
 (global-git-gutter+-mode t)
 (global-pretty-mode t)
 (global-yascroll-bar-mode t)
-(all-the-icons-ibuffer-mode 1)
 (company-flx-mode t)
 (eyebrowse-mode t)
 (add-hook 'after-change-major-mode-hook #'symbol-overlay-mode)
@@ -63,7 +62,7 @@
    :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
-   :desc "List buffers"                      "gb"  #'ibuffer)
+   :desc "List buffers"                      "gb"  #'counsel-switch-buffer)
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)

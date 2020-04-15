@@ -53,7 +53,6 @@
 ;; ui
 (package! yascroll)
 (package! pretty-mode)
-(package! all-the-icons-ibuffer)
 (package! symbol-overlay)
 
 ;; Js
