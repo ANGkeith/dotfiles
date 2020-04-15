@@ -38,7 +38,6 @@
 ;;; Global-modes
 (global-display-fill-column-indicator-mode t)
 (global-git-gutter+-mode t)
-(global-pretty-mode t)
 (global-yascroll-bar-mode t)
 (company-flx-mode t)
 (eyebrowse-mode t)

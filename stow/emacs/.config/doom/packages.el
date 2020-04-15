@@ -52,7 +52,6 @@
 
 ;; ui
 (package! yascroll)
-(package! pretty-mode)
 (package! symbol-overlay)
 
 ;; Js
