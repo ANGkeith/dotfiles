@@ -19,13 +19,13 @@
 ;; centaur-tabs
 (after! centaur-tabs
   (setq
-   centaur-tabs-set-bar 'under
+   centaur-tabs-style "bar"
+   centaur-tabs-set-bar 'left
    centaur-tabs-set-icons t
    centaur-tabs-set-close-button nil
-   x-underline-at-descent-line t
-   centaur-tabs-style "chamfer"
    centaur-tabs-cycle-scope 'tabs
-   centaur-tabs-icon-scale-factor 0.8
+   centaur-tabs-icon-scale-factor 1
+   centaur-tabs-icon-v-adjust -0.15
    centaur-tabs-modified-marker "")
   (map!
    :n "C-1" #'centaur-tabs-select-visible-tab
