@@ -245,6 +245,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 # maintanence
     yay -S timeshift --noconfirm
     sudo systemctl enable --now cronie.service
+    yay -S paccache --noconfirm
 
 # fonts
     # to resolve nerd-fonts-complete error
