@@ -102,6 +102,11 @@
 (after! doom-themes
   (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
 
+;; evil-collection-term
+(after! evil-collection-term
+    (evil-collection-define-key 'insert 'term-raw-map
+    (kbd "C-j") 'term-send-raw))
+
 ;; eyebrowse
 (after! eyebrowse
   (map!

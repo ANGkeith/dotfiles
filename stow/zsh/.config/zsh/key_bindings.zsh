@@ -10,6 +10,9 @@ bindkey "^A" beginning-of-line
 bindkey "^P" up-line-or-history
 bindkey "^N" down-line-or-history
 
+bindkey "^J" down-line-or-history
+bindkey "^K" up-line-or-history
+
 # fzf
 bindkey -r "^R"
 bindkey "^R" fzf-history-widget
