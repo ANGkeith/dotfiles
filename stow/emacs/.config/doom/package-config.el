@@ -98,10 +98,6 @@
 (after! display-line-numbers
   (setq display-line-numbers-type 't))
 
-;; dont load the doom-neotree ui because I prefer the default appearance
-(after! doom-themes
-  (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
-
 ;; evil-collection-term
 (after! evil-collection-term
     (evil-collection-define-key 'insert 'term-raw-map
@@ -174,16 +170,22 @@
         :gnm "C-p"   #'my-fzf-find-file-from-home))
 
 ;; neotree
+(map! :inmg "C-n" #'neotree-toggle)
 (after! neotree
   (setq neo-smart-open t
-        neo-theme 'icons))
-(map!
- :inmg "C-n" #'neotree-toggle
- (:map neotree-mode-map
-   :n "h" #'neotree-select-up-node
-   :n "C" #'neotree-collapse-all
-   :n "D" #'make-directory
-   :n "p" #'neotree-quick-look))
+        doom-themes-neotree-file-icons t
+        neo-theme 'icons)
+  (map! (:map neotree-mode-map
+          :n "h" #'neotree-select-up-node
+          :n "C" #'neotree-collapse-all
+          :n "D" #'make-directory
+          :n "p" #'neotree-quick-look)))
+(add-hook! 'neotree-mode-hook (hl-line-mode 1)) ;; for some reason `(featurep 'hl-line)` evaluates to nil in the dashboard
+(setq-hook! 'neotree-mode-hook
+  evil-normal-state-cursor '((bar . 0)) ;; hide cursor
+  yascroll:scroll-bar 'left-fringe)
+(advice-add #'doom-themes-neotree-insert-root :override #'+neo-buffer--insert-root-entry)
+(advice-add #'doom-themes--neotree-no-fringes :override #'+doom-themes--neotree-no-fringes)
 
 ;; org
 (map!

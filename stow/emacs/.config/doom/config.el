@@ -12,7 +12,8 @@
 
 ;;; ui
 (setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
 (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
 (setq doom-modeline-major-mode-icon t
       doom-modeline-buffer-modification-icon nil
@@ -41,7 +42,7 @@
 (global-yascroll-bar-mode t)
 (company-flx-mode t)
 (eyebrowse-mode t)
-(add-hook 'after-change-major-mode-hook #'symbol-overlay-mode)
+(add-hook 'after-change-major-mode-hook #'my-symbol-overlay-mode)
 
 ;;; custom
 (setq eros-eval-result-prefix "⇒ ")
@@ -65,7 +66,6 @@
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
-
  :n      "<tab>"                                   #'evil-jump-item
  :n      "p"                                       #'paste-and-indent-after
  :n      "P"                                       #'paste-and-indent-before
