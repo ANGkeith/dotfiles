@@ -207,9 +207,10 @@
     :checkedbox  "[X]"))
 
 ;; symbol-overlay
-(after! symbol-overlay
-  (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
+(after! symbol-overlay (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
 
 ;; yascroll
 (after! yascroll
+  (set-face-foreground 'yascroll:thumb-fringe "#da8548")
+  (set-face-background 'yascroll:thumb-fringe "#da8548")
   (setq yascroll:delay-to-hide nil))
