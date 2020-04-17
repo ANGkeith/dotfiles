@@ -14,7 +14,7 @@
 (setq doom-theme 'doom-one)
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14)
       doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
-(setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+(setq doom-modeline-buffer-file-name-style 'truncate-nil)
 (setq doom-modeline-major-mode-icon t
       doom-modeline-buffer-modification-icon nil
       doom-modeline-major-mode-color-icon nil)

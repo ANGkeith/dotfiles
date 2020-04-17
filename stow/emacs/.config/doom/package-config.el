@@ -98,6 +98,16 @@
 (after! display-line-numbers
   (setq display-line-numbers-type 't))
 
+;; doom-modeline
+(after! doom-modeline
+  (doom-modeline-def-modeline 'my-mode-line
+    '(bar workspace-name window-number modals matches remote-host word-count parrot selection-info vcs buffer-info)
+    '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug lsp minor-modes input-method indent-info buffer-encoding process buffer-position checker)))
+;; Add to `doom-modeline-mode-hook` or other hooks
+(defun setup-custom-doom-modeline ()
+  (doom-modeline-set-modeline 'my-mode-line 'default))
+(add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
+
 ;; evil-collection-term
 (after! evil-collection-term
     (evil-collection-define-key 'insert 'term-raw-map
