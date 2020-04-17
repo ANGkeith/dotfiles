@@ -176,10 +176,13 @@
         doom-themes-neotree-file-icons t
         neo-theme 'icons)
   (map! (:map neotree-mode-map
+          :n "C-k" #'neotree-select-previous-sibling-node
+          :n "C-j" #'neotree-select-next-sibling-node
           :n "h" #'neotree-select-up-node
           :n "C" #'neotree-collapse-all
           :n "D" #'make-directory
-          :n "p" #'neotree-quick-look)))
+          :n "p" #'evil-ex-search-previous
+          :n "P" #'neotree-quick-look)))
 (add-hook! 'neotree-mode-hook (hl-line-mode 1)) ;; for some reason `(featurep 'hl-line)` evaluates to nil in the dashboard
 (setq-hook! 'neotree-mode-hook
   evil-normal-state-cursor '((bar . 0)) ;; hide cursor
