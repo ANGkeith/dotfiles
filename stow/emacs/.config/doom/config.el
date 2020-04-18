@@ -35,6 +35,8 @@
 (setq evil-vsplit-window-right t evil-split-window-below t)
 (setq trash-directory "/tmp/trash")
 (setq-default delete-by-moving-to-trash t)
+(if (eq initial-window-system 'x)                                                ; maximize emacs on startup
+    (toggle-frame-maximized))
 
 ;;; Global-modes
 (global-display-fill-column-indicator-mode t)
