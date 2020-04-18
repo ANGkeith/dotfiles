@@ -7,7 +7,7 @@ if [[ ! -d ${filedir} ]]; then
     mkdir -p ${filedir}
 fi
 
-flameshot gui -p /tmp -r > ${filepath}
+flameshot gui -p "${filedir}" -r > ${filepath}
 # add border to screenshot
 convert -border 2 -bordercolor black ${filepath} ${filepath}
 
