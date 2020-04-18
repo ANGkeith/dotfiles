@@ -28,14 +28,15 @@
    centaur-tabs-icon-v-adjust -0.15
    centaur-tabs-modified-marker "")
   (map!
+   (:leader :n "gt" #'centaur-tabs-counsel-switch-group)
    :n "C-1" #'centaur-tabs-select-visible-tab
    :n "C-2" #'centaur-tabs-select-visible-tab
    :n "C-3" #'centaur-tabs-select-visible-tab
    :n "C-4" #'centaur-tabs-select-visible-tab
    :n "C-5" #'centaur-tabs-select-visible-tab
-   :n "<C-S-iso-lefttab>" #'centaur-tabs-counsel-switch-group
    :n "<C-tab>" #'centaur-tabs-forward)
   (centaur-tabs-headline-match)
+  (centaur-tabs-group-by-projectile-project)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode)
   (custom-set-faces
    '(centaur-tabs-modified-marker-selected   ((((class color) (background dark)) (:foreground "indianred" ))))
