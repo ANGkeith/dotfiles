@@ -65,7 +65,6 @@
 (package! git-gutter-fringe+)
 (package! command-log-mode)
 (package! eyebrowse)
-(package! atomic-chrome)
 
 ;; to try:
 ;; wakatime

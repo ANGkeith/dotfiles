@@ -1,13 +1,5 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/use-packages.el -*- lexical-binding: t; -*-
 
-;; atomic-chrome
-(use-package! atomic-chrome
-  :after-call after-focus-change-function
-  :config
-  (setq atomic-chrome-default-major-mode 'markdown-mode
-        atomic-chrome-buffer-open-style 'frame)
-  (atomic-chrome-start-server))
-
 ;; avy
 (after! avy
   (setq avy-timeout-seconds 0.2)
