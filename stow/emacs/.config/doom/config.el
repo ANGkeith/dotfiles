@@ -59,7 +59,7 @@
    :desc "Configurations"                    "ev"  #'doom/find-file-in-private-config
    :desc "Load doom configurations"          "sv"  #'doom/reload
    :desc "Clean up projectile cache"         "pl"  #'projectile-invalidate-cache
-   :desc "M-x"                               "SPC" #'counsel-M-x
+   :desc "M-x"                               "SPC" #'ivy-resume
    :desc "Jump to last changed"              "jc"  #'goto-last-change
    :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
