@@ -194,14 +194,28 @@
 (advice-add #'doom-themes--neotree-no-fringes :override #'+doom-themes--neotree-no-fringes)
 
 ;; org
+(setq org-directory "~/Dropbox/org") ;; must be loaded before =org= is loaded
 (map!
- :desc "Go to org file" :nm "\\o"
- (lambda() (interactive) (find-file "~/Dropbox/org/notes.org")))
+ (:map org-mode-map :prefix ","
+   :n "s" #'org-sort)
+ :desc "Go to org todo" :nm "\\ot" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
+ :desc "Go to org notes"  :nm "\\ow" (lambda() (interactive) (find-file "~/Dropbox/org/notes.org"))
+ (:leader                :n  "oa"   #'org-agenda))
 (after! org
+  (setq org-log-done t;; input timestamp when task is completed
+        org-catch-invisible-edits t)
+  ;; prettify
   (setq org-hide-emphasis-markers t
         org-ellipsis " ▾ "
-        org-bullets-bullet-list '("⁖")
-        org-fontify-emphasized-text t)
+        org-superstar-headline-bullets-list '("⁖")
+        org-fontify-emphasized-text t
+        org-emphasis-alist
+        '(("*" bold)
+          ("/" italic)
+          ("_" underline)
+          ("=" (org-verbatim verbatim :inherit rectangle-preview))
+          ("~" (org-code verbatim :inherit rectangle-preview))
+          ("+" (:strike-through t))))
   (appendq! +pretty-code-symbols
             '(:checkbox    "☐"
               :pending     "◼"
@@ -210,7 +224,11 @@
     :merge t
     :checkbox    "[ ]"
     :pending     "[-]"
-    :checkedbox  "[X]"))
+    :checkedbox  "[X]")
+  ;; babel
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook #'org-babel-remove-result nil 'local ))))
 
 ;; symbol-overlay
 (after! symbol-overlay (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
