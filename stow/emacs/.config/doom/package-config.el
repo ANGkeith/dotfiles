@@ -84,8 +84,7 @@
             (ElispVariable . ,(all-the-icons-material "check_circle"             :face 'all-the-icons-blue))
             (ElispFeature  . ,(all-the-icons-material "stars"                    :face 'all-the-icons-orange))
             (ElispFace     . ,(all-the-icons-material "format_paint"             :face 'all-the-icons-pink)))))
-  (setq company-box-max-candidates 100
-        company-box-doc-enable nil))
+  (setq company-box-max-candidates 100))
 
 ;; display-line-numbers
 (after! display-line-numbers

@@ -3,6 +3,7 @@
 (load! "functions" doom-private-dir)
 
 (map! :nm  "\\" nil
+      :g "M-<ESC>" nil
       :g   "M-`" nil)
 
 ;;; paths
@@ -55,7 +56,7 @@
  (:leader
    :desc "Next window"                       "`"   #'evil-window-next
    :desc "Toggle back and forth buffer"      "TAB" #'alternate-buffer
-   :desc "Close and kill window"             "q"   #'kill-buffer-and-window
+   :desc "Close and kill window"             "q"   #'kill-current-buffer
    :desc "Configurations"                    "ev"  #'doom/find-file-in-private-config
    :desc "Load doom configurations"          "sv"  #'doom/reload
    :desc "Clean up projectile cache"         "pl"  #'projectile-invalidate-cache
