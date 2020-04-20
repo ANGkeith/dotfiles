@@ -64,7 +64,6 @@
 (package! git-gutter+)
 (package! git-gutter-fringe+)
 (package! command-log-mode)
-(package! eyebrowse)
 
 ;; to try:
 ;; wakatime

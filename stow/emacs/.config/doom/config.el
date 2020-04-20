@@ -45,7 +45,6 @@
 (global-git-gutter+-mode t)
 (global-yascroll-bar-mode t)
 (company-flx-mode t)
-(eyebrowse-mode t)
 (add-hook 'after-change-major-mode-hook #'my-symbol-overlay-mode)
 
 ;;; custom
