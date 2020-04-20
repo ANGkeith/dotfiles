@@ -21,12 +21,13 @@
    centaur-tabs-modified-marker "")
   (map!
    (:leader :n "gt" #'centaur-tabs-counsel-switch-group)
-   :n "C-1" #'centaur-tabs-select-visible-tab
-   :n "C-2" #'centaur-tabs-select-visible-tab
-   :n "C-3" #'centaur-tabs-select-visible-tab
-   :n "C-4" #'centaur-tabs-select-visible-tab
-   :n "C-5" #'centaur-tabs-select-visible-tab
-   :n "<C-tab>" #'centaur-tabs-forward)
+   :n "gt"          #'centaur-tabs-forward-group
+   :n "C-1"         #'centaur-tabs-select-visible-tab
+   :n "C-2"         #'centaur-tabs-select-visible-tab
+   :n "C-3"         #'centaur-tabs-select-visible-tab
+   :n "C-4"         #'centaur-tabs-select-visible-tab
+   :n "C-5"         #'centaur-tabs-select-visible-tab
+   :n "<C-tab>"     #'centaur-tabs-forward)
   (centaur-tabs-headline-match)
   (centaur-tabs-group-by-projectile-project)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode)
