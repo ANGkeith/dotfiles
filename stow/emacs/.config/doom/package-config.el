@@ -181,16 +181,41 @@
           :n "C-k" #'neotree-select-previous-sibling-node
           :n "C-j" #'neotree-select-next-sibling-node
           :n "h" #'neotree-select-up-node
+          :n "x" #'neotree-delete-node
           :n "C" #'neotree-collapse-all
           :n "D" #'make-directory
+          :n "n" #'evil-ex-search-next
           :n "p" #'evil-ex-search-previous
-          :n "P" #'neotree-quick-look)))
+          :n "?" #'neotree-dispatch
+          :n "C-SPC" #'neotree-quick-look)))
 (add-hook! 'neotree-mode-hook (hl-line-mode 1)) ;; for some reason `(featurep 'hl-line)` evaluates to nil in the dashboard
 (setq-hook! 'neotree-mode-hook
   evil-normal-state-cursor '((bar . 0)) ;; hide cursor
   yascroll:scroll-bar 'left-fringe)
 (advice-add #'doom-themes-neotree-insert-root :override #'+neo-buffer--insert-root-entry)
 (advice-add #'doom-themes--neotree-no-fringes :override #'+doom-themes--neotree-no-fringes)
+;; force transient display buffer to the bottom
+(define-transient-command neotree-dispatch ()
+  "Invoke a Magit command from a list of available commands."
+  :man-page "git-pull"
+  [:description
+   ("-r" "Rebase local commits" ("-r" "--rebase"))]
+  ["Navigation"
+   [("j"       "Down"              neotree-select-down-node)
+    ("k"       "Up"                neotree-select-up-node)]
+   [("C-j"     "Next sibling"      neotree-select-next-sibling-node)
+    ("C-k"     "Previous Siblings" neotree-select-previous-sibling-node)]
+   [("h"       "Parent"            +neotree/collapse-or-up)]]
+  ["Actions"
+   [("x"       "Remove"            neotree-delete-node)
+    ("y"       "Copy"              neotree-copy-node)
+    ("D"       "Create Directory"  make-directory)]
+   [("C"       "Collapse All"      neotree-collapse-all)
+    ("r"       "Rename or Move"    neotree-rename-node)
+    ("C-SPC"   "Preview"           neotree-quick-look)
+    ]])
+(add-hook! 'neo-after-create-hook
+  (setq-local transient-display-buffer-action '(display-buffer-in-side-window bottom)))
 
 ;; org
 (setq org-directory "~/Dropbox/org") ;; must be loaded before =org= is loaded
