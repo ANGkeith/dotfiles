@@ -56,7 +56,7 @@
 (map!
  (:leader
    :desc "Next window"                       "`"   #'evil-window-next
-   :desc "Toggle back and forth buffer"      "TAB" #'alternate-buffer
+   :desc "Toggle back and forth buffer"      "TAB" #'evil-switch-to-windows-last-buffer
    :desc "Close and kill window"             "q"   #'kill-current-buffer
    :desc "Configurations"                    "ev"  #'doom/find-file-in-private-config
    :desc "Load doom configurations"          "sv"  #'doom/reload
@@ -66,7 +66,7 @@
    :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
-   :desc "List buffers"                      "gb"  #'counsel-switch-buffer)
+   :desc "List buffers"                      "gb"  #'persp-switch-to-buffer)
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
