@@ -114,8 +114,8 @@
    :nm "hu" #'my-git-gutter+-revert-hunks
    :nm "hs" #'git-gutter+-stage-hunks)
   (map!
-   :nm "]h" #'git-gutter+-next-hunk
-   :nm "[h" #'git-gutter+-previous-hunk))
+   :nm "]c" #'git-gutter+-next-hunk
+   :nm "[c" #'git-gutter+-previous-hunk))
 
 ;; git-gutter-fringe+
 (use-package! git-gutter-fringe+
