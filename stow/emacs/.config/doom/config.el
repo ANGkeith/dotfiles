@@ -17,6 +17,7 @@
       doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
 (setq doom-modeline-buffer-file-name-style 'truncate-nil)
 (setq doom-modeline-major-mode-icon t
+      doom-modeline-persp-name t
       doom-modeline-buffer-modification-icon nil
       doom-modeline-major-mode-color-icon nil)
 
@@ -100,3 +101,12 @@
 ;;; flycheck
 (setq-hook! 'sh-mode-hook
   flycheck-checker (if (eq sh-shell 'zsh) 'sh-zsh 'sh-shellcheck))
+
+;; workspace for org
+(setq org-workspace-name "org")
+(defun setup-org-workspace ()
+  (unless (+workspace-exists-p org-workspace-name)
+    (message "Created org workspace")
+    (+workspace/new org-workspace-name)
+    (find-file "~/Dropbox/org/todo.org")))
+(advice-add '+workspace/switch-to-1 :before #'setup-org-workspace)

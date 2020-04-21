@@ -210,8 +210,6 @@
 (map!
  (:map org-mode-map :prefix ","
    :n "s" #'org-sort)
- :desc "Go to org todo" :nm "\\ot" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
- :desc "Go to org notes"  :nm "\\ow" (lambda() (interactive) (find-file "~/Dropbox/org/notes.org"))
  (:leader                :n  "oa"   #'org-agenda))
 (after! org
   (setq org-log-done t;; input timestamp when task is completed
