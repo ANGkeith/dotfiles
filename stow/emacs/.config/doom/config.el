@@ -71,6 +71,7 @@
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
+ (:map emacs-lisp-mode-map :n "ge" (kbd "grab"))
  :n      "<tab>"                                   #'evil-jump-item
  :n      "p"                                       #'paste-and-indent-after
  :n      "P"                                       #'paste-and-indent-before
