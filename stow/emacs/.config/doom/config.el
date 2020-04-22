@@ -79,7 +79,7 @@
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
 
- :n      "C-a"                                     (kbd "ggVG")
+ :n      "C-a"                                     #'my-visual-select-whole-buffer
 
  ;; manage window
  :nm     "C-<down>"                                #'evil-window-decrease-height

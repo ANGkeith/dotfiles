@@ -118,3 +118,7 @@ eq to this one."
       (let ((end (+ 1 (point))))
         (+eval/region beg end)
         (evil-goggles--show-overlay beg end 'evil-goggles-delete-face evil-goggles-duration)))))
+
+(defun my-visual-select-whole-buffer()
+  (interactive)
+  (evil-visual-select 1 (point-max)))
