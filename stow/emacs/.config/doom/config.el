@@ -21,6 +21,7 @@
       doom-modeline-persp-name t
       doom-modeline-buffer-modification-icon nil
       doom-modeline-major-mode-color-icon nil)
+(setq fancy-splash-image (concat doom-private-dir "/splashImage.png"))
 
 ;; modeline
 (display-battery-mode 1)
