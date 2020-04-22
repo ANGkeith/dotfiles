@@ -26,6 +26,7 @@
 (display-battery-mode 1)
 
 ;;; behaviour
+(setq evil-goggles-duration 0.2)
 (setq show-trailing-whitespace t)
 ;; better defaults for clipboard
 (setq select-enable-clipboard nil)
