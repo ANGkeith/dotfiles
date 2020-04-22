@@ -90,7 +90,8 @@
  :g      "M-c"                                     #'+workspace/new
  :g      "M-X"                                     #'+workspace/delete
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
- :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward)
+ :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
+ :n      "C-S-t"                                   #'reopen-killed-file)
 
 (load! "package-config" doom-private-dir)
 
