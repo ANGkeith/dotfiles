@@ -2,33 +2,14 @@
 
 (define-globalized-minor-mode global-fci-mode fci-mode turn-on-fci-mode)
 
-(defun alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the
-current window."
-  (interactive)
-  (let ((current-buffer (window-buffer window))
-        (buffer-predicate
-         (frame-parameter (window-frame window) 'buffer-predicate)))
-    ;; switch to first buffer previously shown in this window that matches
-    ;; frame-parameter `buffer-predicate'
-    (switch-to-buffer
-     (or (cl-find-if (lambda (buffer)
-                       (and (not (eq buffer current-buffer))
-                            (or (null buffer-predicate)
-                                (funcall buffer-predicate buffer))))
-                     (mapcar #'car (window-prev-buffers window)))
-         ;; `other-buffer' honors `buffer-predicate' so no need to filter
-         (other-buffer current-buffer t)))))
-
-
 ;; taken from https://emacs.stackexchange.com/questions/7558/how-to-collapse-undo-history/7560#7560
-(defun undo-collapse-begin (marker)
+(defun my-undo-collapse-begin (marker)
   "Mark the beginning of a collapsible undo block.
 This must be followed with a call to undo-collapse-end with a marker
 eq to this one."
   (push marker buffer-undo-list))
 
-(defun undo-collapse-end (marker)
+(defun my-undo-collapse-end (marker)
   "Collapse undo history until a matching marker."
   (cond
    ((eq (car buffer-undo-list) marker)
@@ -38,14 +19,14 @@ eq to this one."
       (while (not (eq (cadr l) marker))
         (cond
          ((null (cdr l))
-          (error "undo-collapse-end with no matching marker"))
+          (error "my-undo-collapse-end with no matching marker"))
          ((null (cadr l))
           (setf (cdr l) (cddr l)))
          (t (setq l (cdr l)))))
       ;; remove the marker
       (setf (cdr l) (cddr l))))))
 
-(defmacro with-undo-collapse (&rest body)
+(defmacro my-with-undo-collapse (&rest body)
   "Execute body, then collapse any resulting undo boundaries."
   (declare (indent 0))
   (let ((marker (list 'apply 'identity nil)) ; build a fresh list
@@ -53,20 +34,20 @@ eq to this one."
     `(let ((,buffer-var (current-buffer)))
        (unwind-protect
            (progn
-             (undo-collapse-begin ',marker)
+             (my-undo-collapse-begin ',marker)
              ,@body)
          (with-current-buffer ,buffer-var
-           (undo-collapse-end ',marker))))))
+           (my-undo-collapse-end ',marker))))))
 
 ;; taken from https://emacs.stackexchange.com/questions/31454/evil-mode-how-to-run-evil-indent-on-the-text-ive-just-pasted
-(defun paste-and-indent-after ()
+(defun my-paste-and-indent-after ()
   (interactive)
-  (with-undo-collapse
+  (my-with-undo-collapse
     (evil-paste-after 1)
     (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\]))))
-(defun paste-and-indent-before ()
+(defun my-paste-and-indent-before ()
   (interactive)
-  (with-undo-collapse
+  (my-with-undo-collapse
     (evil-paste-before 1)
     (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\]))))
 
@@ -103,19 +84,19 @@ eq to this one."
     (neo-buffer--newline-and-begin)))
 
 ;; for C-S-t
-(defvar killed-file-list nil
+(defvar my-killed-file-list nil
   "List of recently killed files.")
 (defun add-file-to-killed-file-list ()
   "If buffer is associated with a file name, add that file to the
-`killed-file-list' when killing the buffer."
+`my-killed-file-list' when killing the buffer."
   (when buffer-file-name
-    (push buffer-file-name killed-file-list)))
+    (push buffer-file-name my-killed-file-list)))
 (add-hook 'kill-buffer-hook #'add-file-to-killed-file-list)
-(defun reopen-killed-file ()
+(defun my-reopen-killed-file ()
   "Reopen the most recently killed file, if one exists."
   (interactive)
-  (when killed-file-list
-    (find-file (pop killed-file-list))))
+  (when my-killed-file-list
+    (find-file (pop my-killed-file-list))))
 
 (defun my-find-outermost-open-parenthesis ()
   (interactive)

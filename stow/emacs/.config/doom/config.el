@@ -72,8 +72,8 @@
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
  (:map emacs-lisp-mode-map :n "ge"                 #'my-evaluate-around-outermost-parenthesis)
- :n      "p"                                       #'paste-and-indent-after
- :n      "P"                                       #'paste-and-indent-before
+ :n      "p"                                       #'my-paste-and-indent-after
+ :n      "P"                                       #'my-paste-and-indent-before
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
 
@@ -91,7 +91,7 @@
  :g      "M-X"                                     #'+workspace/delete
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
- :n      "C-S-t"                                   #'reopen-killed-file)
+ :n      "C-S-t"                                   #'my-reopen-killed-file)
 
 (load! "package-config" doom-private-dir)
 
