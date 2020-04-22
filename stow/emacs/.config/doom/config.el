@@ -72,16 +72,23 @@
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
  (:map emacs-lisp-mode-map :n "ge" (kbd "grab"))
- :n      "<tab>"                                   #'evil-jump-item
  :n      "p"                                       #'paste-and-indent-after
  :n      "P"                                       #'paste-and-indent-before
+ :g      "C-S-v"                                   #'clipboard-yank
+ :g      "C-S-c"                                   #'clipboard-kill-ring-save
+
+ :n      "C-a"                                     (kbd "ggVG")
+
+ ;; manage window
  :nm     "C-<down>"                                #'evil-window-decrease-height
  :nm     "C-<up>"                                  #'evil-window-increase-height
  :nm     "C-<left>"                                #'evil-window-decrease-width
  :nm     "C-<right>"                               #'evil-window-increase-width
- :g      "C-S-v"                                   #'clipboard-yank
- :g      "C-S-c"                                   #'clipboard-kill-ring-save
- :n      "C-a"                                     (kbd "ggVG")
+ :n      "M-s"                                     #'+evil-window-split-a
+ :n      "M-v"                                     #'+evil-window-vsplit-a
+ :n      "<tab>"                                   #'evil-jump-item
+ :g      "M-c"                                     #'+workspace/new
+ :g      "M-X"                                     #'+workspace/delete
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward)
 
