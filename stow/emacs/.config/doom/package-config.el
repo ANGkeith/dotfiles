@@ -240,6 +240,15 @@
             (lambda ()
               (add-hook 'before-save-hook #'org-babel-remove-result nil 'local ))))
 
+;; undo-tree
+(after! undo-tree
+  :config
+  (setq undo-tree-visualizer-relative-timestamps t)
+  (map!
+   (:map undo-tree-map "C-/") nil
+   :g "C-/" nil
+   :v "C-z" 'undo-tree-undo))
+
 ;; symbol-overlay
 (after! symbol-overlay (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
 

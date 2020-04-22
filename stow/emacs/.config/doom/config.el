@@ -2,9 +2,10 @@
 (setq user-full-name "Ang Kok Jun Keith" user-mail-address "angkeith@hotmail.sg")
 (load! "functions" doom-private-dir)
 
-(map! :nm  "\\" nil
-      :g "M-<ESC>" nil
-      :g   "M-`" nil)
+(map! :nm  "\\"      nil
+      :g   "M-<ESC>" nil
+      :img "C-z"     nil
+      :g   "M-`"     nil)
 
 ;;; paths
 (setq exec-path (append exec-path (list (getenv "NODE_PATH"))))
