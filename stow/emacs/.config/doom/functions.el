@@ -102,6 +102,7 @@ eq to this one."
                    'neo-full-path (neo-path--updir node))
     (neo-buffer--newline-and-begin)))
 
+;; for C-S-t
 (defvar killed-file-list nil
   "List of recently killed files.")
 (defun add-file-to-killed-file-list ()
@@ -115,3 +116,24 @@ eq to this one."
   (interactive)
   (when killed-file-list
     (find-file (pop killed-file-list))))
+
+(defun my-find-outermost-open-parenthesis ()
+  (interactive)
+  (condition-case nil
+      (evil-jump-item)
+    (user-error t))
+  (while (not (condition-case nil
+                  (up-list)
+                (scan-error t))))
+  (if (eq ?\) (char-before))
+      (evil-jump-item)))
+
+(defun my-evaluate-around-outermost-parenthesis()
+  (interactive)
+  (save-excursion
+    (my-find-outermost-open-parenthesis)
+    (let ((beg (point)))
+      (evil-jump-item)
+      (let ((end (+ 1 (point))))
+        (+eval/region beg end)
+        (evil-goggles--show-overlay beg end 'evil-goggles-delete-face evil-goggles-duration)))))

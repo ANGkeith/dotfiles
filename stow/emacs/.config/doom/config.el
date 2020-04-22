@@ -71,7 +71,7 @@
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
- (:map emacs-lisp-mode-map :n "ge" (kbd "grab"))
+ (:map emacs-lisp-mode-map :n "ge"                 #'my-evaluate-around-outermost-parenthesis)
  :n      "p"                                       #'paste-and-indent-after
  :n      "P"                                       #'paste-and-indent-before
  :g      "C-S-v"                                   #'clipboard-yank
