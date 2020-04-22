@@ -248,6 +248,7 @@
    (:map undo-tree-map "C-/") nil
    :g "C-/" nil
    :v "C-z" 'undo-tree-undo))
+(advice-add #'undo-tree-undo :after #'+nav-flash-blink-cursor)
 
 ;; symbol-overlay
 (after! symbol-overlay (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold))))))
