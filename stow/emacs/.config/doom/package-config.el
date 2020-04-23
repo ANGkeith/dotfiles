@@ -229,8 +229,8 @@
         '(("*" bold)
           ("/" italic)
           ("_" underline)
-          ("=" (org-verbatim verbatim :inherit rectangle-preview))
-          ("~" (org-code verbatim :inherit rectangle-preview))
+          ("=" (org-verbatim :inherit rectangle-preview))
+          ("~" (org-code :inherit rectangle-preview))
           ("+" (:strike-through t))))
   (appendq! +pretty-code-symbols
             '(:checkbox    "☐"
@@ -261,4 +261,5 @@
 (after! yascroll
   (set-face-foreground 'yascroll:thumb-fringe "#da8548")
   (set-face-background 'yascroll:thumb-fringe "#da8548")
+  (setq yascroll:disabled-modes '(+doom-dashboard-mode))
   (setq yascroll:delay-to-hide nil))

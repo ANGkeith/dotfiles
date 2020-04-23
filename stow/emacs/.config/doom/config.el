@@ -45,11 +45,11 @@
     (toggle-frame-maximized))
 
 ;;; Global-modes
-(global-display-fill-column-indicator-mode t)
 (global-git-gutter+-mode t)
 (global-yascroll-bar-mode t)
 (company-flx-mode t)
-(add-hook 'after-change-major-mode-hook #'my-symbol-overlay-mode)
+(add-hook! 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook! 'after-change-major-mode-hook #'my-symbol-overlay-mode)
 
 ;;; custom
 (setq eros-eval-result-prefix "⇒ ")
@@ -68,6 +68,7 @@
    :desc "Jump to last changed"              "jc"  #'goto-last-change
    :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
+   :desc "Toggle popups"                     "ph"  #'+popup/toggle
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "List buffers"                      "gb"  #'persp-switch-to-buffer)
 
