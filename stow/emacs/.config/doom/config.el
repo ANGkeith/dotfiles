@@ -97,6 +97,7 @@
  :n      "C-S-t"                                   #'my-reopen-killed-file)
 
 (load! "package-config" doom-private-dir)
+(load! "+org" doom-private-dir)
 
 ;;; popup rules
 (after! flycheck

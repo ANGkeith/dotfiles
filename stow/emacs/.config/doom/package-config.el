@@ -89,7 +89,7 @@
 
 ;; display-line-numbers
 (after! display-line-numbers
-  (setq display-line-numbers-type 't))
+  (setq display-line-numbers-type 'relative))
 
 ;; doom-modeline
 (after! doom-modeline
@@ -209,42 +209,8 @@
     ("C-SPC"   "Preview"           neotree-quick-look)
     ]])
 (add-hook! 'neo-after-create-hook
-  (setq-local transient-display-buffer-action '(display-buffer-in-side-window bottom)))
-
-;; org
-(setq org-directory "~/Dropbox/org") ;; must be loaded before =org= is loaded
-(map!
- (:map org-mode-map :prefix ","
-   :n "s" #'org-sort)
- (:leader                :n  "oa"   #'org-agenda))
-(after! org
-  (setq org-log-done t;; input timestamp when task is completed
-        org-catch-invisible-edits t)
-  ;; prettify
-  (setq org-hide-emphasis-markers t
-        org-ellipsis " ▾ "
-        org-superstar-headline-bullets-list '("⁖")
-        org-fontify-emphasized-text t
-        org-emphasis-alist
-        '(("*" bold)
-          ("/" italic)
-          ("_" underline)
-          ("=" (org-verbatim :inherit rectangle-preview))
-          ("~" (org-code :inherit rectangle-preview))
-          ("+" (:strike-through t))))
-  (appendq! +pretty-code-symbols
-            '(:checkbox    "☐"
-              :pending     "◼"
-              :checkedbox  "☑"))
-  (set-pretty-symbols! 'org-mode
-    :merge t
-    :checkbox    "[ ]"
-    :pending     "[-]"
-    :checkedbox  "[X]")
-  ;; babel
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook #'org-babel-remove-result nil 'local ))))
+  (setq-local transient-display-buffer-action
+              '(display-buffer-in-side-window bottom)))
 
 ;; undo-tree
 (after! undo-tree

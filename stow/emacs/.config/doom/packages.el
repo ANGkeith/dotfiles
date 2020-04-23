@@ -70,3 +70,6 @@
 
 ;; disabled
 (package! auto-yasnippet :disable t)
+
+(package! org-super-agenda)
+
