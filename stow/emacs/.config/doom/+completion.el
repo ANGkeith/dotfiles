@@ -55,7 +55,13 @@
 
 ;; ivy
 (after! ivy
-  (map! :in "M-p" #'counsel-yank-pop)
+  (map! :in "M-p" #'counsel-yank-pop
+        (:map ivy-reverse-i-search-map
+          "C-d" #'ivy-reverse-i-search-kill
+          "C-k" #'previous-line)
+        (:map ivy-minibuffer-map
+          "C-/" #'ivy-dispatch
+          "C-r" #'counsel-minibuffer-history))
   (ivy-configure  #'counsel-yank-pop
     :height 10
     :format-fn #'counsel--yank-pop-format-function))

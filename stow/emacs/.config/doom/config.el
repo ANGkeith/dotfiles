@@ -5,6 +5,7 @@
 ;;; overrides
 (map! :nm  "\\"      nil
       :g   "M-<ESC>" nil
+      :g   "C-k"     nil
       :img "C-z"     nil
       :g   "M-`"     nil)
 
