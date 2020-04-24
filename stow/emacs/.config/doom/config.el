@@ -1,60 +1,40 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
 (setq user-full-name "Ang Kok Jun Keith" user-mail-address "angkeith@hotmail.sg")
 (load! "functions" doom-private-dir)
-
+;;; overrides
 (map! :nm  "\\"      nil
       :g   "M-<ESC>" nil
       :img "C-z"     nil
       :g   "M-`"     nil)
 
 ;;; paths
-(setq exec-path (append exec-path (list (getenv "NODE_PATH"))))
-(setq auth-sources
-      (append (list (concat (getenv "DOOMDIR") "/authinfo.gpg")) auth-sources))
+(setq exec-path (append exec-path (list (getenv "NODE_PATH")))
+      auth-sources (append (list (concat (getenv "DOOMDIR") "/authinfo.gpg")) auth-sources)
+      trash-directory "/tmp/trash")
 
 ;;; ui
-(setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14)
+(setq doom-theme 'doom-one
+      fancy-splash-image (concat doom-private-dir "/splashImage.png")
+      doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14)
       doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
-(setq doom-modeline-buffer-file-name-style 'truncate-nil)
-(setq doom-modeline-major-mode-icon t
-      doom-modeline-persp-name t
-      doom-modeline-buffer-modification-icon nil
-      doom-modeline-major-mode-color-icon nil)
-(setq fancy-splash-image (concat doom-private-dir "/splashImage.png"))
 
-;; modeline
-(display-battery-mode 1)
+;;; overriding some doom defaults
+(if (eq initial-window-system 'x) (toggle-frame-maximized))    ;; maximize emacs on startup
+(evil-put-command-property 'evil-yank-line :motion 'evil-line) ;; yank whole line with Y
+(setq display-line-numbers-type 'relative
+      evil-goggles-duration 0.2                                ;; longer operation hinting
+      show-trailing-whitespace t
+      avy-timeout-seconds 0.2                                  ;; i am inpatient
 
-;;; behaviour
-(setq evil-goggles-duration 0.2)
-(setq show-trailing-whitespace t)
-;; better defaults for clipboard
-(setq select-enable-clipboard nil)
-(setq evil-want-fine-undo t)
-;; yank whole line with Y
-(evil-put-command-property 'evil-yank-line :motion 'evil-line)
-;; dont auto add comments
-(setq +evil-want-o/O-to-continue-comments nil)
-;; (setq tab-always-indent nil)
-(setq evil-vsplit-window-right t evil-split-window-below t)
-(setq trash-directory "/tmp/trash")
-(setq-default delete-by-moving-to-trash t)
-;; maximize emacs on startup
-(if (eq initial-window-system 'x)
-    (toggle-frame-maximized))
-
-;;; Global-modes
-(global-git-gutter+-mode t)
-(global-yascroll-bar-mode t)
-(company-flx-mode t)
-(add-hook! 'prog-mode-hook 'display-fill-column-indicator-mode)
-(add-hook! 'after-change-major-mode-hook #'my-symbol-overlay-mode)
-
-;;; custom
-(setq eros-eval-result-prefix "⇒ ")
-(custom-set-faces
- '(evil-ex-lazy-highlight ((t (:foreground "black" :background "goldenrod3")))))
+      select-enable-clipboard nil                              ;; don't use system clipboard with evil
+      evil-want-fine-undo t
+      +evil-want-o/O-to-continue-comments nil                  ;; dont auto add comments
+      delete-by-moving-to-trash t                              ;; prevent data loss
+      eros-eval-result-prefix "⇒ "                             ;; nicer symbol
+      ;; more natural window splitting
+      evil-vsplit-window-right t
+      evil-split-window-below t)
 
 (map!
  (:leader
@@ -79,7 +59,6 @@
  :n      "P"                                       #'my-paste-and-indent-before
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
-
  :n      "C-a"                                     #'my-visual-select-whole-buffer
 
  ;; manage window
@@ -96,31 +75,26 @@
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
  :n      "C-S-t"                                   #'my-reopen-killed-file)
 
-(load! "package-config" doom-private-dir)
-(load! "+org" doom-private-dir)
+;; allow C-j to be interpreted by terminal
+(after! evil-collection
+  (evil-collection-define-key 'insert 'term-raw-map (kbd "C-j") 'term-send-raw))
 
 ;;; popup rules
 (after! flycheck
   (set-popup-rule! "^\\*Flycheck errors\\*" :side 'bottom))
 
-;; ;;; patch for doom-one-light themes. ONLY UNCOMMENT IF USING DOOM-ONE-LIGHT themes
-;;   (custom-set-faces
-;;   '(fill-column-indicator ((t (:foreground "#4078f2"))))
-;;   '(font-lock-keyword-face ((t (:foreground "#4078f2"))))
-;;   '(font-lock-string-face ((t (:foreground "#0d850b"))))
-;;   '(font-lock-comment-face ((t (:weight semi-bold :slant italic))))
-;;   '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
-;;   '(success ((t (:foreground "#2aa34d"))))))
+;;; Global-modes
+(global-git-gutter+-mode t)
+(global-yascroll-bar-mode t)
+(company-flx-mode t)
+(add-hook! 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook! 'after-change-major-mode-hook #'my-symbol-overlay-mode)
 
-;;; flycheck
-(setq-hook! 'sh-mode-hook
-  flycheck-checker (if (eq sh-shell 'zsh) 'sh-zsh 'sh-shellcheck))
-
-;; workspace for org
-(setq org-workspace-name "org")
-(defun setup-org-workspace ()
-  (unless (+workspace-exists-p org-workspace-name)
-    (message "Created org workspace")
-    (+workspace/new org-workspace-name)
-    (find-file "~/Dropbox/org/todo.org")))
-(advice-add '+workspace/switch-to-1 :before #'setup-org-workspace)
+;;; my-modules
+(load! "+completion" doom-private-dir)
+(load! "+modeline"   doom-private-dir)
+(load! "+org"        doom-private-dir)
+(load! "+theme"      doom-private-dir)
+(load! "+transient"  doom-private-dir)
+(load! "+ui"         doom-private-dir)
+(load! "+utils"      doom-private-dir)

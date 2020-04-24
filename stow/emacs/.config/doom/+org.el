@@ -1,5 +1,14 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/+org.el -*- lexical-binding: t; -*-
 
+(defun setup-org-workspace ()
+  (interactive)
+  (let ((org-workspace-name "org"))
+    (unless (+workspace-exists-p org-workspace-name)
+      (message "Created org workspace")
+      (+workspace/new org-workspace-name)
+      (find-file "~/Dropbox/org/todo.org"))))
+(advice-add '+workspace/switch-to-1 :before #'setup-org-workspace)
+
 ;; org
 (setq org-directory "~/Dropbox/org") ;; must be loaded before =org= is loaded
 (map!
@@ -7,7 +16,6 @@
    :n "s" #'org-sort)
  (:leader                :n  "oa"   #'org-agenda))
 (after! org
-  :config
   (with-no-warnings
     (custom-declare-face '+org-todo-refactor '((t (:inherit (bold highlight-numbers-number org-todo)))) "")
     (custom-declare-face '+org-todo-fixme '((t (:inherit (bold error org-todo)))) "")
@@ -29,10 +37,10 @@
   (setq org-log-done t;; input timestamp when task is completed
         org-tags-column 80
         org-agenda-align-tags-to-column org-tags-column
-        org-catch-invisible-edits t)
-  ;; prettify
+        org-catch-invisible-edits t
 
-  (setq org-hide-emphasis-markers t
+        ;; prettify
+        org-hide-emphasis-markers t
         org-ellipsis " ▾ "
         org-superstar-headline-bullets-list '("⁖")
         org-fontify-emphasized-text t
@@ -52,7 +60,6 @@
     :checkbox    "[ ]"
     :pending     "[-]"
     :checkedbox  "[X]")
-  ;; babel
   (add-hook 'org-mode-hook
             (lambda ()
               (add-hook 'before-save-hook #'org-babel-remove-result nil 'local))))
