@@ -213,7 +213,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         # used for previewing sudo pacman -S bat --noconfirm
 
         # emacs
-        sudo pacman -S emacs --noconfirm
+        yay -S emacs27--git --noconfirm
         systemctl --user enable --now emacs
         git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
@@ -285,6 +285,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     # imap
     sudo pacman -S isync --noconfirm
     mkdir -p ~/.local/share/mail/school
+    sudo pacman -S thunderbird --noconfirm
 
 # bloat
     sudo pacman -S neofetch --noconfirm
@@ -298,6 +299,13 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
 # fixes keychron keyboard
     echo "options hid_apple fnmode=0" | sudo tee /etc/modprobe.d/hid_apple.conf
+
+# video client
+    sudo pacman -S mpv --noconfirm
+
+
+# conference
+    yay -S zoom --noconfirm
 
 # more usesable version of find
 sudo pacman -S fd --confirm
