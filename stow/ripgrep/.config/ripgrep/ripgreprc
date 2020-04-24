@@ -1,0 +1,13 @@
+--smart-case
+--hidden
+--no-ignore
+
+# follow symbolic links
+--follow
+# if performace is poor might need to consider restricting depth
+
+
+# NOTE that each line is an individual argument
+# dont search in `.git` directory
+--glob
+!*.git/

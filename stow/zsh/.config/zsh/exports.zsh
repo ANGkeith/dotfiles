@@ -75,6 +75,9 @@ fi
     export VIMINIT='source $MYVIMRC'
     export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
+    # ripgrep
+    export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
+
     # doom
     export DOOMDIR="$XDG_CONFIG_HOME"/doom
 
