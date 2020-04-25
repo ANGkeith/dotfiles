@@ -80,7 +80,11 @@
  :g      "M-X"                                     #'+workspace/delete
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
- :n      "C-S-t"                                   #'my-reopen-killed-file)
+ :n      "C-S-t"                                   #'my-reopen-killed-file
+
+ (:map evil-ex-completion-map
+   :e "C-k"  #'previous-complete-history-element
+   :e "C-j"  #'next-complete-history-element))
 
 ;; allow C-j to be interpreted by terminal
 (after! evil-collection
