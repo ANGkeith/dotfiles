@@ -109,9 +109,9 @@ eq to this one."
         (+eval/region beg end)
         (evil-goggles--show-overlay beg end 'evil-goggles-delete-face evil-goggles-duration)))))
 
-(defun my-visual-select-whole-buffer()
-  (interactive)
-  ;; TODO add to jump list so that i can jump back
+(defun my-visual-select-whole-buffer(pos)
+  (interactive "d")
+  (better-jumper-set-jump pos) ;; add to jump list so that i can jump back
   (evil-visual-select 1 (point-max)))
 
 (defun my-global-search ()
