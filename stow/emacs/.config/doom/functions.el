@@ -111,4 +111,5 @@ eq to this one."
 
 (defun my-visual-select-whole-buffer()
   (interactive)
+  ;; TODO add to jump list so that i can jump back
   (evil-visual-select 1 (point-max)))

@@ -6,6 +6,7 @@
 (map! :nm  "\\"      nil
       :g   "M-<ESC>" nil
       :g   "C-k"     nil
+      :n   "C-u"     'universal-argument
       :img "C-z"     nil
       :g   "M-`"     nil)
 
@@ -33,6 +34,7 @@
       +evil-want-o/O-to-continue-comments nil                  ;; dont auto add comments
       delete-by-moving-to-trash t                              ;; prevent data loss
       eros-eval-result-prefix "⇒ "                             ;; nicer symbol
+      evil-snipe-scope 'buffer
       ;; more natural window splitting
       evil-vsplit-window-right t
       evil-split-window-below t
@@ -63,6 +65,7 @@
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
  :n      "C-a"                                     #'my-visual-select-whole-buffer
+ :n      "C-e"                                     #'evil-scroll-up                           ;; make it easier to scroll with only left hand
 
  ;; manage window
  :nm     "C-<down>"                                #'evil-window-decrease-height
