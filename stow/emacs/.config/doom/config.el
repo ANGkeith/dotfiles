@@ -54,7 +54,7 @@
    :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
    :desc "Toggle popups"                     "ph"  #'+popup/toggle
-   :desc "Search from home directory"        "sP"  #'my-global-search
+   :desc "Search from home directory"        "sP"  #'my-cwd-search
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "List buffers"                      "gb"  #'persp-switch-to-buffer)
 
@@ -66,7 +66,7 @@
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
  :n      "C-a"                                     #'my-visual-select-whole-buffer
- :n      "C-e"                                     #'evil-scroll-up                           ;; make it easier to scroll with only left hand
+ :n      "C-e"                                     #'evil-scroll-up              ; make it easier to scroll with only left hand
 
  ;; manage window
  :nm     "C-<down>"                                #'evil-window-decrease-height

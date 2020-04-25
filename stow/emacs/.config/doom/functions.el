@@ -114,8 +114,8 @@ eq to this one."
   (better-jumper-set-jump pos) ;; add to jump list so that i can jump back
   (evil-visual-select 1 (point-max)))
 
-(defun my-global-search ()
-  "Conduct a text search in the home direcotry"
-  (interactive)
-  (let ((default-directory "~"))
+(defun my-cwd-search (dir)
+  "Conduct a text search in a chosen direcotry"
+  (interactive "D")
+  (let ((default-directory dir))
     (call-interactively #'+ivy/project-search)))
