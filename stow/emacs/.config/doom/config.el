@@ -54,6 +54,7 @@
    :desc "Correct word"                      "cw"  #'flyspell-correct-at-point
    :desc "Jump to sections"                  "ji"  #'counsel-imenu
    :desc "Toggle popups"                     "ph"  #'+popup/toggle
+   :desc "Search from home directory"        "sP"  #'my-global-search
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "List buffers"                      "gb"  #'persp-switch-to-buffer)
 

@@ -113,3 +113,9 @@ eq to this one."
   (interactive)
   ;; TODO add to jump list so that i can jump back
   (evil-visual-select 1 (point-max)))
+
+(defun my-global-search ()
+  "Conduct a text search in the home direcotry"
+  (interactive)
+  (let ((default-directory "~"))
+    (call-interactively #'+ivy/project-search)))
