@@ -98,21 +98,11 @@ eq to this one."
   (when my-killed-file-list
     (find-file (pop my-killed-file-list))))
 
-(defun my-find-outermost-open-parenthesis ()
-  (interactive)
-  (condition-case nil
-      (evil-jump-item)
-    (user-error t))
-  (while (not (condition-case nil
-                  (up-list)
-                (scan-error t))))
-  (if (eq ?\) (char-before))
-      (evil-jump-item)))
-
-(defun my-evaluate-around-outermost-parenthesis()
+(defun my-evaluate-nearest-function()
+  "Search backward for the first function and evaluates it with ophint"
   (interactive)
   (save-excursion
-    (my-find-outermost-open-parenthesis)
+    (evil-backward-section-begin)
     (let ((beg (point)))
       (evil-jump-item)
       (let ((end (+ 1 (point))))
