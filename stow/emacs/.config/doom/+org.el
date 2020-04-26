@@ -10,7 +10,7 @@
 (advice-add '+workspace/switch-to-1 :before #'setup-org-workspace)
 
 ;; org
-(setq org-directory "~/Dropbox/org") ;; must be loaded before =org= is loaded
+(setq org-directory "~/Dropbox/org")                                            ; must be loaded before =org= is loaded
 (map!
  (:map org-mode-map :prefix ","
    :n "s" #'org-sort)
@@ -34,7 +34,7 @@
                             ("FIXME" . +org-todo-fixme)
                             ))
 
-  (setq org-log-done t;; input timestamp when task is completed
+  (setq org-log-done t                                                          ; input timestamp when task is completed
         org-tags-column 80
         org-agenda-align-tags-to-column org-tags-column
         org-catch-invisible-edits t

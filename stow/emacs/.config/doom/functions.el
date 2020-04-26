@@ -29,7 +29,7 @@ eq to this one."
 (defmacro my-with-undo-collapse (&rest body)
   "Execute body, then collapse any resulting undo boundaries."
   (declare (indent 0))
-  (let ((marker (list 'apply 'identity nil)) ; build a fresh list
+  (let ((marker (list 'apply 'identity nil))                                    ; build a fresh list
         (buffer-var (make-symbol "buffer")))
     `(let ((,buffer-var (current-buffer)))
        (unwind-protect

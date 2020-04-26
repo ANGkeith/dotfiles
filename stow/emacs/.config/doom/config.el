@@ -22,18 +22,18 @@
       doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
 
 ;;; overriding some doom defaults
-(if (eq initial-window-system 'x) (toggle-frame-maximized))    ;; maximize emacs on startup
-(evil-put-command-property 'evil-yank-line :motion 'evil-line) ;; yank whole line with Y
+(if (eq initial-window-system 'x) (toggle-frame-maximized))                     ; maximize emacs on startup
+(evil-put-command-property 'evil-yank-line :motion 'evil-line)                  ; yank whole line with Y
 (setq display-line-numbers-type 'relative
-      evil-goggles-duration 0.2                                ;; longer operation hinting
+      evil-goggles-duration 0.2                                                 ; longer operation hinting
       show-trailing-whitespace t
-      avy-timeout-seconds 0.2                                  ;; i am inpatient
+      avy-timeout-seconds 0.2                                                   ; i am inpatient
 
-      select-enable-clipboard nil                              ;; don't use system clipboard with evil
+      select-enable-clipboard nil                                               ; don't use system clipboard with evil
       evil-want-fine-undo t
-      +evil-want-o/O-to-continue-comments nil                  ;; dont auto add comments
-      delete-by-moving-to-trash t                              ;; prevent data loss
-      eros-eval-result-prefix "⇒ "                             ;; nicer symbol
+      +evil-want-o/O-to-continue-comments nil                                   ; dont auto add comments
+      delete-by-moving-to-trash t                                               ; prevent data loss
+      eros-eval-result-prefix "⇒ "                                              ; nicer symbol
       evil-snipe-scope 'buffer
 
       ;; nicer way of constructing unique buffer name
@@ -71,7 +71,7 @@
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
  :n      "C-a"                                     #'my-visual-select-whole-buffer
- :n      "C-e"                                     #'evil-scroll-up              ; make it easier to scroll with only left hand
+ :n      "C-e"                                     #'evil-scroll-up             ; make it easier to scroll with only left hand
 
  ;; manage window
  :nm     "C-<down>"                                #'evil-window-decrease-height
