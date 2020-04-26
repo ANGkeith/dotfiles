@@ -29,3 +29,7 @@
 ;;   '(success ((t (:foreground "#2aa34d"))))))
 
 (custom-set-faces '(symbol-overlay-default-face ((t (:weight bold)))))
+
+;; more vibrant rather than material green
+(custom-set-faces '(font-lock-string-face ((t (:foreground "#7bc275")))))
+(custom-set-faces '(success ((t (:foreground "#7bc275")))))
