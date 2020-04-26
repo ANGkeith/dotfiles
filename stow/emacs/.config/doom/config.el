@@ -35,6 +35,11 @@
       delete-by-moving-to-trash t                              ;; prevent data loss
       eros-eval-result-prefix "⇒ "                             ;; nicer symbol
       evil-snipe-scope 'buffer
+
+      ;; nicer way of constructing unique buffer name
+      uniquify-separator "/"
+      uniquify-buffer-name-style 'forward
+
       ;; more natural window splitting
       evil-vsplit-window-right t
       evil-split-window-below t

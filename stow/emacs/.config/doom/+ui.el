@@ -10,19 +10,29 @@
    centaur-tabs-cycle-scope 'tabs
    centaur-tabs-icon-scale-factor 1
    centaur-tabs-icon-v-adjust -0.15
+   centaur-tabs-common-group-name "General"                                     ; Group name for buffer that has no matching groups in `centaur-tabs-buffer-groups'
    centaur-tabs-modified-marker "")
+
+  (defun centaur-tabs-buffer-groups ()
+    " All buffer name start with * will group to \"Emacs\". "
+    (list
+     (cond
+      ((or (string-equal "*" (substring (buffer-name) 0 1))) "Emacs")
+      (t centaur-tabs-common-group-name))))
+
   (map!
-   (:leader :n "gt" #'centaur-tabs-counsel-switch-group)
-   :n "gt"          #'centaur-tabs-forward-group
-   :n "C-1"         #'centaur-tabs-select-visible-tab
-   :n "C-2"         #'centaur-tabs-select-visible-tab
-   :n "C-3"         #'centaur-tabs-select-visible-tab
-   :n "C-4"         #'centaur-tabs-select-visible-tab
-   :n "C-5"         #'centaur-tabs-select-visible-tab
-   :n "<C-tab>"     #'centaur-tabs-forward)
+   (:leader :n "gt"       #'centaur-tabs-counsel-switch-group)
+   :n "gt"                #'centaur-tabs-forward-group
+   :n "C-1"               #'centaur-tabs-select-visible-tab
+   :n "C-2"               #'centaur-tabs-select-visible-tab
+   :n "C-3"               #'centaur-tabs-select-visible-tab
+   :n "C-4"               #'centaur-tabs-select-visible-tab
+   :n "C-5"               #'centaur-tabs-select-visible-tab
+   :n "<C-S-iso-lefttab>" #'centaur-tabs-backward
+   :n "<C-tab>"           #'centaur-tabs-forward)
+  (centaur-tabs-group-buffer-groups)
   (centaur-tabs-headline-match)
-  (centaur-tabs-group-by-projectile-project)
-  (add-hook 'term-mode-hook #'centaur-tabs-local-mode))
+  (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
 
 ;; git-gutter
 (after! git-gutter+
