@@ -14,6 +14,10 @@
 ;;      Alternatively, press 'gd' (or 'C-c g d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
+;; add to ~/.doom.d/init.el
+
+(unless doom-interactive-mode (add-to-list 'doom-env-ignored-vars "LD_PRELOAD"))
+
 (doom! :input
        ;;chinese
        ;;japanese
