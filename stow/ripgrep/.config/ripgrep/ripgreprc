@@ -11,3 +11,10 @@
 # dont search in `.git` directory
 --glob
 !*.git/
+
+--glob
+!*.ssh/
+
+# no point searching encrypted file
+--glob
+!*.gpg
