@@ -111,7 +111,7 @@ eq to this one."
 
 (defun my-visual-select-whole-buffer(pos)
   (interactive "d")
-  (better-jumper-set-jump pos) ;; add to jump list so that i can jump back
+  (better-jumper-set-jump pos)                                                  ; add to jump list so that i can jump back
   (evil-visual-select 1 (point-max)))
 
 (defun my-cwd-search (dir)
@@ -119,3 +119,32 @@ eq to this one."
   (interactive "D")
   (let ((default-directory dir))
     (call-interactively #'+ivy/project-search)))
+
+(defun my-generate-dotfile-github-link ()
+  "Grabs the first word in the line and generate a github link to the commit,
+assuming that the first word is the commit-hash"
+  (interactive)
+  (let* ((beg (line-beginning-position))
+         (end (line-end-position))
+         (msg (string-trim
+               (buffer-substring-no-properties beg end)))
+         (msg-list (split-string msg " "))
+         (commit-hash (nth 0 msg-list)))
+    (let ((owner "ANGkeith")
+          (project "dotfiles"))
+      (kill-whole-line)
+      (insert (concat
+               "https://github.com/" owner "/" project "/commit/" commit-hash "\n")))))
+
+(defun my-magit-from-dotfile-github-link ()
+  "Launch a magit buffer for showing the commit diffs by assuming that the last
+path of a url is the commit-hash"
+  (interactive)
+  (let* ((beg (line-beginning-position))
+         (end (line-end-position))
+         (msg (string-trim
+               (buffer-substring-no-properties beg end)))
+         (msg-list (split-string msg "/"))
+         (commit-hash (last msg-list 1)))
+    (find-file-at-point (concat (getenv "DOOMDIR") "/config.el"))
+    (magit-show-commit (substring (format "%s" commit-hash) 1 -1))))

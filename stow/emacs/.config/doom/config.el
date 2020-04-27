@@ -85,7 +85,13 @@
  :g      "M-X"                                     #'+workspace/delete
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
- :n      "C-S-t"                                   #'my-reopen-killed-file)
+ :n      "C-S-t"                                   #'my-reopen-killed-file
+
+ ;; my custom functions
+ (:prefix "\\"
+   (:map evil-org-mode-map
+     :n :desc "View current commit in magit" "gm"  #'my-magit-from-dotfile-github-link
+     :n :desc "Generate dotfile github link" "gl"  #'my-generate-dotfile-github-link)))
 
 ;; allow C-j to be interpreted by terminal
 (after! evil-collection
