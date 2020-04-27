@@ -98,3 +98,12 @@
 ;;                   ;; else
 ;;                   "W/o timestamp")))))))
 ;;     (org-agenda nil "w")))
+
+;; HACK my work around to get `org-refile' to inherit tags.
+(defun my-inherit-tags ()
+  "Current heading to inherit parents tags"
+  (interactive)
+  (let ((inherited-tags (org-get-tags) ))
+    (org-back-to-heading)
+    (org-set-tags inherited-tags)))
+(advice-add #'org-refile :before #'my-inherit-tags)
