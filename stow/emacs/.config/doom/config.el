@@ -19,7 +19,7 @@
 (setq doom-theme 'doom-one
       fancy-splash-image (concat doom-private-dir "/splashImage.png")
       doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
+      doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14))
 
 ;;; overriding some doom defaults
 (if (eq initial-window-system 'x) (toggle-frame-maximized))                     ; maximize emacs on startup
@@ -30,11 +30,12 @@
       avy-timeout-seconds 0.2                                                   ; i am inpatient
 
       select-enable-clipboard nil                                               ; don't use system clipboard with evil
-      evil-want-fine-undo t
+      evil-want-fine-undo t                                                     ; precision is key
       +evil-want-o/O-to-continue-comments nil                                   ; dont auto add comments
       delete-by-moving-to-trash t                                               ; prevent data loss
       eros-eval-result-prefix "⇒ "                                              ; nicer symbol
-      evil-snipe-scope 'buffer
+      evil-snipe-scope 'buffer                                                  ; why snipe line when you can snipe the buffer?
+      doom-themes-neotree-enable-variable-pitch nil                             ; don't use variable pitch for neotree
 
       ;; nicer way of constructing unique buffer name
       uniquify-separator "/"

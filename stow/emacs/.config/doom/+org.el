@@ -9,6 +9,18 @@
       (find-file "~/Dropbox/org/todo.org"))))
 (advice-add '+workspace/switch-to-1 :before #'setup-org-workspace)
 
+;; Use mixed-pitch in `org-mode'
+(defun my-org-mode-font-settings ()
+  "Use mixed-pitch and larger fonts in org mode"
+  (setq-local  buffer-face-mode-face '(:height 150))                            ; HACK Use a larger font inside orgmode
+  (buffer-face-mode)
+  (mixed-pitch-mode))
+(defun my-org-agenda-mode-font-settings ()
+  (evil-normal-state)                                                           ; Forces the cursor to be in normal-state
+  (my-org-mode-font-settings))
+(add-hook #'org-mode-hook #'my-org-mode-font-settings)
+(add-hook #'org-agenda-mode-hook #'my-org-agenda-mode-font-settings)
+
 ;; org
 (setq org-directory "~/Dropbox/org")                                            ; must be loaded before =org= is loaded
 (map!
