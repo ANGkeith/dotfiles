@@ -1,6 +1,7 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/+org.el -*- lexical-binding: t; -*-
 
 (defun setup-org-workspace ()
+  "Used to create my org workspace"
   (interactive)
   (let ((org-workspace-name "org"))
     (unless (+workspace-exists-p org-workspace-name)
