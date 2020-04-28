@@ -23,7 +23,6 @@
 (add-hook #'org-agenda-mode-hook #'my-org-agenda-mode-font-settings)
 
 ;; org
-(setq org-directory "~/Dropbox/org")                                            ; must be loaded before =org= is loaded
 (map!
  (:map org-mode-map :prefix ","
    :n "s" #'org-sort)

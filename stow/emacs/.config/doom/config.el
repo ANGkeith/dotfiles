@@ -12,6 +12,7 @@
 
 ;;; paths
 (setq exec-path (append exec-path (list (getenv "NODE_PATH")))
+      org-directory "~/Dropbox/org"
       auth-sources (append (list (concat (getenv "DOOMDIR") "/authinfo.gpg")) auth-sources)
       trash-directory "/tmp/trash")
 
@@ -37,10 +38,9 @@
       evil-snipe-scope 'buffer                                                  ; why snipe line when you can snipe the buffer?
       doom-themes-neotree-enable-variable-pitch nil                             ; don't use variable pitch for neotree
 
-      ;; nicer way of constructing unique buffer name
-      uniquify-separator "/"
+      ;; nicer way of constructing unique buffer name but note that this breaks
+      ;; `perspective'.
       uniquify-buffer-name-style 'forward
-
       ;; more natural window splitting
       evil-vsplit-window-right t
       evil-split-window-below t

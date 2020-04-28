@@ -14,10 +14,15 @@
    centaur-tabs-modified-marker "")
 
   (defun centaur-tabs-buffer-groups ()
-    " All buffer name start with * will group to \"Emacs\". "
+    "My custom centaur tabs groups which consist of only 3 groups:
+1. Main  - for my normal work
+2. Org   - for my org workspace
+3. Emacs - for emacs special buffers"
     (list
      (cond
-      ((or (string-equal "*" (substring (buffer-name) 0 1))) "Emacs")
+      ((string-equal "*" (substring (buffer-name) 0 1)) "Emacs")
+      ((string-equal  (directory-file-name (projectile-project-root))
+                          (expand-file-name org-directory)) "Org")
       (t centaur-tabs-common-group-name))))
 
   (map!
