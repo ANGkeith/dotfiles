@@ -17,8 +17,8 @@
   (buffer-face-mode)
   (mixed-pitch-mode))
 (defun my-org-agenda-mode-font-settings ()
-  (evil-normal-state)                                                           ; Forces the cursor to be in normal-state
-  (my-org-mode-font-settings))
+  (my-org-mode-font-settings)
+  (evil-normal-state))                                                          ; Forces the cursor to be in normal-state
 (add-hook #'org-mode-hook #'my-org-mode-font-settings)
 (add-hook #'org-agenda-mode-hook #'my-org-agenda-mode-font-settings)
 

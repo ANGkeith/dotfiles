@@ -11,6 +11,7 @@
     (kbd "jk")   #'company-complete-selection
     "C-n"        #'company-select-next
     "C-p"        #'company-select-previous)
+  (setq company-flx-limit 100)
   (map! :i "M-c" #'company-dabbrev))
 
 ;; company-box
