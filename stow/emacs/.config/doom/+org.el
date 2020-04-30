@@ -1,15 +1,5 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/+org.el -*- lexical-binding: t; -*-
 
-(defun setup-org-workspace ()
-  "Used to create my org workspace"
-  (interactive)
-  (let ((org-workspace-name "org"))
-    (unless (+workspace-exists-p org-workspace-name)
-      (message "Created org workspace")
-      (+workspace/new org-workspace-name)
-      (find-file "~/Dropbox/org/todo.org"))))
-(advice-add '+workspace/switch-to-1 :before #'setup-org-workspace)
-
 ;; Use mixed-pitch in `org-mode'
 (defun my-org-mode-font-settings ()
   "Use mixed-pitch and larger fonts in org mode"

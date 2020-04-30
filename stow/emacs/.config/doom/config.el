@@ -37,6 +37,7 @@
       eros-eval-result-prefix "⇒ "                                              ; nicer symbol
       evil-snipe-scope 'buffer                                                  ; why snipe line when you can snipe the buffer?
       doom-themes-neotree-enable-variable-pitch nil                             ; don't use variable pitch for neotree
+      +workspaces-on-switch-project-behavior nil
 
       ;; nicer way of constructing unique buffer name but note that this breaks
       ;; `perspective'.
@@ -82,8 +83,6 @@
  :n      "M-s"                                     #'+evil-window-split-a
  :n      "M-v"                                     #'+evil-window-vsplit-a
  :n      "<tab>"                                   #'evil-jump-item
- :g      "M-c"                                     #'+workspace/new
- :g      "M-X"                                     #'+workspace/delete
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
  :n      "C-S-t"                                   #'my-reopen-killed-file

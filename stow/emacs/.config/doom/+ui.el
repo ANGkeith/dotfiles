@@ -10,8 +10,20 @@
    centaur-tabs-cycle-scope 'tabs
    centaur-tabs-icon-scale-factor 1
    centaur-tabs-icon-v-adjust -0.15
-   centaur-tabs-common-group-name "General"                                     ; Group name for buffer that has no matching groups in `centaur-tabs-buffer-groups'
+   my-centaur-tabs-common-group-name "General"
+   my-centaur-tabs-special-group-name "Emacs"
+   my-centaur-tabs-org-group-name "Org"
    centaur-tabs-modified-marker "")
+
+  (defun my-custom-centaur-group-check ()
+    (string-equal  (directory-file-name (projectile-project-root))
+                   (expand-file-name org-directory)))
+
+  (defun my-centaur-tabs-switch-to-org ()
+    (interactive)
+    (unless (position my-centaur-tabs-org-group-name (centaur-tabs-get-groups))
+      (find-file "~/Dropbox/org/todo.org"))
+    (centaur-tabs-switch-group my-centaur-tabs-org-group-name))
 
   (defun centaur-tabs-buffer-groups ()
     "My custom centaur tabs groups which consist of only 3 groups:
@@ -20,10 +32,12 @@
 3. Emacs - for emacs special buffers"
     (list
      (cond
-      ((string-equal "*" (substring (buffer-name) 0 1)) "Emacs")
-      ((string-equal  (directory-file-name (projectile-project-root))
-                          (expand-file-name org-directory)) "Org")
-      (t centaur-tabs-common-group-name))))
+      ((string-equal "*" (substring (buffer-name) 0 1)) my-centaur-tabs-special-group-name)
+      ((condition-case _err
+          (my-custom-centaur-group-check)
+        (error nil)) my-centaur-tabs-org-group-name)
+      (t my-centaur-tabs-common-group-name))))
+  (centaur-tabs-group-buffer-groups)
 
   (map!
    (:leader :n "gt"       #'centaur-tabs-counsel-switch-group)
@@ -33,9 +47,11 @@
    :n "C-3"               #'centaur-tabs-select-visible-tab
    :n "C-4"               #'centaur-tabs-select-visible-tab
    :n "C-5"               #'centaur-tabs-select-visible-tab
+   :g "M-1"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
+   :g "M-2"               #'my-centaur-tabs-switch-to-org
+   :g "M-3"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name))
    :n "<C-S-iso-lefttab>" #'centaur-tabs-backward
    :n "<C-tab>"           #'centaur-tabs-forward)
-  (centaur-tabs-group-buffer-groups)
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
 
