@@ -114,12 +114,6 @@ eq to this one."
   (better-jumper-set-jump pos)                                                  ; add to jump list so that i can jump back
   (evil-visual-select 1 (point-max)))
 
-(defun my-cwd-search (dir)
-  "Conduct a text search in a chosen direcotry"
-  (interactive "D")
-  (let ((default-directory dir))
-    (call-interactively #'+ivy/project-search)))
-
 (defun my-generate-dotfile-github-link ()
   "Grabs the first word in the line and generate a github link to the commit,
 assuming that the first word is the commit-hash"
