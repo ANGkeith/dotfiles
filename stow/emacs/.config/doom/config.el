@@ -100,6 +100,7 @@
 ;;; popup rules
 (after! flycheck
   (set-popup-rule! "^\\*Flycheck errors\\*" :side 'bottom))
+(set-popup-rule! "^\\*doom:scratch\\*" :side 'right :size .50 :select t)
 
 ;;; Global-modes
 (global-git-gutter+-mode t)
