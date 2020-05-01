@@ -41,7 +41,7 @@
 ;; org-agenda
 (custom-set-faces
  '(org-agenda-current-time
-   ((t (:inherit warning ))))
+   ((t (:inherit warning))))
  '(org-agenda-date-today
    ((t (:height 1.1))))
  '(org-agenda-date

@@ -128,8 +128,8 @@
           :n "?" #'neotree-dispatch
           :n "C-SPC" #'neotree-quick-look)))
 ;; HOTFIX for some reason `(featurep 'hl-line)` evaluates to nil in the dashboard
-(add-hook! 'neotree-mode-hook (hl-line-mode 1))
-(setq-hook! 'neotree-mode-hook
+(add-hook! #'neotree-mode-hook (hl-line-mode 1))
+(setq-hook! #'neotree-mode-hook
   evil-normal-state-cursor '((bar . 0)) ;; hides the cursor
   yascroll:scroll-bar 'left-fringe)
 (advice-add #'doom-themes-neotree-insert-root

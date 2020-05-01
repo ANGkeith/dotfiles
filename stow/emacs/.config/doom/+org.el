@@ -109,10 +109,14 @@
 (after! evil-org-agenda
   (map!
    (:map evil-org-agenda-mode-map
-     :m "w"   #'org-agenda-week-view
-     :m "d"   #'org-agenda-day-view
-     :m "ci"   #'org-clock-in
-     :m "co"   #'org-clock-out
-     :m "<escape>"   #'evil-force-normal-state
-     :m "C-j" #'org-agenda-next-date-line
-     :m "C-k" #'org-agenda-previous-date-line)))
+     :m "w"        #'org-agenda-week-view
+     :m "d"        #'org-agenda-day-view
+     :m "<escape>" #'evil-force-normal-state
+     :m "C-j"      #'org-agenda-next-date-line
+     :m "C-k"      #'org-agenda-previous-date-line
+     (:localleader
+       :m "ci"     #'org-agenda-clock-in
+       :m "co"     #'org-agenda-clock-out))))
+
+(add-hook! #'org-agenda-mode (hl-line-mode +1))
+(setq-hook! #'org-agenda-mode evil-normal-state-cursor '((bar . 0)))            ; hides the cursor
