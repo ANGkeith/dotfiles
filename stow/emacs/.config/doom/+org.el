@@ -3,7 +3,6 @@
 ;; Use mixed-pitch in `org-mode'
 (defun my-org-mode-font-settings ()
   "Use mixed-pitch and larger fonts in org mode"
-  (setq-local  buffer-face-mode-face '(:height 150))                            ; HACK Use a larger font inside orgmode
   (buffer-face-mode)
   (mixed-pitch-mode))
 (defun my-org-agenda-mode-font-settings ()
@@ -38,9 +37,7 @@
 
   (setq org-log-done t                                                          ; input timestamp when task is completed
         org-tags-column 80
-        org-agenda-align-tags-to-column org-tags-column
         org-catch-invisible-edits t
-
         ;; prettify
         org-hide-emphasis-markers t
         org-ellipsis " ▾ "
@@ -69,26 +66,6 @@
 ;; org-agenda
 (add-hook 'org-agenda-mode-hook #'org-super-agenda-mode)
 
-;; (setq org-agenda-align-tags-to-column nil)
-
-;; (defun my-monthly-agenda ()
-;;   (interactive)
-;;   (let ((org-agenda-custom-commands
-;;          '(("w" "Whole Agenda no matter status"
-;;             ((todo "TODO|IN-PROGRESS|DONE|CANCELLED")))))
-
-;;         (org-super-agenda-groups
-;;          '((:auto-map
-;;             (lambda (item)
-;;               (let ((ts (assoc "TIMESTAMP" (org-entry-properties))))
-;;                 (if ts
-;;                     (let* ((date-parts (org-parse-time-string (cdr ts)))
-;;                            (month (nth 4 date-parts)) (year (nth 5 date-parts)))
-;;                       (format-time-string "%B %Y" (encode-time 1 1 1 1 month year)))
-;;                   ;; else
-;;                   "W/o timestamp")))))))
-;;     (org-agenda nil "w")))
-
 ;; HACK my work around to get `org-refile' to inherit tags.
 (defun my-inherit-tags ()
   "Current heading to inherit parents tags"
@@ -97,3 +74,45 @@
     (org-back-to-heading)
     (org-set-tags inherited-tags)))
 (advice-add #'org-refile :before #'my-inherit-tags)
+
+;;; org-agenda configurations
+(after! org
+  (setq org-agenda-start-day "-1d"
+        org-agenda-span 'week
+        org-agenda-start-with-log-mode t
+        org-agenda-align-tags-to-column 'auto                                   ; flush tags to right
+        ;; add a line in between each day
+        org-agenda-format-date (lambda (date)
+                                 (concat "\n"
+                                         (make-string (window-width) 9472)
+                                         "\n"
+                                         (org-agenda-format-date-aligned date)))
+        org-super-agenda-groups
+        '((:name "Important"
+                 :face (:inherit warning)
+                 :priority "A")
+          (:name "Schedule"
+                 :time-grid t)
+          (:name "Due Today"
+                 :deadline today)
+          (:name "Toady's Task"
+                 :date today)
+          (:name "Overdue"
+                 :scheduled past
+                 :deadline past)
+          (:name "Upcoming"
+                 :deadline future))))
+;; fixes the weird `org-super-agenda' "j-k" behaviour
+(map! (:map org-agenda-mode-map
+        "j"   #'org-agenda-next-line
+        "k"   #'org-agenda-previous-line))
+(after! evil-org-agenda
+  (map!
+   (:map evil-org-agenda-mode-map
+     :m "w"   #'org-agenda-week-view
+     :m "d"   #'org-agenda-day-view
+     :m "ci"   #'org-clock-in
+     :m "co"   #'org-clock-out
+     :m "<escape>"   #'evil-force-normal-state
+     :m "C-j" #'org-agenda-next-date-line
+     :m "C-k" #'org-agenda-previous-date-line)))

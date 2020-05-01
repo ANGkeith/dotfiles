@@ -34,5 +34,15 @@
 (custom-set-faces '(font-lock-string-face ((t (:foreground "#7bc275")))))
 (custom-set-faces '(success ((t (:foreground "#7bc275")))))
 
+;; highlight-indent-guide
 (custom-set-faces
  '(highlight-indent-guides-character-face ((t (:inherit fill-column-indicator)))))
+
+;; org-agenda
+(custom-set-faces
+ '(org-agenda-current-time
+   ((t (:inherit warning ))))
+ '(org-agenda-date-today
+   ((t (:height 1.1))))
+ '(org-agenda-date
+   ((t (:foreground "#656087")))))
