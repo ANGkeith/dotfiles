@@ -33,3 +33,6 @@
 ;; more vibrant rather than material green
 (custom-set-faces '(font-lock-string-face ((t (:foreground "#7bc275")))))
 (custom-set-faces '(success ((t (:foreground "#7bc275")))))
+
+(custom-set-faces
+ '(highlight-indent-guides-character-face ((t (:inherit fill-column-indicator)))))
