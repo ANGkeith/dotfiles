@@ -6,3 +6,5 @@ xmodmap -e "keycode 67 = F15"
 xmodmap -e "keycode 68 = F16"
 xmodmap -e "keycode 69 = F17"
 xmodmap -e "keycode 70 = F18"
+
+notify-send --app-name=Key "Remapped Completed"
