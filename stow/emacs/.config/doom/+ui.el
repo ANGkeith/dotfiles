@@ -141,6 +141,11 @@
   (setq-local transient-display-buffer-action
               '(display-buffer-in-side-window bottom)))
 
+;; pretty-symbol
+(plist-put +pretty-code-symbols :return nil)
+(plist-put +pretty-code-symbols :yield nil)
+(plist-put +pretty-code-symbols :pipe nil)
+
 ;; yascroll
 (after! yascroll
   (set-face-foreground 'yascroll:thumb-fringe "#da8548")
