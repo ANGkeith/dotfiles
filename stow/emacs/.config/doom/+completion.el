@@ -2,17 +2,15 @@
 
 ;; company
 (after! company
-  (define-key! company-active-map
-    "RET"        #'company-complete-selection
-    [return]     #'company-complete-selection
-    "TAB"        #'company-select-next
-    [tab]        #'company-select-next
-    [backtab]    #'company-select-previous
-    (kbd "jk")   #'company-complete-selection
-    "C-n"        #'company-select-next
-    "C-p"        #'company-select-previous)
-  (setq company-flx-limit 100)
-  (map! :i "M-c" #'company-dabbrev))
+  (setq
+   company-idle-delay 0.1
+   company-flx-limit 75))
+(map!
+ (:map company-box-mode-map
+   :i "jk"       #'company-complete-selection
+   :i "C-j"      #'company-select-next
+   :i "C-k"      #'company-select-previous)
+ :i "<C-return>" #'company-dabbrev)
 
 ;; company-box
 (after! company-box
@@ -20,6 +18,8 @@
    company-box-max-candidates 100
    company-box-icons-alist 'company-box-icons-all-the-icons
    company-box-icons-all-the-icons
+
+   ;; spacemacs's version of icon
    (let ((all-the-icons-scale-factor 0.8))
      `(
        (Unknown       . ,(all-the-icons-octicon    "file-text"))
