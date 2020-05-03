@@ -109,6 +109,7 @@
 (add-hook! 'after-change-major-mode-hook #'my-symbol-overlay-mode)
 
 ;;; my-modules
+(load! "+alias"      doom-private-dir)
 (load! "+completion" doom-private-dir)
 (load! "+modeline"   doom-private-dir)
 (load! "+org"        doom-private-dir)
