@@ -1,0 +1,4 @@
+shell=sh
+
+# ignores POSIX sh, array references are undefined.
+disable=SC2039

@@ -3,17 +3,28 @@
 ;; company
 (after! company
   (setq
-   company-idle-delay 0.1
    company-flx-limit 75))
+
 (map!
  (:map company-active-map
-   :g "<C-SPC>"  #'yas-expand)
- (:map company-box-mode-map
-   :i "jk"       #'company-complete-selection
-   :i "C-j"      #'company-select-next
-   :i "C-k"      #'company-select-previous)
- :i "<C-SPC>"    #'yas--maybe-expand-key-filter
- :i "<C-return>" #'company-dabbrev)
+   :g "RET"      #'company-complete-selection
+   :g [return]   #'company-complete-selection
+   :g "TAB"      #'company-select-next
+   :g [tab]      #'company-select-next
+   :g [backtab]  #'company-select-previous
+   :g (kbd "jk") #'company-complete-selection
+   :g "C-j"      #'company-select-next
+   :g "C-k"      #'company-select-previous
+   :g "C-n"      #'company-select-next
+   :g "C-p"      #'company-select-previous))
+
+;; HACK Make the `company-select-next' callable through alias
+(defalias 'my-company-select-next #'company-select-next)
+(defalias 'my-company-select-previous #'company-select-previous)
+(map!
+ :i "<C-return>" #'company-dabbrev
+ :i "C-j"        #'my-company-select-next
+ :i "C-k"        #'my-company-select-previous)
 
 ;; company-box
 (after! company-box
