@@ -6,10 +6,13 @@
    company-idle-delay 0.1
    company-flx-limit 75))
 (map!
+ (:map company-active-map
+   :g "<C-SPC>"  #'yas-expand)
  (:map company-box-mode-map
    :i "jk"       #'company-complete-selection
    :i "C-j"      #'company-select-next
    :i "C-k"      #'company-select-previous)
+ :i "<C-SPC>"    #'yas--maybe-expand-key-filter
  :i "<C-return>" #'company-dabbrev)
 
 ;; company-box

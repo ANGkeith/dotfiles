@@ -46,3 +46,6 @@
    ((t (:height 1.1))))
  '(org-agenda-date
    ((t (:foreground "#656087")))))
+
+;; ya-snippet, default color is not obvious enough
+(custom-set-faces '(yas-field-highlight-face ((t (:inherit region)))))
