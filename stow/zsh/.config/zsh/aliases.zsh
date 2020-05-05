@@ -2,17 +2,17 @@
 # vim:fdm=marker
 
 # configurations {{{
-alias bashrc="vim ~/.bashrc"
-alias i3rc="vim $XDG_CONFIG_HOME/i3/config"
-alias bspwmrc="vim $XDG_CONFIG_HOME/bspwm/bspwmrc"
-alias sourcez="source $ZDOTDIR/.zshrc"
-alias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
-alias vimrc="vim $XDG_CONFIG_HOME/vim/vimrc"
-alias zshrc="vim $ZDOTDIR/.zshrc"
+ealias bashrc="vim ~/.bashrc"
+ealias i3rc="vim $XDG_CONFIG_HOME/i3/config"
+ealias bspwmrc="vim $XDG_CONFIG_HOME/bspwm/bspwmrc"
+ealias sourcez="source $ZDOTDIR/.zshrc"
+ealias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
+ealias vimrc="vim $XDG_CONFIG_HOME/vim/vimrc"
+ealias zshrc="vim $ZDOTDIR/.zshrc"
 # }}}
 
 # docker {{{
-alias dockersrm='docker rm -f $(docker ps -aq)'
+ealias dockersrm='docker rm -f $(docker ps -aq)'
 dex() {
     docker exec -ti "$1" bash
 }
@@ -23,30 +23,30 @@ dexr() {
 # }}}
 
 # git {{{
-alias ga="git add"
-alias gaa="git add -A"
-alias gb="git branch"
-alias gc="git commit -m"
-alias gcl="git clone"
-alias gca="git commit --no-edit --amend"
-alias gco="git checkout"
-alias gcoh="git checkout HEAD"
-alias gd="git diff"
-alias gdh="git dsf HEAD"
-alias gl="git pull"
+ealias ga="git add"
+ealias gaa="git add -A"
+ealias gb="git branch"
+ealias gc="git commit -m"
+ealias gcl="git clone"
+ealias gca="git commit --no-edit --amend"
+ealias gco="git checkout"
+ealias gcoh="git checkout HEAD"
+ealias gd="git diff"
+ealias gdh="git dsf HEAD"
+ealias gl="git pull"
 alias gitll='git log --graph --pretty=format:'"'"'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %Creset'"'"'% --abbrev-commit --date=relative'
-alias glrb="git pull --rebase"
-alias gp="git push"
-alias gpf="git push --force"
-alias grb="git rebase"
-alias grbc="git rebase --continue"
-alias gs="git status -sb"
-alias gst="git stash push"
-alias gstn="git stash push -m"
-alias gsta="git stash apply"
-alias gstl="git stash list"
-alias gstp="git stash pop"
-alias gsts="git stash show -v"
+ealias glrb="git pull --rebase"
+ealias gp="git push"
+ealias gpf="git push --force"
+ealias grb="git rebase"
+ealias grbc="git rebase --continue"
+ealias gs="git status -sb"
+ealias gst="git stash push"
+ealias gstn="git stash push -m"
+ealias gsta="git stash apply"
+ealias gstl="git stash list"
+ealias gstp="git stash pop"
+ealias gsts="git stash show -v"
 # }}}
 
 # navigations {{{
@@ -59,24 +59,10 @@ cd.() {
    # local dir
    # file=$(fzf +m -q "$1" --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' ) && dir=$(dirname "$file") && cd "$dir"
 }
-# cd.. Use fzf to cd into one of its parent/ancenstor dir
-cd..() {
-  local declare dirs=()
-  get_parent_dirs() {
-    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
-    if [[ "${1}" == '/' ]]; then
-      for _dir in "${dirs[@]}"; do echo $_dir; done
-    else
-      get_parent_dirs $(dirname "$1")
-    fi
-  }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  cd "$DIR"
-}
 # }}}
 
 # network {{{
-alias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
+ealias ipconfig='dig +short myip.opendns.com @resolver1.opendns.com'
 # }}}
 
 # tmux {{{
@@ -89,20 +75,20 @@ function t() {
 # }}}
 
 # vim {{{
-alias vf='nvim $(fzf)'
-alias vim='nvim'
+ealias vf='nvim $(fzf)'
+ealias vim='nvim'
 # }}}
 
 # awk {{{
-alias c1="awk '{print \$1}'"
-alias c2="awk '{print \$2}'"
-alias c3="awk '{print \$3}'"
-alias c4="awk '{print \$4}'"
-alias c5="awk '{print \$5}'"
-alias c6="awk '{print \$6}'"
-alias c7="awk '{print \$7}'"
-alias c8="awk '{print \$8}'"
-alias c9="awk '{print \$9}'"
+ealias c1="awk '{print \$1}'"
+ealias c2="awk '{print \$2}'"
+ealias c3="awk '{print \$3}'"
+ealias c4="awk '{print \$4}'"
+ealias c5="awk '{print \$5}'"
+ealias c6="awk '{print \$6}'"
+ealias c7="awk '{print \$7}'"
+ealias c8="awk '{print \$8}'"
+ealias c9="awk '{print \$9}'"
 # }}}
 
 agr() {
@@ -151,4 +137,4 @@ github() {
 
 alias syncmail="systemctl --user start mail-daemon.service; systemctl --user status mail-daemon.service"
 
-alias ls="exa -lhgb --icons"
+ealias ls="exa -lhgb --icons"
