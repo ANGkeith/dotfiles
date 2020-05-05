@@ -5,57 +5,22 @@ bindkey -v
 # In insert mode, type use <c-v> follow by a key to check the keycode
 
 # Inherit some useful emac mode commands
-bindkey "^E" end-of-line
-bindkey "^A" beginning-of-line
-bindkey "^P" up-line-or-history
-bindkey "^N" down-line-or-history
-
-bindkey "^J" down-line-or-history
-bindkey "^K" up-line-or-history
+bindkey -M viins "^E" end-of-line
+bindkey -M viins "^A" beginning-of-line
+bindkey -M viins "^J" down-line-or-history
+bindkey -M viins "^K" up-line-or-history
 
 # fzf
-bindkey -r "^R"
-bindkey "^R" fzf-history-widget
+bindkey -M viins -r "^R"
+bindkey -M viins "^R" fzf-history-widget
 
-# fix issue of pressing keying shift+<cr> will output M
-bindkey "^[OM" accept-line
+bindkey -M viins "^[OM" accept-line                                                      # fix issue of pressing keying shift+<cr> will output M
+bindkey -M viins '^Z' fg-bg
+bindkey -M viins -r '^G'
+bindkey -M viins '^G' jump-to-file-dir
 
-# C-Z a toggle behaviour
-fg-bg() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    fg
-  else
-    zle push-input
-  fi
-}
+bindkey -M vicmd 'gg' beginning-of-line
+bindkey -M vicmd 'G'  end-of-line
 
-# shell function make into a widget
-zle -N fg-bg
-bindkey '^Z' fg-bg
-
-jump_to_file_dir() {
-   file_path="${LBUFFER}$(__fsel)"
-   cd $(dirname $file_path)
-   zle fzf-redraw-prompt
-}
-zle -N jump_to_file_dir
-bindkey -r '^G'
-bindkey '^G' jump_to_file_dir
-
-# cd.. Use fzf to cd into one of its parent/ancenstor dir
-cd..() {
-  local declare dirs=()
-  get_parent_dirs() {
-    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
-    if [[ "${1}" == '/' ]]; then
-      for _dir in "${dirs[@]}"; do echo $_dir; done
-    else
-      get_parent_dirs $(dirname "$1")
-    fi
-  }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  cd "$DIR"
-}
-zle -N cd..
-bindkey -r '^H'
-bindkey '^H' cd..
+bindkey -M viins -r '^H'
+bindkey -M viins '^H' fzf-cd..
