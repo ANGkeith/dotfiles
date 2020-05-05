@@ -150,3 +150,5 @@ github() {
 }
 
 alias syncmail="systemctl --user start mail-daemon.service; systemctl --user status mail-daemon.service"
+
+alias ls="exa -lhgb --icons"

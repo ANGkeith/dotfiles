@@ -1,17 +1,18 @@
-#!/bin/bash
-set -o errexit
-set -o nounset
+#!/usr/bin/env bash
+
 set -o pipefail
+set -o nounset
+set -o errexit
 set -o xtrace
 
-
-script_root="$(cd $(dirname $BASH_SOURCE[0]) && pwd -P)"
-project_root=$(cd $(dirname ${script_root}) && pwd -P)
+SCRIPT_DIRECTORY=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
+# shellcheck disable=SC2034
+PROJECT_ROOT=$(cd "$(dirname "${SCRIPT_DIRECTORY}")" && pwd -P)
 
 sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
 # Standard folder
-    mkdir -p $HOME/Pictures $HOME/Documents $HOME/Desktop
+    mkdir -p "$HOME"/Pictures "$HOME"/Documents "$HOME"/Desktop
     sudo pacman -Syu
 
     sudo pacman -S lua --noconfirm
@@ -37,6 +38,9 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     # use for managing window nodes
     sudo pacman -S xdo --no-confirm
     sudo pacman -S xdotool --no-confirm
+
+    sudo pacman -S exa --noconfirm # better ls
+    sudo pacman -S fd --noconfirm # better find
 
     # for debugging
     sudo pacman -S peek --noconfirm
@@ -164,7 +168,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         sudo pacman -S docker docker-compose --noconfirm
         sudo systemctl start docker
         sudo systemctl enable docker
-        sudo usermod -aG docker $USER
+        sudo usermod -aG docker "$USER"
 
         # to allow pycharm integration with docker
             # sudo mkdir /etc/systemd/system/docker.service.d/
@@ -307,7 +311,5 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 # conference
     yay -S zoom --noconfirm
 
-# more usesable version of find
-sudo pacman -S fd --confirm
 
 reboot
