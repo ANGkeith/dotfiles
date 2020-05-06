@@ -111,7 +111,7 @@
   (advice-add #'goto-last-change :after #'+nav-flash-blink-cursor))
 
 ;; neotree
-(map! :inmg "C-n" #'neotree-toggle)
+(map! :nm "C-n" #'treemacs)
 (after! neotree
   (setq neo-smart-open t
         doom-themes-neotree-file-icons t
@@ -140,6 +140,13 @@
 (add-hook! 'neo-after-create-hook
   (setq-local transient-display-buffer-action
               '(display-buffer-in-side-window bottom)))
+
+;; treemacs
+(after! treemacs
+  (setq
+   doom-themes-treemacs-enable-variable-pitch nil
+   doom-themes-treemacs-theme  "doom-colors"                                 ; use all-the-icons icons for file type icons
+   doom-themes-treemacs-line-spacing 2))
 
 ;; pretty-symbol
 (plist-put +pretty-code-symbols :return nil)
