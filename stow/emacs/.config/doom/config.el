@@ -36,7 +36,6 @@
       delete-by-moving-to-trash t                                               ; prevent data loss
       eros-eval-result-prefix "⇒ "                                              ; nicer symbol
       evil-snipe-scope 'buffer                                                  ; why snipe line when you can snipe the buffer?
-      doom-themes-neotree-enable-variable-pitch nil                             ; don't use variable pitch for neotree
       +workspaces-on-switch-project-behavior nil
 
       ;; nicer way of constructing unique buffer name but note that this breaks
@@ -106,7 +105,6 @@
 (global-yascroll-bar-mode t)
 (company-flx-mode t)
 (add-hook! 'prog-mode-hook 'display-fill-column-indicator-mode)
-(add-hook! 'after-change-major-mode-hook #'my-symbol-overlay-mode)
 
 ;;; my-modules
 (load! "+alias"      doom-private-dir)

@@ -59,30 +59,6 @@ eq to this one."
     (dolist (diffinfo (nreverse diffinfos))
       (git-gutter+-do-revert-hunk diffinfo))))
 
-(defun my-symbol-overlay-mode ()
-  (unless (memq major-mode
-                (list 'neotree-mode))
-    (symbol-overlay-mode)))
-
-(defun +doom-themes--neotree-no-fringes ()
-  (set-window-fringes neo-global--window 3 0))
-(defun +neo-buffer--insert-root-entry (node)
-  (neo-buffer--node-list-set nil node)
-  (cond ((eq neo-cwd-line-style 'button)
-         (neo-path--insert-header-buttonized node))
-        (t
-         (neo-buffer--insert-with-face (neo-path--shorten node (window-body-width))
-                                       'neo-root-dir-face)))
-  (neo-buffer--newline-and-begin)
-  (when neo-show-updir-line
-    (neo-buffer--insert-fold-symbol 'close node)
-    (insert-button ".."
-                   'action '(lambda (x) (neotree-change-root))
-                   'follow-link t
-                   'face neo-dir-link-face
-                   'neo-full-path (neo-path--updir node))
-    (neo-buffer--newline-and-begin)))
-
 ;; for C-S-t
 (defvar my-killed-file-list nil
   "List of recently killed files.")

@@ -110,37 +110,6 @@
   (advice-add #'undo-tree-redo :after #'+nav-flash-blink-cursor)
   (advice-add #'goto-last-change :after #'+nav-flash-blink-cursor))
 
-;; neotree
-(map! :nm "C-n" #'treemacs)
-(after! neotree
-  (setq neo-smart-open t
-        doom-themes-neotree-file-icons t
-        neo-theme 'icons)
-  (map! (:map neotree-mode-map
-          :n "C-k" #'neotree-select-previous-sibling-node
-          :n "C-j" #'neotree-select-next-sibling-node
-          :n "h" #'neotree-select-up-node
-          :n "x" #'neotree-delete-node
-          :n "C" #'neotree-collapse-all
-          :n "D" #'make-directory
-          :n "n" #'evil-ex-search-next
-          :n "p" #'evil-ex-search-previous
-          :n "?" #'neotree-dispatch
-          :n "C-SPC" #'neotree-quick-look)))
-;; HOTFIX for some reason `(featurep 'hl-line)` evaluates to nil in the dashboard
-(add-hook! #'neotree-mode-hook (hl-line-mode 1))
-(setq-hook! #'neotree-mode-hook
-  evil-normal-state-cursor '((bar . 0)) ;; hides the cursor
-  yascroll:scroll-bar 'left-fringe)
-(advice-add #'doom-themes-neotree-insert-root
-            :override #'+neo-buffer--insert-root-entry)
-(advice-add #'doom-themes--neotree-no-fringes
-            :override #'+doom-themes--neotree-no-fringes)
-;; force transient display buffer to the bottom
-(add-hook! 'neo-after-create-hook
-  (setq-local transient-display-buffer-action
-              '(display-buffer-in-side-window bottom)))
-
 ;; treemacs
 (after! treemacs
   (setq
