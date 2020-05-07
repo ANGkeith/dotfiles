@@ -3,6 +3,7 @@
 ;; company
 (after! company
   (setq
+   company-dabbrev-code-ignore-case t
    company-flx-limit 75))
 
 (map!
@@ -22,7 +23,7 @@
 (defalias 'my-company-select-next #'company-select-next)
 (defalias 'my-company-select-previous #'company-select-previous)
 (map!
- :i "<C-return>" #'company-dabbrev
+ :i "<C-return>" #'company-dabbrev-code
  :i "C-j"        #'my-company-select-next
  :i "C-k"        #'my-company-select-previous)
 
