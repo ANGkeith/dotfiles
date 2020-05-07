@@ -11,12 +11,23 @@ PROJECT_ROOT=$(cd "$(dirname "${SCRIPT_DIRECTORY}")" && pwd -P)
 
 sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 
+# Install git and dependency for gitk
+sudo pacman -S git tk --noconfirm
+
 # Standard folder
     mkdir -p "$HOME"/Pictures "$HOME"/Documents "$HOME"/Desktop
     sudo pacman -Syu
 
     sudo pacman -S lua --noconfirm
     sudo pacman -S xorg-xmodmap --noconfirm
+    
+# Install yay
+    cd /tmp
+    if [[ ! -d /tmp/yay  ]]; then
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+    fi
 
 # utils
     # file compression
@@ -26,7 +37,6 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     sudo systemctl enable bluetooth.service
 
     sudo pacman -S xclip --noconfirm
-
     sudo pacman -S ctags --noconfirm
 
     sudo pacman -S network-manager-applet --noconfirm
@@ -58,24 +68,13 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 # terminal and multiplexer
     sudo pacman -S tmux konsole --noconfirm
 
-# Install yay
-    cd /tmp
-    if [[ ! -d /tmp/yay  ]]; then
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        makepkg -si
-    fi
-
 # Searching tool
     sudo pacman -S ripgrep --noconfirm
     sudo pacman -S the_silver_searcher --noconfirm
 
 # File manager
-    sudo pacman -S nautilus ranger --noconfirm
+    sudo pacman -S nautilus ranger dolphin --noconfirm
     yay -S nautilus-dropbox dropbox --noconfirm
-
-# Install git and dependency for gitk
-    sudo pacman -S git tk --noconfirm
 
 # Install zsh
     sudo pacman -S zsh --noconfirm
@@ -85,37 +84,17 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
     sudo pacman -S sddm --noconfirm
     sudo systemctl enable sddm.service
 
-    # sddm themes
-    yay -S sddm-theme-sugar-candy --noconfirm
-
-    sudo sed -i 's/\(AccentColor=\)".*"/\1"#5fafaf"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-    sudo sed -i 's/\(ForceHideCompletePassword=\)".*"/\1"true"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-#     sudo sed -i 's/\(Font=\)".*"/\1"Hack Nerd Font"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-#     sudo sed -i 's/\(FontSize=\)".*"/\1"14"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-#     sudo sed -i 's/\(HourFormat=\)".*"/\1"\\nHH:mm"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-#     sudo sed -i 's/\(DateFormat=\)".*"/\1"dddd, d MMMM"/g' /usr/share/sddm/themes/Sugar-Candy/theme.conf
-#     # Larger welcome text
-    sudo sed -i 's/\(config.HeaderText.*\)\*.*/\1* 5 : 0/g' /usr/share/sddm/themes/Sugar-Candy/Components/Clock.qml
-
-    sudo cp ~/.config/wallpaper/wallpaper.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/Mountain.jpg
-
     # kde asthetics
     sudo pacman -S latte-dock --noconfirm
     sudo pacman -S plasma5-applets-active-window-control --noconfirm
     yay -S sierrabreeze-kwin-decoration-git --noconfirm
     sudo pacman -S kvantum-q --noconfirm
     yay -S mcmojave-kde-theme-git --noconfirm
-    sudo pacman -S dolphin --noconfirm
-
-# use the theme and set path for Xauthority
-echo "[Theme]
-Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
 # Volume manager
     sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm
     # required to play sound over bluetooth
     sudo pacman -S pulseaudio-bluetooth --noconfirm
-
 
 # Show cpu temperatures (lm-sensors)
     sudo pacman -S i2c-tools --noconfirm
@@ -123,22 +102,9 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 # Dependencies for screenshot
     sudo pacman -S flameshot --noconfirm
 
-# For spawning menus
-    sudo pacman -S rofi --noconfirm
-
-# Screen locker
-    sudo pacman -S feh xautolock --noconfirm
-    yay -S betterlockscreen --noconfirm
-    # Generate cache for betterlockscreen
-    PATH_TO_WALLPAPER=~/.config/wallpaper/wallpaper.jpg
-    if [ -e ${PATH_TO_WALLPAPER} ]; then
-        betterlockscreen -u ${PATH_TO_WALLPAPER}
-    else
-        echo "The path `${PATH_TO_WALLPAPER}` does not exist. "
-    fi
-
 # Internet Browser
-    sudo pacman -S chromium --noconfirm
+    yay -S brave-bin --noconfirm
+    sudo pacman -Ss firefox-developer-edition --noconfirm
 
 # Display Compositor
     sudo pacman -S picom --noconfirm
@@ -148,10 +114,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     # used to check the keycode using `xev`
     sudo pacman -S xorg-xev --noconfirm
     yay -S polybar --noconfirm
-
-    # Used for extending monitors
-    yay -S mons --noconfirm
-
 # gtk themes
     # create filepath for configurations
     mkdir -p ~/.config/gtk-1.0
@@ -169,16 +131,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         sudo systemctl enable docker
         sudo usermod -aG docker "$USER"
 
-        # to allow pycharm integration with docker
-            # sudo mkdir /etc/systemd/system/docker.service.d/
-            # sudo touch /etc/systemd/system/docker.service.d/startup_options.conf
-            # echo "# /etc/systemd/system/docker.service.d/override.conf
-            # [Service]
-            # ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375" |
-            #     sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
-            # sudo systemctl daemon-reload
-            # sudo systemctl restart docker.service
-
     # python
         sudo pacman -S pyenv --noconfirm
         sudo pacman -S python-pytest --noconfirm
@@ -194,14 +146,13 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
         yay -S nvm --noconfirm
 
         NVM_SOURCE=/usr/share/nvm
-        [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"  # Load NVM
-        # depenency for nvim coc plugin
-        nvm install 12.16.1
-        nvm alias default 12.16.1
+        [ -s "$NVM_SOURCE"/nvm.sh ] && . "$NVM_SOURCE"/nvm.sh  # Load NVM
+        nvm install "$NODE_DEFAULT_VERSION"
+        nvm alias default "$NODE_DEFAULT_VERSION"
         nvm use default
 
         # To upgrade nvm use the following:
-        # nvm install <version> --reinstall-packages-from=node
+        # nvm install $NODE_DEFAULT_VERSION --reinstall-packages-from=node
         # nvm alias default <version>
         # Remember to update hardcode path in `vimrc` and `.spacemacs`
 
@@ -217,7 +168,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
         # emacs
         yay -S emacs27--git --noconfirm
-        systemctl --user enable --now emacs
         git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
         # Dependency
@@ -242,7 +192,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
             # bash
             yay -S shellcheck-static --noconfirm
 
-            npm install  -g  eslint import-js
+            npm install -g eslint import-js
 
 
 # maintanence
@@ -298,6 +248,7 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
     sudo pacman -S gimp --noconfirm
 
 # cheat
+    yay -S cheat-git --noconfirm
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
 
 # fixes keychron keyboard
