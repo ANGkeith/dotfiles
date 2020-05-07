@@ -145,7 +145,6 @@ Current=Sugar-Candy" | sudo tee /etc/sddm.conf
 
 # Window Manager
     sudo pacman -S plasma --noconfirm
-    sudo pacman -S bspwm sxhkd --noconfirm
     # used to check the keycode using `xev`
     sudo pacman -S xorg-xev --noconfirm
     yay -S polybar --noconfirm
