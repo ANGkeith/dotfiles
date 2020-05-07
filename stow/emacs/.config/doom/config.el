@@ -62,7 +62,7 @@
    :desc "Toggle popups"                     "ph"  #'+popup/toggle
    :desc "Search from home directory"        "sP"  #'+default/search-other-cwd
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
-   :desc "List buffers"                      "gb"  #'persp-switch-to-buffer)
+   :desc "Close window"                      "wq"  #'evil-quit)
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
@@ -81,6 +81,7 @@
  :nm     "C-<right>"                               #'evil-window-increase-width
  :n      "M-s"                                     #'+evil-window-split-a
  :n      "M-v"                                     #'+evil-window-vsplit-a
+ :n      "gb"                                      #'persp-switch-to-buffer
  :n      "<tab>"                                   #'evil-jump-item
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
