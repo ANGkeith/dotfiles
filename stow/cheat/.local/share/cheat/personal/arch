@@ -3,6 +3,9 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+systemctl enable sshd # all ssh
+wifi-menu -o # connect to wifi (`netctl` package)
+
 ### preinstall {{{
     timedatectl set-ntp true
     # Format partitions with cfdisk
@@ -13,6 +16,7 @@ set -o nounset
     mkfs.vfat -F32 /dev/sda1
     mkfs.ext4 /dev/sda2
     mkfs.ext4 /dev/sda4
+    mkfs.ext4 /dev/sda5
 
     # validate result with `parted -l`
 
@@ -22,11 +26,14 @@ set -o nounset
     mount /dev/sda1 /mnt/boot
     mkdir /mnt/home
     mount /dev/sda4 /mnt/home
+    mkdir /mnt/home/timeshift
+    mount /dev/sda5 /mnt/home/timeshift
     mkswap /dev/sda3
     swapon /dev/sda3
 
-    # pacman -S reflector
-    # reflector --country "Singapore" --country "Taiwan" --country "Hong Kong" --country "Australia"  --protocol https --verbose --sort rate --save /etc/pacman.d/mirrorlist
+    pacman -Sy
+    pacman -S reflector
+    reflector --protocol https --sort rate --age 24 --verbose --save /etc/pacman.d/mirrorlist
 
     # Install essential package
     pacstrap /mnt base linux linux-firmware base-devel
@@ -52,10 +59,8 @@ echo "127.0.0.1    localhost
 ::1          localhost
 127.0.1.1    artemis.localdomain    artemis" > /etc/hosts
 
-    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager --noconfirm
+    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager netctl stow git--noconfirm
     # additional instructions
-
-    pacman -S stow git --noconfirm
 
     # ssh
     systemctl enable sshd
@@ -106,7 +111,6 @@ echo "127.0.0.1    localhost
 
 # update
 sudo pacman -Syyu
-sudo pacman -S sddm --noconfirm
 # dependency of zsh plugins
 sudo pacman -S lua xclip --noconfirm
 
@@ -143,15 +147,8 @@ cd dotfiles
 make create_sym_link
 
 sudo reboot
-cd ~/dotfiles
-
-
-
-
-
 
 ### }}}
-sudo systemctl enable sddm.service
 
 # setup ssh keys
 ssh-keygen -t rsa -b 4096 -C "angkeith@github.com"
@@ -174,15 +171,15 @@ cd ~/dotfiles; git remote set-url origin git@github.com:ANGkeith/dotfiles.git
 # install the windows normally
 
 # tool used to detect windows
-pacman -S os-prober --noconfirm
+sudo pacman -S os-prober --noconfirm
 
 # update the grub so that the grub splash screen will allow us to select windows
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Make linux use localtime instead of UTC
+timedatectl set-ntp yes
 timedatectl set-local-rtc 1 --adjust-system-clock
 }}}
-
 
 ### Vim{{{
 # run PlugInstall

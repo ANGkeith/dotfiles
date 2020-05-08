@@ -15,7 +15,8 @@ sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm
 sudo pacman -S git tk --noconfirm
 
 # Standard folder
-    mkdir -p "$HOME"/Pictures "$HOME"/Documents "$HOME"/Desktop
+    mkdir -p "$HOME"/Pictures "$HOME"/Documents "$HOME"/Desktop "$HOME"/Downloads
+
     sudo pacman -Syu
 
     sudo pacman -S lua --noconfirm
@@ -43,11 +44,11 @@ sudo pacman -S git tk --noconfirm
 
     sudo pacman -S light --noconfirm
     # file converter
-    sudo pacman -S texlive-most --no-confirm
+    sudo pacman -S texlive-most --noconfirm
 
     # use for managing window nodes
-    sudo pacman -S xdo --no-confirm
-    sudo pacman -S xdotool --no-confirm
+    sudo pacman -S xdo --noconfirm
+    sudo pacman -S xdotool --noconfirm
 
     sudo pacman -S exa --noconfirm # better ls
     sudo pacman -S fd --noconfirm # better find
@@ -81,9 +82,6 @@ sudo pacman -S git tk --noconfirm
     yay -S stderred-git --noconfirm
 
 # Desktop applications
-    sudo pacman -S sddm --noconfirm
-    sudo systemctl enable sddm.service
-
     # kde asthetics
     sudo pacman -S latte-dock --noconfirm
     sudo pacman -S plasma5-applets-active-window-control --noconfirm
@@ -103,7 +101,6 @@ sudo pacman -S git tk --noconfirm
     sudo pacman -S flameshot --noconfirm
 
 # Internet Browser
-    yay -S brave-bin --noconfirm
     sudo pacman -Ss firefox-developer-edition --noconfirm
 
 # Display Compositor
@@ -119,7 +116,7 @@ sudo pacman -S git tk --noconfirm
     mkdir -p ~/.config/gtk-1.0
     mkdir -p ~/.config/gtk-2.0
 
-    sudo pacman -S lxappearance
+    sudo pacman -S lxappearance --noconfirm
 
 # notification daemon
     sudo pacman -S dunst --noconfirm
@@ -154,7 +151,6 @@ sudo pacman -S git tk --noconfirm
         # To upgrade nvm use the following:
         # nvm install $NODE_DEFAULT_VERSION --reinstall-packages-from=node
         # nvm alias default <version>
-        # Remember to update hardcode path in `vimrc` and `.spacemacs`
 
     # ??
         sudo pacman -S perl-json --noconfirm
@@ -167,8 +163,10 @@ sudo pacman -S git tk --noconfirm
         # used for previewing sudo pacman -S bat --noconfirm
 
         # emacs
-        yay -S emacs27--git --noconfirm
-        git clone --branch develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
+        yay -S emacs27-git --noconfirm
+        git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
+        "$XDG_CONFIG_HOME"/emacs/bin/doom install 
+        ln -s "$XDG_CONFIG_HOME"/emacs/bin/doom ~/.local/bin/doom
 
         # Dependency
         yay -S python-epc python-importmagic --noconfirm
@@ -192,13 +190,14 @@ sudo pacman -S git tk --noconfirm
             # bash
             yay -S shellcheck-static --noconfirm
 
-            npm install -g eslint import-js
+            # js
+            npm install -g eslint
+            npm install -g import-js
 
 
 # maintanence
     yay -S timeshift --noconfirm
-    sudo systemctl enable --now cronie.service
-    yay -S paccache --noconfirm
+    sudo pacman -S pacman-contrib --noconfirm # to install paccache
 
 # fonts
     # to resolve nerd-fonts-complete error
@@ -208,7 +207,7 @@ sudo pacman -S git tk --noconfirm
     # zsh tmux themes
         sudo pacman -S powerline-fonts --noconfirm
 
-    # install random chinese fonts for chromium
+    # install random chinese fonts for internet browser
         sudo pacman -S adobe-source-han-sans-cn-fonts --noconfirm
         sudo pacman -S adobe-source-han-sans-tw-fonts --noconfirm
         sudo pacman -S adobe-source-han-serif-cn-fonts --noconfirm
@@ -216,14 +215,19 @@ sudo pacman -S git tk --noconfirm
         sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm
 
     # p10k
-        yay -S nerd-fonts-complete --noconfirm
+        
+        # cd ~/Downloads
+        # yay --getpkgbuild nerd-fonts-complete
+        # cd nerd-fonts-complete
+        # wget -O nerd-fonts-2.1.0.tar.gz https://github.com/ryanoasis/nerd-fonts/archive/v2.1.0.tar.gz
+        # makepkg -sci BUILDDIR=.
 
     # polybar
         yay -S ttf-material-design-icons --noconfirm
         yay -S ttf-font-awesome-4 --noconfirm
 
     # emacs fallback unicode glyph fonts
-        yay -S ttf-symbola-infinality
+        yay -S ttf-symbola-infinality --noconfirm
 
     # Fira Code
         wget --directory-prefix ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
@@ -242,7 +246,7 @@ sudo pacman -S git tk --noconfirm
 
 # bloat
     sudo pacman -S neofetch --noconfirm
-    yay -S python-grip --nonconfirm
+    yay -S python-grip --noconfirm
 
 # photoshop
     sudo pacman -S gimp --noconfirm
@@ -257,9 +261,7 @@ sudo pacman -S git tk --noconfirm
 # video client
     sudo pacman -S mpv --noconfirm
 
-
-# conference
+# softwares
     yay -S zoom --noconfirm
-
 
 reboot
