@@ -158,7 +158,7 @@ touch ~/.ssh/config
 chmod 600 ~/.ssh/config
 echo "Host *
     AddKeysToAgent yes" > ~/.ssh/config
-cp ~/.ssh/id_rsa.pub | clipcopy
+cat ~/.ssh/id_rsa.pub | clipcopy
 
 # setup timeshift
 
