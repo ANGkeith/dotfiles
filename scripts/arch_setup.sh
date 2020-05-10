@@ -103,7 +103,7 @@ sudo pacman -S git tk --noconfirm
     sudo pacman -S flameshot --noconfirm
 
 # Internet Browser
-    sudo pacman -Ss firefox-developer-edition --noconfirm
+    sudo pacman -S firefox-developer-edition --noconfirm
 
 # Display Compositor
     sudo pacman -S picom --noconfirm
@@ -217,6 +217,7 @@ sudo pacman -S git tk --noconfirm
 
     # p10k
         
+        # TODO has to be ran manually
         # cd ~/Downloads
         # yay --getpkgbuild nerd-fonts-complete
         # cd nerd-fonts-complete
@@ -265,7 +266,6 @@ sudo pacman -S git tk --noconfirm
     yay -S zoom --noconfirm
 
 reboot
-
 
 yay -S pciutils --noconfirm
 
