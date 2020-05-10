@@ -53,6 +53,8 @@ sudo pacman -S git tk --noconfirm
     sudo pacman -S exa --noconfirm # better ls
     sudo pacman -S fd --noconfirm # better find
 
+    sudo pacman -S jq --noconfirm
+
     # for debugging
     sudo pacman -S peek --noconfirm
     yay -S screenkey --noconfirm
@@ -117,9 +119,6 @@ sudo pacman -S git tk --noconfirm
     mkdir -p ~/.config/gtk-2.0
 
     sudo pacman -S lxappearance --noconfirm
-
-# notification daemon
-    sudo pacman -S dunst --noconfirm
 
 # development
     # install docker
@@ -196,6 +195,8 @@ sudo pacman -S git tk --noconfirm
 
 
 # maintanence
+    sudo pacman -S cronie --noconfirm
+    sudo systemctl enable cronie
     yay -S timeshift --noconfirm
     sudo pacman -S pacman-contrib --noconfirm # to install paccache
 
@@ -250,7 +251,6 @@ sudo pacman -S git tk --noconfirm
 
 # photoshop
     sudo pacman -S gimp --noconfirm
-
 # cheat
     yay -S cheat-git --noconfirm
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
@@ -265,3 +265,18 @@ sudo pacman -S git tk --noconfirm
     yay -S zoom --noconfirm
 
 reboot
+
+
+yay -S pciutils --noconfirm
+
+yay -S alsa-utils
+acpi
+xorg-xbacklight
+evtest
+
+
+
+#delete
+alsa-firmware
+alsa-utils
+xorg-input

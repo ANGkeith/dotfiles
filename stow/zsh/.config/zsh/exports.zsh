@@ -25,7 +25,7 @@ export PATH=$HOME/.local/bin:$PATH
 # Nvm
 export NODE_DEFAULT_VERSION=12.16.3
 export NVM_SOURCE="/usr/share/nvm" # The AUR package installs it here
-export NODE_PATH="$HOME"/.local/share/nvm/versions/node/"$NODE_DEFAULT_VERSION"/bin
+export NODE_PATH="$HOME"/.local/share/nvm/versions/node/v"$NODE_DEFAULT_VERSION"/bin
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
