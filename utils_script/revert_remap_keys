@@ -1,0 +1,4 @@
+#!/bin/bash
+xset r rate 660 25
+setxkbmap -option
+notify-send --app-name=Key "Undo Remap"

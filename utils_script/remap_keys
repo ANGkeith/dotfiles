@@ -1,7 +1,8 @@
 #!/bin/bash
 xset r rate 200 30
 setxkbmap -option shift:both_capslock
-setxkbmap -option caps:escape
+setxkbmap -option ctrl:nocaps
+xmodmap -e "keycode 37="            # disable left control
 xmodmap -e "keycode 67 = F15"
 xmodmap -e "keycode 68 = F16"
 xmodmap -e "keycode 69 = F17"
