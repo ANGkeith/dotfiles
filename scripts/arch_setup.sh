@@ -97,7 +97,7 @@ sudo pacman -S git tk --noconfirm
     sudo pacman -S pulseaudio-bluetooth --noconfirm
 
 # Show cpu temperatures (lm-sensors)
-    sudo pacman -S i2c-tools --noconfirm
+    sudo pacman -S i2c-tools lm-sensors --noconfirm
 
 # Dependencies for screenshot
     sudo pacman -S flameshot --noconfirm
@@ -166,6 +166,8 @@ sudo pacman -S git tk --noconfirm
         git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
         "$XDG_CONFIG_HOME"/emacs/bin/doom install 
         ln -s "$XDG_CONFIG_HOME"/emacs/bin/doom ~/.local/bin/doom
+
+        yay -S visual-studio-code-bin --noconfirm
 
         # Dependency
         yay -S python-epc python-importmagic --noconfirm
@@ -264,19 +266,9 @@ sudo pacman -S git tk --noconfirm
 
 # softwares
     yay -S zoom --noconfirm
+    yay -S team --noconfirm
+
+# binaries
+    yay -S pciutils --noconfirm # lspci
 
 reboot
-
-yay -S pciutils --noconfirm
-
-yay -S alsa-utils
-acpi
-xorg-xbacklight
-evtest
-
-
-
-#delete
-alsa-firmware
-alsa-utils
-xorg-input
