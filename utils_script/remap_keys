@@ -2,10 +2,15 @@
 xset r rate 200 30
 setxkbmap -option shift:both_capslock
 setxkbmap -option ctrl:nocaps
+xcape -e 'Control_L=Escape'         # when cap locks is tapped, it should behave like Escape
 xmodmap -e "keycode 37="            # disable left control
 xmodmap -e "keycode 67 = F15"
 xmodmap -e "keycode 68 = F16"
 xmodmap -e "keycode 69 = F17"
 xmodmap -e "keycode 70 = F18"
+xmodmap -e "keycode 71 = F19"
+xmodmap -e "keycode 72 = F20"
+xmodmap -e "keycode 73 = F21"
+xmodmap -e "keycode 74 = F22"
 
 notify-send --app-name=Key "Remapped Completed"
