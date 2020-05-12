@@ -1,6 +1,6 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/+utils.el -*- lexical-binding: t; -*-
 
-;;; flycheck
+;; flycheck
 (setq-hook! 'sh-mode-hook
   flycheck-checker (if (eq sh-shell 'zsh) 'sh-zsh 'sh-shellcheck))
 

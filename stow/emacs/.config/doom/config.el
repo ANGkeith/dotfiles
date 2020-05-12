@@ -72,6 +72,7 @@
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
  :n      "C-a"                                     #'my-visual-select-whole-buffer
+ :n      "C-;"                                     #'my-append-semicolon
  :n      "C-e"                                     #'evil-scroll-up             ; make it easier to scroll with only left hand
 
  ;; manage window

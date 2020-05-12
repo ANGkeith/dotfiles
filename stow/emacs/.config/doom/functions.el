@@ -118,3 +118,9 @@ path of a url is the commit-hash"
          (commit-hash (last msg-list 1)))
     (find-file-at-point (concat (getenv "DOOMDIR") "/config.el"))
     (magit-show-commit (substring (format "%s" commit-hash) 1 -1))))
+
+(defun my-append-semicolon ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (insert ";")))
