@@ -157,7 +157,7 @@ sudo pacman -S git tk --noconfirm
     # Text editor
         # neovim
         sudo pacman -S neovim python-pynvim --noconfirm
-        npm install -g neovim
+        sudo npm install -g neovim
 
         # used for previewing sudo pacman -S bat --noconfirm
 
@@ -177,8 +177,7 @@ sudo pacman -S git tk --noconfirm
 
         # lsp
         sudo pacman -S python-language-server --noconfirm
-        npm install -g dockerfile-language-server-nodejs
-        npm install -g bash-language-server
+        yay -S typescript-language-server-bin dockerfile-language-server-bin bash-language-server --noconfirm
 
 
         # linters
@@ -192,8 +191,11 @@ sudo pacman -S git tk --noconfirm
             yay -S shellcheck-static --noconfirm
 
             # js
-            npm install -g eslint
-            npm install -g import-js
+            sudo npm install -g import-js
+            sudo npm install -g eslint-config-airbnb
+            sudo npm install -g install-peerdeps
+            yay -S babel-eslint --noconfirm
+            sudo pacman -S eslint prettier --noconfirm
 
 
 # maintanence
