@@ -4,7 +4,7 @@
 (after! company
   (setq
    company-dabbrev-code-ignore-case t
-   company-flx-limit 75))
+   company-flx-limit 50))
 
 (map!
  (:map company-active-map
@@ -30,7 +30,7 @@
 ;; company-box
 (after! company-box
   (setq
-   company-box-max-candidates 100
+   company-box-max-candidates 50
    company-box-icons-alist 'company-box-icons-all-the-icons
    company-box-icons-all-the-icons
 

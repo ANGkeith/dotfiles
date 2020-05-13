@@ -121,6 +121,10 @@
 (plist-put +pretty-code-symbols :return nil)
 (plist-put +pretty-code-symbols :yield nil)
 (plist-put +pretty-code-symbols :pipe nil)
+(plist-put +pretty-code-symbols :and nil)
+(plist-put +pretty-code-symbols :for nil)
+(plist-put +pretty-code-symbols :or nil)
+(plist-put +pretty-code-symbols :lambda nil)
 
 ;; yascroll
 (after! yascroll

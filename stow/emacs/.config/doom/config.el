@@ -28,6 +28,7 @@
 (setq display-line-numbers-type 'relative
       evil-goggles-duration 0.2                                                 ; longer operation hinting
       show-trailing-whitespace t
+      evil-escape-unordered-key-sequence t                                      ; kj will also be evil-escape
       avy-timeout-seconds 0.2                                                   ; i am inpatient
 
       select-enable-clipboard nil                                               ; don't use system clipboard with evil
