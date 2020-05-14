@@ -63,6 +63,7 @@
    :desc "Toggle popups"                     "ph"  #'+popup/toggle
    :desc "Search from home directory"        "sP"  #'+default/search-other-cwd
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
+   :desc "format buffer"                     "bf"  #'+format/buffer
    :desc "Close window"                      "wq"  #'evil-quit)
 
  (:prefix ","
@@ -114,6 +115,7 @@
 (load! "+completion" doom-private-dir)
 (load! "+modeline"   doom-private-dir)
 (load! "+org"        doom-private-dir)
+(load! "+filetype"   doom-private-dir)
 (load! "+theme"      doom-private-dir)
 (load! "+transient"  doom-private-dir)
 (load! "+ui"         doom-private-dir)

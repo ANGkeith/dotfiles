@@ -126,3 +126,9 @@ path of a url is the commit-hash"
   (save-excursion
     (end-of-line)
     (insert ";")))
+
+(defun my-js-mode-lint ()
+    (interactive)
+    (+format/buffer)
+    (save-buffer)
+    (eslint-fix))

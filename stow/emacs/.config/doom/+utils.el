@@ -28,3 +28,8 @@
    (:map undo-tree-map "C-/") nil
    :g "C-/" nil
    :v "C-z" 'undo-tree-undo))
+
+;; format-all--executable-table
+(setq path-to-eslint-fix (concat (getenv "DOOMDIR") "/local-packages/eslint-fix"))
+(use-package! eslint-fix
+  :load-path path-to-eslint-fix)
