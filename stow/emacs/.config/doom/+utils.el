@@ -3,6 +3,8 @@
 ;; flycheck
 (setq-hook! 'sh-mode-hook
   flycheck-checker (if (eq sh-shell 'zsh) 'sh-zsh 'sh-shellcheck))
+(setq-hook! 'js2-mode-hook
+  flycheck-checker 'javascript-eslint)
 
 ;; lsp-ui
 (after! lsp-ui
