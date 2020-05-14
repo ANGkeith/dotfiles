@@ -42,14 +42,16 @@ eq to this one."
 ;; taken from https://emacs.stackexchange.com/questions/31454/evil-mode-how-to-run-evil-indent-on-the-text-ive-just-pasted
 (defun my-paste-and-indent-after ()
   (interactive)
-  (my-with-undo-collapse
-    (evil-paste-after 1)
-    (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\]))))
+  (save-excursion
+    (my-with-undo-collapse
+      (evil-paste-after 1)
+      (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\])))))
 (defun my-paste-and-indent-before ()
   (interactive)
-  (my-with-undo-collapse
-    (evil-paste-before 1)
-    (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\]))))
+  (save-excursion
+    (my-with-undo-collapse
+      (evil-paste-before 1)
+      (evil-indent (evil-get-marker ?\[) (evil-get-marker ?\])))))
 
 (defun my-git-gutter+-revert-hunks ()
   "Revert hunk at point. If region is active, revert all hunks within the region. Without prompt"
