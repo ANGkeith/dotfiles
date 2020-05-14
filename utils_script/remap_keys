@@ -1,5 +1,5 @@
 #!/bin/bash
-xset r rate 200 30
+xset r rate 200 40
 setxkbmap -option shift:both_capslock
 setxkbmap -option ctrl:nocaps
 xcape -e 'Control_L=Escape'         # when cap locks is tapped, it should behave like Escape
