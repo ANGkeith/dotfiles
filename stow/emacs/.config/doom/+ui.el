@@ -112,6 +112,7 @@
 
 ;; treemacs
 (after! treemacs
+  (treemacs-follow-mode +1)
   (setq
    doom-themes-treemacs-enable-variable-pitch nil
    doom-themes-treemacs-theme  "doom-colors"                                 ; use all-the-icons icons for file type icons
@@ -125,6 +126,13 @@
 (plist-put +pretty-code-symbols :for nil)
 (plist-put +pretty-code-symbols :or nil)
 (plist-put +pretty-code-symbols :lambda nil)
+(plist-put +pretty-code-symbols :null nil)
+(plist-put +pretty-code-symbols :not nil)
+(plist-put +pretty-code-symbols :some nil)
+(plist-put +pretty-code-symbols :def nil)
+(plist-put +pretty-code-symbols :true nil)
+(plist-put +pretty-code-symbols :false nil)
+(plist-put +pretty-code-symbols :for nil)
 
 ;; yascroll
 (after! yascroll
