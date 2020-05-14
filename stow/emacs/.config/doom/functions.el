@@ -127,6 +127,12 @@ path of a url is the commit-hash"
     (end-of-line)
     (insert ";")))
 
+(defun my-format-org-src-block()
+  (interactive)
+  (org-edit-special)
+  (+format/buffer)
+  (org-edit-src-exit))
+
 (defun my-js-mode-lint ()
     (interactive)
     (+format/buffer)
