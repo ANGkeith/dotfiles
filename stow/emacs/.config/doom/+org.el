@@ -1,5 +1,4 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/+org.el -*- lexical-binding: t; -*-
-
 ;; Use mixed-pitch in `org-mode'
 (defun my-org-mode-font-settings ()
   "Use mixed-pitch and larger fonts in org mode"
@@ -14,7 +13,7 @@
 ;; org
 (map!
  (:map org-mode-map :prefix ","
-   :n "s" #'org-sort)
+  :n "s" #'org-sort)
  (:leader                :n  "oa"   #'org-agenda))
 (after! org
   (with-no-warnings
@@ -39,7 +38,7 @@
         org-tags-column 80
         org-catch-invisible-edits t
         ;; prettify
-        org-hide-emphasis-markers t
+        org-hide-emphasis-markers nil
         org-ellipsis " ▾ "
         org-superstar-headline-bullets-list '("⁖")
         org-fontify-emphasized-text t
@@ -52,8 +51,8 @@
           ("+" (:strike-through t))))
   (appendq! +pretty-code-symbols
             '(:checkbox    "☐"
-                           :pending     "◼"
-                           :checkedbox  "☑"))
+              :pending     "◼"
+              :checkedbox  "☑"))
   (set-pretty-symbols! 'org-mode
     :merge t
     :checkbox    "[ ]"
@@ -89,34 +88,34 @@
                                          (org-agenda-format-date-aligned date)))
         org-super-agenda-groups
         '((:name "Important"
-                 :face (:inherit warning)
-                 :priority "A")
+           :face (:inherit warning)
+           :priority "A")
           (:name "Schedule"
-                 :time-grid t)
+           :time-grid t)
           (:name "Due Today"
-                 :deadline today)
+           :deadline today)
           (:name "Toady's Task"
-                 :date today)
+           :date today)
           (:name "Overdue"
-                 :scheduled past
-                 :deadline past)
+           :scheduled past
+           :deadline past)
           (:name "Upcoming"
-                 :deadline future))))
+           :deadline future))))
 ;; fixes the weird `org-super-agenda' "j-k" behaviour
 (map! (:map org-agenda-mode-map
-        "j"   #'org-agenda-next-line
-        "k"   #'org-agenda-previous-line))
+       "j"   #'org-agenda-next-line
+       "k"   #'org-agenda-previous-line))
 (after! evil-org-agenda
   (map!
    (:map evil-org-agenda-mode-map
-     :m "w"        #'org-agenda-week-view
-     :m "d"        #'org-agenda-day-view
-     :m "<escape>" #'evil-force-normal-state
-     :m "C-j"      #'org-agenda-next-date-line
-     :m "C-k"      #'org-agenda-previous-date-line
-     (:localleader
-       :m "ci"     #'org-agenda-clock-in
-       :m "co"     #'org-agenda-clock-out))))
+    :m "w"        #'org-agenda-week-view
+    :m "d"        #'org-agenda-day-view
+    :m "<escape>" #'evil-force-normal-state
+    :m "C-j"      #'org-agenda-next-date-line
+    :m "C-k"      #'org-agenda-previous-date-line
+    (:localleader
+     :m "ci"     #'org-agenda-clock-in
+     :m "co"     #'org-agenda-clock-out))))
 
 (add-hook! #'org-agenda-mode (hl-line-mode +1))
 (setq-hook! #'org-agenda-mode evil-normal-state-cursor '((bar . 0)))            ; hides the cursor
