@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: for ...of
-# key: foro                
+# key: fof
 # --
-for (let ${1:key} of ${2:Object}) {
+for (const ${2:key} of ${1:Object}) {
     $0
 }
