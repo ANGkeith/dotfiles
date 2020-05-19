@@ -17,10 +17,17 @@
       trash-directory "/tmp/trash")
 
 ;;; ui
-(setq doom-theme 'doom-one
-      fancy-splash-image (concat doom-private-dir "/splashImage.png")
-      doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14))
+(setq doom-theme 'doom-one-light
+      fancy-splash-image (concat doom-private-dir "/splashImage.png"))
+
+(if (eq doom-theme 'doom-one-light)
+    (progn
+      (setq doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14 :weight 'semi-bold))
+      (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14 :weight 'semi-bold))))
+(if (eq doom-theme 'doom-one)
+  (progn
+    (setq doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14))
+    (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14))))
 
 ;;; overriding some doom defaults
 (if (eq initial-window-system 'x) (toggle-frame-maximized))                     ; maximize emacs on startup
