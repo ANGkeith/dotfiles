@@ -70,6 +70,8 @@
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
  (:map emacs-lisp-mode-map :n "ge"                 #'my-evaluate-nearest-function)
+ :n     "M-h"                                      #'evil-shift-left
+ :n     "M-l"                                      #'evil-shift-right
  :n      "p"                                       #'my-paste-and-indent-after
  :n      "P"                                       #'my-paste-and-indent-before
  :g      "C-S-v"                                   #'clipboard-yank
@@ -83,13 +85,17 @@
  :nm     "C-<up>"                                  #'evil-window-increase-height
  :nm     "C-<left>"                                #'evil-window-decrease-width
  :nm     "C-<right>"                               #'evil-window-increase-width
+ :n      "C-S-j"                                   #'my-move-line-down
+ :n      "C-S-k"                                   #'my-move-line-up
  :n      "M-s"                                     #'+evil-window-split-a
+ :g      "C-s"                                     #'save-buffer
  :n      "M-v"                                     #'+evil-window-vsplit-a
  :n      "gb"                                      #'persp-switch-to-buffer
  :n      "<tab>"                                   #'evil-jump-item
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
  :n      "C-S-t"                                   #'my-reopen-killed-file
+ :n      "M-`"                                     #'evil-window-next
 
  ;; my custom functions
  (:prefix "\\"
