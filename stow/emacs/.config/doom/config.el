@@ -25,7 +25,7 @@
 ;;; overriding some doom defaults
 (if (eq initial-window-system 'x) (toggle-frame-maximized))                     ; maximize emacs on startup
 (evil-put-command-property 'evil-yank-line :motion 'evil-line)                  ; yank whole line with Y
-(setq display-line-numbers-type 'relative
+(setq display-line-numbers-type nil
       evil-goggles-duration 0.2                                                 ; longer operation hinting
       show-trailing-whitespace t
       evil-escape-unordered-key-sequence t                                      ; kj will also be evil-escape

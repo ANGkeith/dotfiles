@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: constructor 2
+# key: cons2
+# --
+constructor(${1:property1}, ${2:property2}) {
+    this.$1 = $1;
+    this.$2 = $2;
+}
+    $0

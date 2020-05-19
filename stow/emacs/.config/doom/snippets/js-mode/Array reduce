@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Array reduce
+# key: ar
+                                                                
+# --
+.reduce((accumulator, currentValue) => accumulator + currentValue)
