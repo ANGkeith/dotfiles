@@ -3,8 +3,10 @@
 ;; company
 (after! company
   (setq
+   company-idle-delay 0.15
    company-dabbrev-code-ignore-case t
-   company-flx-limit 50))
+   company-flx-limit 50)
+  (add-to-list 'company-backends 'company-dabbrev))
 
 (map!
  (:map company-active-map
