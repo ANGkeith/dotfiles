@@ -92,8 +92,8 @@
  :nm     "C-<up>"                                  #'evil-window-increase-height
  :nm     "C-<left>"                                #'evil-window-decrease-width
  :nm     "C-<right>"                               #'evil-window-increase-width
- :n      "C-S-j"                                   #'my-move-line-down
- :n      "C-S-k"                                   #'my-move-line-up
+ :n      "M-K"                                     #'my-move-line-up
+ :n      "M-J"                                     #'my-move-line-down
  :n      "M-s"                                     #'+evil-window-split-a
  :g      "C-s"                                     #'save-buffer
  :n      "M-v"                                     #'+evil-window-vsplit-a
@@ -102,13 +102,13 @@
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
  :g      (kbd "<mouse-9>")                         #'better-jumper-jump-forward
  :n      "C-S-t"                                   #'my-reopen-killed-file
- :n      "M-`"                                     #'evil-window-next
+ :gin      "M-`"                                   #'evil-window-next
 
  ;; my custom functions
- (:prefix "\\"
-   (:map evil-org-mode-map
-     :n :desc "View current commit in magit" "gm"  #'my-magit-from-dotfile-github-link
-     :n :desc "Generate dotfile github link" "gl"  #'my-generate-dotfile-github-link)))
+ (:map evil-org-mode-map
+  (:prefix "\\"
+   :n :desc "View current commit in magit" "gm"  #'my-magit-from-dotfile-github-link
+   :n :desc "Generate dotfile github link" "gl"  #'my-generate-dotfile-github-link)))
 
 ;; allow C-j to be interpreted by terminal
 (after! evil-collection
