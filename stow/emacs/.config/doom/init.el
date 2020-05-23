@@ -15,8 +15,8 @@
 ;;      directory (for easy access to its source code).
 
 ;; add to ~/.doom.d/init.el
-
-(unless doom-interactive-mode (add-to-list 'doom-env-ignored-vars "LD_PRELOAD"))
+(when noninteractive
+  (add-to-list 'doom-env-blacklist "^LD_PRELOAD$"))
 
 (doom! :input
        ;;chinese
