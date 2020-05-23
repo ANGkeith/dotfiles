@@ -84,6 +84,7 @@
  :n      "P"                                       #'my-paste-and-indent-before
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
+ :n      "C-w o"                                   #'centaur-tabs-kill-other-buffers-in-current-group
  :n      "C-a"                                     #'my-visual-select-whole-buffer
  :n      "C-;"                                     #'my-append-semicolon
  :n      "C-e"                                     #'evil-scroll-up             ; make it easier to scroll with only left hand
