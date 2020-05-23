@@ -173,6 +173,10 @@
 (plist-put +pretty-code-symbols :true nil)
 (plist-put +pretty-code-symbols :false nil)
 (plist-put +pretty-code-symbols :for nil)
+(plist-put +pretty-code-symbols :str nil)
+(plist-put +pretty-code-symbols :bool nil)
+(plist-put +pretty-code-symbols :int nil)
+(plist-put +pretty-code-symbols :tuple nil)
 
 ;; yascroll
 (after! yascroll
