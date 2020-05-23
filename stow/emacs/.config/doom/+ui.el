@@ -50,8 +50,6 @@
    :g "M-1"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
    :g "M-2"               #'my-centaur-tabs-switch-to-org
    :g "M-3"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name))
-   :n "<C-S-iso-lefttab>" #'centaur-tabs-backward
-   :n "<C-tab>"           #'centaur-tabs-forward)
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
 
@@ -103,6 +101,12 @@
           ("NOTE" success bold)
           ;; For things that just gotta go and will soon be gone.
           ("DEPRECATED" font-lock-doc-face bold))))
+
+;; iflipb
+(after! iflipb
+  (map!
+  :n "<C-S-iso-lefttab>" #'iflipb-previous-buffer
+  :n "<C-tab>"           #'iflipb-next-buffer))
 
 ;; nav-flash
 (after! nav-flash

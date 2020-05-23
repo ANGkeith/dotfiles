@@ -68,6 +68,8 @@
 ;; to try:
 ;; wakatime
 
+(package! iflipb)
+
 ;; disabled
 (package! auto-yasnippet :disable t)
 
