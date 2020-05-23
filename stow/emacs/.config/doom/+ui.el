@@ -54,7 +54,7 @@
    :g "M-1"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
    :g "M-2"               #'my-centaur-tabs-switch-to-org
    :g "M-3"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-elisp-group-name))
-   :g "M-4"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name))
+   :g "M-4"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name)))
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
 
