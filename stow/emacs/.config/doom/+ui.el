@@ -12,6 +12,7 @@
    centaur-tabs-icon-v-adjust -0.15
    my-centaur-tabs-common-group-name "General"
    my-centaur-tabs-special-group-name "Emacs"
+   my-centaur-tabs-elisp-group-name "Elisp"
    my-centaur-tabs-org-group-name "Org"
    centaur-tabs-modified-marker "")
 
@@ -29,13 +30,16 @@
     "My custom centaur tabs groups which consist of only 3 groups:
 1. Main  - for my normal work
 2. Org   - for my org workspace
-3. Emacs - for emacs special buffers"
+3. Elisp   - for my elisp workspace
+4. Emacs - for emacs special buffers"
     (list
      (cond
       ((string-equal "*" (substring (buffer-name) 0 1)) my-centaur-tabs-special-group-name)
+      ((derived-mode-p 'emacs-lisp-mode)
+       my-centaur-tabs-elisp-group-name)
       ((condition-case _err
-          (my-custom-centaur-group-check)
-        (error nil)) my-centaur-tabs-org-group-name)
+           (my-custom-centaur-group-check)
+         (error nil)) my-centaur-tabs-org-group-name)
       (t my-centaur-tabs-common-group-name))))
   (centaur-tabs-group-buffer-groups)
 
@@ -49,7 +53,8 @@
    :n "C-5"               #'centaur-tabs-select-visible-tab
    :g "M-1"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
    :g "M-2"               #'my-centaur-tabs-switch-to-org
-   :g "M-3"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name))
+   :g "M-3"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-elisp-group-name))
+   :g "M-4"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name))
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
 
