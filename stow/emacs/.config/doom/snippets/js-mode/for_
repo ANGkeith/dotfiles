@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for_
+# key: for_            
+# --
+for (let _ = 0; _ < ${1:length}; _ += 1) {
+    $0
+}

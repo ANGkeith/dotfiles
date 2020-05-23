@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mocha expect
+# key: mexp
+# --
+
+expect($1).to.equal($2);

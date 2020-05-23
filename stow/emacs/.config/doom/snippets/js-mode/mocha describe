@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: mocha describe
+# key: mdesc             
+# --
+
+
+describe('#${1:function}()', () => {
+    $0
+});
