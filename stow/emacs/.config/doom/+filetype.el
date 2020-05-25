@@ -5,8 +5,6 @@
       :localleader
       "f" #'my-js-mode-lint)
 (setq js-indent-level 2)
-(setq-hook! 'js2-mode-hook
-  flycheck-checker 'javascript-eslint)
 
 ;; typescript
 (map! :map typescript-mode-map
@@ -14,8 +12,6 @@
       "f" #'my-js-mode-lint)
 (setq-hook! 'typescript-mode-hook
   typescript-indent-level 2)
-;; (setq-hook! 'typescript-mode-hook
-;;   flycheck-checker 'javascript-eslint)
 
 ;; sh-mode
 (setq-hook! 'sh-mode-hook

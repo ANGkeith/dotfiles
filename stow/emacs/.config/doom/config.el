@@ -73,6 +73,7 @@
    :desc "Search from home directory"        "sP"  #'+default/search-other-cwd
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "format buffer"                     "bf"  #'+format/buffer
+   :desc "list errors"                       "el"  #'flycheck-list-errors
    :desc "Close window"                      "wq"  #'evil-quit)
 
  (:prefix ","

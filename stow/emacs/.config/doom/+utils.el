@@ -1,13 +1,16 @@
 ;;; ~/dotfiles/stow/emacs/.config/doom/+utils.el -*- lexical-binding: t; -*-
 
-;; lsp-ui
+;; lsp
 (after! lsp-ui
-  ;; (setq lsp-ui-sideline-mode t)
   (setq lsp-ui-doc-position 'top
         lsp-ui-doc-max-width 500
+        lsp-ui-doc-max-width 600
         lsp-ui-doc-alignment 'frame
+        lsp-ui-sideline-show-hover t
         lsp-ui-doc-use-childframe t
         lsp-ui-doc-enable t))
+(add-hook! 'lsp-mode-hook
+  (flycheck-add-next-checker 'lsp 'javascript-eslint))
 
 ;; my-fzf
 (setq path-to-fzf (concat (getenv "DOOMDIR") "/local-packages/fzf"))
