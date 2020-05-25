@@ -100,6 +100,7 @@
  :n      "M-s"                                     #'+evil-window-split-a
  :g      "C-s"                                     #'save-buffer
  :n      "M-v"                                     #'+evil-window-vsplit-a
+ :g      "M-q"                                     #'+vterm/toggle
  :n      "gb"                                      #'persp-switch-to-buffer
  :n      "<tab>"                                   #'evil-jump-item
  :g      (kbd "<mouse-8>")                         #'better-jumper-jump-backward
@@ -113,13 +114,10 @@
    :n :desc "View current commit in magit" "gm"  #'my-magit-from-dotfile-github-link
    :n :desc "Generate dotfile github link" "gl"  #'my-generate-dotfile-github-link)))
 
-;; allow C-j to be interpreted by terminal
-(after! evil-collection
-  (evil-collection-define-key 'insert 'term-raw-map (kbd "C-j") 'term-send-raw))
-
 ;;; popup rules
 (after! flycheck (set-popup-rule! "^\\*Flycheck errors\\*" :side 'bottom))
 (set-popup-rule! "^\\*doom:scratch\\*" :side 'right :size .50 :select t)
+(set-popup-rule! "^\\*doom:vterm-popup.*" :side 'bottom :size .50 :select t)
 
 ;;; Global-modes
 (global-git-gutter+-mode t)
@@ -127,6 +125,19 @@
 (company-flx-mode t)
 (add-hook! 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook! 'after-change-major-mode-hook #'my-symbol-overlay-mode)
+
+;; vterm
+(after! evil-collection
+  (evil-collection-define-key 'insert 'term-raw-map (kbd "C-j") 'term-send-raw)); allow C-j to be interpreted by terminal
+(map! (:map vterm-mode-map
+       :i [return] #'vterm-send-return
+       :g "<escape>" nil
+       :g [return] #'vterm-send-return
+       :g "M-q" #'+vterm/toggle))
+(add-hook! 'doom-escape-hook
+  (defun forward-escape-key ()
+    (when (derived-mode-p 'vterm-mode)
+      (vterm--self-insert))))
 
 ;;; my-modules
 (load! "+alias"      doom-private-dir)
