@@ -1,0 +1,45 @@
+{
+    "For Loop": {
+        "prefix": [ "fin" ],
+        "body": [
+            "for (const ${2:element} in ${1:array}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "A for ... of loop."
+    },
+    "For In": {
+        "prefix": [ "fof" ],
+        "body": [
+            "for (const ${2:element} of ${1:Object}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "A for ... in loop."
+    },
+    "Function": {
+        "prefix": [ "fu" ],
+        "body": [
+            "function ${1:functionName}(${2:params}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Function template"
+    },
+    "Fat Arrow (brace)": {
+        "prefix": [ "ab" ],
+        "body": [
+            "($1)) => {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Fat Arrow with braces"
+    },
+    "Fat Arrow": {
+        "prefix": [ "ab" ],
+        "body": [
+            "($1)) => $2;",
+        ],
+        "description": "Fat Arrow without braces"
+    },
+}
