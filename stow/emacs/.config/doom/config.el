@@ -38,6 +38,8 @@
       show-trailing-whitespace t
       evil-escape-unordered-key-sequence t                                      ; kj will also be evil-escape
       avy-timeout-seconds 0.2                                                   ; i am inpatient
+      solaire-mode-remap-modeline nil                                           ; i want to customize my modeline color
+      doom-one-light-brighter-modeline nil
 
       select-enable-clipboard nil                                               ; don't use system clipboard with evil
       evil-want-fine-undo t                                                     ; precision is key

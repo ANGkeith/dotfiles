@@ -52,8 +52,18 @@
        '(font-lock-keyword-face ((t (:foreground "#4078f2"))))
        '(font-lock-string-face ((t (:foreground "#0d850b"))))
        '(font-lock-comment-face ((t (:weight semi-bold :slant italic))))
+       '(default ((t (:background "#ffffff"))))
+       '(solaire-default-face ((t (:background "#f3f3f3"))))
        '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
        '(success ((t (:foreground "#2aa34d")))))
 
-      (custom-set-faces '(ivy-minibuffer-match-face-1
-                          ((t (:foreground "gray47")))))))
+      ;; my custom modeline color
+      (custom-set-faces
+       '(mode-line ((t (:background "#dee8ff" ))))
+       '(doom-modeline-info ((t (:foreground "#008081"))))
+       '(doom-modeline-battery-charging ((t (:foreground "#008081")))))
+
+
+      ;; (custom-set-faces '(ivy-minibuffer-match-face-1
+      ;;                     ((t (:foreground "gray47")))))
+      ))
