@@ -76,3 +76,4 @@
 (package! org-super-agenda)
 
 (package! js-import)
+(package! keychain-environment)
