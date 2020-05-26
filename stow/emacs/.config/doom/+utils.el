@@ -3,10 +3,10 @@
 ;; lsp
 (after! lsp-ui
   (setq lsp-ui-doc-position 'top
-        lsp-ui-doc-max-width 500
-        lsp-ui-doc-max-width 600
+        lsp-ui-doc-max-width 150
+        lsp-ui-doc-max-height 52
+        lsp-ui-doc-border "#dcaeea"
         lsp-ui-doc-alignment 'frame
-        lsp-ui-sideline-show-hover t
         lsp-ui-doc-use-childframe t
         lsp-ui-doc-enable t))
 (add-hook! 'lsp-mode-hook
