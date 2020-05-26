@@ -26,6 +26,12 @@
       (find-file "~/Dropbox/org/todo.org"))
     (centaur-tabs-switch-group my-centaur-tabs-org-group-name))
 
+  (defun my-centaur-tabs-switch-to-elisp ()
+    (interactive)
+    (unless (position my-centaur-tabs-elisp-group-name (centaur-tabs-get-groups))
+      (find-file "~/.config/doom/config.el"))
+    (centaur-tabs-switch-group my-centaur-tabs-elisp-group-name))
+
   (defun centaur-tabs-buffer-groups ()
     "My custom centaur tabs groups which consist of only 3 groups:
 1. Main  - for my normal work
@@ -53,7 +59,7 @@
    :n "C-5"               #'centaur-tabs-select-visible-tab
    :g "M-1"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
    :g "M-2"               #'my-centaur-tabs-switch-to-org
-   :g "M-3"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-elisp-group-name))
+   :g "M-3"               #'my-centaur-tabs-switch-to-elisp
    :g "M-4"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name)))
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
