@@ -75,3 +75,4 @@
 
 (package! org-super-agenda)
 
+(package! js-import)
