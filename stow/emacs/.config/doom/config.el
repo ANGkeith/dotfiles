@@ -23,7 +23,7 @@
 (if (eq doom-theme 'doom-one-light)
     (progn
       (setq doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14 :weight 'semi-bold))
-      (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14 :weight 'semi-bold))))
+      (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14))))
 (if (eq doom-theme 'doom-one)
   (progn
     (setq doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14))
