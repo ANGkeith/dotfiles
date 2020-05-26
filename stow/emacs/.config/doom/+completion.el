@@ -12,8 +12,9 @@
  (:map company-active-map
    :g "RET"      #'company-complete-selection
    :g [return]   #'company-complete-selection
-   :g "TAB"      #'company-select-next
-   :g [tab]      #'company-select-next
+   :g "<tab>"    #'yas-expand
+   ;; :g "TAB"      #'company-select-next
+   ;; :g [tab]      #'company-select-next
    :g [backtab]  #'company-select-previous
    :g (kbd "jk") #'company-complete-selection
    :g "C-j"      #'company-select-next

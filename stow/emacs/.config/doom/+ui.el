@@ -108,7 +108,8 @@
           ("DEPRECATED" font-lock-doc-face bold))))
 
 ;; iflipb
-(after! iflipb
+(use-package! iflipb
+  :config
   (map!
   :n "<C-S-iso-lefttab>" #'iflipb-previous-buffer
   :n "<C-tab>"           #'iflipb-next-buffer))
@@ -156,7 +157,7 @@
   (setq
    doom-themes-treemacs-enable-variable-pitch nil
    doom-themes-treemacs-theme  "doom-colors"                                 ; use all-the-icons icons for file type icons
-   doom-themes-treemacs-line-spacing 2))
+   doom-themes-treemacs-line-spacing 1))
 
 ;; pretty-symbol
 (plist-put +pretty-code-symbols :return nil)
