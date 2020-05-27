@@ -28,9 +28,7 @@
 
   (defun my-centaur-tabs-switch-to-elisp ()
     (interactive)
-    (unless (position my-centaur-tabs-elisp-group-name (centaur-tabs-get-groups))
-      (find-file "~/.config/doom/config.el"))
-    (centaur-tabs-switch-group my-centaur-tabs-elisp-group-name))
+    (find-file "~/.config/doom/config.el"))
 
   (defun centaur-tabs-buffer-groups ()
     "My custom centaur tabs groups which consist of only 3 groups:
