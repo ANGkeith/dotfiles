@@ -11,10 +11,13 @@
   (doom-modeline-def-segment time
     "Time"
     (when (doom-modeline--active)
-      (propertize
-       (format-time-string " %b %d, %Y - %H:%M  ")
-       'face (when (doom-modeline--active) `(:foreground "#1b335f" :background "#eeba76")))))
-  ;; (((background light)) :foreground "#ffffff" :background "#ffaf00"))))))
+      (concat
+       (propertize
+        (format-time-string "")
+        'face (when (doom-modeline--active) `(:foreground "#eeba76" :height 1.47)))
+       (propertize
+        (format-time-string "  %H:%M | %d %b   ")
+        'face (when (doom-modeline--active) `(:foreground "#1b335f" :background "#eeba76" :weight semi-bold))))))
 
   (doom-modeline-def-modeline 'my-mode-line
     '(bar workspace-name window-number modals matches remote-host word-count parrot selection-info buffer-info)
