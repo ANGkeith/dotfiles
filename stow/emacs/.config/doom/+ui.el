@@ -127,7 +127,7 @@
   (advice-add #'goto-last-change :after #'+nav-flash-blink-cursor))
 
 ;; neotree
-(map! :nm "C-n" #'treemacs)
+(map! :nm "C-n" #'neotree-toggle)
 (after! neotree
   (setq neo-smart-open t
         doom-themes-neotree-file-icons t
