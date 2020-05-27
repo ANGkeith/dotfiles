@@ -77,3 +77,4 @@
 
 (package! js-import)
 (package! keychain-environment)
+(package! impatient-mode)

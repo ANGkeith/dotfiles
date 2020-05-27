@@ -152,3 +152,6 @@
 (load! "+transient"  doom-private-dir)
 (load! "+ui"         doom-private-dir)
 (load! "+utils"      doom-private-dir)
+
+;; yasnippet
+(set-file-template! "\\.html$" :trigger "__")                                   ; file named '__' in `+snippets-dir' to be used as file-template
