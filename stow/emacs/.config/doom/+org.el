@@ -11,10 +11,11 @@
 (add-hook #'org-agenda-mode-hook #'my-org-agenda-mode-font-settings)
 
 ;; org
+(map! (:leader :n  "oaa"  nil))
 (map!
  (:map org-mode-map :prefix ","
   :n "s" #'org-sort)
- (:leader                :n  "oa"   #'org-agenda))
+ (:leader :n  "oa"   #'org-agenda))
 (after! org
   (with-no-warnings
     (custom-declare-face '+org-todo-refactor '((t (:inherit (bold highlight-numbers-number org-todo)))) "")
