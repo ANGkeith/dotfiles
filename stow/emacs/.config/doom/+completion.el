@@ -13,6 +13,7 @@
    :g "RET"      #'company-complete-selection
    :g [return]   #'company-complete-selection
    :g "<tab>"    #'yas-expand
+   :g "<escape>" #'my-company-escape
    ;; :g "TAB"      #'company-select-next
    ;; :g [tab]      #'company-select-next
    :g [backtab]  #'company-select-previous

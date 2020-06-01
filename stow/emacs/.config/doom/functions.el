@@ -177,3 +177,8 @@ path of a url is the commit-hash"
   (transpose-lines 1)
   (forward-line -1)
   (indent-according-to-mode))
+
+(defun my-company-escape ()
+  (interactive)
+  (company-abort)
+  (evil-force-normal-state))
