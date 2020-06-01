@@ -77,7 +77,8 @@ sudo pacman -S git tk --noconfirm
 
 # File manager
     sudo pacman -S nautilus ranger dolphin --noconfirm
-    yay -S nautilus-dropbox dropbox --noconfirm
+    # yay -S nautilus-dropbox
+    yay -S dropbox --noconfirm
 
 # Install zsh
     sudo pacman -S zsh --noconfirm
@@ -159,7 +160,8 @@ sudo pacman -S git tk --noconfirm
         sudo pacman -S neovim python-pynvim --noconfirm
         sudo npm install -g neovim
 
-        # used for previewing sudo pacman -S bat --noconfirm
+        # used for previewing
+        sudo pacman -S bat --noconfirm
 
         # emacs
         yay -S emacs27-git --noconfirm
@@ -196,6 +198,7 @@ sudo pacman -S git tk --noconfirm
             sudo npm install -g install-peerdeps
             yay -S babel-eslint --noconfirm
             sudo pacman -S eslint prettier --noconfirm
+            sudo pacman -S tidy --noconfirm
 
 
 # maintanence
