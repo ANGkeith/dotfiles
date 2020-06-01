@@ -1,0 +1,8 @@
+quiet: no # hides the html documentation
+wrap: 100
+indent: auto
+indent-spaces: 2 # default: 4
+tidy-mark: no # don't add a meta element to the document head to indicate that the document has been tidied.
+
+# default
+break-before-br: no
