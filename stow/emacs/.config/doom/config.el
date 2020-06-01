@@ -82,6 +82,9 @@
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
+ (:map dired-mode-map
+  :n     "l"                                       #'dired-find-file
+  :n     "h"                                       #'dired-up-directory)
  (:map emacs-lisp-mode-map :n "ge"                 #'my-evaluate-nearest-function)
  :n     "M-h"                                      #'evil-shift-left
  :n     "M-l"                                      #'evil-shift-right
