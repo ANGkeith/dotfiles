@@ -19,6 +19,7 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
+  (setq tab-width 2)                                                            ; html-tidy --indent-spaces inherits this value
   (setq web-mode-indent-style 2))
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 

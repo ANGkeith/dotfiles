@@ -40,6 +40,7 @@
       avy-timeout-seconds 0.2                                                   ; i am inpatient
       solaire-mode-remap-modeline nil                                           ; i want to customize my modeline color
       doom-one-light-brighter-modeline nil
+      expand-region-contract-fast-key "e"
 
       select-enable-clipboard nil                                               ; don't use system clipboard with evil
       evil-want-fine-undo t                                                     ; precision is key
@@ -77,11 +78,14 @@
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "format buffer"                     "bf"  #'+format/buffer
    :desc "list errors"                       "el"  #'flycheck-list-errors
+   :desc "expand region"                     "er"  #'er/expand-region
    :desc "Default file manager"              "oc"  #'my-browse-file-directory
    :desc "Close window"                      "wq"  #'evil-quit)
 
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
+ (:map web-mode-map
+  :vn "<tab>"                       #'web-mode-navigate)
  (:map dired-mode-map
   :n     "l"                                       #'dired-find-file
   :n     "h"                                       #'dired-up-directory)
@@ -159,3 +163,5 @@
 
 ;; yasnippet
 (set-file-template! "\\.html$" :trigger "__")                                   ; file named '__' in `+snippets-dir' to be used as file-template
+
+(keychain-refresh-environment)
