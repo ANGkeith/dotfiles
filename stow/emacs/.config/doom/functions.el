@@ -178,6 +178,13 @@ path of a url is the commit-hash"
   (forward-line -1)
   (indent-according-to-mode))
 
+(defun my-browse-file-directory ()
+  "Open the current file's directory however the OS would."
+  (interactive)
+  (if default-directory
+      (browse-url-of-file (expand-file-name default-directory))
+    (error "No `default-directory' to open")))
+
 (defun my-company-escape ()
   (interactive)
   (company-abort)

@@ -77,6 +77,7 @@
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "format buffer"                     "bf"  #'+format/buffer
    :desc "list errors"                       "el"  #'flycheck-list-errors
+   :desc "Default file manager"              "oc"  #'my-browse-file-directory
    :desc "Close window"                      "wq"  #'evil-quit)
 
  (:prefix ","
