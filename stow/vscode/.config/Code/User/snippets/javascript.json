@@ -2,8 +2,7 @@
     "For Loop": {
         "prefix": [ "fin" ],
         "body": [
-            "for (const ${2:element} in ${1:array}) {",
-            "\t$0",
+            "for (const ${2:element} in ${1:array}) {", "\t$0",
             "}"
         ],
         "description": "A for ... of loop."
@@ -29,17 +28,24 @@
     "Fat Arrow (brace)": {
         "prefix": [ "ab" ],
         "body": [
-            "($1)) => {",
+            "($1) => {",
             "\t$0",
             "}"
         ],
         "description": "Fat Arrow with braces"
     },
     "Fat Arrow": {
-        "prefix": [ "ab" ],
+        "prefix": [ "a" ],
         "body": [
-            "($1)) => $2;",
+            "($1) => $2;",
         ],
         "description": "Fat Arrow without braces"
+    },
+    "Console log": {
+        "prefix": [ "log" ],
+        "body": [
+            "console.log($1)",
+        ],
+        "description": "Console log"
     },
 }
