@@ -85,7 +85,17 @@
  (:prefix ","
    :desc "eval-last-sexp"               :n   "ee"  #'eval-last-sexp)
  (:map web-mode-map
-  :vn "<tab>"                       #'web-mode-navigate)
+  :n  "C-k"                                        #'web-mode-tag-previous
+  :n  "C-j"                                        #'web-mode-tag-next
+  :vn "<tab>"                                      #'web-mode-navigate)
+ (:map rjsx-mode-map
+  :n  "C-k"                                        #'web-mode-tag-previous
+  :n  "C-j"                                        #'web-mode-tag-next
+  :n  "[t"                                         #'rjsx-jump-opening-tag
+  :n  "]t"                                         #'rjsx-jump-closing-tag
+  :i  "<"                                          #'self-insert-command        ; if i am not wrong this inserts the literal <
+  :i  ">"                                          #'self-insert-command
+  :vn "<tab>"                                      #'rjsx-jump-tag)
  (:map dired-mode-map
   :n     "l"                                       #'dired-find-file
   :n     "h"                                       #'dired-up-directory)
