@@ -172,6 +172,8 @@
 (load! "+utils"      doom-private-dir)
 
 ;; yasnippet
-(set-file-template! "\\.html$" :trigger "__")                                   ; file named '__' in `+snippets-dir' to be used as file-template
+;; file named '__' in `+snippets-dir' to be used as file-template
+(set-file-template! "\\.html$" :trigger "__")
+(set-file-template! "\\.jsx$"  :trigger "__jsx")
 
 (keychain-refresh-environment)

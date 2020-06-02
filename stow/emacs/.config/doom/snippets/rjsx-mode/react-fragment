@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: React fragment
+# key: <
+# uuid: <
+# --
+<>
+  $0
+</>
