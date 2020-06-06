@@ -9,6 +9,10 @@ SCRIPT_DIRECTORY=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
 # shellcheck disable=SC2034
 PROJECT_ROOT=$(cd "$(dirname "${SCRIPT_DIRECTORY}")" && pwd -P)
 
+yay-install-maybe() {
+   which ${2:-$1} || yay -S $1 --noconfirm --needed
+}
+
 sudo pacman -S xorg-server xorg-xinit xorg-xhost --noconfirm --needed
 
 # Install git and dependency for gitk
@@ -21,7 +25,7 @@ sudo pacman -S git tk --noconfirm --needed
 
     sudo pacman -S lua --noconfirm --needed
     sudo pacman -S xorg-xmodmap --noconfirm --needed
-    yay -S xcape --noconfirm --needed
+    yay-install-maybe xcape
 
 # Install yay
     command -v yay ||
@@ -58,7 +62,7 @@ sudo pacman -S git tk --noconfirm --needed
 
     # for debugging
     sudo pacman -S peek --noconfirm --needed
-    yay -S screenkey --noconfirm --needed
+    yay-install-maybe screenkey
 
 # networking
     sudo pacman -S netcat --noconfirm --needed
@@ -79,19 +83,19 @@ sudo pacman -S git tk --noconfirm --needed
 # File manager
     sudo pacman -S nautilus ranger dolphin --noconfirm --needed
     # yay -S nautilus-dropbox
-    yay -S dropbox --noconfirm --needed
+    yay-install-maybe dropbox
 
 # Install zsh
     sudo pacman -S zsh --noconfirm --needed
-    yay -S stderred-git --noconfirm --needed
+    yay-install-maybe stderred-git stderred
 
 # Desktop applications
     # kde asthetics
     sudo pacman -S latte-dock --noconfirm --needed
     sudo pacman -S plasma5-applets-active-window-control --noconfirm --needed
-    yay -S sierrabreeze-kwin-decoration-git --noconfirm --needed
+    yay-install-maybe sierrabreeze-kwin-decoration-git
     sudo pacman -S kvantum-qt5 --noconfirm --needed
-    yay -S mcmojave-kde-theme-git --noconfirm --needed
+    yay-install-maybe mcmojave-kde-theme-git
 
 # Volume manager
     sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm --needed
@@ -114,7 +118,6 @@ sudo pacman -S git tk --noconfirm --needed
     sudo pacman -S plasma --noconfirm --needed
     # used to check the keycode using `xev`
     sudo pacman -S xorg-xev --noconfirm --needed
-    yay -S polybar --noconfirm --needed
 # gtk themes
     # create filepath for configurations
     mkdir -p ~/.config/gtk-1.0
@@ -125,9 +128,9 @@ sudo pacman -S git tk --noconfirm --needed
 # development
     # install docker
         sudo pacman -S docker docker-compose --noconfirm --needed
-        sudo systemctl start docker
-        sudo systemctl enable docker
-        sudo usermod -aG docker "$USER"
+        # sudo systemctl start docker
+        # sudo systemctl enable docker
+        # sudo usermod -aG docker "$USER"
 
     # python
         sudo pacman -S pyenv --noconfirm --needed
@@ -141,7 +144,7 @@ sudo pacman -S git tk --noconfirm --needed
         sudo pacman -S python-pynvim python-jedi --noconfirm --needed
 
     # nodejs
-        yay -S nvm --noconfirm --needed
+        yay-install-maybe nvm
 
         NVM_SOURCE=/usr/share/nvm
         [ -s "$NVM_SOURCE"/nvm.sh ] && . "$NVM_SOURCE"/nvm.sh  # Load NVM
@@ -165,22 +168,27 @@ sudo pacman -S git tk --noconfirm --needed
         sudo pacman -S bat --noconfirm --needed
 
         # emacs
-        yay -S emacs27-git --noconfirm --needed
-        git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
-        "$XDG_CONFIG_HOME"/emacs/bin/doom install 
-        ln -s "$XDG_CONFIG_HOME"/emacs/bin/doom ~/.local/bin/doom
+        which emacs || $(
+                yay -S emacs27-git --noconfirm --needed
+                git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
+                "$XDG_CONFIG_HOME"/emacs/bin/doom install
+                ln -s "$XDG_CONFIG_HOME"/emacs/bin/doom ~/.local/bin/doom
+            )
 
-        yay -S visual-studio-code-bin --noconfirm --needed
+        yay-install-maybe visual-studio-code-bin code
 
         # Dependency
-        yay -S python-epc python-importmagic --noconfirm --needed
+        yay-install-maybe python-epc
+        yay-install-maybe python-importmagic
 
         # Spell checker for emacs
         sudo pacman -S aspell aspell-en --noconfirm --needed
 
         # lsp
         sudo pacman -S python-language-server --noconfirm --needed
-        yay -S typescript-language-server-bin dockerfile-language-server-bin bash-language-server --noconfirm --needed
+        yay-install-maybe typescript-language-server-bin
+        yay-install-maybe dockerfile-language-server-bin
+        yay-install-maybe bash-language-server
 
 
         # linters
@@ -188,16 +196,16 @@ sudo pacman -S git tk --noconfirm --needed
             # python
             sudo pacman -S python-black mypy python-pylint python-isort autopep8 --noconfirm --needed
             # auto remove unused imports
-            yay -S python-autoflake --noconfirm --needed
+            yay-install-maybe python-autoflake
 
             # bash
-            yay -S shellcheck-static --noconfirm --needed
+            yay-install-maybe shellcheck-static shellcheck
 
             # js
             sudo npm install -g import-js
             sudo npm install -g eslint-config-airbnb
             sudo npm install -g install-peerdeps
-            yay -S babel-eslint --noconfirm --needed
+            yay-install-maybe babel-eslint
             sudo pacman -S eslint prettier --noconfirm --needed
             sudo pacman -S tidy --noconfirm --needed
 
@@ -205,7 +213,7 @@ sudo pacman -S git tk --noconfirm --needed
 # maintanence
     sudo pacman -S cronie --noconfirm --needed
     sudo systemctl enable cronie
-    yay -S timeshift --noconfirm --needed
+    yay-install-maybe timeshift
     sudo pacman -S pacman-contrib --noconfirm --needed # to install paccache
 
 # fonts
@@ -233,11 +241,11 @@ sudo pacman -S git tk --noconfirm --needed
         # makepkg -sci BUILDDIR=.
 
     # polybar
-        yay -S ttf-material-design-icons --noconfirm --needed
-        yay -S ttf-font-awesome-4 --noconfirm --needed
+        yay-install-maybe ttf-material-design-icons
+        yay-install-maybe ttf-font-awesome-4
 
     # emacs fallback unicode glyph fonts
-        yay -S ttf-symbola-infinality --noconfirm --needed
+        yay-install-maybe ttf-symbola-infinality
 
     # Fira Code
         wget --directory-prefix ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
@@ -245,10 +253,11 @@ sudo pacman -S git tk --noconfirm --needed
 # keyrings
     sudo pacman -S gnome-keyring seahorse --noconfirm --needed
     sudo pacman -S keychain --noconfirm --needed
-    yay -S bitwarden-bin bitwarden-cli --noconfirm --needed
+    yay-install-maybe bitwarden-bin
+    yay-install-maybe bitwarden-cli
 
 # mail client
-    yay -S mu --noconfirm --needed
+    yay-install-maybe mu
     # imap
     sudo pacman -S isync --noconfirm --needed
     mkdir -p ~/.local/share/mail/school
@@ -256,12 +265,12 @@ sudo pacman -S git tk --noconfirm --needed
 
 # bloat
     sudo pacman -S neofetch --noconfirm --needed
-    yay -S python-grip --noconfirm --needed
+    yay-install-maybe python-grip
 
 # photoshop
     sudo pacman -S gimp --noconfirm --needed
 # cheat
-    yay -S cheat-git --noconfirm --needed
+    yay-install-maybe cheat-git
     git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
 
 # fixes keychron keyboard
@@ -271,10 +280,10 @@ sudo pacman -S git tk --noconfirm --needed
     sudo pacman -S mpv --noconfirm --needed
 
 # softwares
-    yay -S zoom --noconfirm --needed
-    yay -S team --noconfirm --needed
+    yay-install-maybe zoom
+    yay-install-maybe team
 
 # binaries
-    yay -S pciutils --noconfirm --needed # lspci
+    yay-install-maybe pciutils
 
-reboot
+# reboot
