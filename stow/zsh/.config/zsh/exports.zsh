@@ -23,7 +23,7 @@ export DOTFILE="$HOME/dotfiles/stow"
 export PATH=$HOME/.local/bin:$PATH
 
 # Nvm
-export NODE_DEFAULT_VERSION=12.16.3
+export NODE_DEFAULT_VERSION=12.18.0
 export NVM_SOURCE="/usr/share/nvm" # The AUR package installs it here
 export NODE_PATH="$HOME"/.local/share/nvm/versions/node/v"$NODE_DEFAULT_VERSION"/bin
 

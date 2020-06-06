@@ -27,6 +27,8 @@
 (add-hook 'web-mode-hook  #'my-web-mode-hook)
 
 (defun my-rjsx-mode-hook ()
+  (setq
+   css-indent-offset 2)
   (sp-local-pair 'rjsx-mode "<" nil :actions :rem))
 (add-hook 'rjsx-mode-hook  #'my-rjsx-mode-hook)
 
