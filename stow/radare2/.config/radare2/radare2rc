@@ -1,3 +1,0 @@
-e scr.wheel=false		#turns off mouse fuckery
-e stack.size=114		#increases visible stack size in visual mode
-e stack.bytes=false		#shows words on stack instead of bytes
