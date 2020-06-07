@@ -32,12 +32,19 @@ sudo apt install -y keychain
 sudo apt install -y aspell aspell-en
 sudo apt install -y libsqlite3-dev sqlite3
 
+command -v emacs || $(
+        git clone -b emacs-27 git://git.sv.gnu.org/emacs.git /tmp/emacs
+        cd /tmp/emacs
+        sudo apt build-dep emacs
+        ./autogen.sh
+        ./configure --with-mailutils --with-modules --prefix="${HOME}/.local/lib/emacs"
+        git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
+        "$XDG_CONFIG_HOME"/emacs/bin/doom install
+    )
 
-# git clone -b emacs-27 git://git.sv.gnu.org/emacs.git /tmp/
-# cd /tmp/emacs
-# sudo apt build-dep emacs
-# ./autogen.sh
-# ./configure --with-mailutils --prefix="${HOME}/.local/lib"
+
+
+
 sudo apt install -y exuberant-ctags ctags
 sudo apt install -y neovim
 # NOTE https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517
