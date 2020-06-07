@@ -1,8 +1,0 @@
-[Unit]
-Description=Mbsync service
-Documentation=man:mbsync(1)
-
-[Service]
-Type=oneshot
-ExecStart=/bin/mbsync -V -a -c .config/mbsync/mbsyncrc -l
-ExecStartPost=/bin/mu index --maildir .local/share/mail
