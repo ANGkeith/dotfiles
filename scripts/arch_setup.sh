@@ -231,19 +231,6 @@ sudo pacman -S git tk --noconfirm --needed
         sudo pacman -S adobe-source-han-serif-tw-fonts --noconfirm --needed
         sudo pacman -S adobe-source-han-sans-otc-fonts --noconfirm --needed
 
-    # p10k
-        
-        # TODO has to be ran manually
-        # cd ~/Downloads
-        # yay --getpkgbuild nerd-fonts-complete
-        # cd nerd-fonts-complete
-        # wget -O nerd-fonts-2.1.0.tar.gz https://github.com/ryanoasis/nerd-fonts/archive/v2.1.0.tar.gz
-        # makepkg -sci BUILDDIR=.
-
-    # polybar
-        yay-install-maybe ttf-material-design-icons
-        yay-install-maybe ttf-font-awesome-4
-
     # emacs fallback unicode glyph fonts
         yay-install-maybe ttf-symbola-infinality
 
@@ -255,13 +242,6 @@ sudo pacman -S git tk --noconfirm --needed
     sudo pacman -S keychain --noconfirm --needed
     yay-install-maybe bitwarden-bin
     yay-install-maybe bitwarden-cli
-
-# mail client
-    yay-install-maybe mu
-    # imap
-    sudo pacman -S isync --noconfirm --needed
-    mkdir -p ~/.local/share/mail/school
-    sudo pacman -S thunderbird --noconfirm --needed
 
 # bloat
     sudo pacman -S neofetch --noconfirm --needed
