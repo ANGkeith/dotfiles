@@ -25,7 +25,13 @@ export PATH=$HOME/.local/bin:$PATH
 # Nvm
 export NODE_DEFAULT_VERSION=12.18.0
 export NVM_SOURCE="/usr/share/nvm" # The AUR package installs it here
+
 export NODE_PATH="$HOME"/.local/share/nvm/versions/node/v"$NODE_DEFAULT_VERSION"/bin
+# Npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -93,13 +99,7 @@ fi
     export TERMINFO="$XDG_DATA_HOME"/terminfo
     export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
-    # npm
-    export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-    export NVM_DIR="$XDG_DATA_HOME"/nvm
-    export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
-
     # nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
-
 
     # python
     export PYLINTHOME="$XDG_CACHE_HOME"/pylint
@@ -137,6 +137,3 @@ fi
     # GTK
     export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
     export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-# }}}
-
-# vim: foldmethod=marker
