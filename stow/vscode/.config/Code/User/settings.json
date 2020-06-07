@@ -412,9 +412,12 @@
   },
   "editor.lineNumbers": "relative",
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "One Dark",
+  "workbench.colorTheme": "Default Light+",
   "terminal.integrated.allowChords": false,
   "[html]": {
     "editor.defaultFormatter": "anweber.vscode-tidyhtml"
-  }
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0"
 }
