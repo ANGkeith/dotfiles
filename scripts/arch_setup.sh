@@ -251,7 +251,8 @@ sudo pacman -S git tk --noconfirm --needed
     sudo pacman -S gimp --noconfirm --needed
 # cheat
     yay-install-maybe cheat-git
-    git clone https://github.com/cheat/cheatsheets.git ~/.local/share/cheat/community
+    [[ -d "$XDG_DATA_HOME"/cheat/community ]] || git clone https://github.com/cheat/cheatsheets.git "$XDG_DATA_HOME"/cheat/community
+
 
 # fixes keychron keyboard
     echo "options hid_apple fnmode=0" | sudo tee /etc/modprobe.d/hid_apple.conf
