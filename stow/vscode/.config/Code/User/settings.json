@@ -53,8 +53,12 @@
       "commands": ["editor.action.formatDocument"]
     },
     {
-      "before": ["gc"],
-      "commands": ["editor.action.commentLine"]
+      "before": ["g", "r"],
+      "commands": ["editor.action.smartSelect.expand"]
+    },
+    {
+      "before": ["g", "e"],
+      "commands": ["editor.action.smartSelect.shrink"]
     },
     {
       "before": ["<leader>", "1"],
@@ -419,5 +423,10 @@
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0"
+  "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0",
+    "emmet.includeLanguages": {
+       "javascript": "javascriptreact"
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "html-css-class-completion.enableEmmetSupport": true
 }

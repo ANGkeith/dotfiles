@@ -140,8 +140,18 @@
   },
   {
     "key": "ctrl+;",
-    "when": "editorTextFocus",
-    "command": "extension.trailing-semicolon"
+    "command": "extension.toggleSemicolon",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+;",
+    "command": "extension.toggleColon",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "extension.toggleComma",
+    "when": "editorTextFocus"
   },
   {
     "key": "alt+q",
