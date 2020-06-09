@@ -452,10 +452,22 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
+  "bracket-pair-colorizer-2.colors": [
+    "colorizer.color-1",
+    "colorizer.color-2",
+    "colorizer.color-3"
+  ],
   "workbench.colorCustomizations": {
     "[Default Light+]": {
-      "gitlens.trailingLineForegroundColor": "#78c1ff"
-    }
+      "gitlens.trailingLineForegroundColor": "#78c1ff",
+      "colorizer.color-1": "#ff9900", // Orange-Brown...
+      "colorizer.color-2": "#f500f5", // Medium-Pink...
+      "colorizer.color-3": "#54b9f8"
+    },
+    // Fallback to default colors for all themes that lack overrides.
+    "colorizer.color-1": "#ffd700", // "Gold". (Yellow with slight Orange)
+    "colorizer.color-2": "#da70d6", // "Orchid". (Pink)
+    "colorizer.color-3": "#87cefa" // "LightSkyBlue". (Light Blue)
   },
   "path-intellisense.absolutePathToWorkspace": true,
   "clipboard-manager.onlyWindowFocused": false
