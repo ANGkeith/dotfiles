@@ -46,7 +46,9 @@
     },
     {
       "before": ["<leader>", "<tab>"],
-      "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"]
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+      ]
     },
     {
       "before": ["<leader>", "b", "f"],
@@ -421,12 +423,15 @@
   "[html]": {
     "editor.defaultFormatter": "anweber.vscode-tidyhtml"
   },
-  "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0",
-    "emmet.includeLanguages": {
-       "javascript": "javascriptreact"
-    },
-    "emmet.triggerExpansionOnTab": true,
-    "html-css-class-completion.enableEmmetSupport": true
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "html-css-class-completion.enableEmmetSupport": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "editor.snippetSuggestions": "top",
+  "editor.suggestSelection": "first"
 }
