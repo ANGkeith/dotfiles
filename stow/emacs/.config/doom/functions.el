@@ -151,6 +151,12 @@ path of a url is the commit-hash"
     (end-of-line)
     (insert ";")))
 
+(defun my-append-comma ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (insert ",")))
+
 (defun my-format-org-src-block()
   (interactive)
   (org-edit-special)

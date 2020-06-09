@@ -22,7 +22,7 @@
 
 (if (eq doom-theme 'doom-one-light)
     (progn
-      (setq doom-variable-pitch-font (font-spec :family "MesloLGS Nerd Font" :size 14 :weight 'semi-bold))
+      (setq doom-variable-pitch-font (font-spec :family "Noto Mono" :size 14))
       (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14))))
 (if (eq doom-theme 'doom-one)
   (progn
@@ -78,7 +78,6 @@
    :desc "Evil-avy"                          "jj"  #'evil-avy-goto-char-timer
    :desc "format buffer"                     "bf"  #'+format/buffer
    :desc "list errors"                       "el"  #'flycheck-list-errors
-   :desc "expand region"                     "er"  #'er/expand-region
    :desc "Default file manager"              "oc"  #'my-browse-file-directory
    :desc "Close window"                      "wq"  #'evil-quit)
 
@@ -107,8 +106,9 @@
  :g      "C-S-v"                                   #'clipboard-yank
  :g      "C-S-c"                                   #'clipboard-kill-ring-save
  :n      "C-w o"                                   #'centaur-tabs-kill-other-buffers-in-current-group
- :n      "C-a"                                     #'my-visual-select-whole-buffer
+ :n      "C-a"                                     #'evil-insert-line
  :n      "C-;"                                     #'my-append-semicolon
+ :n      "C-,"                                     #'my-append-comma
  :n      "C-e"                                     #'evil-scroll-up             ; make it easier to scroll with only left hand
 
  ;; manage window
@@ -120,6 +120,7 @@
  :n      "M-J"                                     #'my-move-line-down
  :n      "M-s"                                     #'+evil-window-split-a
  :g      "C-s"                                     #'save-buffer
+ :n      "gr"                                      #'er/expand-region
  :n      "M-v"                                     #'+evil-window-vsplit-a
  :g      "M-q"                                     #'+vterm/toggle
  :n      "gb"                                      #'persp-switch-to-buffer
