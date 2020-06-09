@@ -452,8 +452,10 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
-  "workbench.colorCustomizations":  {
-    "gitlens.trailingLineForegroundColor": "#78c1ff"
+  "workbench.colorCustomizations": {
+    "[Default Light+]": {
+      "gitlens.trailingLineForegroundColor": "#78c1ff"
+    }
   },
   "path-intellisense.absolutePathToWorkspace": true,
   "clipboard-manager.onlyWindowFocused": false
