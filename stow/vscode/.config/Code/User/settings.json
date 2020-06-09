@@ -455,5 +455,6 @@
   "workbench.colorCustomizations":  {
     "gitlens.trailingLineForegroundColor": "#78c1ff"
   },
-  "path-intellisense.absolutePathToWorkspace": true
+  "path-intellisense.absolutePathToWorkspace": true,
+  "clipboard-manager.onlyWindowFocused": false
 }
