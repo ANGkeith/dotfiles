@@ -41,6 +41,24 @@
   ],
   "vim.normalModeKeyBindings": [
     {
+      "before": ["u"],
+      "after": [],
+      "commands": [
+        {
+          "command": "undo"
+        }
+      ]
+    },
+    {
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "redo"
+        }
+      ]
+    },
+    {
       "before": ["<leader>", "<space>"],
       "commands": ["workbench.action.showCommands"]
     },
