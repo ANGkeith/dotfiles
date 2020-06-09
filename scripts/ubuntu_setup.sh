@@ -42,9 +42,6 @@ command -v emacs || $(
         "$XDG_CONFIG_HOME"/emacs/bin/doom install
     )
 
-
-
-
 sudo apt install -y exuberant-ctags ctags
 sudo apt install -y neovim
 # NOTE https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517
@@ -133,8 +130,9 @@ sudo apt install -y gimp inkscape
 sudo apt install -y mpv
 
 # linters
-sudo apt install shellcheck
-npm install -g eslint eslint-config-airbnb prettier tidy babel-eslint import-js
+sudo apt install -y shellcheck
+sudo apt install -y tidy
+npm install -g eslint eslint-config-airbnb prettier babel-eslint import-js
 
 # lsp
 pip python-language-server
@@ -150,5 +148,6 @@ sudo apt -y install flameshot
 
 
 # kde
-sudo apt install kde-plasma-desktop
+sudo apt install -y kde-plasma-desktop
+sudo apt install -y plasma-widgets-addons
 sudo apt install latte-dock
