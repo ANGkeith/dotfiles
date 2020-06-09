@@ -80,8 +80,7 @@
   },
   {
     "key": "alt+x",
-    "command": "workbench.action.showCommands",
-    "when": "filesExplorerFocus || openEditorsFocus || editorTextFocus || terminalFocus"
+    "command": "workbench.action.showCommands"
   },
   {
     "key": "ctrl+h",
