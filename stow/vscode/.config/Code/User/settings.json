@@ -451,5 +451,6 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "editor.snippetSuggestions": "top",
-  "editor.suggestSelection": "first"
+  "editor.suggestSelection": "first",
+  "path-intellisense.absolutePathToWorkspace": true
 }
