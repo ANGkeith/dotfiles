@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=onedark
+ColorScheme=Moe
 Font=SauceCodePro Nerd Font,12,-1,5,50,0,0,0,0,0
 
 [General]
