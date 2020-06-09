@@ -452,5 +452,8 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
+  "workbench.colorCustomizations":  {
+    "gitlens.trailingLineForegroundColor": "#78c1ff"
+  },
   "path-intellisense.absolutePathToWorkspace": true
 }
