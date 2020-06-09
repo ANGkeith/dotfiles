@@ -253,4 +253,19 @@
     "command": "-editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
   },
+  {
+    "key": "alt+p",
+    "command": "clipboard-manager.editor.pickAndPaste",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-clipboard-manager.editor.pickAndPaste",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "clipboard-manager.editor.copyToHistory",
+    "when": "textInputFocus && !editorReadonly"
+  },
 ]
