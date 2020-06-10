@@ -19,10 +19,6 @@
       "commands": ["editor.action.commentLine"]
     },
     {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
-    },
-    {
       "before": ["<leader>", "j", "="],
       "commands": ["editor.action.format"]
     },
@@ -41,7 +37,7 @@
     {
       "before": ["<tab>"],
       "after": ["%"]
-    }
+    },
   ],
   "vim.normalModeKeyBindings": [
     {
@@ -68,19 +64,15 @@
     },
     {
       "before": ["<C-a>"],
-      "after": ["I"],
-    },
-    {
-      "before": ["<C-e>"],
-      "after": ["C-u"],
+      "after": ["I"]
     },
     {
       "before": [">"],
-      "after": [">", ">"],
+      "after": [">", ">"]
     },
     {
       "before": ["<"],
-      "after": ["<", "<"],
+      "after": ["<", "<"]
     },
     {
       "before": ["<leader>", "<space>"],
@@ -393,6 +385,16 @@
     {
       "before": ["j", "k"],
       "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-u>"],
+      "after": ["C-e"]
+    },
+    {
+      "before": ["<C-e>"],
+      "after": ["C-u"]
     }
   ],
   "vim.insertModeKeyBindingsNonRecursive": [
