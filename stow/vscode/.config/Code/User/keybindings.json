@@ -297,5 +297,8 @@
     "key": "ctrl+shift+enter",
     "command": "-editor.action.insertLineBefore",
     "when": "editorTextFocus && !editorReadonly"
+  {
+    "key": "alt+w",
+    "command": "browser-preview.openPreview"
   }
 ]

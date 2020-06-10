@@ -514,5 +514,7 @@
     "colorizer.color-3": "#87cefa" // "LightSkyBlue". (Light Blue)
   },
   "path-intellisense.absolutePathToWorkspace": true,
-  "clipboard-manager.onlyWindowFocused": false
+  "clipboard-manager.onlyWindowFocused": false,
+  "browser-preview.verbose": true,
+  "browser-preview.startUrl": "http://localhost:3000/"
 }
