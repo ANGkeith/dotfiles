@@ -55,6 +55,21 @@
     "when": "filesExplorerFocus || openEditorsFocus || terminalFocus"
   },
   {
+    "key": "c",
+    "command": "explorer.newFile",
+    "when": "listFocus && !inputFocus && filesExplorerFocus"
+  },
+  {
+    "key": "shift+=",
+    "command": "explorer.newFolder",
+    "when": "listFocus && !inputFocus && filesExplorerFocus"
+  },
+  {
+    "key": "tab",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "listFocus && !inputFocus && filesExplorerFocus"
+  },
+  {
     "key": "ctrl+shift+t",
     "command": "workbench.action.reopenClosedEditor",
     "when": "editorTextFocus"
