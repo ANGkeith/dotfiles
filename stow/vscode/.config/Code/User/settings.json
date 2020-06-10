@@ -86,7 +86,7 @@
     },
     {
       "before": ["<leader>", "b", "f"],
-      "commands": ["editor.action.formatDocument"]
+      "commands": ["editor.action.formatDocument", "eslint.executeAutofix"]
     },
     {
       "before": ["g", "r"],
