@@ -50,10 +50,6 @@
       ]
     },
     {
-      "before": ["<leader>", "d", "d"],
-      "commands": ["turboConsoleLog.deleteAllLogMessages"]
-    },
-    {
       "before": ["<C-r>"],
       "after": [],
       "commands": [
