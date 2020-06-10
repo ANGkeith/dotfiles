@@ -64,6 +64,10 @@
     "command": "-workbench.action.closeActiveEditor"
   },
   {
+    "key": "shift+alt+x",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
     "key": "ctrl+w",
     "command": "-workbench.action.closeGroup",
     "when": "activeEditorGroupEmpty && multipleEditorGroups"
