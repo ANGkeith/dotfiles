@@ -45,6 +45,10 @@
       "commands": ["workbench.action.openGlobalKeybindings"]
     },
     {
+      "before": ["<leader>", "d", "d"],
+      "commands": ["turboConsoleLog.deleteAllLogMessages"]
+    },
+    {
       "before": ["u"],
       "after": [],
       "commands": [
