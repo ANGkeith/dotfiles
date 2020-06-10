@@ -284,4 +284,14 @@
     "key": "ctrl+5",
     "command": "workbench.action.openEditorAtIndex5"
   },
+  {
+    "key": "ctrl+enter",
+    "command": "-editor.action.insertLineAfter",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+enter",
+    "command": "-editor.action.insertLineBefore",
+    "when": "editorTextFocus && !editorReadonly"
+  }
 ]
