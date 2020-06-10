@@ -67,6 +67,22 @@
       ]
     },
     {
+      "before": ["<C-a>"],
+      "after": ["I"],
+    },
+    {
+      "before": ["<C-e>"],
+      "after": ["C-u"],
+    },
+    {
+      "before": [">"],
+      "after": [">", ">"],
+    },
+    {
+      "before": ["<"],
+      "after": ["<", "<"],
+    },
+    {
       "before": ["<leader>", "<space>"],
       "commands": ["workbench.action.showCommands"]
     },
