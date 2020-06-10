@@ -177,10 +177,6 @@
       "commands": ["git.publish"]
     },
     {
-      "before": ["<leader>", "g", "g"],
-      "commands": ["magit.status"]
-    },
-    {
       "before": ["<leader>", "g", "S"],
       "commands": ["git.stage"]
     },

@@ -197,41 +197,13 @@
     "when": "inEditorsPicker && inQuickOpen"
   },
   {
-    "key": "k",
-    "command": "-magit.discard-at-point",
-    "when": "editorTextFocus && !inDebugRepl && editorLangId == 'magit' && vim.mode != 'SearchInProgressMode'"
-  },
-  {
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
   },
   {
     "key": "tab",
-    "command": "magit.toggle-fold",
-    "when": "editorTextFocus && !inDebugRepl && editorLangId == 'magit' && vim.mode != 'SearchInProgressMode'"
-  },
-  {
-    "key": "tab",
-    "command": "-magit.toggle-fold",
-    "when": "editorTextFocus && !inDebugRepl && editorLangId == 'magit' && vim.mode != 'SearchInProgressMode'"
-  },
-  {
-    "key": "tab",
     "command": "-tab",
     "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
-  },
-  {
-    "key": "alt+x g",
-    "command": "-magit.status"
-  },
-  {
-    "key": "alt+x alt+g",
-    "command": "-magit.file-popup",
-    "when": "activeEditor"
-  },
-  {
-    "key": "alt+x ctrl+g",
-    "command": "-magit.dispatch"
   },
   {
     "key": "shift+alt+j",
