@@ -312,6 +312,27 @@
     "key": "ctrl+shift+enter",
     "command": "-editor.action.insertLineBefore",
     "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+w",
+    "command": "-toggleSearchWholeWord",
+    "when": "searchViewletFocus"
+  },
+  {
+    "key": "alt+w",
+    "command": "-toggleFindWholeWord",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+w",
+    "command": "-toggleSearchEditorWholeWord",
+    "when": "inSearchEditor && searchInputBoxFocus"
+  },
+  {
+    "key": "alt+w",
+    "command": "-gitlens.diffLineWithWorking",
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/"
+  },
   {
     "key": "alt+w",
     "command": "browser-preview.openPreview"
