@@ -37,9 +37,13 @@
     {
       "before": ["<tab>"],
       "after": ["%"]
-    },
+    }
   ],
   "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "h", "b", "b"],
+      "commands": ["workbench.action.openGlobalKeybindings"]
+    },
     {
       "before": ["u"],
       "after": [],
