@@ -269,6 +269,10 @@
     "when": "textInputFocus && !editorReadonly"
   },
   {
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
+  },
+  {
     "key": "ctrl+1",
     "command": "-workbench.action.focusFirstEditorGroup"
   },
