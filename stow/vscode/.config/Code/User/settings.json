@@ -395,6 +395,28 @@
       "after": ["<Esc>"]
     }
   ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-e>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "cursorEnd",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<C-a>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "cursorHome",
+          "args": []
+        }
+      ]
+    }
+  ],
   "macros": {
     "nextFile": [
       "workbench.files.action.focusFilesExplorer",
