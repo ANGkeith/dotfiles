@@ -37,7 +37,7 @@
     "Fat Arrow": {
         "prefix": [ "a" ],
         "body": [
-            "($1) => $2;",
+            "($1) => $2",
         ],
         "description": "Fat Arrow without braces"
     },
