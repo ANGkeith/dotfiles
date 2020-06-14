@@ -481,13 +481,16 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[html]": {
+    "editor.defaultFormatter": "anweber.vscode-tidyhtml"
+  },
+  "[css]": {
+    "editor.tabSize": 2
+  },
   "editor.lineNumbers": "relative",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Default Light+",
   "terminal.integrated.allowChords": false,
-  "[html]": {
-    "editor.defaultFormatter": "anweber.vscode-tidyhtml"
-  },
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0",
   "emmet.includeLanguages": {
