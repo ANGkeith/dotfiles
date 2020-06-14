@@ -10,10 +10,6 @@
   },
   "vim.visualModeKeyBindings": [
     {
-      "before": ["<leader>", "<space>"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
       "before": ["g", "c"],
       "commands": ["editor.action.commentLine"]
     },
@@ -76,10 +72,6 @@
     {
       "before": ["<"],
       "after": ["<", "<"]
-    },
-    {
-      "before": ["<leader>", "<space>"],
-      "commands": ["workbench.action.showCommands"]
     },
     {
       "before": ["<leader>", "<tab>"],
@@ -465,9 +457,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
-  "yassnippet.mapping": {
-    "javascript": "js-mode"
-  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -520,7 +509,6 @@
     "colorizer.color-3": "#87cefa" // "LightSkyBlue". (Light Blue)
   },
   "path-intellisense.absolutePathToWorkspace": true,
-  "clipboard-manager.oddnlyWindowFocused": false,
   "clipboard-manager.snippet.enabled": false,
   "browser-preview.verbose": true,
   "browser-preview.startUrl": "http://localhost:3000/",
