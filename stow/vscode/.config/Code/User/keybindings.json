@@ -93,8 +93,12 @@
     "when": "!editorIsOpen && !multipleEditorGroups"
   },
   {
+    "key": "ctrl+shift+n",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
     "key": "ctrl+n",
-    "command": "workbench.action.toggleSidebarVisibility",
+    "command": "workbench.action.openEditorAtIndex1",
     "when": "filesExplorerFocus || openEditorsFocus || activeViewlet == 'workbench.view.scm'"
   },
   {
@@ -184,7 +188,7 @@
     "command": "editor.action.clipboardCopyAction"
   },
   {
-    "key": "ctrl+r",
+    "key": "r",
     "command": "renameFile",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },
