@@ -414,6 +414,17 @@
       ]
     }
   ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "h", "u"],
+      "commands": [
+        {
+          "command": "git.revertSelectedRanges",
+          "args": []
+        }
+      ]
+    }
+  ],
   "macros": {
     "nextFile": [
       "workbench.files.action.focusFilesExplorer",
