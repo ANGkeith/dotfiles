@@ -423,6 +423,33 @@
           "args": []
         }
       ]
+    },
+    {
+      "before": ["<leader>", "m", "1"],
+      "commands": [
+        {
+          "command": "extension.partialDiff.markSection1",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "m", "2"],
+      "commands": [
+        {
+          "command": "extension.partialDiff.markSection2AndTakeDiff",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "m", "m"],
+      "commands": [
+        {
+          "command": "extension.partialDiff.diffSelectionWithClipboard",
+          "args": []
+        }
+      ]
     }
   ],
   "macros": {
