@@ -552,5 +552,6 @@
   "browser-preview.startUrl": "http://localhost:3000/",
   "editor.formatOnSave": true,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.scrollToSwitchTabs": true
+  "workbench.editor.scrollToSwitchTabs": true,
+  "diffEditor.renderSideBySide": false
 }
