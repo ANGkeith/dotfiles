@@ -5,7 +5,6 @@
   "vim.enableNeovim": true,
   "vim.leader": "<space>",
   "vim.hlsearch": true,
-  "vim.relativenumber": true,
   "vim.handleKeys": {
     "<C-f>": false
   },
