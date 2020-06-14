@@ -487,7 +487,7 @@
   "[css]": {
     "editor.tabSize": 2
   },
-  "editor.lineNumbers": "relative",
+  "editor.lineNumbers": "off",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Default Light+",
   "terminal.integrated.allowChords": false,
@@ -524,5 +524,7 @@
   "clipboard-manager.snippet.enabled": false,
   "browser-preview.verbose": true,
   "browser-preview.startUrl": "http://localhost:3000/",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.scrollToSwitchTabs": true
 }

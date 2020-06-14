@@ -11,3 +11,7 @@ machineid
 User/syncLocalSettings.json
 languagepacks.json
 TransportSecurity
+
+.org.chromium*
+User/clipboard.history.json
+Workspaces
