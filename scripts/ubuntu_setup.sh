@@ -12,6 +12,8 @@ sudo apt update
 
 sudo apt install -y xcape
 
+sudo apt install -y moreutils # to use the sponge binaries
+
 # sshd
 sudo apt install -y openssh-server
 
@@ -80,7 +82,7 @@ sudo apt install -y neovim
     sudo apt install -y pavucontrol
 
 # Cheat
-    python3 -m pip install cheat
+    # install cheat binary from github page directly instead
     [[ -d "$XDG_DATA_HOME"/cheat/community ]] || git clone https://github.com/cheat/cheatsheets.git "$XDG_DATA_HOME"/cheat/community
 
 # fixes keychron keyboard
@@ -133,6 +135,7 @@ sudo apt install -y mpv
 sudo apt install -y shellcheck
 sudo apt install -y tidy
 npm install -g eslint eslint-config-airbnb prettier babel-eslint import-js
+# install hadolint
 
 # lsp
 pip python-language-server
