@@ -41,6 +41,7 @@ export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=alwa
 
 # cheat
 export CHEAT_HIGHLIGHT=magenta
+export CHEAT_CONFIG_PATH="~/.config/cheat/conf.yml"
 
 # tidy
 export HTML_TIDY="$XDG_CONFIG_HOME"/tidy/tidyrc

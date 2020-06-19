@@ -550,8 +550,18 @@
   "clipboard-manager.snippet.enabled": false,
   "browser-preview.verbose": true,
   "browser-preview.startUrl": "http://localhost:3000/",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.scrollToSwitchTabs": true,
-  "diffEditor.renderSideBySide": false
+  "diffEditor.renderSideBySide": false,
+  "sqltools.highlightQuery": true,
+  "hadolint.hadolintPath": "/home/angkeith/.local/bin/hadolint",
+  "files.associations": {
+    "Dockerfile": "dockerfile"
+  },
+  "prettier.configPath": "/home/angkeith/dotfiles/stow/prettier/.config/prettierrc",
+  "prettier.resolveGlobalModules": true,
+  "eslint.format.enable": true,
+  "eslint.nodePath": "/home/angkeith/.local/share/nvm/versions/node/v12.18.0/lib/node_modules",
+  "prettier.prettierPath": "/home/angkeith/.local/share/nvm/versions/node/v12.18.0/lib/node_modules/prettier"
 }
