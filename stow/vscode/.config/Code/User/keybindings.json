@@ -340,5 +340,23 @@
   {
     "key": "alt+w",
     "command": "browser-preview.openPreview"
+  },
+  {
+    "key": "shift+alt+d",
+    "command": "-extension.downloadSettings"
+  },
+  {
+    "key": "shift+alt+d",
+    "command": "-turboConsoleLog.deleteAllLogMessages"
+  },
+  {
+    "key": "shift+alt+d",
+    "command": "editor.action.selectHighlights",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "-editor.action.selectHighlights",
+    "when": "editorFocus"
   }
 ]
