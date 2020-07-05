@@ -12,13 +12,20 @@ ealias zshrc="vim $ZDOTDIR/.zshrc"
 # }}}
 
 # docker {{{
-ealias dockersrm='docker rm -f $(docker ps -aq)'
+ealias dockersrm='docker rm -fv $(docker ps -aq)'
 dex() {
     docker exec -ti "$1" bash
 }
 dexr() {
     docker exec --user root -ti "$1" bash
 }
+ddebug() {
+    docker commit $1 docker-debug
+    docker run -ti --entrypoint=sh docker-debug
+}
+ealias dcu='docker-compose up'
+ealias dcub='docker-compose up --build'
+ealias dls='docker container ls'
 
 # }}}
 
