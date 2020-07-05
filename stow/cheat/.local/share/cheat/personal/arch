@@ -59,7 +59,7 @@ echo "127.0.0.1    localhost
 ::1          localhost
 127.0.1.1    artemis.localdomain    artemis" > /etc/hosts
 
-    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager netctl stow git--noconfirm
+    pacman -S man-pages man intel-ucode vim zsh openssh networkmanager netctl stow git --noconfirm
     # additional instructions
 
     # ssh

@@ -21,7 +21,7 @@ sudo apt install -y libssl-dev
 sudo apt install -y wget curl net-tools
 
 # terminal
-sudo apt install -y konsole tmux 
+sudo apt install -y konsole tmux
 sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
 
 # search
@@ -73,7 +73,7 @@ sudo apt install -y neovim
     sudo systemctl enable docker
     sudo usermod -aG docker "$USER"
     sudo apt -y install docker-compose
-   
+
 # install zsh
     sudo apt install -y zsh
     sudo apt install -y fzf
@@ -126,6 +126,12 @@ sudo apt install -y neovim
     nvm install "$NODE_DEFAULT_VERSION"
     nvm alias default "$NODE_DEFAULT_VERSION"
     nvm use default
+# yarn
+    sudo curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    sudo sh -c "echo 'deb https://dl.yarnpkg.com/debian/ stable main' >> /etc/apt/sources.list"
+    sudo apt update
+    sudo apt --no-install-recommends install yarn
+
 
 
 sudo apt install -y gimp inkscape
@@ -153,4 +159,5 @@ sudo apt -y install flameshot
 # kde
 sudo apt install -y kde-plasma-desktop
 sudo apt install -y plasma-widgets-addons
-sudo apt install latte-dock
+sudo apt install -y plasma-nm
+sudo apt install -y latte-dock

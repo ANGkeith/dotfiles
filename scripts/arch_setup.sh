@@ -93,9 +93,6 @@ sudo pacman -S git tk --noconfirm --needed
     # kde asthetics
     sudo pacman -S latte-dock --noconfirm --needed
     sudo pacman -S plasma5-applets-active-window-control --noconfirm --needed
-    yay-install-maybe sierrabreeze-kwin-decoration-git
-    sudo pacman -S kvantum-qt5 --noconfirm --needed
-    yay-install-maybe mcmojave-kde-theme-git
 
 # Volume manager
     sudo pacman -S pavucontrol pulseaudio pulseaudio-alsa --noconfirm --needed
@@ -128,9 +125,9 @@ sudo pacman -S git tk --noconfirm --needed
 # development
     # install docker
         sudo pacman -S docker docker-compose --noconfirm --needed
-        # sudo systemctl start docker
-        # sudo systemctl enable docker
-        # sudo usermod -aG docker "$USER"
+        sudo systemctl start docker
+        sudo systemctl enable docker
+        sudo usermod -aG docker "$USER"
 
     # python
         sudo pacman -S pyenv --noconfirm --needed
@@ -199,7 +196,7 @@ sudo pacman -S git tk --noconfirm --needed
             yay-install-maybe python-autoflake
 
             # bash
-            yay-install-maybe shellcheck-static shellcheck
+            yay-install-maybe shellcheck-bin
 
             # js
             sudo npm install -g import-js
@@ -262,7 +259,7 @@ sudo pacman -S git tk --noconfirm --needed
 
 # softwares
     yay-install-maybe zoom
-    yay-install-maybe team
+    yay-install-maybe teams
 
 # binaries
     yay-install-maybe pciutils
