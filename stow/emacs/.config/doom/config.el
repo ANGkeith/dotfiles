@@ -56,9 +56,9 @@
       uniquify-buffer-name-style 'forward
       ;; more natural window splitting
       evil-vsplit-window-right t
-      evil-split-window-below t
+      evil-split-window-below t)
       ;; other configurations can be found in `RIPGREP_CONFIG_PATH` conf
-      counsel-rg-base-command "rg -M 200 --with-filename --no-heading --line-number --color never %s 2>&1; echo 'End of Search'")
+      ;; counsel-rg-base-command "rg -M 200 --with-filename --no-heading --line-number --color never %s 2>&1; echo 'End of Search'")
 
 (map!
  (:leader
