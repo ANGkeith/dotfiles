@@ -15,3 +15,6 @@ TransportSecurity
 .org.chromium*
 User/clipboard.history.json
 Workspaces
+
+Local Storage
+Preferences
