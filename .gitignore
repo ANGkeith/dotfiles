@@ -2,3 +2,7 @@ stow/vim/.config/vim/plugged/
 stow/vim/.config/vim/.netrwhist
 stow/git/.config/git/gitk
 *.zcompdump
+
+stow/konsole/.local/share/konsole/bookmarks.xml
+stow/konsole/.local/share/konsole/bookmarks.xml.bak
+stow/konsole/.local/share/konsole/bookmarks.xml.tbcache
