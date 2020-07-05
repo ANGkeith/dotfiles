@@ -1,5 +1,5 @@
 [ActivityManager][Global Shortcuts]
-switch-to-activity-cdeed6a8-2997-4690-91e0-e91933996325=none
+switch-to-activity-738c8a57-767b-4781-b590-298c9df3ecfd=none
 
 [KDE Keyboard Layout Switcher][Global Shortcuts]
 Disable Touchpad=Touchpad Off
@@ -8,13 +8,13 @@ Show System Activity=Ctrl+Esc
 Switch keyboard layout to English (US)=none
 Switch to Next Keyboard Layout=Ctrl+Alt+K
 Toggle Touchpad=Touchpad Toggle
-display=Display; Meta+P
-{a6b8b307-577f-4eaf-b10c-081a9006a793}=Alt+T
-{b3ca506a-7303-4f67-8c99-73d652e17ec0}=Meta+Ctrl+Shift+R
-{b695a519-8635-449f-8087-7c950d5eed82}=Meta+Shift+R
-{cafba120-438c-46ae-93d8-6a8557d83ede}=Meta+Print
+display=Display;\s
+{26cdc238-88dd-48a8-b09c-0c515a8b93e3}=Print
+{4e268a69-80c1-4706-92b9-17319371d617}=Meta+Alt+Shift+R
+{a0df4144-4c7c-409b-a5f4-11e8d13e2587}=Meta+Print
+{beff8c6d-9f83-41ff-b316-3167281022a6}=Meta+Shift+R
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=none
-{d3e4816a-90bf-447b-a74f-2ef29854bc2b}=Print
+{d7edd0aa-3e9e-46d8-82e8-0e21f7478f00}=Ctrl+Alt+T
 
 [kaccess][Global Shortcuts]
 Toggle Screen Reader On and Off=Meta+Alt+S
@@ -40,11 +40,13 @@ Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp
 
 [kwin][Global Shortcuts]
 Activate Window Demanding Attention=Ctrl+Alt+A
-Decrease Opacity=none
+Decrease Opacity=Meta+_
 Expose=Ctrl+F9
 ExposeAll=Ctrl+F10; Launch (C)
 ExposeClass=Ctrl+F7
-Increase Opacity=none
+FlipSwitchAll=none
+FlipSwitchCurrent=none
+Increase Opacity=Meta++
 Invert Screen Colors=none
 Kill Window=Meta+Shift+X
 MoveMouseToCenter=Meta+F6
@@ -108,7 +110,7 @@ Walk Through Windows (Reverse)=Alt+Shift+Backtab
 Walk Through Windows Alternative=none
 Walk Through Windows Alternative (Reverse)=none
 Walk Through Windows of Current Application=Meta+`
-Walk Through Windows of Current Application (Reverse)=Alt+~
+Walk Through Windows of Current Application (Reverse)=none
 Walk Through Windows of Current Application Alternative=none
 Walk Through Windows of Current Application Alternative (Reverse)=none
 Window Above Other Windows=none
@@ -199,7 +201,7 @@ activate entry 2=F16
 activate entry 3=F17
 activate entry 4=F18
 activate entry 5=F19
-activate entry 6=F20
+activate entry 6=Meta+P
 activate entry 7=F21
 activate entry 8=F22
 activate entry 9=none
@@ -225,14 +227,6 @@ new instance for entry 9=Meta+Ctrl+9
 show latte global settings=Meta+W
 show latte view=none
 show view settings=none
-
-[mediacontrol][Global Shortcuts]
-mediavolumedown=none
-mediavolumeup=none
-nextmedia=Media Next
-playpausemedia=Media Play
-previousmedia=Media Previous
-stopmedia=Media Stop
 
 [org.kde.dolphin.desktop][Global Shortcuts]
 _launch=Meta+E
