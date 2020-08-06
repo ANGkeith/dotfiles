@@ -264,6 +264,9 @@ endif
     nnoremap <c-a> ggVG
     inoremap jk <esc>
 
+    noremap <M-h> <<
+    noremap <M-l> >>
+
     " Custom Text Objects {{{
 
         " ie = inner entire buffer
