@@ -101,6 +101,9 @@ fi
     export TERMINFO="$XDG_DATA_HOME"/terminfo
     export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
+    # kde
+     export KDEHOME="$XDG_CONFIG_HOME"/kde
+
     # nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
 
     # python
@@ -116,6 +119,10 @@ fi
 
     # wget
     export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+    # GnuPG
+    export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+    #gpg2 --homedir "$XDG_DATA_HOME"/gnupg
 
     # # xinit
     # export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
