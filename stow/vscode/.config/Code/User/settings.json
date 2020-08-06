@@ -564,5 +564,39 @@
   "prettier.prettierPath": "/home/angkeith/.local/share/nvm/versions/node/v12.18.0/lib/node_modules/prettier",
   "eslint.workingDirectories": ["./src"],
   "eslint.lintTask.enable": true,
-  "todohighlight.isEnable": true
+  "todohighlight.isEnable": true,
+  // Configure glob patterns for excluding files and folders.
+  // For example, the files explorer decides which files and folders to show
+  // or hide based on this setting.
+  // Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
+  // Configure glob patterns for excluding files and folders in searches.
+  // Inherits all glob patterns from the `files.exclude` setting.
+  // Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/bower_components": true
+  },
+  // Configure glob patterns of file paths to exclude from file watching.
+  // Patterns must match on absolute paths
+  // (i.e. prefix with ** or the full path to match properly).
+  // Changing this setting requires a restart.
+  // When you experience Code consuming lots of cpu time on startup,
+  // you can exclude large folders to reduce the initial load.
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
+  "yaml.schemas": {
+    "kubernetes": "*.yaml"
+  }
 }
