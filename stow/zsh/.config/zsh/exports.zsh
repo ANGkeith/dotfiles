@@ -80,7 +80,8 @@ fi
     export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
     # zsh
-    export HISTFILE=$XDG_DATA_HOME/zsh/zsh_history
+    export HISTFILE="$XDG_DATA_HOME"/zsh/zsh_history
+    export ZSH_CACHE_DIR="$XDG_CACHE_HOME"/zsh
 
     # vim
     export VIMINIT='source $MYVIMRC'
