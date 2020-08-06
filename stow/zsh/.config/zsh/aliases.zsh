@@ -55,6 +55,10 @@ ealias gstl="git stash list"
 ealias gstp="git stash pop"
 ealias gsts="git stash show -v"
 # }}}
+#
+# kubernetes {{{
+    ealias k=kubectl
+# }}}
 
 # navigations {{{
 # cd. - Use fzf to search for a file and cd into the directory of that file
