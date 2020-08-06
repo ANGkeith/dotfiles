@@ -119,14 +119,18 @@ endif
     " move to and highlight last edited text
     nnoremap gV `[v`]
 
-    " Panes Management
-    nnoremap <c-j> <c-w><c-j>
-    nnoremap <c-k> <c-w><c-k>
-    nnoremap <c-l> <c-w><c-l>
-    nnoremap <c-h> <c-w><c-h>
+    " If completetion popup is visble
+    inoremap <expr> <c-j> pumvisible() ? "\<c-n>" : "\<c-j>"
+    inoremap <expr> <c-k> pumvisible() ? "\<c-p>" : "\<c-k>"
+
+    imap <c-j> <c-n>
+    imap <c-k> <c-p>
+
+    nnoremap <c-k> {
+    nnoremap <c-j> }
+
     " mapping space to toggle pane
     nnoremap <space>` <c-w>w
-
 
     " Pane Resize
     " go to insert mode <c-v> <some key> to get the literal terminal keycode
