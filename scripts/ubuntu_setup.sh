@@ -100,6 +100,7 @@ sudo apt install -y neovim
 
     sudo snap install postman
 
+# emoji font checkout https://christitus.com/emoji/
 # fonts
     for font in "SourceCodePro/Black/complete/Sauce Code Pro Black Nerd Font Complete.ttf" \
         "SourceCodePro/Black-Italic/complete/Sauce Code Pro Black Italic Nerd Font Complete.ttf" \
