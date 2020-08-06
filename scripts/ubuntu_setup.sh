@@ -74,6 +74,16 @@ sudo apt install -y neovim
     sudo usermod -aG docker "$USER"
     sudo apt -y install docker-compose
 
+# install virtualbox
+    sudo apt install virtualbox
+
+# install kubernetes
+    curl -o /tmp/kubectl -L "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && chmod +x /tmp/kubectl
+    sudo mv /tmp/kubectl /usr/local/bin/kubectl
+
+    curl -o /tmp/minikube -L https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x /tmp/minikube
+    sudo install /tmp/minikube /usr/local/bin/
+
 # install zsh
     sudo apt install -y zsh
     sudo apt install -y fzf
