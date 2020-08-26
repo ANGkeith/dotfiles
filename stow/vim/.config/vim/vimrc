@@ -737,6 +737,7 @@ call plug#begin()
         " for better integration with diminactive
         Plug 'tmux-plugins/vim-tmux-focus-events'
         Plug 'ryanoasis/vim-devicons'
+        Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
         Plug 'machakann/vim-highlightedyank'
     "  }}}
     "  bloat {{{

@@ -154,6 +154,8 @@ github() {
     curl -sL https://api.github.com/repos/"$1"/releases/latest | jq -r '.assets[].browser_download_url'
 }
 
+ealias grep="grep --color"
+
 alias syncmail="systemctl --user start mail-daemon.service; systemctl --user status mail-daemon.service"
 
 # ealias ls="exa -lahgb --icons"

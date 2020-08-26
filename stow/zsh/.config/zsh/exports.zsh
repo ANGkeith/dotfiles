@@ -75,6 +75,8 @@ fi
 # export STDERRED_BLACKLIST="^(bash|test.*)$"
 
 # Respect XDG {{{
+    # gcp
+    export BOTO_CONFIG="XDG_CONFIG_HOME"/gcp/boto
 
     # cargo
     export CARGO_HOME="$XDG_DATA_HOME"/cargo
