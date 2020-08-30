@@ -115,7 +115,8 @@ sudo apt install -y neovim
         "Meslo/S/Regular/complete/Meslo LG S Regular Nerd Font Complete.ttf"; do
         wget --directory-prefix ~/.local/share/fonts "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/${font}";
     done;
-    sudo apt install fonts-symbola
+    sudo apt-get install -y fonts-symbola
+    sudo apt-get install -y xfonts-unifont ttf-unifont
 
 # zoom
     command -v zoom || $(

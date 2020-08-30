@@ -1,5 +1,5 @@
 {
-  "vim.neovimPath": "/bin/nvim",
+  "vim.neovimPerath": "/bin/nvim",
   "vim.debug.loggingLevelForConsole": "debug",
   "vim.foldfix": true,
   "vim.enableNeovim": true,
@@ -425,6 +425,15 @@
       ]
     },
     {
+      "before": ["<leader>", "h", "s"],
+      "commands": [
+        {
+          "command": "git.stageSelectedRanges",
+          "args": []
+        }
+      ]
+    },
+    {
       "before": ["<leader>", "m", "1"],
       "commands": [
         {
@@ -496,8 +505,7 @@
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
