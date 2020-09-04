@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Moe
-Font=SauceCodePro Nerd Font,12,-1,5,50,0,0,0,0,0
+Font=SauceCodePro Nerd Font,11,-1,5,57,0,0,0,0,0,Medium
 
 [General]
 LocalTabTitleFormat=%d : %n
