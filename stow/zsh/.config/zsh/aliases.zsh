@@ -3,8 +3,6 @@
 
 # configurations {{{
 ealias bashrc="vim ~/.bashrc"
-ealias i3rc="vim $XDG_CONFIG_HOME/i3/config"
-ealias bspwmrc="vim $XDG_CONFIG_HOME/bspwm/bspwmrc"
 ealias sourcez="source $ZDOTDIR/.zshrc"
 ealias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
 ealias vimrc="vim $XDG_CONFIG_HOME/vim/vimrc"
@@ -155,8 +153,6 @@ github() {
 }
 
 ealias grep="grep --color"
-
-alias syncmail="systemctl --user start mail-daemon.service; systemctl --user status mail-daemon.service"
 
 # ealias ls="exa -lahgb --icons"
 
