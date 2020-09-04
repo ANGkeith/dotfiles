@@ -34,7 +34,7 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 
 
 # fzf
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --color=fg+:#000000,bg+:#b6d5d7,hl+:#d7005f --color=info:#4271ae,prompt:#8959a8,pointer:#d7005f --color=marker:#4271ae,spinner:#4271ae,header:#4271ae'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
