@@ -152,6 +152,7 @@ github() {
     curl -sL https://api.github.com/repos/"$1"/releases/latest | jq -r '.assets[].browser_download_url'
 }
 
+ealias k9="kill -9"
 ealias grep="grep --color"
 
 # ealias ls="exa -lahgb --icons"
