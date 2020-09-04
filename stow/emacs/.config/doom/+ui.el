@@ -66,7 +66,7 @@
 (after! git-gutter+
   (map!
    :leader
-   :nm "hh" #'git-gutter+-show-hunk-inline-at-point
+   :nm "hd" #'git-gutter+-show-hunk-inline-at-point
    :nm "hu" #'my-git-gutter+-revert-hunks
    :nm "hs" #'git-gutter+-stage-hunks)
   (map!
