@@ -12,7 +12,6 @@ endif
 
 "  Behaviour Modification {{{
     " Show line number
-    set relativenumber
     set number
 
     " Better mouse support
@@ -108,6 +107,7 @@ endif
     inoremap <c-a> <home>
     inoremap <c-e> <end>
 
+    nnoremap <c-e> <c-u>
     " If a line gets wrapped to two lines, j wont skip over the '2nd line'
     nnoremap j gj
     nnoremap k gk
@@ -190,7 +190,6 @@ endif
     " nerdtree {{{
         map <C-n> :NERDTreeToggle<CR>
         " Show line numbers in NERDTree
-        let NERDTreeShowLineNumbers=1
     " }}}
     " indentline {{{
         let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -630,15 +629,10 @@ call plug#end()
 
     set background=light
     colorscheme PaperColor
-    let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default': {
-  \       'transparent_background': 1
-  \     }
-  \   }
-  \ }
     let g:lightline = { 'colorscheme': 'PaperColor' }
 
-
+    " hide the annoying ~
+    hi! EndOfBuffer ctermbg=255 ctermfg=255 guifg=#eeeeee guibg=#eeeeee
+    hi! VertSplit guibg=#5fafaf
 " }}}
-""
+
