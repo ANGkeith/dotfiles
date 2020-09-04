@@ -640,26 +640,5 @@ call plug#end()
     let g:lightline = { 'colorscheme': 'PaperColor' }
 
 
-        " let g:onedark_terminal_italics = 1
-        " let g:onedark_hide_endofbuffer = 1
-
-        " " customize individual aspects of onedark.vim's existing highlight groups
-        " if (has("autocmd") && !has("gui_running"))
-        "     augroup colorset
-        "         autocmd!
-        "         let s:colors = onedark#GetColors()
-        "         let s:red = s:colors.red
-        "         let s:white = s:colors.white
-        "         " autocmd ColorScheme * call onedark#set_highlight("CocErrorSign", { "fg": s:colors.red })
-        "         autocmd ColorScheme * call onedark#set_highlight("CocErrorFloat", { "fg": { "cterm": 204, "gui": "#eb4034" } })
-        "         " autocmd ColorScheme * call onedark#set_highlight("CocWarningSign", { "fg": s:colors.red })
-        "         autocmd ColorScheme * call onedark#set_highlight("CocWarningFloat", { "fg": { "cterm": 204, "gui": "#eb4034" } })
-        "     augroup END
-        " endif
-        " colorscheme onedark
-
-        " Change the filler background color after the end of the buffer
-        " hi! link EndOfBuffer ColorColumn
-        " hi VertSplit guifg=#5fafaf
 " }}}
 ""
