@@ -52,9 +52,6 @@ endif
     " highlight current line based on CursorLine
     set cursorline
 
-    " highlight column based on ColorColumn highlight group
-    let &colorcolumn=join(range(81, 999),',')
-
     set fillchars+=vert:│
 
     set textwidth=0
@@ -110,7 +107,6 @@ endif
     " Map emacs binding in insert mode
     inoremap <c-a> <home>
     inoremap <c-e> <end>
-    inoremap <c-k> <esc>ld$A
 
     " If a line gets wrapped to two lines, j wont skip over the '2nd line'
     nnoremap j gj
@@ -172,90 +168,8 @@ endif
     vnoremap <leader>c "*y
     nnoremap <leader>v "*p=`]
 
-    noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
     " remove trailing spaces
     nnoremap <silent> <f5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-    " ToggleBetweenRelative* function {{{
-        function! g:ToggleBetweenRelativeAndNothing()
-            if &nu == 1 && &rnu == 1
-                set nornu nonu
-            else
-                set nu rnu
-            endif
-        endfunction
-
-        function! g:ToggleBetweenRelativeAndNumber()
-            if &rnu == 1
-                set nornu
-            else
-                set rnu
-            endif
-        endfunction
-    " }}}
-    noremap <f1> :SignifyToggle<cr>:call g:ToggleBetweenRelativeAndNothing()<cr>:IndentLinesToggle<cr>
-    noremap <f2> :call g:ToggleBetweenRelativeAndNumber()<cr>
-
-    " My vim_terminal {{{
-        if has('nvim')
-            augroup neovim_terminal
-                autocmd!
-                " autocmd TermOpen * :set filetype=vim_terminal
-
-                " map escape to exit terminal mode
-                autocmd TermOpen *   tnoremap <Esc> <C-\><C-n>
-                autocmd TermOpen *   tnoremap <m-g> <C-\><C-n> :call g:ToggleQuickTerm()<cr>
-                autocmd TermOpen * silent! execute 'IndentLinesDisable'
-
-                " Disables number lines on terminal buffers
-                autocmd TermOpen * set norelativenumber
-                autocmd TermOpen * set nonumber
-                autocmd TermOpen * map <buffer> <cr> i
-                autocmd TermOpen * startinsert
-            augroup END
-        endif
-        " opens erminal in a window it behaves a loclist/quickfix list
-
-        let g:vim_terminal_height = 15
-        function! g:CreateQuicktermBuffer()
-            silent! execute 'bot vsplit'
-            silent! execute 'terminal'
-            let g:vim_terminal_buffer_name = expand('%:p')
-        endfunction
-
-        function! g:ToggleQuickTerm()
-            if ! QuickTermIsOpen()
-                if !exists("g:vim_terminal_buffer_name")
-                    silent! execute 'call CreateQuicktermBuffer()'
-                else
-                    " Open buffer
-                    silent! execute 'bot vsplit'
-                    silent! execute "buffer " . g:vim_terminal_buffer_name
-                    silent! startinsert
-                endif
-            else
-                " Hide Buffer
-                " jump to vim_terminal buffer
-                silent! execute "drop " . g:vim_terminal_buffer_name
-                silent! execute 'hide'
-            endif
-        endfunction
-
-        function! g:QuickTermIsOpen()
-            if !exists("g:vim_terminal_buffer_name")
-                return 0
-            endif
-            " detect if vim_terminal buffer is active
-            if bufwinnr(g:vim_terminal_buffer_name) > 0
-                return 1
-            else
-                return 0
-            endif
-        endfunction
-
-        noremap <m-g> :call g:ToggleQuickTerm()<cr>
-        inoremap <m-g> <esc>:call g:ToggleQuickTerm()<cr>
-        vnoremap <m-g> <esc>:call g:ToggleQuickTerm()<cr>
-    " }}}
 
     " Easier buffer navigations
     nnoremap gb :ls<CR>:b<Space>
@@ -268,16 +182,6 @@ endif
     noremap <M-l> >>
 
     " Custom Text Objects {{{
-
-        " ie = inner entire buffer
-        onoremap ie :exec "normal! ggVG"<cr>
-
-        " iv = current viewable text in the buffer
-        onoremap iv :exec "normal! HVL"<cr>
-
-        " inside last parenthesis operator
-        onoremap il( :<c-u>normal! F)vi(<cr>
-
     " }}}
 " }}}
 " Plugin Configurations {{{
@@ -497,11 +401,6 @@ endif
                 call lightline#colorscheme()
             endfunction
         "  }}}
-    " }}}
-    " vim-diminactive {{{
-        let g:diminactive_enable_focus = 1
-        " to make dimainactive have effect on the listed file type
-        let g:diminactive_filetype_whitelist = [ 'help', 'vim_terminal' ]
     " }}}
     " vim-easymotion {{{
         " Disable default mappings
