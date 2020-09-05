@@ -6,3 +6,4 @@ stow/git/.config/git/gitk
 stow/konsole/.local/share/konsole/bookmarks.xml
 stow/konsole/.local/share/konsole/bookmarks.xml.bak
 stow/konsole/.local/share/konsole/bookmarks.xml.tbcache
+/stow/tmux/.config/tmux/plugins/
