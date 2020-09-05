@@ -80,8 +80,8 @@ endif
     " Should make scrolling faster
     set lazyredraw
 
-       " Always use vertical diffs
-     set diffopt+=vertical
+    " Always use vertical diffs
+    set diffopt+=vertical
 
     " make a copy of the file and overwrite the original one. ie. inode of file
     " remains unchanged otherwise links may be broken
@@ -93,10 +93,8 @@ endif
 
         " Hide the vim mode message in the last line (Insert, Replace, Visual)
         set noshowmode
-    endif
 
-    " cwd follow filpath
-    autocmd BufEnter * silent! lcd %:p:h
+    endif
 "}}}
 " Custom Mapping {{{
     " note that <space> in normal mode is mapped to right, thus this is to override that settings
@@ -618,7 +616,6 @@ call plug#begin()
 
 call plug#end()
 "}}}
-"
 " Colorscheme {{{
     set t_Co=256
     " True color support
