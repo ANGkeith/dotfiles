@@ -22,6 +22,7 @@ sudo apt install -y wget curl net-tools
 
 # terminal
 sudo apt install -y konsole tmux
+git clone https://github.com/tmux-plugins/tpm "${XDG_CONFIG_HOME}"/tmux/plugins/tpm
 sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
 
 # search

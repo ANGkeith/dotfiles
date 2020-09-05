@@ -75,6 +75,7 @@ sudo pacman -S git tk --noconfirm --needed
 
 # terminal and multiplexer
     sudo pacman -S tmux konsole --noconfirm --needed
+    git clone https://github.com/tmux-plugins/tpm "${XDG_CONFIG_HOME}"/tmux/plugins/tpm
 
 # Searching tool
     sudo pacman -S ripgrep --noconfirm --needed
