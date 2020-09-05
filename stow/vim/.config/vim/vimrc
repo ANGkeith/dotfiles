@@ -51,7 +51,7 @@ endif
     " highlight current line based on CursorLine
     set cursorline
 
-    set fillchars+=vert:│
+    set fillchars+=vert:\ ,eob:\ 
 
     set textwidth=0
 
@@ -187,10 +187,11 @@ endif
 " Plugin Configurations {{{
     " nerdtree {{{
         map <C-n> :NERDTreeToggle<CR>
+        autocmd FileType nerdtree setlocal winhighlight=Normal:ColorColumn,EndOfBuffer:ColorColumn
         " Show line numbers in NERDTree
     " }}}
     " indentline {{{
-        let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+        let g:indentLine_char_list = ['│', '│', '│', '│']
         " By default identLine set conceal level to 2 thus and causing some concealed
         " text to be completely hidden. ie. Text surrounded by ``
         let g:indentLine_fileTypeExclude = ['json', 'md']
@@ -625,11 +626,21 @@ call plug#end()
     syntax on
 
     set background=light
+    let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'allow_bold': 1,
+  \       'allow_italic': 1,
+  \       'override' : {
+  \         'color00' : ['#ffffff', '231'],
+  \         'linenumber_bg' : ['#ffffff', '231'],
+  \         'linenumber_fg' : ['#6097AB'],
+  \         'vertsplit_bg' : ['#E4E4E4', '231'],
+  \       }
+  \     }
+  \   }
+  \ }
     colorscheme PaperColor
     let g:lightline = { 'colorscheme': 'PaperColor' }
-
-    " hide the annoying ~
-    hi! EndOfBuffer ctermbg=255 ctermfg=255 guifg=#eeeeee guibg=#eeeeee
-    hi! VertSplit guibg=#5fafaf
 " }}}
 
