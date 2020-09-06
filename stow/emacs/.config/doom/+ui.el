@@ -55,10 +55,10 @@
    :n "C-3"               #'centaur-tabs-select-visible-tab
    :n "C-4"               #'centaur-tabs-select-visible-tab
    :n "C-5"               #'centaur-tabs-select-visible-tab
-   :g "M-1"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
+   :g "M-1"               (cmd! (centaur-tabs-switch-group my-centaur-tabs-common-group-name))
    :g "M-2"               #'my-centaur-tabs-switch-to-org
    :g "M-3"               #'my-centaur-tabs-switch-to-elisp
-   :g "M-4"               (lambda! (centaur-tabs-switch-group my-centaur-tabs-special-group-name)))
+   :g "M-4"               (cmd! (centaur-tabs-switch-group my-centaur-tabs-special-group-name)))
   (centaur-tabs-headline-match)
   (add-hook 'term-mode-hook #'centaur-tabs-local-mode))                         ; Don't show centaur tabs in term mode
 
@@ -163,27 +163,27 @@
    doom-themes-treemacs-theme  "doom-colors"                                 ; use all-the-icons icons for file type icons
    doom-themes-treemacs-line-spacing 1))
 
-;; pretty-symbol
-(plist-put +pretty-code-symbols :return nil)
-(plist-put +pretty-code-symbols :yield nil)
-(plist-put +pretty-code-symbols :pipe nil)
-(plist-put +pretty-code-symbols :and nil)
-(plist-put +pretty-code-symbols :for nil)
-(plist-put +pretty-code-symbols :or nil)
-(plist-put +pretty-code-symbols :lambda nil)
-(plist-put +pretty-code-symbols :null nil)
-(plist-put +pretty-code-symbols :not nil)
-(plist-put +pretty-code-symbols :some nil)
-(plist-put +pretty-code-symbols :def nil)
-(plist-put +pretty-code-symbols :true nil)
-(plist-put +pretty-code-symbols :false nil)
-(plist-put +pretty-code-symbols :for nil)
-(plist-put +pretty-code-symbols :str nil)
-(plist-put +pretty-code-symbols :bool nil)
-(plist-put +pretty-code-symbols :int nil)
-(plist-put +pretty-code-symbols :tuple nil)
-(plist-put +pretty-code-symbols :in nil)
-(plist-put +pretty-code-symbols :not-in nil)
+;; ;; pretty-symbol
+;; (plist-put +pretty-code-symbols :return nil)
+;; (plist-put +pretty-code-symbols :yield nil)
+;; (plist-put +pretty-code-symbols :pipe nil)
+;; (plist-put +pretty-code-symbols :and nil)
+;; (plist-put +pretty-code-symbols :for nil)
+;; (plist-put +pretty-code-symbols :or nil)
+;; (plist-put +pretty-code-symbols :lambda nil)
+;; (plist-put +pretty-code-symbols :null nil)
+;; (plist-put +pretty-code-symbols :not nil)
+;; (plist-put +pretty-code-symbols :some nil)
+;; (plist-put +pretty-code-symbols :def nil)
+;; (plist-put +pretty-code-symbols :true nil)
+;; (plist-put +pretty-code-symbols :false nil)
+;; (plist-put +pretty-code-symbols :for nil)
+;; (plist-put +pretty-code-symbols :str nil)
+;; (plist-put +pretty-code-symbols :bool nil)
+;; (plist-put +pretty-code-symbols :int nil)
+;; (plist-put +pretty-code-symbols :tuple nil)
+;; (plist-put +pretty-code-symbols :in nil)
+;; (plist-put +pretty-code-symbols :not-in nil)
 
 ;; yascroll
 (after! yascroll

@@ -50,15 +50,15 @@
           ("=" (org-verbatim :inherit rectangle-preview))
           ("~" (org-code :inherit rectangle-preview))
           ("+" (:strike-through t))))
-  (appendq! +pretty-code-symbols
-            '(:checkbox    "☐"
-              :pending     "◼"
-              :checkedbox  "☑"))
-  (set-pretty-symbols! 'org-mode
-    :merge t
-    :checkbox    "[ ]"
-    :pending     "[-]"
-    :checkedbox  "[X]")
+  ;; (appendq! +pretty-code-symbols
+  ;;           '(:checkbox    "☐"
+  ;;             :pending     "◼"
+  ;;             :checkedbox  "☑"))
+  ;; (set-pretty-symbols! 'org-mode
+  ;;   :merge t
+  ;;   :checkbox    "[ ]"
+  ;;   :pending     "[-]"
+  ;;   :checkedbox  "[X]")
   (add-hook 'org-mode-hook
             (lambda ()
               (add-hook 'before-save-hook #'org-babel-remove-result nil 'local))))
