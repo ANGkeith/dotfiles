@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=imwheel
+Exec=~/dotfiles/utils_script/remap_keys
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Comment=
+X-GNOME-Autostart-Delay=15
+Type=Application
