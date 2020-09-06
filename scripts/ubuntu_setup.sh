@@ -8,6 +8,11 @@ script_root="$(cd $(dirname $BASH_SOURCE[0]) && pwd -P)"
 # shellcheck disable=SC2034
 project_root=$(cd $(dirname ${script_root}) && pwd -P)
 
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_CACHE_HOME="$HOME/.cache"
+XDG_DATA_HOME="$HOME/.local/share"
+PYENV_ROOT="$HOME/.local/lib/pyenv"
+
 sudo apt update
 
 sudo apt install -y xcape
@@ -19,6 +24,11 @@ sudo apt install -y openssh-server
 
 sudo apt install -y libssl-dev
 sudo apt install -y wget curl net-tools
+
+# install zsh
+    sudo apt install -y jq
+    sudo apt install -y zsh
+    sudo apt install -y fzf
 
 # terminal
 sudo apt install -y konsole tmux
@@ -76,7 +86,7 @@ sudo apt install -y neovim
     sudo apt -y install docker-compose
 
 # install virtualbox
-    sudo apt install virtualbox
+    sudo apt install -y virtualbox
 
 # install kubernetes
     curl -o /tmp/kubectl -L "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && chmod +x /tmp/kubectl
@@ -154,18 +164,15 @@ sudo apt install -y mpv
 sudo apt install -y shellcheck
 sudo apt install -y tidy
 npm install -g eslint eslint-config-airbnb prettier babel-eslint import-js
-# install hadolint
 
 # lsp
-pip python-language-server
+pip3 install python-language-server
 npm install -g dockerfile-language-server-nodejs
 npm install -g typescript-language-server
 npm install -g bash-language-server
 
 sudo add-apt-repository ppa:lyzardking/ubuntu-make
 sudo apt update
-sudo apt install ubuntu-make
-umake web firefox-dev
 sudo apt -y install flameshot
 
 
@@ -176,3 +183,8 @@ sudo apt install -y plasma-nm
 sudo apt install -y latte-dock
 
 sudo apt install -y imwheel # use to remap mouse scroll speed
+
+# requires user intervention
+"$XDG_CONFIG_HOME"/emacs/bin/doom install
+sudo apt install ubuntu-make
+umake web firefox-dev

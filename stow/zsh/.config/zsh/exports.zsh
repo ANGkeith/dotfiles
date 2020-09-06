@@ -47,6 +47,7 @@ export CHEAT_CONFIG_PATH="~/.config/cheat/conf.yml"
 export HTML_TIDY="$XDG_CONFIG_HOME"/tidy/tidyrc
 
 # pyenv
+export PYENV_ROOT="~/.local/lib/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 # enable true color

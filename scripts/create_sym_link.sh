@@ -10,6 +10,7 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.local/etc
 mkdir -p ~/.local/lib
 mkdir -p ~/.local/share
+mkdir -p ~/.config/autostart
 # so that stow will now sym link the entire `cheat` but only `personal`
 mkdir -p ~/.local/share/cheat
 cd ${project_root}/stow
