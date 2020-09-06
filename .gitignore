@@ -7,3 +7,4 @@ stow/konsole/.local/share/konsole/bookmarks.xml
 stow/konsole/.local/share/konsole/bookmarks.xml.bak
 stow/konsole/.local/share/konsole/bookmarks.xml.tbcache
 /stow/tmux/.config/tmux/plugins/
+/stow/vscode/.config/Code/User/sync/

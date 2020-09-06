@@ -89,7 +89,7 @@ sudo apt install -y neovim
     sudo apt install -y zsh
     sudo apt install -y fzf
 
-#     # volume manager
+# volume manager
     sudo apt install -y pavucontrol
 
 # Cheat
