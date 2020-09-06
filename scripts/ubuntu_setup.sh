@@ -32,13 +32,13 @@ sudo apt install -y wget curl net-tools
 
 # terminal
 sudo apt install -y konsole tmux
-git clone https://github.com/tmux-plugins/tpm "${XDG_CONFIG_HOME}"/tmux/plugins/tpm
+[[ -d "$XDG_CONFIG_HOME"/tmux/plugins/tpm ]] || git clone https://github.com/tmux-plugins/tpm "${XDG_CONFIG_HOME}"/tmux/plugins/tpm
 sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
 
 # search
 sudo apt install ripgrep silversearcher-ag
 sudo apt install -y fd-find
-sudo ln -s /bin/fdfind /bin/fd
+[[ -L /bin/fd ]] || sudo ln -s /bin/fdfind /bin/fd
 
 # text editor
 sudo apt install -y keychain
@@ -46,13 +46,13 @@ sudo apt install -y aspell aspell-en
 sudo apt install -y libsqlite3-dev sqlite3
 
 command -v emacs || $(
-        git clone -b emacs-27 git://git.sv.gnu.org/emacs.git /tmp/emacs
-        cd /tmp/emacs
-        sudo apt build-dep emacs
+        [[ -d /tmp/emacs ]] || git clone -b emacs-27 git://git.sv.gnu.org/emacs.git /tmp/emacs;
+        cd /tmp/emacs;
+        sudo apt-get build-dep emacs;
         ./autogen.sh
         ./configure --with-mailutils --with-modules --prefix="${HOME}/.local/lib/emacs"
-        git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
-        "$XDG_CONFIG_HOME"/emacs/bin/doom install
+        make
+        make install
     )
 
 sudo apt install -y exuberant-ctags ctags
@@ -70,7 +70,7 @@ sudo apt install -y neovim
     )
 
 # install python
-    command -v pyenv || git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
+    command -v pyenv || [[ -d $PYENV_ROOT ]] || git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
     sudo apt install -y python3-pip
     pip3 install --user pipenv
     pip3 install virtualenv
@@ -89,15 +89,16 @@ sudo apt install -y neovim
     sudo apt install -y virtualbox
 
 # install kubernetes
-    curl -o /tmp/kubectl -L "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && chmod +x /tmp/kubectl
-    sudo mv /tmp/kubectl /usr/local/bin/kubectl
-
-    curl -o /tmp/minikube -L https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x /tmp/minikube
-    sudo install /tmp/minikube /usr/local/bin/
-
-# install zsh
-    sudo apt install -y zsh
-    sudo apt install -y fzf
+    command -v kubectl || $(
+	    curl -o /tmp/kubectl -L "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" \
+	    && chmod +x /tmp/kubectl
+	    sudo mv /tmp/kubectl /usr/local/bin/kubectl
+    )
+    command -v minikube || $(
+    	curl -o /tmp/minikube -L https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+    	&& chmod +x /tmp/minikube\
+    	sudo install /tmp/minikube /usr/local/bin/
+    )
 
 # volume manager
     sudo apt install -y pavucontrol
@@ -137,11 +138,12 @@ sudo apt install -y neovim
     )
 
 # nodejs
-    command -v nvm || $(
+    [[ -f /usr/share/nvm/nvm.sh ]]  || $(
             git clone https://github.com/nvm-sh/nvm.git /tmp/nvm
             cd /tmp/nvm
             git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
             chmod +x /tmp/nvm/nvm.sh
+            sudo mkdir -p /usr/share/nvm
             sudo mv /tmp/nvm/nvm.sh /usr/share/nvm/nvm.sh
         )
     NVM_SOURCE=/usr/share/nvm
@@ -185,6 +187,7 @@ sudo apt install -y latte-dock
 sudo apt install -y imwheel # use to remap mouse scroll speed
 
 # requires user intervention
+[[ -d "$XDG_CONFIG_HOME"/emacs/bin ]] || git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
 "$XDG_CONFIG_HOME"/emacs/bin/doom install
 sudo apt install ubuntu-make
 umake web firefox-dev
