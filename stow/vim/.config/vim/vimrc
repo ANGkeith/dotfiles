@@ -188,6 +188,7 @@ endif
     " nerdtree {{{
         map <C-n> :NERDTreeToggle<CR>
         autocmd FileType nerdtree setlocal winhighlight=Normal:ColorColumn,EndOfBuffer:ColorColumn
+        autocmd BufEnter * silent! lcd %:p:h
         " Show line numbers in NERDTree
     " }}}
     " indentline {{{
