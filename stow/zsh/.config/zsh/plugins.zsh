@@ -10,9 +10,7 @@ if ! zgen saved; then
     # asthetics
     zgen load romkatv/powerlevel10k powerlevel10k
     # nicer ls colors
-    zgen load zsh-users/zsh-autosuggestions
     zgen oh-my-zsh lib/theme-and-appearance.zsh
-    zgen load zsh-users/zsh-syntax-highlighting
 
     # misc
     zgen oh-my-zsh plugins/z
@@ -41,6 +39,9 @@ if ! zgen saved; then
     fi
     zgen load sei40kr/zsh-fast-alias-tips
 
+    zgen load zsh-users/zsh-autosuggestions
+    zgen load zsh-users/zsh-syntax-highlighting
+
     # add widgets
     # completions
     zgen oh-my-zsh plugins/docker
@@ -50,5 +51,8 @@ if ! zgen saved; then
 
     success_message "save all to init script"
 
+    zgen load Aloxaf/fzf-tab
+
+    zgen load softmoth/zsh-vim-mode
     zgen save
 fi
