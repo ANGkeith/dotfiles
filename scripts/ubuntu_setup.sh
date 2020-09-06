@@ -174,3 +174,5 @@ sudo apt install -y kde-plasma-desktop
 sudo apt install -y plasma-widgets-addons
 sudo apt install -y plasma-nm
 sudo apt install -y latte-dock
+
+sudo apt install -y imwheel # use to remap mouse scroll speed

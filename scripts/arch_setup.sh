@@ -64,6 +64,9 @@ sudo pacman -S git tk --noconfirm --needed
     sudo pacman -S peek --noconfirm --needed
     yay-install-maybe screenkey
 
+    # for remapping mouse
+    sudo pacman -S imwheel --noconfirm --needed
+
 # networking
     sudo pacman -S netcat --noconfirm --needed
     sudo pacman -S wget --noconfirm --needed
