@@ -56,7 +56,7 @@ export TERM="xterm-256color"
 # Better transition for changing of vim mode in terminal
 export KEYTIMEOUT=1
 
-export FAST_ALIAS_TIPS_PREFIX="\x1b[33;40m ﯦ  \x1b[0m $(tput bold)"
+export FAST_ALIAS_TIPS_PREFIX="💡 $(tput bold)"
 
 # Use nvim for navigating man page instead of less
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist rnu noma' -\""
