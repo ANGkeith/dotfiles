@@ -54,6 +54,8 @@ endif
     set fillchars+=vert:\ ,eob:\ 
 
     set textwidth=0
+    set undofile
+    set undodir=$XDG_DATA_HOME/vim/undodir
 
     " autoreload the file in Vim if it has been changed outside of Vim
     set autoread
@@ -105,10 +107,15 @@ endif
     inoremap <c-a> <home>
     inoremap <c-e> <end>
 
-    nnoremap <c-e> <c-u>
+    " so that it will use the scrolling plugin
+    nmap <c-e> <c-u>
     " If a line gets wrapped to two lines, j wont skip over the '2nd line'
     nnoremap j gj
     nnoremap k gk
+
+    " use tab to jump across brackets
+    nnoremap <c-i> %
+    vnoremap <c-i> %
 
     " move to and highlight last edited text
     nnoremap gV `[v`]
@@ -178,6 +185,8 @@ endif
 
     noremap <M-h> <<
     noremap <M-l> >>
+    vnoremap <M-h> <
+    vnoremap <M-l> >
 
     " Custom Text Objects {{{
     onoremap iq :exec 'normal! vi"'<cr>
