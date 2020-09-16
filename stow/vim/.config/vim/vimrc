@@ -201,9 +201,6 @@ endif
         autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "coc-explorer" || &buftype == 'quickfix' |q|endif
     " }}}
     " indentline {{{
-        let g:indentLine_char_list = ['│', '│', '│', '│']
-        " By default identLine set conceal level to 2 thus and causing some concealed
-        " text to be completely hidden. ie. Text surrounded by ``
         let g:indentLine_fileTypeExclude = ['json', 'md']
         let g:indentLine_setConceal = 2
         " default ''.
@@ -213,6 +210,7 @@ endif
         " " c for Command line editing, for 'incsearch'
         " default value is "inc"
         let g:indentLine_concealcursor = ""
+        let g:indentLine_char = '│'
     " }}}
     " quickr-preview {{{
         let g:quickr_preview_exit_on_enter = 0
@@ -412,24 +410,6 @@ endif
             endfunction
         "  }}}
     " }}}
-    " vim-easymotion {{{
-        " Disable default mappings
-        let g:EasyMotion_do_mapping = 0
-        " case insensitive
-        let g:EasyMotion_smartcase = 1
-        " Smartsign (type `3` and match `3`&`#`)
-        let g:EasyMotion_use_smartsign_us = 1
-
-        nmap <leader>s <Plug>(easymotion-overwin-f2)
-
-        map  / <Plug>(easymotion-sn)
-        nmap * "pyiw/<c-r>p<cr>
-        omap / <Plug>(easymotion-tn)
-
-        map  n <Plug>(easymotion-next)
-        map  N <Plug>(easymotion-prev)
-
-           " }}}
     " vim-subversive {{{
         nmap s <plug>(SubversiveSubstituteRangeConfirm)
         xmap s <plug>(SubversiveSubstituteRangeConfirm)
@@ -559,7 +539,6 @@ call plug#begin()
         Plug 'tpope/vim-commentary'
         Plug 'ervandew/supertab'
         Plug 'ronakg/quickr-preview.vim'
-        Plug 'easymotion/vim-easymotion'
         " Plugin outside ~/.vim/plugged with post-update hook
         Plug 'junegunn/fzf'
         Plug 'junegunn/fzf.vim'
