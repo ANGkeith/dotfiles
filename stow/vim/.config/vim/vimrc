@@ -220,10 +220,10 @@ endif
         let g:quickr_preview_keymaps = 0
         let g:quickr_preview_size = '8'
     " }}}
-    " vim-signify {{{
-        let g:signify_vcs_list = [ 'git' ]
-        nnoremap <leader>hd :SignifyHunkDiff<cr>
-        nnoremap <leader>hu :SignifyHunkUndo<cr>
+    " vim-gitgutter {{{
+        nnoremap <leader>hd :GitGutterPreviewHunk<cr>
+        nnoremap <leader>hu :GitGutterUndoHunk<cr>
+        nnoremap <leader>hs :GitGutterStageHunk<cr>
     "}}}
     " vimwiki {{{
         " Do not use vimwiki filetype for non-vimwiki md files
@@ -250,7 +250,6 @@ endif
         let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
         let g:instant_markdown_autoscroll = 1
         let g:instant_markdown_browser = "chromium new-window"
-
     " }}}
     " tagbar {{{
         let g:tagbar_type_vimwiki = {
@@ -530,6 +529,21 @@ endif
         " polylglot clashes with vimwiki plugin
         let g:polyglot_disabled = ['markdown']
     " }}}
+    " vim-multi-cursor {{{
+        let g:VM_default_mappings = 0
+        let g:VM_mouse_mappings = 1
+        let g:VM_maps = {}
+        let g:VM_maps['Find Under']         = '<M-d>'
+    " }}}
+    " vimagit {{{
+        let g:magit_commit_mapping = 'cc'
+        let g:magit_commit_amend_mapping = 'ca'
+        let g:magit_stage_hunk_mapping = 's'
+        let g:magit_jump_next_hunk = '<c-j>'
+        let g:magit_jump_prev_hunk = '<c-k>'
+        let g:magit_ignore_mapping = 'i'
+        let g:magit_folding_toggle_mapping = ['<c-i>']
+    " }}}
 " }}}
 "  Plugins {{{
 call plug#begin()
@@ -565,9 +579,9 @@ call plug#begin()
     " git integration {{{
         Plug 'tpope/vim-fugitive'
         " indicate added/modified/removed lines in a file
-        Plug 'mhinz/vim-signify'
         " git commit browser
         Plug 'junegunn/gv.vim'
+        Plug 'airblade/vim-gitgutter'
         Plug 'jreybert/vimagit'
     " }}}
     " asthethics {{{
@@ -598,12 +612,24 @@ call plug#begin()
         Plug 'godlygeek/tabular'
 
         Plug 'obreitwi/vim-sort-folds'
+        Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+        " smooth scrolling
+        Plug 'psliwka/vim-smoothie'
     " }}}
     Plug 'majutsushi/tagbar'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'tommcdo/vim-lion'
 
 call plug#end()
 "}}}
+" Automatically install missing plugins on startup {{{
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+" }}}
+" }}}
 " Colorscheme {{{
     set t_Co=256
     " True color support
@@ -614,20 +640,42 @@ call plug#end()
 
     set background=light
     let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default': {
-  \       'allow_bold': 1,
-  \       'allow_italic': 1,
-  \       'override' : {
-  \         'color00' : ['#ffffff', '231'],
-  \         'linenumber_bg' : ['#ffffff', '231'],
-  \         'linenumber_fg' : ['#6097AB'],
-  \         'vertsplit_bg' : ['#E4E4E4', '231'],
-  \       }
-  \     }
-  \   }
-  \ }
-    colorscheme PaperColor
+                \   'theme': {
+                \     'default': {
+                \       'allow_bold': 1,
+                \       'allow_italic': 1,
+                \       'override' : {
+                \         'color00' : ['#ffffff', '231'],
+                \         'linenumber_bg' : ['#ffffff', '231'],
+                \         'linenumber_fg' : ['#6097AB'],
+                \         'vertsplit_bg' : ['#E4E4E4', '231'],
+                \       }
+                \     }
+                \   }
+                \ }
     let g:lightline = { 'colorscheme': 'PaperColor' }
+    colorscheme PaperColor
+    " override {{{
+        hi Search guibg=#FFD787
+        hi Pmenu guibg=#E4E4E4
+
+        " nicer color in vim-magit
+        hi diffAdded guibg=#AFFFAF guifg=#3f3f3f
+        hi diffRemoved guibg=#FFD7FF guifg=#3f3f3f
+
+    " }}}
+
+    " Useful for highlighting under cursor {{{
+        map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+        function! Syn()
+            for id in synstack(line("."), col("."))
+                echo synIDattr(id, "name")
+            endfor
+        endfunction
+        command! -nargs=0 Syn call Syn()
+
+    " }}}
 " }}}
 
