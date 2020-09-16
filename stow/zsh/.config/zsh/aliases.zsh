@@ -94,6 +94,7 @@ function t() {
 # vim {{{
 ealias vf='nvim $(fzf)'
 ealias vim='nvim'
+ealias v='nvim'
 # }}}
 
 # awk {{{
@@ -157,7 +158,18 @@ ealias grep="grep --color"
 
 # ealias ls="exa -lahgb --icons"
 
-ealias ysd="yarn start:dev"
-ealias yt="yarn test"
-ealias ytu="yarn test"
-ealias yck="yarn code:check"
+# yarn {{{
+    ealias ysd="yarn start:dev"
+    ealias yt="yarn test"
+    ealias ytu="yarn test"
+    ealias yck="yarn code:check"
+# }}}
+# terraform {{{
+    ealias tf="terraform"
+    ealias tfi="terraform init"
+    ealias tfa="terraform apply"
+    ealias tfa!="terraform apply --auto-approve"
+    ealias tfp="terraform plan"
+    ealias tfd="terraform destroy"
+    ealias tfd!="terraform destroy --auto-approve"
+# }}}
