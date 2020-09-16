@@ -568,7 +568,7 @@
   },
   "prettier.configPath": "/home/angkeith/dotfiles/stow/prettier/.config/prettierrc.json",
   "prettier.resolveGlobalModules": true,
-  "prettier.prettierPath": "/home/angkeith/.local/share/nvm/versions/node/v12.18.0/lib/node_modules/prettier",
+  "prettier.prettierPath": "/home/angkeith/.local/share/nvm/versions/node/v12.18.3/lib/node_modules/prettier",
   "eslint.workingDirectories": ["./src"],
   "eslint.lintTask.enable": true,
   "todohighlight.isEnable": true,
@@ -605,5 +605,5 @@
   },
   "yaml.schemas": {
     "kubernetes": "*.yaml"
-  }
+  },
 }
