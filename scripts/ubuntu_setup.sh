@@ -186,8 +186,40 @@ sudo apt install -y latte-dock
 
 sudo apt install -y imwheel # use to remap mouse scroll speed
 
+function install_terraform() {
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+    sudo apt-get update && sudo apt-get install terraform
+}
+
+if ! command -v terraform > /dev/null; then
+    install_terraform
+fi
+
+function install_aws() {
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+    unzip /tmp/awscliv2.zip -d /tmp
+    sudo /tmp/aws/install
+}
+
+if ! command -v aws > /dev/null; then
+    install_aws
+fi
+
+function install_gcloud() {
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    sudo apt-get install apt-transport-https ca-certificates gnupg
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+    sudo apt-get update && sudo apt-get install google-cloud-sdk
+}
+
+if ! command -v gcloud > /dev/null; then
+    install_gcloud
+fi
+
 # requires user intervention
 [[ -d "$XDG_CONFIG_HOME"/emacs/bin ]] || git clone --depth 1 https://github.com/hlissner/doom-emacs "$XDG_CONFIG_HOME"/emacs
 "$XDG_CONFIG_HOME"/emacs/bin/doom install
 sudo apt install ubuntu-make
 umake web firefox-dev
+
