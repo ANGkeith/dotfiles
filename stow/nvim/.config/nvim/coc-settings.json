@@ -13,6 +13,11 @@
     "python.linting.mypyArgs": [ "--disallow-untyped-defs", "--show-column-number", "--ignore-missing-imports"],
     "python.linting.mypyEnabled": false,
 
+    // explorer
+    "explorer.width": 30,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.previewAction.onHover": false,
+    "explorer.icon.enableVimDevicons": true,
 }
 
 
