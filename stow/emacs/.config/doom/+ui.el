@@ -22,8 +22,7 @@
 
   (defun my-centaur-tabs-switch-to-org ()
     (interactive)
-    (unless (position my-centaur-tabs-org-group-name (centaur-tabs-get-groups))
-      (find-file "~/Dropbox/org/todo.org"))
+    (find-file "~/Dropbox/org/todo.org")
     (centaur-tabs-switch-group my-centaur-tabs-org-group-name))
 
   (defun my-centaur-tabs-switch-to-elisp ()
@@ -115,8 +114,8 @@
 (use-package! iflipb
   :config
   (map!
-  :n "<C-S-iso-lefttab>" #'iflipb-previous-buffer
-  :n "<C-tab>"           #'iflipb-next-buffer))
+   :n "<C-S-iso-lefttab>" #'iflipb-previous-buffer
+   :n "<C-tab>"           #'iflipb-next-buffer))
 
 ;; nav-flash
 (after! nav-flash
@@ -131,16 +130,16 @@
         doom-themes-neotree-file-icons t
         neo-theme 'icons)
   (map! (:map neotree-mode-map
-          :n "C-k" #'neotree-select-previous-sibling-node
-          :n "C-j" #'neotree-select-next-sibling-node
-          :n "h" #'neotree-select-up-node
-          :n "x" #'neotree-delete-node
-          :n "C" #'neotree-collapse-all
-          :n "D" #'make-directory
-          :n "n" #'evil-ex-search-next
-          :n "p" #'evil-ex-search-previous
-          :n "?" #'neotree-dispatch
-          :n "C-SPC" #'neotree-quick-look)))
+         :n "C-k" #'neotree-select-previous-sibling-node
+         :n "C-j" #'neotree-select-next-sibling-node
+         :n "h" #'neotree-select-up-node
+         :n "x" #'neotree-delete-node
+         :n "C" #'neotree-collapse-all
+         :n "D" #'make-directory
+         :n "n" #'evil-ex-search-next
+         :n "p" #'evil-ex-search-previous
+         :n "?" #'neotree-dispatch
+         :n "C-SPC" #'neotree-quick-look)))
 ;; HOTFIX for some reason `(featurep 'hl-line)` evaluates to nil in the dashboard
 (add-hook! #'neotree-mode-hook (hl-line-mode 1))
 (setq-hook! #'neotree-mode-hook
