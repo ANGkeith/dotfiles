@@ -65,8 +65,7 @@
    :desc "Next window"                       "`"   #'evil-window-next
    :desc "Toggle back and forth buffer"      "TAB" #'evil-switch-to-windows-last-buffer
    :desc "Close and kill window"             "q"   #'kill-current-buffer
-   ;; :desc "Configurations"                    "ev"  #'doom/find-file-in-private-config
-   :desc "Project find file"                 "ev"  #'+ivy/projectile-find-file
+   :desc "Configurations"                    "ev"  #'doom/find-file-in-private-config
    :desc "Load doom configurations"          "sv"  #'doom/reload
    :desc "Clean up projectile cache"         "pl"  #'projectile-invalidate-cache
    :desc "M-x"                               "SPC" #'ivy-resume

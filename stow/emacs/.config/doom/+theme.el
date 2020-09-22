@@ -49,11 +49,14 @@
     (progn
       (custom-set-faces
        '(fill-column-indicator ((t (:foreground "#4078f2"))))
+       '(diff-refine-added ((t (:foreground "#53AD84" :background "#d8e8d7"))))
+       '(diff-refine-removed ((t (:strike-through "#e4574a" :foreground "#e4574a" :background "#f5d9d6"))))
        '(font-lock-keyword-face ((t (:foreground "#4078f2"))))
        '(font-lock-string-face ((t (:foreground "#0d850b"))))
        '(font-lock-comment-face ((t (:weight semi-bold :slant italic))))
        '(default ((t (:background "#ffffff"))))
-       '(solaire-default-face ((t (:background "#f3f3f3"))))
+       '(solaire-default-face ((t (:background "#ffffff"))))
+       '(default ((t (:background "#F3F3F3"))))
        '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
        '(success ((t (:foreground "#2aa34d")))))
 

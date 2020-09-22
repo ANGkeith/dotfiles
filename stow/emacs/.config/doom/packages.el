@@ -64,6 +64,7 @@
 (package! git-gutter+)
 (package! git-gutter-fringe+)
 (package! command-log-mode)
+(package! terraform-mode)
 
 ;; to try:
 ;; wakatime
