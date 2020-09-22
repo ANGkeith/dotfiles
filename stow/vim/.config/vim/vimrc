@@ -195,10 +195,11 @@ endif
 " }}}
 " Plugin Configurations {{{
     " coc-explorer {{{
-        map <C-n> :CocCommand explorer<CR>
+        map <c-n> :CocCommand explorer<CR>
+        map <leader>e :CocCommand explorer<CR>
         autocmd FileType coc-explorer setlocal winhighlight=Normal:ColorColumn,EndOfBuffer:ColorColumn
         " Close coc-explorer and quickfix if it's the only buffer open
-        autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "coc-explorer" || &buftype == 'quickfix' |q|endif
+        autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "coc-explorer" |q|endif
     " }}}
     " indentline {{{
         let g:indentLine_fileTypeExclude = ['json', 'md']
@@ -219,6 +220,7 @@ endif
         " disable key mappings for quick previewr
         let g:quickr_preview_keymaps = 0
         let g:quickr_preview_size = '8'
+        let g:quickr_preview_options = 'number norelativenumber nofoldenable'
     " }}}
     " vim-gitgutter {{{
         nnoremap <leader>hd :GitGutterPreviewHunk<cr>
@@ -249,7 +251,7 @@ endif
         let g:instant_markdown_mathjax = 1
         let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
         let g:instant_markdown_autoscroll = 1
-        let g:instant_markdown_browser = "chromium new-window"
+        let g:instant_markdown_browser = "google-chrome"
     " }}}
     " tagbar {{{
         let g:tagbar_type_vimwiki = {
@@ -553,6 +555,9 @@ call plug#begin()
         Plug 'tpope/vim-commentary'
         Plug 'ervandew/supertab'
         Plug 'ronakg/quickr-preview.vim'
+        if has('patch-8.1.2250')
+            Plug 'bfrg/vim-qf-preview'
+        endif
         " Plugin outside ~/.vim/plugged with post-update hook
         Plug 'junegunn/fzf'
         Plug 'junegunn/fzf.vim'
@@ -583,6 +588,8 @@ call plug#begin()
         Plug 'junegunn/gv.vim'
         Plug 'airblade/vim-gitgutter'
         Plug 'jreybert/vimagit'
+        " add Gbrowse to jump to github
+        Plug 'tpope/vim-rhubarb'
     " }}}
     " asthethics {{{
         Plug 'joshdick/onedark.vim'
@@ -620,6 +627,7 @@ call plug#begin()
     Plug 'majutsushi/tagbar'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tommcdo/vim-lion'
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
 call plug#end()
 "}}}
@@ -678,4 +686,3 @@ autocmd VimEnter *
 
     " }}}
 " }}}
-
