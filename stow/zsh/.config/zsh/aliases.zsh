@@ -173,3 +173,15 @@ ealias grep="grep --color"
     ealias tfd="terraform destroy"
     ealias tfd!="terraform destroy --auto-approve"
 # }}}
+#
+
+function ngrok() {
+  docker run -d --rm --net=host -e NGROK_PORT="$1" wernight/ngrok > /dev/null
+  until curl --silent localhost:"${1}" > /dev/null; do
+    echo "Waiting for ngrok to be ready"
+    sleep 1
+  done
+
+  curl --silent http://localhost:4040/api/tunnels | jq --raw-output '.tunnels[0].public_url'
+}
+
