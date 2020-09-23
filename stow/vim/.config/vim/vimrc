@@ -201,6 +201,9 @@ endif
         " Close coc-explorer and quickfix if it's the only buffer open
         autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "coc-explorer" |q|endif
     " }}}
+    " coc-yank {{{
+    nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+    " }}}
     " indentline {{{
         let g:indentLine_fileTypeExclude = ['json', 'md']
         let g:indentLine_setConceal = 2
@@ -600,7 +603,6 @@ call plug#begin()
         Plug 'yggdroot/indentline'
         Plug 'tmux-plugins/vim-tmux-focus-events'
         Plug 'ryanoasis/vim-devicons'
-        Plug 'machakann/vim-highlightedyank'
     "  }}}
     "  bloat {{{
         " dependency for vim-radical
@@ -670,6 +672,7 @@ autocmd VimEnter *
         " nicer color in vim-magit
         hi diffAdded guibg=#AFFFAF guifg=#3f3f3f
         hi diffRemoved guibg=#FFD7FF guifg=#3f3f3f
+        hi HighlightedyankRegion guibg=#FFD787
 
     " }}}
 
