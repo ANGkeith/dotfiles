@@ -12,7 +12,7 @@ endif
 
 "  Behaviour Modification {{{
     " Show line number
-    set number
+    set relativenumber
 
     " Better mouse support
     set mouse=a
@@ -188,6 +188,14 @@ endif
     vnoremap <M-h> <
     vnoremap <M-l> >
 
+    " spacemacs bindings
+    noremap <leader>ff  :e <C-R>=substitute(expand("%:p:h"), $HOME, "~", "")<CR>/
+    noremap <leader>bb :buffers<CR>:buffer<Space>
+    noremap <leader>bd :bdelete<CR>
+    noremap <leader>bn :bn<CR>
+    noremap <leader>bp :bp<CR>
+    noremap <leader>bR :e<CR>
+
     " Custom Text Objects {{{
     onoremap iq :exec 'normal! vi"'<cr>
     onoremap aq :exec 'normal! va"'<cr>
@@ -203,6 +211,9 @@ endif
     " }}}
     " coc-yank {{{
     nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+    " }}}
+    " coc-snippets {{{
+    nnoremap <leader>es :CocList snippets<cr>
     " }}}
     " indentline {{{
         let g:indentLine_fileTypeExclude = ['json', 'md']
@@ -631,6 +642,10 @@ call plug#begin()
     Plug 'tommcdo/vim-lion'
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
+    Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips'
 call plug#end()
 "}}}
 " Automatically install missing plugins on startup {{{
@@ -689,3 +704,17 @@ autocmd VimEnter *
 
     " }}}
 " }}}
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+

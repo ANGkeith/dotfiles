@@ -1,0 +1,10 @@
+snippet bash "Bash boilerplates"
+#!/usr/bin/env bash
+
+set -o pipefail
+set -o nounset
+set -o errexit
+
+script_directory=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
+endsnippet
+
