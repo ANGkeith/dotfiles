@@ -60,6 +60,10 @@ ealias gsta="git stash apply"
 ealias gstl="git stash list"
 ealias gstp="git stash pop"
 ealias gsts="git stash show -v"
+
+# git filter-branch --force --index-filter \
+#  "git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA" \
+#  --prune-empty --tag-name-filter cat -- --all
 # }}}
 #
 # kubernetes {{{
