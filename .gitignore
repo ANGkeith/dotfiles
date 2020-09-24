@@ -8,3 +8,5 @@ stow/konsole/.local/share/konsole/bookmarks.xml.bak
 stow/konsole/.local/share/konsole/bookmarks.xml.tbcache
 /stow/tmux/.config/tmux/plugins/
 /stow/vscode/.config/Code/User/sync/
+stow/vscode/.config/Code/Crash Reports/
+stow/vscode/.config/Code/exthost Crash Reports/
