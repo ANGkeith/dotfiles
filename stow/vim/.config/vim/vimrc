@@ -188,6 +188,7 @@ endif
     noremap <leader>bn :bn<CR>
     noremap <leader>bp :bp<CR>
     noremap <leader>bR :e<CR>
+    noremap <leader>x  :Scratch<CR>
 
     " Custom Text Objects {{{
     onoremap iq :exec 'normal! vi"'<cr>
@@ -576,6 +577,10 @@ endif
     " {{{ quick-scopre
         let g:qs_second_highlight = 0
     " }}}"
+    " {{{ scratch
+        let g:scratch_persistence_file = '/tmp/scratch.vim'
+        let g:scratch_no_mappings = 1
+    " }}}"
 " }}}
 " Plugins {{{
 call plug#begin()
@@ -663,6 +668,7 @@ call plug#begin()
     Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
     Plug 'unblevable/quick-scope'
+    Plug 'mtth/scratch.vim'
 call plug#end()
 "}}}
 " Automatically install missing plugins on startup {{{
