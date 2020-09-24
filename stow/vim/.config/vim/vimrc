@@ -48,9 +48,6 @@ endif
     " highlight search term on the fly
     set incsearch
 
-    " highlight current line based on CursorLine
-    set cursorline
-
     set fillchars+=vert:\ ,eob:\ 
 
     set textwidth=0
@@ -113,10 +110,6 @@ endif
     nnoremap j gj
     nnoremap k gk
 
-    " use tab to jump across brackets
-    nnoremap <c-i> %
-    vnoremap <c-i> %
-
     " move to and highlight last edited text
     nnoremap gV `[v`]
 
@@ -127,8 +120,8 @@ endif
     imap <c-j> <c-n>
     imap <c-k> <c-p>
 
-    nnoremap <c-k> {
-    nnoremap <c-j> }
+    nmap <c-j> ]c
+    nmap <c-k> [c
 
     " mapping space to toggle pane
     nnoremap <space>` <c-w>w
@@ -202,6 +195,20 @@ endif
     " }}}
 " }}}
 " Plugin Configurations {{{
+    " coc-snippets {{{
+        let g:coc_snippet_next = '<tab>'
+        " {{{ <tab> trigger snippet completion
+        inoremap <silent><expr> <TAB>
+                    \ pumvisible() ? coc#_select_confirm() :
+                    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+                    \ <SID>check_back_space() ? "\<TAB>" :
+                    \ coc#refresh()
+        function! s:check_back_space() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~# '\s'
+        endfunction
+        " }}}
+    " }}}
     " coc-explorer {{{
         map <c-n> :CocCommand explorer<CR>
         map <leader>e :CocCommand explorer<CR>
@@ -209,8 +216,11 @@ endif
         " Close coc-explorer and quickfix if it's the only buffer open
         autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "coc-explorer" |q|endif
     " }}}
+    " coc-restclient {{{
+        map <leader>r :CocCommand rest-client.request<CR>
+    " }}}
     " coc-yank {{{
-    nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+    nnoremap <silent> <leader>p  :<C-u>CocList -A --normal yank<cr>
     " }}}
     " coc-snippets {{{
     nnoremap <leader>es :CocList snippets<cr>
@@ -560,8 +570,14 @@ endif
         let g:magit_ignore_mapping = 'i'
         let g:magit_folding_toggle_mapping = ['<c-i>']
     " }}}
+    " {{{ vim-hexokinase
+        let g:Hexokinase_highlighters = ['background']
+    " }}}"
+    " {{{ quick-scopre
+        let g:qs_second_highlight = 0
+    " }}}"
 " }}}
-"  Plugins {{{
+" Plugins {{{
 call plug#begin()
     " essentials {{{
         Plug 'tpope/vim-surround'
@@ -569,9 +585,6 @@ call plug#begin()
         Plug 'tpope/vim-commentary'
         Plug 'ervandew/supertab'
         Plug 'ronakg/quickr-preview.vim'
-        if has('patch-8.1.2250')
-            Plug 'bfrg/vim-qf-preview'
-        endif
         " Plugin outside ~/.vim/plugged with post-update hook
         Plug 'junegunn/fzf'
         Plug 'junegunn/fzf.vim'
@@ -646,6 +659,10 @@ call plug#begin()
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
+
+    Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+    Plug 'unblevable/quick-scope'
 call plug#end()
 "}}}
 " Automatically install missing plugins on startup {{{
@@ -653,7 +670,6 @@ autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
-" }}}
 " }}}
 " Colorscheme {{{
     set t_Co=256
@@ -688,7 +704,7 @@ autocmd VimEnter *
         hi diffAdded guibg=#AFFFAF guifg=#3f3f3f
         hi diffRemoved guibg=#FFD7FF guifg=#3f3f3f
         hi HighlightedyankRegion guibg=#FFD787
-
+        hi QuickScopePrimary gui=underline,bold
     " }}}
 
     " Useful for highlighting under cursor {{{
@@ -701,20 +717,6 @@ autocmd VimEnter *
             endfor
         endfunction
         command! -nargs=0 Syn call Syn()
-
     " }}}
 " }}}
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
 

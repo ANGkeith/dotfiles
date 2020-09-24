@@ -358,5 +358,15 @@
     "key": "ctrl+shift+l",
     "command": "-editor.action.selectHighlights",
     "when": "editorFocus"
+  },
+  {
+    "key": "alt+r",
+    "command": "workbench.action.debug.start",
+    "when": "!inDebugMode"
+  },
+  {
+    "key": "f5",
+    "command": "-workbench.action.debug.start",
+    "when": "!inDebugMode"
   }
 ]
