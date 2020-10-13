@@ -22,10 +22,6 @@
       "commands": ["workbench.action.findInFiles"]
     },
     {
-      "before": ["<leader>", "x", "s"],
-      "commands": ["editor.action.sortLinesAscending"]
-    },
-    {
       "before": ["<leader>", "d"],
       "commands": ["turboConsoleLog.displayLogMessage"]
     },
@@ -42,6 +38,14 @@
     {
       "before": ["<leader>", "d", "d"],
       "commands": ["turboConsoleLog.deleteAllLogMessages"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["rest-client.request"]
+    },
+    {
+      "before": ["<leader>", "x"],
+      "commands": ["extension.openScratchpad"]
     },
     {
       "before": ["u"],
@@ -334,10 +338,6 @@
     {
       "before": ["<leader>", "w", "W"],
       "commands": ["workbench.action.focusPreviousGroup"]
-    },
-    {
-      "before": ["<leader>", "x", "s"],
-      "commands": ["editor.action.sortLinesAscending"]
     },
     {
       "before": ["<leader>", "j", "i"],

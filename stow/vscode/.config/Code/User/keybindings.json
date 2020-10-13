@@ -361,12 +361,22 @@
   },
   {
     "key": "alt+r",
-    "command": "workbench.action.debug.start",
-    "when": "!inDebugMode"
+    "command": "rest-client.request",
+    "when": "editorTextFocus && editorLangId == 'http'"
   },
   {
-    "key": "f5",
-    "command": "-workbench.action.debug.start",
-    "when": "!inDebugMode"
+    "key": "ctrl+alt+r",
+    "command": "-rest-client.request",
+    "when": "editorTextFocus && editorLangId == 'http'"
+  },
+  {
+    "key": "alt+r",
+    "command": "rest-client.request",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+alt+r",
+    "command": "-rest-client.request",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
   }
 ]
