@@ -68,6 +68,7 @@ ealias gsts="git stash show -v"
 #
 # kubernetes {{{
     ealias k=kubectl
+    ealias kaf='kubectl apply -f'
 # }}}
 
 # navigations {{{
@@ -176,16 +177,19 @@ ealias grep="grep --color"
     ealias tfp="terraform plan"
     ealias tfd="terraform destroy"
     ealias tfd!="terraform destroy --auto-approve"
+    alias  tflint='docker run --rm -v $(pwd):/data -t wata727/tflint'
 # }}}
 #
 
 function ngrok() {
-  docker run -d --rm --net=host -e NGROK_PORT="$1" wernight/ngrok > /dev/null
-  until curl --silent localhost:"${1}" > /dev/null; do
+  docker run -d --rm --name ngrok --net=host -e NGROK_PORT="$1" wernight/ngrok > /dev/null
+  until curl --silent localhost:4040 > /dev/null; do
     echo "Waiting for ngrok to be ready"
     sleep 1
   done
 
+  echo "Ngrok is ready, please hold for 5 more seconds"
+  sleep 5
   curl --silent http://localhost:4040/api/tunnels | jq --raw-output '.tunnels[0].public_url'
 }
 
