@@ -137,6 +137,9 @@ sudo apt install -y neovim
         sudo apt install -y zoom.deb
     )
 
+# golang
+    sudo apt install -y golang
+
 # nodejs
     [[ -f /usr/share/nvm/nvm.sh ]]  || $(
             git clone https://github.com/nvm-sh/nvm.git /tmp/nvm

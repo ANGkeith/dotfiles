@@ -23,8 +23,17 @@
             "command": "terraform-lsp",
             "filetypes": ["terraform"],
             "initializationOptions": {}
+        },
+        "go": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "trace.server": "verbose",
+            "filetypes": ["go"]
         }
-    }
+    },
+
+    //rest-client
+    "rest-client.showHeaders": false
 }
 
 

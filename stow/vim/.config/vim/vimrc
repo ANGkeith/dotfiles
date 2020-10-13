@@ -546,15 +546,14 @@ endif
         " quickfix to prevent orange color folder
         highlight! link NERDTreeFlags NERDTreeDir
     " }}}
+    " coc-go {{{
+        map <leader>eb :GoRun <CR>
+    " }}}
     " vim-maximizer {{{
         nnoremap <c-f> :MaximizerToggle<CR>
         vnoremap <c-f> :MaximizerToggle<CR>gv
         inoremap <c-f> <C-o>:MaximizerToggle<CR>
     "
-    " }}}
-    " vim-polyglot {{{
-        " polylglot clashes with vimwiki plugin
-        let g:polyglot_disabled = ['markdown']
     " }}}
     " vim-multi-cursor {{{
         let g:VM_default_mappings = 0
@@ -597,8 +596,8 @@ call plug#begin()
         Plug 'tpope/vim-unimpaired'
     " }}}
     " IDE {{{
-        " improved syntax highlighting
-        Plug 'sheerun/vim-polyglot'
+        " " improved syntax highlighting
+        " Plug 'sheerun/vim-polyglot'
         " Used mainly for fixing and linting
         Plug 'dense-analysis/ale'
         " Mainly for autocompletion
@@ -669,6 +668,7 @@ call plug#begin()
 
     Plug 'unblevable/quick-scope'
     Plug 'mtth/scratch.vim'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 "}}}
 " Automatically install missing plugins on startup {{{

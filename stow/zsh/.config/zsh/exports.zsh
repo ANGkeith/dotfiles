@@ -16,6 +16,10 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 # pipenv
 export PIPENV_VENV_IN_PROJECT=true
 
+export GOBIN="$HOME"/.local/lib/go/bin
+export GOPATH="$HOME"/.local/lib/go
+export PATH="$PATH":"$GOBIN"
+
 # for easy reference to DOTFILE dir
 export DOTFILE="$HOME/dotfiles/stow"
 
