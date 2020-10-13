@@ -51,8 +51,6 @@ if ! zgen saved; then
 
     success_message "save all to init script"
 
-    zgen load Aloxaf/fzf-tab
-
     zgen load softmoth/zsh-vim-mode
     zgen save
 fi
