@@ -195,6 +195,7 @@ endif
     noremap <leader>bp :bp<CR>
     noremap <leader>bR :e<CR>
     noremap <leader>x  :Scratch<CR>
+    noremap <leader>sp :Rg
 
     " Custom Text Objects {{{
     onoremap iq :exec 'normal! vi"'<cr>
@@ -674,6 +675,7 @@ call plug#begin()
 
     Plug 'unblevable/quick-scope'
     Plug 'mtth/scratch.vim'
+    Plug 'jremmen/vim-ripgrep'
     Plug 'matze/vim-move'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
