@@ -181,6 +181,12 @@ endif
     vnoremap <M-h> <
     vnoremap <M-l> >
 
+    let g:move_key_modifier = ''
+    nmap <M-K> <Plug>MoveLineUp
+    vmap <M-K> <Plug>MoveBlockUp
+    vmap <M-J> <Plug>MoveBlockDown
+    nmap <M-J> <Plug>MoveLineDown
+
     " spacemacs bindings
     noremap <leader>ff  :e <C-R>=substitute(expand("%:p:h"), $HOME, "~", "")<CR>/
     noremap <leader>bb :buffers<CR>:buffer<Space>
@@ -668,6 +674,7 @@ call plug#begin()
 
     Plug 'unblevable/quick-scope'
     Plug 'mtth/scratch.vim'
+    Plug 'matze/vim-move'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 "}}}
