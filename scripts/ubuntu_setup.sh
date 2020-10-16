@@ -187,8 +187,6 @@ sudo apt install -y plasma-widgets-addons
 sudo apt install -y plasma-nm
 sudo apt install -y latte-dock
 
-sudo apt install -y imwheel # use to remap mouse scroll speed
-
 function install_terraform() {
     curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
     sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -225,4 +223,3 @@ fi
 "$XDG_CONFIG_HOME"/emacs/bin/doom install
 sudo apt install ubuntu-make
 umake web firefox-dev
-
