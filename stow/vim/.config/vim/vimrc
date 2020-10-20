@@ -178,8 +178,6 @@ endif
 
     noremap <M-h> <<
     noremap <M-l> >>
-    vnoremap <M-h> <
-    vnoremap <M-l> >
 
     let g:move_key_modifier = ''
     nmap <M-K> <Plug>MoveLineUp
