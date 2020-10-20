@@ -69,6 +69,10 @@ ealias gsts="git stash show -v"
 # kubernetes {{{
     ealias k=kubectl
     ealias kaf='kubectl apply -f'
+
+    export do="--dry-run=client -o yaml"
+    export now="--force --grace-period=0"
+
 # }}}
 
 # navigations {{{
