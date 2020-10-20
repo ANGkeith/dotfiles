@@ -197,3 +197,4 @@ function ngrok() {
   curl --silent http://localhost:4040/api/tunnels | jq --raw-output '.tunnels[0].public_url'
 }
 
+ealias trn="tmux rename-window"
