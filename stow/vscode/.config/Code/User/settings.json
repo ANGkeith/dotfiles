@@ -1,0 +1,609 @@
+{
+  "vim.neovimPerath": "/bin/nvim",
+  "vim.debug.loggingLevelForConsole": "debug",
+  "vim.foldfix": true,
+  "vim.enableNeovim": true,
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.handleKeys": {
+    "<C-f>": false
+  },
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["g", "c"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["<leader>", "j", "="],
+      "commands": ["editor.action.format"]
+    },
+    {
+      "before": ["<leader>", "s", "p"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["turboConsoleLog.displayLogMessage"]
+    },
+    {
+      "before": ["<tab>"],
+      "after": ["%"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "h", "b", "b"],
+      "commands": ["workbench.action.openGlobalKeybindings"]
+    },
+    {
+      "before": ["<leader>", "d", "d"],
+      "commands": ["turboConsoleLog.deleteAllLogMessages"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["rest-client.request"]
+    },
+    {
+      "before": ["<leader>", "x"],
+      "commands": ["extension.openScratchpad"]
+    },
+    {
+      "before": ["u"],
+      "after": [],
+      "commands": [
+        {
+          "command": "undo"
+        }
+      ]
+    },
+    {
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "redo"
+        }
+      ]
+    },
+    {
+      "before": ["<C-a>"],
+      "after": ["I"]
+    },
+    {
+      "before": [">"],
+      "after": [">", ">"]
+    },
+    {
+      "before": ["<"],
+      "after": ["<", "<"]
+    },
+    {
+      "before": ["<leader>", "<tab>"],
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+      ]
+    },
+    {
+      "before": ["<leader>", "b", "f"],
+      "commands": ["editor.action.formatDocument", "eslint.executeAutofix"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.smartSelect.expand"]
+    },
+    {
+      "before": ["g", "e"],
+      "commands": ["editor.action.smartSelect.shrink"]
+    },
+    {
+      "before": ["<leader>", "1"],
+      "commands": ["workbench.action.focusFirstEditorGroup"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.files.newUntitledFile"]
+    },
+    {
+      "before": ["<leader>", "e", "l"],
+      "commands": ["workbench.actions.view.problems"]
+    },
+    {
+      "before": ["<leader>", "e", "n"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["<leader>", "e", "p"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["<leader>", "f", "e"],
+      "commands": ["workbench.action.openGlobalSettings"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", "f", "r"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "f", "s"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "f", "S"],
+      "commands": ["workbench.action.files.saveAll"]
+    },
+    {
+      "before": ["<leader>", "o", "p"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "g", "b"],
+      "commands": ["git.checkout"]
+    },
+    {
+      "before": ["<leader>", "g", "c"],
+      "commands": ["git.commit"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["git.deleteBranch"]
+    },
+    {
+      "before": ["<leader>", "g", "f"],
+      "commands": ["git.fetch"]
+    },
+    {
+      "before": ["<leader>", "g", "i"],
+      "commands": ["git.init"]
+    },
+    {
+      "before": ["<leader>", "g", "m"],
+      "commands": ["git.merge"]
+    },
+    {
+      "before": ["<leader>", "g", "p"],
+      "commands": ["git.publish"]
+    },
+    {
+      "before": ["<leader>", "g", "S"],
+      "commands": ["git.stage"]
+    },
+    {
+      "before": ["<leader>", "g", "U"],
+      "commands": ["git.unstage"]
+    },
+    {
+      "before": ["<leader>", "h", "d"],
+      "commands": ["workbench.action.openGlobalKeybindings"]
+    },
+    {
+      "before": ["<leader>", "i", "s"],
+      "commands": ["editor.action.insertSnippet"]
+    },
+    {
+      "before": ["leader", "j", "j"],
+      "after": ["leader", "leader", "s"]
+    },
+    {
+      "before": ["leader", "j", "l"],
+      "after": ["leader", "leader", "leader", "b", "d", "j", "k"]
+    },
+    {
+      "before": ["leader", "j", "w"],
+      "after": ["leader", "leader", "leader", "b", "d", "w"]
+    },
+    {
+      "before": ["<leader>", "l", "d"],
+      "commands": ["workbench.action.closeFolder"]
+    },
+    {
+      "before": ["<leader>", "p", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "e", "v"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "p", "g"],
+      "commands": ["workbench.action.showEditorsInActiveGroup"]
+    },
+    {
+      "before": ["<leader>", "p", "l"],
+      "commands": ["workbench.action.files.openFolder"]
+    },
+    {
+      "before": ["<leader>", "p", "p"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "p", "t"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<C-w>", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    {
+      "before": ["<leader>", "s", "e"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "s", "j"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "s", "p"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "s", "P"],
+      "after": ["v", "i", "w", "<leader>", "s", "p", "<Esc>"]
+    },
+    {
+      "before": ["<leader>", "T", "F"],
+      "commands": ["workbench.action.toggleFullScreen"]
+    },
+    {
+      "before": ["<leader>", "T", "m"],
+      "commands": ["workbench.action.toggleMenuBar"]
+    },
+    {
+      "before": ["<leader>", "T", "s"],
+      "commands": ["workbench.action.selectTheme"]
+    },
+    {
+      "before": ["<leader>", "T", "t"],
+      "commands": ["workbench.action.toggleActivityBarVisibility"]
+    },
+    {
+      "before": ["<leader>", "v"],
+      "commands": ["editor.action.smartSelect.grow"]
+    },
+    {
+      "before": ["<leader>", "V"],
+      "commands": ["editor.action.smartSelect.shrink"]
+    },
+    {
+      "before": ["<leader>", "w", "-"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<leader>", "w", "/"],
+      "commands": ["workbench.action.splitEditorRight"]
+    },
+    {
+      "before": ["<leader>", "w", "d"],
+      "commands": ["workbench.action.closeEditorsInGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "h"],
+      "commands": ["workbench.action.focusPreviousGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "H"],
+      "commands": ["workbench.action.moveActiveEditorGroupLeft"]
+    },
+    {
+      "before": ["<leader>", "w", "j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "J"],
+      "commands": ["workbench.action.moveActiveEditorGroupDown"]
+    },
+    {
+      "before": ["<leader>", "w", "k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "K"],
+      "commands": ["workbench.action.moveActiveEditorGroupUp"]
+    },
+    {
+      "before": ["<leader>", "w", "l"],
+      "commands": ["workbench.action.focusNextGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "L"],
+      "commands": ["workbench.action.moveActiveEditorGroupRight"]
+    },
+    {
+      "before": ["<leader>", "w", "m"],
+      "commands": ["workbench.action.toggleEditorWidths"]
+    },
+    {
+      "before": ["<leader>", "w", "s"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<leader>", "w", "v"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["<leader>", "w", "w"],
+      "commands": ["workbench.action.focusNextGroup"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "w", "q"],
+      "commands": ["workbench.action.closeEditorsInGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "W"],
+      "commands": ["workbench.action.focusPreviousGroup"]
+    },
+    {
+      "before": ["<leader>", "j", "i"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "j", "I"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.previous"]
+    },
+    {
+      "before": ["]", "c"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["]", "f"],
+      "commands": ["macros.nextFile"]
+    },
+    {
+      "before": ["[", "f"],
+      "commands": ["macros.previousFile"]
+    },
+    {
+      "before": ["<tab>"],
+      "after": ["%"]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-u>"],
+      "after": ["C-e"]
+    },
+    {
+      "before": ["<C-e>"],
+      "after": ["C-u"]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-e>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "cursorEnd",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<C-a>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "cursorHome",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "h", "u"],
+      "commands": [
+        {
+          "command": "git.revertSelectedRanges",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "h", "s"],
+      "commands": [
+        {
+          "command": "git.stageSelectedRanges",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "m", "1"],
+      "commands": [
+        {
+          "command": "extension.partialDiff.markSection1",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "m", "2"],
+      "commands": [
+        {
+          "command": "extension.partialDiff.markSection2AndTakeDiff",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "m", "m"],
+      "commands": [
+        {
+          "command": "extension.partialDiff.diffSelectionWithClipboard",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "macros": {
+    "nextFile": [
+      "workbench.files.action.focusFilesExplorer",
+      "list.focusDown",
+      "list.select",
+      "workbench.action.toggleSidebarVisibility"
+    ],
+    "previousFile": [
+      "workbench.files.action.focusFilesExplorer",
+      "list.focusUp",
+      "list.select",
+      "workbench.action.toggleSidebarVisibility"
+    ]
+  },
+  "vim.easymotion": true,
+  "vim.easymotionKeys": "asdfghjkl",
+  "vim.sneak": true,
+  "vim.useSystemClipboard": false,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "editor.minimap.enabled": false,
+  "workbench.activityBar.visible": true,
+  "editor.tabCompletion": "on",
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "SauceCodePro Nerd Font",
+  "editor.fontSize": 14,
+  "vim.easymotionMarkerFontSize": "14",
+  "vim.easymotionMarkerHeight": 17,
+  "vim.easymotionMarkerFontWeight": "800",
+  "vim.easymotionMarkerYOffset": 3,
+  "vim.easymotionMarkerFontFamily": "SauceCodePro Nerd Font",
+  "editor.fontWeight": "500",
+  "editor.quickSuggestions": true,
+  "window.menuBarVisibility": "default",
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.fileHistory.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "workbench.iconTheme": "material-icon-theme",
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "anweber.vscode-tidyhtml"
+  },
+  "[css]": {
+    "editor.tabSize": 2
+  },
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Default Light+",
+  "terminal.integrated.allowChords": false,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "html-css-class-completion.enableEmmetSupport": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "editor.snippetSuggestions": "top",
+  "editor.suggestSelection": "first",
+  "bracket-pair-colorizer-2.colors": [
+    "colorizer.color-1",
+    "colorizer.color-2",
+    "colorizer.color-3"
+  ],
+  "workbench.colorCustomizations": {
+    "[Default Light+]": {
+      "gitlens.trailingLineForegroundColor": "#78c1ff",
+      "colorizer.color-1": "#ff9900", // Orange-Brown...
+      "colorizer.color-2": "#f500f5", // Medium-Pink...
+      "colorizer.color-3": "#54b9f8"
+    },
+    // Fallback to default colors for all themes that lack overrides.
+    "colorizer.color-1": "#ffd700", // "Gold". (Yellow with slight Orange)
+    "colorizer.color-2": "#da70d6", // "Orchid". (Pink)
+    "colorizer.color-3": "#87cefa" // "LightSkyBlue". (Light Blue)
+  },
+  "path-intellisense.absolutePathToWorkspace": true,
+  "clipboard-manager.snippet.enabled": false,
+  "browser-preview.verbose": true,
+  "browser-preview.startUrl": "http://localhost:3000/",
+  "editor.formatOnSave": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.scrollToSwitchTabs": true,
+  "diffEditor.renderSideBySide": false,
+  "sqltools.highlightQuery": true,
+  "hadolint.hadolintPath": "/home/angkeith/.local/bin/hadolint",
+  "files.associations": {
+    "Dockerfile": "dockerfile"
+  },
+  "prettier.configPath": "/home/angkeith/dotfiles/stow/prettier/.config/prettierrc.json",
+  "prettier.resolveGlobalModules": true,
+  "prettier.prettierPath": "/home/angkeith/.local/share/nvm/versions/node/v12.18.3/lib/node_modules/prettier",
+  "eslint.workingDirectories": ["./src"],
+  "eslint.lintTask.enable": true,
+  "todohighlight.isEnable": true,
+  // Configure glob patterns for excluding files and folders.
+  // For example, the files explorer decides which files and folders to show
+  // or hide based on this setting.
+  // Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
+  // Configure glob patterns for excluding files and folders in searches.
+  // Inherits all glob patterns from the `files.exclude` setting.
+  // Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/bower_components": true
+  },
+  // Configure glob patterns of file paths to exclude from file watching.
+  // Patterns must match on absolute paths
+  // (i.e. prefix with ** or the full path to match properly).
+  // Changing this setting requires a restart.
+  // When you experience Code consuming lots of cpu time on startup,
+  // you can exclude large folders to reduce the initial load.
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
+  "yaml.schemas": {
+    "kubernetes": "*.yaml"
+  },
+}

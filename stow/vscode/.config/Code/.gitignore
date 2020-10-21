@@ -1,0 +1,20 @@
+Backups
+Cache*
+Code Cache
+Cookies*
+Network*
+Session*
+GPUCache
+storage.json
+rapid_render.json
+machineid
+User/syncLocalSettings.json
+languagepacks.json
+TransportSecurity
+
+.org.chromium*
+User/clipboard.history.json
+Workspaces
+
+Local Storage
+Preferences

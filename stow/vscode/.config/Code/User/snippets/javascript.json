@@ -1,0 +1,81 @@
+{
+  "For Loop": {
+    "prefix": ["fin"],
+    "body": ["for (const ${2:element} in ${1:array}) {", "\t$0", "}"],
+    "description": "A for ... of loop."
+  },
+  "For In": {
+    "prefix": ["fof"],
+    "body": ["for (const ${2:element} of ${1:Object}) {", "\t$0", "}"],
+    "description": "A for ... in loop."
+  },
+  "Function": {
+    "prefix": ["fu"],
+    "body": ["function ${1:functionName}(${2:params}) {", "\t$0", "}"],
+    "description": "Function template"
+  },
+  "Fat Arrow (brace)": {
+    "prefix": ["ab"],
+    "body": ["($1) => {", "\t$0", "}"],
+    "description": "Fat Arrow with braces"
+  },
+  "Fat Arrow": {
+    "prefix": ["a"],
+    "body": ["($1) => $2"],
+    "description": "Fat Arrow without braces"
+  },
+  "Console log": {
+    "prefix": ["log"],
+    "body": ["console.log($1)"],
+    "description": "Console log"
+  },
+  "Express Server": {
+    "prefix": "expserver",
+    "body": [
+      "import express from 'express';",
+      "import HttpStatus from 'http-status-codes';",
+      "import { dirname } from 'path';",
+      "import { fileURLToPath } from 'url';",
+      "",
+      "const __dirname = dirname(fileURLToPath(import.meta.url));",
+      "const app = express();",
+      "const { PORT } = process.env;",
+      "const options = {",
+      "  root: __dirname,",
+      "};",
+      "",
+      "app.use(express.json());",
+      "app.use(express.static('assets', options));",
+      "",
+      "app.get('/', (req, res) => {",
+      "  res.sendFile('index.html', options);",
+      "});",
+      "",
+      "app.all('*', (req, res) => {",
+      "  res.status(HttpStatus.NOT_FOUND);",
+      "  res.send({",
+      "    message: 'not found',",
+      "  });",
+      "});",
+      "",
+      "app.listen(PORT, () => console.log(`App is listening on port: \\${PORT}`));",
+      ""
+    ],
+    "description": "Express Server"
+  },
+  "MySQL create connection": {
+    "prefix": "mysqlconn",
+    "body": [
+      "import mysql from 'mysql';",
+      "",
+      "export default mysql.createConnection({",
+      "  host: process.env.MYSQL_HOST,",
+      "  user: process.env.MYSQL_USER,",
+      "  password: process.env.MYSQL_PASSWORD,",
+      "  database: process.env.MYSQL_DATABASE,",
+      "});",
+      ""
+    ],
+    "description": "MySQL create connection"
+  }
+}
