@@ -68,7 +68,10 @@ ealias gsts="git stash show -v"
 #
 # kubernetes {{{
     ealias k=kubectl
+    ealias h=helm
     ealias kaf='kubectl apply -f'
+    ealias kdf='kubectl delete -f'
+    ealias kcuc!='kubectl config unset current-context'
 
     export do="--dry-run=client -o yaml"
     export now="--force --grace-period=0"
