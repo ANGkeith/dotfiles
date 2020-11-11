@@ -47,6 +47,8 @@ endif
 
     " highlight search term on the fly
     set incsearch
+    set ignorecase
+    set smartcase
 
     set fillchars+=vert:\ ,eob:\ 
 
