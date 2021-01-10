@@ -11,6 +11,7 @@ ealias zshrc="vim $ZDOTDIR/.zshrc"
 
 # docker {{{
 ealias dockersrm='docker rm -fv $(docker ps -aq)'
+ealias deti='docker exec -ti'
 dex() {
     docker exec -ti "$1" bash
 }
@@ -72,10 +73,19 @@ ealias gsts="git stash show -v"
     ealias kaf='kubectl apply -f'
     ealias kdf='kubectl delete -f'
     ealias kcuc!='kubectl config unset current-context'
+    ealias keti='kubectl exec -ti'
+    ealias kgi='kubectl get ingress'
+    ealias kdi='kubectl describe ingress'
+    ealias kgp='kubectl get pod'
+    ealias kdp='kubectl describe pod'
+    ealias keti='kubectl exec -ti'
 
     export do="--dry-run=client -o yaml"
     export now="--force --grace-period=0"
 
+    kex() {
+        kubectl exec -ti "$1" -- bash
+    }
 # }}}
 
 # navigations {{{
@@ -167,6 +177,7 @@ github() {
 
 ealias k9="kill -9"
 ealias grep="grep --color"
+ealias cc="clipcopy"
 
 # ealias ls="exa -lahgb --icons"
 
@@ -185,6 +196,7 @@ ealias grep="grep --color"
     ealias tfd="terraform destroy"
     ealias tfd!="terraform destroy --auto-approve"
     alias  tflint='docker run --rm -v $(pwd):/data -t wata727/tflint'
+    ealias tffmt!="find . -name '*.tf' -type f -exec terraform fmt {} \;"
 # }}}
 #
 
@@ -201,3 +213,7 @@ function ngrok() {
 }
 
 ealias trn="tmux rename-window"
+
+b64d() {
+  echo "$1" | base64 --decode | clipcopy
+}
