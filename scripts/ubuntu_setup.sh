@@ -94,11 +94,10 @@ sudo apt install -y neovim
 	    && chmod +x /tmp/kubectl
 	    sudo mv /tmp/kubectl /usr/local/bin/kubectl
     )
-    command -v minikube || $(
-    	curl -o /tmp/minikube -L https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-    	&& chmod +x /tmp/minikube\
-    	sudo install /tmp/minikube /usr/local/bin/
-    )
+    wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+
+    wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.10.0/kubeseal-linux-amd64 -O kubeseal
+    sudo install -m 755 kubeseal /usr/local/bin/kubeseal
 
 # volume manager
     sudo apt install -y pavucontrol
@@ -223,3 +222,5 @@ fi
 "$XDG_CONFIG_HOME"/emacs/bin/doom install
 sudo apt install ubuntu-make
 umake web firefox-dev
+
+wget https://releases.hashicorp.com/packer/1.6.5/packer_1.6.5_linux_amd64.zip
