@@ -22,6 +22,8 @@ if ! zgen saved; then
     zgen load zdharma/zsh-diff-so-fancy
     zgen load zigius/expand-ealias.plugin.zsh
 
+    zgen load johanhaleby/kubetail
+
     # install def-matcher binary which zsh-fast-alias-tips requires
     if [ ! -f ~/.local/bin/def-matcher ]; then
         echo "Installing def-matcher binary ..."

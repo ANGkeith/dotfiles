@@ -8,7 +8,7 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_reduce_blanks     # removes superfluous blanks from each commands
 setopt hist_verify            # show command with history expansion to user before running it
-setopt inc_append_history     # HISTFILE is updated as soon as entered rather than waiting until the shell exits
+setopt share_history          # HISTFILE is updated as soon as entered rather than waiting until the shell exits
 
 # Input/Output
 setopt correct_all            # Try to correct spelling of all arg

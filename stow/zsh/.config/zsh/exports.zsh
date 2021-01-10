@@ -70,7 +70,7 @@ export FAST_ALIAS_TIPS_PREFIX="💡 $(tput bold)"
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist rnu noma' -\""
 
 # history settings
-export HISTSIZE=9999999999
+export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|\ls --color=tty -la|\ls --color=tty|nvim|gitk)"
 
@@ -85,7 +85,7 @@ fi
 
 # Respect XDG {{{
     # gcp
-    export BOTO_CONFIG="XDG_CONFIG_HOME"/gcp/boto
+    export BOTO_CONFIG="$XDG_CONFIG_HOME"/gcp/boto
 
     # cargo
     export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -97,6 +97,9 @@ fi
     # vim
     export VIMINIT='source $MYVIMRC'
     export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+
+    # kubectl
+    export KUBECONFIG="$XDG_CONFIG_HOME"/kube/config
 
     # ripgrep
     export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
