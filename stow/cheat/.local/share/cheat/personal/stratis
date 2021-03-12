@@ -1,0 +1,20 @@
+---
+stratis: [ filesystem ]
+---
+# show information about block devices
+stratis blockdev
+
+# show information about all pool
+stratis pool
+
+# monitor individual filesystem
+stratis fs
+
+# creating snapshot name mypool
+stratis fs snapshot mypool myfs myfs-snapshot
+
+# delete snapshot
+stratis fs destroy mypool mysnapshot
+
+# delete filesystem
+stratis fs destroy mypool myfs

@@ -217,3 +217,7 @@ ealias trn="tmux rename-window"
 b64d() {
   echo "$1" | base64 --decode | clipcopy
 }
+
+alias sops-regen-mac='EDITOR="vim -es +'"'"'norm Go'"'"' +'"'"':wq'"'"'"  sops --ignore-mac'
+
+
