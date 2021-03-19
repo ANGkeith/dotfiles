@@ -60,6 +60,8 @@ sudo pacman -S git tk --noconfirm --needed
 
     sudo pacman -S jq --noconfirm --needed
 
+    sudo pacman -S bash-completion --noconfirm --needed
+
     # for debugging
     sudo pacman -S peek --noconfirm --needed
     yay-install-maybe screenkey
@@ -264,5 +266,14 @@ sudo pacman -S git tk --noconfirm --needed
 
 # binaries
     yay-install-maybe pciutils
+
+# cloud provider cli
+    yay-install-maybe azure-cli
+
+# kubernetes
+    sudo pacman -S kubectl --noconfirm --needed
+    yay-install-maybe rancher-k3d-bin
+
+
 
 # reboot

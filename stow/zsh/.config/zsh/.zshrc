@@ -16,6 +16,9 @@ source $ZDOTDIR/lazy_load.zsh
 # for i in $(seq 1 10); do time /bin/zsh -i -c exit; done;
 # enable-fzf-tab
 
+autoload bashcompinit
+bashcompinit
+
 complete -C $(which terraform) terraform
 source <(helm completion zsh)
 source /etc/bash_completion.d/azure-cli
