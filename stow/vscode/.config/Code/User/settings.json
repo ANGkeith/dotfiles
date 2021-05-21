@@ -1,5 +1,5 @@
 {
-  "vim.neovimPerath": "/bin/nvim",
+  "vim.neovimPath": "/bin/nvim",
   "vim.debug.loggingLevelForConsole": "debug",
   "vim.foldfix": true,
   "vim.enableNeovim": true,
@@ -522,11 +522,9 @@
   "[css]": {
     "editor.tabSize": 2
   },
-  "window.zoomLevel": 0,
   "workbench.colorTheme": "Default Light+",
   "terminal.integrated.allowChords": false,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "sync.gist": "18fbc6d337ce7c2c68b7dcb6bcb31fa0",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -606,4 +604,6 @@
   "yaml.schemas": {
     "kubernetes": "*.yaml"
   },
+  "sync.gist": "f5380aa57a103688a1bb548529b3ec28",
+  "window.zoomLevel": 1,
 }
