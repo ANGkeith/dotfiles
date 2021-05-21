@@ -113,3 +113,6 @@ git cherry-pick <commit SHA1>
 
 # Redirect entire log to the file `entire_log.txt`
 git log --all -p > entire_log.txt
+
+# remove historical reference to the `.env` file
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch .env" HEAD
