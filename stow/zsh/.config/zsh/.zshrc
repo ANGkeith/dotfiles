@@ -21,4 +21,5 @@ bashcompinit
 
 complete -C $(which terraform) terraform
 source <(helm completion zsh)
-source /etc/bash_completion.d/azure-cli
+source <(kubectl completion zsh)
+source <(flux completion zsh) && compdef _flux flux
