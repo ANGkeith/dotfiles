@@ -79,6 +79,7 @@ ealias gsts="git stash show -v"
     ealias kgp='kubectl get pod'
     ealias kdp='kubectl describe pod'
     ealias keti='kubectl exec -ti'
+    ealias kcn='kubectl config set-context --current --namespace'
 
     export do="--dry-run=client -o yaml"
     export now="--force --grace-period=0"
