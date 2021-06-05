@@ -44,6 +44,9 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-autosuggestions
     zgen load zsh-users/zsh-syntax-highlighting
 
+    # Using vi mode in cli
+    zgen load softmoth/zsh-vim-mode
+
     # add widgets
     # completions
     zgen oh-my-zsh plugins/docker
@@ -51,6 +54,5 @@ if ! zgen saved; then
 
     success_message "save all to init script"
 
-    zgen load softmoth/zsh-vim-mode
     zgen save
 fi
