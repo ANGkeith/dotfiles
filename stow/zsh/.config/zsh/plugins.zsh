@@ -47,8 +47,6 @@ if ! zgen saved; then
     # add widgets
     # completions
     zgen oh-my-zsh plugins/docker
-    zgen oh-my-zsh plugins/minikube
-    zgen oh-my-zsh plugins/kubectl
     zgen load zsh-users/zsh-completions src
 
     success_message "save all to init script"
