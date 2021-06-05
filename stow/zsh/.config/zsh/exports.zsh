@@ -61,6 +61,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # enable true color
 export TERM="xterm-256color"
 
+# ZSH_AUTOSUGGEST_HIGHLIGHT color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#d3d3d3"
+
 # Better transition for changing of vim mode in terminal
 export KEYTIMEOUT=1
 
