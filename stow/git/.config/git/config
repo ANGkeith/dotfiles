@@ -4,13 +4,9 @@
 [core]
     excludesfile = /home/angkeith/.config/git/gitignore_global
 	attributesfile = ~/.gitattributes
-
 [alias]
 	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
 [diff "image"]
 	command = /home/angkeith/git-diff-image/git_diff_image
 [cola]
 	spellcheck = false
-[mergetool "gitblade"]
-	cmd = \"/home/angkeith/Downloads/gitblade/gitblade\" -c \"\"
-	trustExitCode = true
