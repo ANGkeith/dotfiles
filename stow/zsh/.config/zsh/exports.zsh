@@ -28,7 +28,8 @@ export PATH=$HOME/.local/bin:$PATH
 
 # Nvm
 export NODE_DEFAULT_VERSION=12.18.3
-export NVM_SOURCE="/usr/share/nvm" # The AUR package installs it here
+[[ -d '/usr/share/nvm' ]] && export NVM_SOURCE="/usr/share/nvm" # AUR installs it here
+[[ -d '/usr/local/opt/nvm' ]] && export NVM_SOURCE="/usr/local/opt/nvm" # Brew installs it here
 
 export NODE_PATH="$HOME"/.local/share/nvm/versions/node/v"$NODE_DEFAULT_VERSION"/bin
 # Npm

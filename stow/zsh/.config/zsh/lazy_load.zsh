@@ -12,6 +12,8 @@ if [ -s "$NVM_SOURCE/nvm.sh" ] && [ ! "$(type -w __init_nvm)" = "__init_nvm: fun
     unset -f __init_nvm
   }
   for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+else
+  echo "nvm not installed"
 fi
 
 
