@@ -221,4 +221,5 @@ b64d() {
 
 alias sops-regen-mac='EDITOR="vim -es +'"'"'norm Go'"'"' +'"'"':wq'"'"'"  sops --ignore-mac'
 
-
+# fix extension icons not showing up in side bar after setting VSCODE_EXTENSIONS
+alias="code --extensions-dir $VSCODE_EXTENSIONS"
