@@ -2,11 +2,11 @@
 	email = angkeith@hotmail.sg
 	name = ANGkeith
 [core]
-    excludesfile = /home/angkeith/.config/git/gitignore_global
+    excludesfile = ~/.config/git/gitignore_global
 	attributesfile = ~/.gitattributes
 [alias]
 	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
 [diff "image"]
-	command = /home/angkeith/git-diff-image/git_diff_image
+	command = ~/.local/bin/git_diff_image
 [cola]
 	spellcheck = false
