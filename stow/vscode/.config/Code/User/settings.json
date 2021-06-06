@@ -1,5 +1,5 @@
 {
-  "vim.neovimPath": "/bin/nvim",
+  "vim.neovimPath": "/usr/local/bin/nvim",
   "vim.debug.loggingLevelForConsole": "debug",
   "vim.foldfix": true,
   "vim.enableNeovim": true,
