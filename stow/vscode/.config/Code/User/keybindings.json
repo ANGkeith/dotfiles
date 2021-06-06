@@ -1,8 +1,13 @@
 [
   {
-    "key": "ctrl+j",
-    "command": "workbench.action.quickOpenSelectNext",
-    "when": "inQuickOpen"
+      "key": "enter",
+      "command": "explorer.openAndPassFocus",
+      "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus"
+  },
+  {
+      "key": "ctrl+j",
+      "command": "workbench.action.quickOpenSelectNext",
+      "when": "inQuickOpen"
   },
   {
     "key": "ctrl+n",
