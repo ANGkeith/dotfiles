@@ -383,5 +383,10 @@
     "key": "ctrl+alt+r",
     "command": "-rest-client.request",
     "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   }
 ]
